@@ -44,7 +44,6 @@ class _SplashState extends State<Splash> {
     //     // NavigatorHandler.pushAndRemoveUntil(const Login());
     //   NavigatorHandler.push(IslamTheme());
     //   }
-
     });
   }
   @override
