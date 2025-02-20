@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+
+class AppColors {
+  static const Color primaryColor =  Color(0xff62BA87);
+  static const Color secondColor = Color(0xffF5EDE3);
+  static const Color darkColor =  Color(0xff3A2816);
+  static const Color white =  Color(0xffFFFFFF);
+  static const Color errorColor = Color(0xffff0000);
+  static const Color lightErrorColor = Color(0xffFFCCCC);
+  static const Color gray = Color(0xff666B88);
+  static const Color green = Color(0xff42B82F);
+  static const Color lightGreen = Color(0xffBEF1C9);
+  static const Color blue = Color(0xff2196F3);
+  ///////////
+  static const Color pickerCamera =  Color(0xffe72b6c);
+  static const Color pickerGallery =  Color(0xffb659e6);
+  static const Color pickerVideo =  Color(0xff755EEA);
+  static const Color pickerRecordVideo =  Color(0xffe35c30);
+  static const Color pickerLocation =  Color(0xff1d9c51);
+  static const Color msgContentIconColorLight = Color(0xff6C757A);
+  static const Color msgContentIconColorDark = Color(0xff929A9D);
+  static const Color msgLeftDateDarkColor = Color(0xff7D8A90);
+  static const Color greyColor = Color(0xff979797);
+  static const Color toolbarViewColor = Color(0xff1F2C34);
+}

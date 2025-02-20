@@ -1,0 +1,34 @@
+class AppUrls {
+  static String baseUrl = "https://new.shserial.com/public/";
+  static String loginUrl = "api/admin/login";
+  static String insertPhoneTokenUrl = "api/admin/insert_phone_token";
+  static String checkSerialUrl = "api/admin/serial_check";
+  static String logoutUrl = "api/admin/logout";
+  static String areasUrl = "api/admin/areas";
+  static String citiesUrl = "api/admin/cities";
+  static String usersUrl = "api/admin/users";
+  static String adminsUrl = "api/admin/admins";
+  static String logsUrl = "api/admin/logs";
+  static String reviewReportsUrl = "api/admin/review_reports";
+  static String permissionsUrl = "api/admin/permissions";
+  static String areasMultiDeleteUrl = "api/admin/areas/multi_delete";
+  static String usersMultiDeleteUrl = "api/admin/users/multi_delete";
+  static String logsMultiDeleteUrl = "api/admin/logs/multi_delete";
+  static String notificationsMultiDeleteUrl = "api/admin/notifications/multi_delete";
+  static String adminsMultiDeleteUrl = "api/admin/admins/multi_delete";
+  static String citiesMultiDeleteUrl = "api/admin/cities/multi_delete";
+  static String homeUrl = "api/admin/home";
+  static String multiPrintUrl = "api/admin/multi-print-report";
+  static String allNotificationUrl = "api/admin/notifications";
+  static String allNotificationCountUrl = "api/admin/notifications/unread_count";
+  static String deleteNotificationUrl = "api/admin/notifications/";
+  static String reportTypeUrl = "api/admin/report_types";
+  static String rolesUrl = "api/admin/roles";
+  static String rolesMultiDeleteUrl = "api/admin/areas/multi_delete";
+  static String updateProfileUrl = "admin/update-profile";
+  static String minutesUrl = "admin/reports";
+  static String reportCategoryUrl = "api/admin/report_categories";
+  static String rankUrl = "api/admin/positions";
+  static String reportsUrl = "api/admin/reports";
+  static String workNatureUrl = "api/admin/jop_natures";
+}
