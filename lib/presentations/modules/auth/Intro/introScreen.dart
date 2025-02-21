@@ -3,6 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/presentations/components/custom_app_bar/custom_app_bar.dart';
+import 'package:pronight_vendor/presentations/components/custom_scaffold/custom_scaffold.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/app_theme/app_colors.dart';
@@ -54,8 +56,8 @@ class _IntroScreenState extends State<IntroScreen> {
 Preferences pre =Preferences();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: const BackAppBar(height: 0,),
+    return CustomScaffold(
+      appBar: const CustomAppBar(height: 0),
       backgroundColor:AppColors.white,
       // appBar: CustomAppBar(
       //     showBackArrow: false,
@@ -154,6 +156,33 @@ Preferences pre =Preferences();
       // ),
       body: Column(
         children: [
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const SizedBox(),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical:Dimens.padding_24v),
+                child: SmoothPageIndicator(
+                  controller: _pageController,
+                  count: 3,
+                  effect: ExpandingDotsEffect(
+                    activeDotColor: AppColors.primaryColor,
+                    dotHeight: 12,
+                    dotWidth: 12,
+                  ),
+                ),
+              ),
+              CustomButton(
+                  width: 70.w,
+                  height: 50.h,bg: Colors.transparent,
+                  fontSize: 13.r,
+                  title: 'تخطي',
+                  fontColor:AppColors.darkColor,
+                  onTap: (){
+                    // saveUserData.saveIsShowIntro(true);
+                    // NavigatorHandler.pushAndRemoveUntil(const Login());
+                  }),
+            ],
+          ),
           // Container(
           //   decoration: BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.only(
           //     bottomLeft: Radius.circular(16.r),bottomRight: Radius.circular(16.r),
@@ -324,18 +353,7 @@ Preferences pre =Preferences();
           ),
           Column(
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical:Dimens.padding_24v),
-                child: SmoothPageIndicator(
-                  controller: _pageController,
-                  count: 3,
-                  effect: ExpandingDotsEffect(
-                    activeDotColor: AppColors.primaryColor,
-                    dotHeight: 12,
-                    dotWidth: 12,
-                  ),
-                ),
-              ),
+
               CustomText(
                 title: _textTitlePaths[_currentPage],
               ),
@@ -397,16 +415,7 @@ Preferences pre =Preferences();
                           ),
                     ],
                   ),
-                CustomButton(
-                    width: 70.w,
-                    height: 50.h,bg: Colors.transparent,
-                    fontSize: 12.r,
-                    title: 'AppTranslate.skip.tr()',
-                    fontColor:AppColors.darkColor,
-                    onTap: (){
-                      // saveUserData.saveIsShowIntro(true);
-                      // NavigatorHandler.pushAndRemoveUntil(const Login());
-                    })
+
               ],
             ),
           ),
