@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pronight_vendor/presentations/modules/auth/login/widget/confirm_code/forgot_password_view_model.dart';
 import 'package:provider/provider.dart';
 import 'core/islam_theme/islam_theme.dart';
 import 'injection.dart';
@@ -14,6 +15,7 @@ class GenerateMultiProviders extends StatelessWidget {
       providers: [
         // ChangeNotifierProvider(create: (_) => getIt<LanguageViewModel>()),
         ChangeNotifierProvider(create: (_) => getIt<ThemeNotifier>()),
+        ChangeNotifierProvider(create: (_) => getIt<ForgotPasswordViewModel>()),
       ],
       child: child,
     );
