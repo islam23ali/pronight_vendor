@@ -34,6 +34,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double? iconBackSize;
   final double? height;
   final Color? bgColor;
+  final Color? statusBarColor;
   final IconData? iconBack;
   final Color? topColor;
   final Brightness? topColorIcons;
@@ -53,6 +54,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.bottom,
     this.elevation,
     this.bgColor,
+    this.statusBarColor,
     this.systemUiOverlayStyle,
     this.titleWidget,
     this.isBackButtonExist = true,
@@ -73,9 +75,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       surfaceTintColor: Colors.transparent,
       systemOverlayStyle: systemUiOverlayStyle ??
           SystemUiOverlayStyle(
-              statusBarColor: AppColors.secondColor,
+              statusBarColor:statusBarColor?? AppColors.secondColor,
               statusBarIconBrightness: topColorIcons ?? Brightness.dark),
-      backgroundColor: AppColors.secondColor,
+      backgroundColor:bgColor?? AppColors.secondColor,
       // surfaceTintColor: AppColors.white,
       // shadowColor: AppColors.white,
       elevation: .3,

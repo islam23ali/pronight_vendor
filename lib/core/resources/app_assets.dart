@@ -3,6 +3,11 @@ class AppAssets {
   static const String back = 'Back';
   static const String splash = 'splash';
   static const String splashLogo = 'splashLogo';
+  static const String clearField = 'clearField';
+
+  static const String next1 = 'Next1';
+  static const String next2 = 'Next2';
+  static const String next3 = 'Next3';
 
   ///Gifs
   static const String gifEmptyList = 'assets/images/gif/empty_list.gif';

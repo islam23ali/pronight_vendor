@@ -49,7 +49,10 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      appBar: const CustomAppBar(height: 0),
+      backgroundColor:AppColors.white,
+      statusBarColor:AppColors.white,
+      systemNavigationBarColor:AppColors.white,
+      appBar: const CustomAppBar(height: 0,statusBarColor:AppColors.white),
       body: Container(color: AppColors.white,
         height: double.maxFinite,
         width: double.maxFinite,

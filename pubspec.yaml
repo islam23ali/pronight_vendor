@@ -98,10 +98,10 @@ flutter:
   fonts:
     - family: font_regular
       fonts:
-        - asset: assets/fonts/Poppins-Regular.TTF
+        - asset: assets/fonts/Montserrat-Arabic Regular 400.otf
     - family: font_bold
       fonts:
-        - asset: assets/fonts/Poppins-Bold.TTF
+        - asset: assets/fonts/Montserrat-Arabic Bold 700.otf
 
 
   # To add assets to your application, add an assets section, like this:

@@ -69,9 +69,9 @@ class CustomButton extends StatelessWidget {
                 (icon==null||icon=='')?const SizedBox(): SizedBox(width: 5.w),
               titleWidget??  CustomText(
                   title: title??'',
-                  fontSize: fontSize??AppFonts.font_14,
+                  fontSize: fontSize??AppFonts.font_13,
                   fontColor: fontColor??AppColors.white,
-                  fontWeight: fontWeight??FontWeight.normal,
+                  fontWeight: fontWeight??FontWeight.bold,
                   maxLines: 1,
                 ),
               ],

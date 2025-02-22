@@ -17,6 +17,7 @@ class CustomTextFormField extends StatefulWidget {
   final Widget? suffix;
   final bool readOnly;
   final Color? bgColor;
+  final Color? underLineColor;
   final Color? bordercolor;
   final double? borderRaduis;
   final double? height;
@@ -35,7 +36,7 @@ class CustomTextFormField extends StatefulWidget {
   final void Function()? onTap;
   final TextAlign? textAlign;
 
-  const CustomTextFormField({super.key,required this.controller,this.hint,this.inputFormatters,this.prefix,this.suffix,this.textInputType ,this.readOnly = false,this.bgColor, this.onChange, this.borderRaduis, this.height, this.bordercolor, this.onTap, this.textAlign, this.vertical, this.hintFontSize, this.fontSize, this.maxLines=1, this.hintDirection, this.width, this.maxHeight, this.maxWidth, this.padding, this.focusNode});
+  const CustomTextFormField({super.key,required this.controller,this.hint,this.inputFormatters,this.prefix,this.suffix,this.textInputType ,this.readOnly = false,this.bgColor, this.onChange, this.borderRaduis, this.height, this.bordercolor, this.onTap, this.textAlign, this.vertical, this.hintFontSize, this.fontSize, this.maxLines=1, this.hintDirection, this.width, this.maxHeight, this.maxWidth, this.padding, this.focusNode, this.underLineColor});
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -47,12 +48,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: widget.padding?? EdgeInsets.symmetric(horizontal: Dimens.padding_16h),
+      padding: widget.padding?? const EdgeInsets.symmetric(horizontal: 0),
       //widget.maxLines==null?null:
       height:widget.height??56.h,
       alignment: Alignment.center,
       width:widget.width ,
-      decoration: BoxDecoration(color: widget.bgColor??AppColors.darkColor.withAlpha((0.08 * 255).round()),borderRadius: BorderRadius.circular(widget.borderRaduis??12.r),border: Border.all(color:widget.bordercolor?? AppColors.darkColor.withAlpha((0.03 * 255).round()),)),
+      decoration: BoxDecoration(color: widget.bgColor??AppColors.white,borderRadius: BorderRadius.circular(widget.borderRaduis??12.r),border: Border.all(color:widget.bordercolor?? Colors.transparent,)),
       child: Center(
         child: TextFormField(
           focusNode:widget.focusNode ,
@@ -69,7 +70,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           //     : TextAlign.start,
           readOnly:widget.readOnly ,
           controller: widget.controller,
-
           textAlignVertical: TextAlignVertical.center,
           cursorColor: AppColors.primaryColor,
           style: AppTextStyles().normalText( fontSize:widget.fontSize??AppFonts.font_14).textColorNormal(AppColors.darkColor),
@@ -82,12 +82,26 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             isDense: true,
             // contentPadding: EdgeInsets.symmetric(vertical:widget.vertical?? Dimens.padding_14v),
             border: InputBorder.none,
+            enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+                width: 2.w,
+                color:widget.underLineColor?? const Color(0xff000000).withAlpha((0.20*255).round()))),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                  width: 2.w,
+                  color:widget.underLineColor?? const Color(0xff000000).withAlpha((0.20*255).round())), // Change the color for the focused state
+            ),
+            disabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                  width: 2.w,
+                  color:widget.underLineColor?? const Color(0xff000000).withAlpha((0.20*255).round())), // Change the color for the disabled state
+            ),
             // hintTextDirection:widget.hintDirection??(context.locale.languageCode == 'en' ? TextDirection.ltr : TextDirection.rtl),
             hintText: widget.hint,
             hintStyle: AppTextStyles().normalText(fontSize: widget.hintFontSize??AppFonts.font_12).textColorNormal(AppColors.darkColor.withAlpha((0.35 * 255).round())),
             prefixIcon: widget.prefix,
-            suffixIconConstraints:   BoxConstraints(maxHeight:widget.maxHeight?? 24.h,maxWidth:widget.maxWidth??26.w,minWidth: 24.w,),
-            prefixIconConstraints:  BoxConstraints(maxHeight:widget.maxHeight?? 24.h,maxWidth:widget.maxWidth??96.w,minWidth: 45.w),
+            suffixIconConstraints: BoxConstraints(maxHeight:widget.maxHeight?? 24.h,maxWidth:widget.maxWidth??26.w,minWidth: 24.w,),
+            prefixIconConstraints: BoxConstraints(maxHeight:widget.maxHeight?? 24.h,maxWidth:widget.maxWidth??96.w,minWidth: 45.w),
             counterText: '',
             suffixIcon: widget.textInputType == TextInputType.visiblePassword
                 ? IconButton(

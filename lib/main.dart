@@ -70,7 +70,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
       return MaterialApp(
-        title:(context.locale.toString()=='en')?'Al-Eble':'الإبل',
+        // title:(context.locale.toString()=='en')?'Pronigh Investor':'الإبل',
+        title:'Pronigh Investor',
         locale:context.locale ,
         theme: ThemeData(
     checkboxTheme: CheckboxThemeData(
