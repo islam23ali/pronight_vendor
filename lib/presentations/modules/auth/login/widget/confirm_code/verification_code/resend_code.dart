@@ -2,13 +2,14 @@
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
+import 'package:pronight_vendor/core/resources/font_size.dart';
+import 'package:pronight_vendor/presentations/modules/auth/login/login_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../../core/dimens/dimens.dart';
 import '../../../../../../../core/resources/app_translate.dart';
 import '../../../../../../../injection.dart';
 import '../../../../../../components/custom_text/custom_text.dart';
-import '../forgot_password_view_model.dart';
 
 
 class ResendConfirmCode extends StatefulWidget {
@@ -22,7 +23,7 @@ class ResendConfirmCode extends StatefulWidget {
 }
 
 class _ResendConfirmCodeState extends State<ResendConfirmCode> {
-  ForgotPasswordViewModel provider =getIt();
+  LoginViewModel provider =getIt();
 
   @override
   void initState() {
@@ -38,7 +39,7 @@ class _ResendConfirmCodeState extends State<ResendConfirmCode> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ForgotPasswordViewModel>(
+    return Consumer<LoginViewModel>(
       builder: (context,data,_) {
         print('data>===${data.start}');
         return Padding(
@@ -48,31 +49,26 @@ class _ResendConfirmCodeState extends State<ResendConfirmCode> {
             children: <Widget>[
               if (data.start == 0)
                 SizedBox(
-                  child:
-
-                  InkWell(
+                  child:InkWell(
                     onTap: () {
                       // Provider.of<ForgotPasswordViewModel>(context,listen: false).sendCode(true);
                     },
                     child: CustomText(
-                     title:  AppTranslate.april.tr(),
+                     title:  AppTranslate.resendCode.tr(),
                       textAlign: TextAlign.center,
+                      fontSize: AppFonts.font_12,
                       fontColor: AppColors.primaryColor,
-
                     ),
                   )
-
                 ),
               SizedBox(
-                width: Dimens.padding_8h,
+                width: Dimens.padding_8h
               ),
               if (data.start != 0)
                 CustomText(
-                  title:   '00:${data.start.toString()}',
+                  title:'00:${data.start.toString()}',
+                  fontColor: (data.start>5)?AppColors.blackColor:AppColors.errorColor,
 ),
-
-                  // .bodyStyle()
-                  // .customColor(AppColors.black),
 
             ],
           ),

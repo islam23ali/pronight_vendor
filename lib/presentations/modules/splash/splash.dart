@@ -13,6 +13,7 @@ import '../../../core/islam_theme/islam_theme.dart';
 import '../../components/custom_scaffold/custom_scaffold.dart';
 import '../../shared_widget/back_app_bar.dart';
 import '../auth/Intro/introScreen.dart';
+import '../layout/bottom_nav_bar_app.dart';
 
 
 
@@ -36,8 +37,10 @@ class _SplashState extends State<Splash> {
     //   } else {
     //     if(_localUserData.isShowIntro()==false){
     //       // NavigatorHandler.pushAndRemoveUntil(MainScreen());
-          NavigatorHandler.pushAndRemoveUntil(IntroScreen());
-    //     }
+    //       NavigatorHandler.pushAndRemoveUntil(IntroScreen());
+          NavigatorHandler.push(BottomNavBar(bottomNavIndex: 0,));
+
+      //     }
     //     NavigatorHandler.pushAndRemoveUntil(const LoginScreen());
         // NavigatorHandler.pushAndRemoveUntil(MainLayout());
     //     NavigatorHandler.pushAndRemoveUntil(IntroScreen());

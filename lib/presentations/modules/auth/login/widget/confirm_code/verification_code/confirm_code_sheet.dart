@@ -3,7 +3,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/presentations/components/inputs/custom_pin_code_field.dart';
+import 'package:pronight_vendor/presentations/modules/auth/login/login_view_model.dart';
 
 import 'package:provider/provider.dart';
 import '../../../../../../../core/app_theme/app_colors.dart';
@@ -15,7 +17,7 @@ import '../../../../../../../injection.dart';
 import '../../../../../../components/custom_button/custom_button.dart';
 import '../../../../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../../../../components/custom_text/custom_text.dart';
-import '../forgot_password_view_model.dart';
+import '../../../../../layout/bottom_nav_bar_app.dart';
 import 'resend_code.dart';
 import 'dart:ui' as ui;
 
@@ -29,18 +31,11 @@ class ConfirmCodeSheet extends StatefulWidget {
 }
 
 class _ConfirmCodeSheetState extends State<ConfirmCodeSheet> {
- ForgotPasswordViewModel  provider =getIt();
-
-
-    
-    // String otp = _controller.text;
-    // Provider.of<AuthViewModel>(context, listen: false).verifyOTPFirebase(otp, widget._phone, context);
-
 
   @override
   Widget build(BuildContext context) {
     return
-      Consumer<ForgotPasswordViewModel>(
+      Consumer<LoginViewModel>(
         builder: (context, data, _) {return Container(
         margin:EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       decoration: BoxDecoration(
@@ -48,33 +43,33 @@ class _ConfirmCodeSheetState extends State<ConfirmCodeSheet> {
           borderRadius:
            BorderRadius.vertical(top: Radius.circular(AppFonts.font_16)),
       ),
-      padding:   EdgeInsets.symmetric(horizontal: Dimens.padding_16h,vertical:Dimens.padding_16v ),
+      padding:   EdgeInsets.symmetric(horizontal: Dimens.padding_24h,vertical:Dimens.padding_36v ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          CustomSvgIcon(assetName:AppAssets.next1,height:Dimens.padding_3h,width: Dimens.padding_2v,),
+          CustomSvgIcon(assetName:AppAssets.otpLogo,height:120.w,width: 225.w,),
           SizedBox(height:16.h),
           Center(
             child: Column(
               children: [
                 CustomText(
-                 title: tr(AppTranslate.gallery),
+                 title: 'من فضلك ادخل رمز التحقق المرسل الي رقم الجوال ',
                   fontColor: AppColors.blackColor,
                   fontSize: AppFonts.font_14,
                   textAlign: TextAlign.center,
                 ),
-                // Directionality(
-                //   textDirection: ui.TextDirection.ltr,
-                  // child: CustomText(
-                  // title:   ' ${"+962"} ${removeLeadingZeroFromString(provider.phoneController.text)} ',
-                  //   textAlign: TextAlign.center,
-                  // ),
-                // ),
+                Directionality(
+                  textDirection: ui.TextDirection.ltr,
+                  child: CustomText(
+                  title:   ' ${"+962"} ${(data.phoneNumberController.text)} ',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               ],
             ),
           ),
           SizedBox(height:16.h),
-          CustomPinCodeTextField(controller: provider.controller, fieldsCount: 5,
+          CustomPinCodeTextField(controller: data.controller, fieldsCount: 5,
           // onCompleted: (value){
           //   provider.refreshData();
           // },
@@ -83,15 +78,15 @@ class _ConfirmCodeSheetState extends State<ConfirmCodeSheet> {
           ResendConfirmCode(
             fontSize: AppFonts.font_14, fromRegister:false,),
           SizedBox(height:16.h),
-
           CustomButton(
             height: 50.h,
-            bg: provider.controller.text.length==5?AppColors.primaryColor:AppColors.blue,
+            bg: data.controller.text.length==5?AppColors.primaryColor:AppColors.greyColor,
             // loading: isLoading,
-            onTap:provider.controller.text.length==5? () {
+            onTap:data.controller.text.length==5? () {
               if (MediaQuery.of(context).viewInsets.bottom > 0) {
                 FocusScope.of(context).unfocus();
               }
+              NavigatorHandler.push(BottomNavBar(bottomNavIndex: 0,));
 // provider.confirmCode(provider.controller.text);
             }:(){
 

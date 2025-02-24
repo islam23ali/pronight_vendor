@@ -7,6 +7,9 @@
   "forgotYourPassword": "Forgot your password?",
   "Login": "Login",
   "phone number": "phone number",
-  "Welcome": "Welcome .."
+  "Welcome": "Welcome ..",
+  "confirm": "Confirm",
+  "enter your phone": "You must enter your phone number first.",
+  "Resend code": "Resend code"
 
 }

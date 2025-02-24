@@ -75,7 +75,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       surfaceTintColor: Colors.transparent,
       systemOverlayStyle: systemUiOverlayStyle ??
           SystemUiOverlayStyle(
-              statusBarColor:statusBarColor?? AppColors.secondColor,
+              statusBarColor:statusBarColor?? AppColors.white,
               statusBarIconBrightness: topColorIcons ?? Brightness.dark),
       backgroundColor:bgColor?? AppColors.secondColor,
       // surfaceTintColor: AppColors.white,
@@ -84,9 +84,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       bottom: bottom,
       title: CustomText(
           title: title ?? '',
-          fontSize: AppFonts.font_16,
-          fontColor: AppColors.darkColor,
-          fontWeight: FontWeight.bold),
+          fontSize: AppFonts.font_14,
+          fontColor: AppColors.textColor2,
+          fontWeight: FontWeight.w400),
       centerTitle: false,
       leading: leading ??
           (isBackButtonExist ? InkWell(
@@ -107,10 +107,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 angle: context.locale.languageCode == 'en' ? math.pi : 0,
                 // Rotate by 45 degrees (π/4 radians)
                 child: CustomSvgIcon(
-                    color: AppColors.darkColor,
                     assetName: AppAssets.back,
-                    width: 32.w,
-                    height: 32.h),
+                    width: 25.w,
+                    height: 25.h),
               ),
             ),
           ):const SizedBox.shrink()),

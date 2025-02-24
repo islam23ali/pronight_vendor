@@ -4,6 +4,8 @@ class AppColors {
   static const Color primaryColor =  Color(0xff62BA87);
   static const Color circleColor = Color(0xffF3BE1E);
   static const Color textColor = Color(0xff778087);
+  static const Color textColor2 = Color(0xff404040);
+  static const Color itemBgColor = Color(0xffFAFAFA);
   static const Color blackColor = Color(0xff000000);
 
 

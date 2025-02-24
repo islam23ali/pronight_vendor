@@ -19,22 +19,26 @@ class CustomPinCodeTextField extends StatelessWidget {
     return  Directionality(
       textDirection: ui.TextDirection.ltr,
       child: PinCodeTextField(
-        enableActiveFill: true,
+        enableActiveFill: false,
         mainAxisAlignment: MainAxisAlignment.center,
         keyboardType: TextInputType.number,
         autoDisposeControllers: false,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         appContext: context,
         length: fieldsCount,
-        cursorColor: AppColors.primaryColor,
+        // cursorColor: AppColors.primaryColor,
         textStyle: AppTextStyles().normalText(fontSize: AppFonts.font_16).textColorNormal(AppColors.darkColor),
         controller: controller,
         pinTheme: PinTheme(
-            borderRadius: BorderRadius.circular(12.r),
-            fieldOuterPadding: EdgeInsets.symmetric(horizontal: Dimens.padding_16h),
-            fieldHeight: 56.w,
-            fieldWidth: 56.w,
-            shape: PinCodeFieldShape.box),
+          activeColor: Color(0xffEEEEEE),
+          inactiveColor:  Color(0xffEEEEEE),
+          selectedColor:  Color(0xffEEEEEE),
+          disabledColor:  Color(0xffEEEEEE),
+            // borderRadius: BorderRadius.circular(12.r),
+            fieldOuterPadding: EdgeInsets.symmetric(horizontal: Dimens.padding_4h),
+            fieldHeight: 50.w,
+            fieldWidth: 50.w,
+            shape: PinCodeFieldShape.underline),
       ),
     );
   }

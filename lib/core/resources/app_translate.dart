@@ -15,10 +15,12 @@ class AppTranslate{
   static const String phoneNumber = 'phone number' ;
   static const String titleLogin = 'titleLogin' ;
   static const String welcome = 'Welcome' ;
+  static const String enterYourPhone = 'enter your phone' ;
+  static const String resendCode = 'Resend code' ;
 
   //not set yet
   static const String noResultFound = 'noResultFound' ;
-  static const String confirm = 'Confirm' ;
+  static const String confirm = 'confirm' ;
   static const String cancel = 'cancel' ;
   static const String logout = 'logout' ;
   static const String january  = "January" ;

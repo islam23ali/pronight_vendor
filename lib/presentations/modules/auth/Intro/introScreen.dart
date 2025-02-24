@@ -37,9 +37,9 @@ class _IntroScreenState extends State<IntroScreen> {
   bool lang = true;
 
   final List<String> _imagePaths = [
-    'AppAssets.intro1',
-    'AppAssets.intro2',
-    'AppAssets.intro3',
+    AppAssets.intro1,
+    AppAssets.intro2,
+    AppAssets.intro1,
   ];
   final List<String> _textTitlePaths = [
     AppTranslate.introTitle1.tr(),
@@ -106,7 +106,7 @@ Preferences pre =Preferences();
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            CustomSvgIcon(assetName:_imagePaths[_currentPage],width: MediaQuery.of(context).size.width,height: 400.w),
+                            CustomPngIcon(assetName:_imagePaths[_currentPage],width: MediaQuery.of(context).size.width,height: 400.w),
                           ],
                         )
                     ),

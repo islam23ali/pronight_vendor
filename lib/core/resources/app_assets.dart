@@ -1,9 +1,21 @@
 class AppAssets {
 
-  static const String back = 'Back';
+  static const String back = 'back';
   static const String splash = 'splash';
   static const String splashLogo = 'splashLogo';
   static const String clearField = 'clearField';
+  static const String otpLogo = 'otpLogo';
+  static const String intro1 = 'intro1';
+  static const String intro2 = 'intro2';
+  static const String selectedHome = 'selectedHome';
+  static const String selectedFiles = 'selectedFiles';
+  static const String selectedItem = 'selectedItem';
+  static const String selectedSetting = 'selectedSetting';
+  static const String unSelectedFiles = 'unSelectedFiles';
+  static const String unSelectedHome = 'unSelectedHome';
+  static const String unSelectedSetting = 'unSelectedSetting';
+  static const String unSelectedItem = 'unSlelctedItem';
+  static const String addContracts = 'addContracts';
 
   static const String next1 = 'Next1';
   static const String next2 = 'Next2';
