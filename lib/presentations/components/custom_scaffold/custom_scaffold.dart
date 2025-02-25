@@ -19,13 +19,13 @@ class CustomScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
-        statusBarColor: statusBarColor ?? AppColors.secondColor,
+        statusBarColor: statusBarColor ?? AppColors.white,
         statusBarIconBrightness:statusBarIconBrightness?? Brightness.dark,
-        systemNavigationBarColor: systemNavigationBarColor ?? AppColors.secondColor,
+        systemNavigationBarColor: systemNavigationBarColor ?? AppColors.white,
         systemNavigationBarIconBrightness:systemNavigationBarIconBrightness?? Brightness.dark,
       ),
       child: Scaffold(
-        backgroundColor: backgroundColor ?? AppColors.secondColor,
+        backgroundColor: backgroundColor ?? AppColors.white,
         appBar: appBar,
         body: body,
         bottomNavigationBar:bottomNavigationBar ,

@@ -20,7 +20,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final double? fontSize;
   final Color? fontColor;
-  final bool? showBackArrow;
   final bool? centerTitle;
   final FontWeight? fontWeight;
   final Widget? titleWidget;
@@ -48,7 +47,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leadingWidth,
     this.fontSize,
     this.fontColor,
-    this.showBackArrow,
     this.centerTitle,
     this.actions,
     this.bottom,
@@ -77,7 +75,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           SystemUiOverlayStyle(
               statusBarColor:statusBarColor?? AppColors.white,
               statusBarIconBrightness: topColorIcons ?? Brightness.dark),
-      backgroundColor:bgColor?? AppColors.secondColor,
+      backgroundColor:bgColor?? AppColors.white,
       // surfaceTintColor: AppColors.white,
       // shadowColor: AppColors.white,
       elevation: .3,

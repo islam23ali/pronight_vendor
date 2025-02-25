@@ -118,26 +118,13 @@ class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMix
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(height: 56.h,
-        bgColor: AppColors.white,
-        topColor: AppColors.white,
-        title: 'العقود',
-        // titleWidget:  Image.asset(AppAssets.splash,height: 32.h,width: 164.5.w,),
-        isBackButtonExist: true,
-        actions: [ Padding(
-          padding: EdgeInsets.symmetric(horizontal:Dimens.padding_16h),
-          child: InkWell(
-            onTap: (){
-              // push(Favorites());
-              },
-            child: CustomSvgIcon(assetName:AppAssets.addContracts, width: 24.w, height: 24.h),
-          ),
-        ),],
-      ),
+      // appBar:
       extendBody: true,
-      body: NotificationListener<ScrollNotification>(
-        onNotification: onScrollNotification,
-        child: widgetList[widget.bottomNavIndex],
+      body: SafeArea(
+        child: NotificationListener<ScrollNotification>(
+          onNotification: onScrollNotification,
+          child: widgetList[widget.bottomNavIndex],
+        ),
       ),
       floatingActionButton: SizedBox(height: 65.h,
         width: 65.w,

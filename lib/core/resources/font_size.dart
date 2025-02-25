@@ -3,6 +3,7 @@ import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 
 class AppFonts{
   static double font_8 = 8.sp;
+  static double font_9 = 9.sp;
   static double font_10 = 10.sp;
   static double font_11 = 11.sp;
   static double font_12 = 12.sp;

@@ -62,12 +62,13 @@ class CustomButton extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(radius??12.r)),
           child: Center(
-            child: Row(crossAxisAlignment: CrossAxisAlignment.center,
+            child:(title==null&&icon!='')?  CustomSvgIcon(assetName: icon??'',color:iconColor ,width:iconWidth?? 20.w,height: iconHeight??20.h,) :
+            Row(crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 (icon==null||icon=='')?const SizedBox(): CustomSvgIcon(assetName: icon??'',color:iconColor ,width:iconWidth?? 20.w,height: iconHeight??20.h,),
                 (icon==null||icon=='')?const SizedBox(): SizedBox(width: 5.w),
-              titleWidget??  CustomText(
+              titleWidget?? CustomText(
                   title: title??'',
                   fontSize: fontSize??AppFonts.font_13,
                   fontColor: fontColor??AppColors.white,

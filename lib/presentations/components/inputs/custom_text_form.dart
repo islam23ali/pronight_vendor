@@ -17,6 +17,7 @@ class CustomTextFormField extends StatefulWidget {
   final Widget? suffix;
   final bool readOnly;
   final Color? bgColor;
+  final Color? hintFontColor;
   final Color? underLineColor;
   final Color? bordercolor;
   final double? borderRaduis;
@@ -36,7 +37,7 @@ class CustomTextFormField extends StatefulWidget {
   final void Function()? onTap;
   final TextAlign? textAlign;
 
-  const CustomTextFormField({super.key,required this.controller,this.hint,this.inputFormatters,this.prefix,this.suffix,this.textInputType ,this.readOnly = false,this.bgColor, this.onChange, this.borderRaduis, this.height, this.bordercolor, this.onTap, this.textAlign, this.vertical, this.hintFontSize, this.fontSize, this.maxLines=1, this.hintDirection, this.width, this.maxHeight, this.maxWidth, this.padding, this.focusNode, this.underLineColor});
+  const CustomTextFormField({super.key,required this.controller,this.hint,this.inputFormatters,this.prefix,this.suffix,this.textInputType ,this.readOnly = false,this.bgColor, this.onChange, this.borderRaduis, this.height, this.bordercolor, this.onTap, this.textAlign, this.vertical, this.hintFontSize, this.fontSize, this.maxLines=1, this.hintDirection, this.width, this.maxHeight, this.maxWidth, this.padding, this.focusNode, this.underLineColor, this.hintFontColor});
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -98,7 +99,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             ),
             // hintTextDirection:widget.hintDirection??(context.locale.languageCode == 'en' ? TextDirection.ltr : TextDirection.rtl),
             hintText: widget.hint,
-            hintStyle: AppTextStyles().normalText(fontSize: widget.hintFontSize??AppFonts.font_12).textColorNormal(AppColors.darkColor.withAlpha((0.35 * 255).round())),
+            hintStyle: AppTextStyles().normalText(fontSize: widget.hintFontSize??AppFonts.font_12).textColorNormal(widget.hintFontColor??AppColors.darkColor.withAlpha((0.35 * 255).round())),
             prefixIcon: widget.prefix,
             suffixIconConstraints: BoxConstraints(maxHeight:widget.maxHeight?? 24.h,maxWidth:widget.maxWidth??26.w,minWidth: 24.w,),
             prefixIconConstraints: BoxConstraints(maxHeight:widget.maxHeight?? 24.h,maxWidth:widget.maxWidth??96.w,minWidth: 45.w),

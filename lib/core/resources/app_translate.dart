@@ -17,6 +17,9 @@ class AppTranslate{
   static const String welcome = 'Welcome' ;
   static const String enterYourPhone = 'enter your phone' ;
   static const String resendCode = 'Resend code' ;
+  static const String details = 'Details' ;
+  static const String contracts = 'Contracts' ;
+  static const String visitPermits = 'Visit permits' ;
 
   //not set yet
   static const String noResultFound = 'noResultFound' ;
