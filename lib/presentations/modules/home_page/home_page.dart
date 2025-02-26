@@ -46,7 +46,15 @@ class _HomePageState extends State<HomePage> {
         const CustomSliderHome(),
         SizedBox(height: 20.h),
         Row(children: [
-          Card()
+          SizedBox(width: 160.w,height: 116.h,
+              child: Card(
+                child:Column(children: [
+                  Row(children: [
+                    CustomSvgIcon(assetName: AppAssets.wallet,width: 15.w,height: 15.h),
+                    SizedBox(width: 5.w),
+                    CustomText(title: 'الحجوزات',fontColor: AppColors.textColor2)
+                  ],)
+                ],) ,))
         ],)
       ],),);
   }

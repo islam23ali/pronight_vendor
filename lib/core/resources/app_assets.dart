@@ -36,6 +36,7 @@ class AppAssets {
   static const String notIcon = 'notIcon';
   static const String bgSliderHome = 'bgSliderHome';
   static const String fileSVG = 'fileSVG';
+  static const String wallet = 'wallet';
   static const String homeSVG = 'homeSVG';
 
   static const String next1 = 'Next1';
