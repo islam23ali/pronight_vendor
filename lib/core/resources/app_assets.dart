@@ -24,6 +24,19 @@ class AppAssets {
   static const String deleteContract = 'deleteContract';
   static const String editContract = 'editContract';
   static const String showContract = 'showContract';
+  static const String sectorNumber = 'sectorNumber';
+  static const String beach = 'beach';
+  static const String payMoney = 'payMoney';
+  static const String filePDF = 'filePDF';
+  static const String selectedPayment = 'selectedPayment';
+  static const String unSelectedPayment = 'unSelectedPayment';
+  static const String successDone = 'successDone';
+  static const String pronightLogo = 'pronightLogo';
+  static const String notificationIcon = 'notificationIcon';
+  static const String notIcon = 'notIcon';
+  static const String bgSliderHome = 'bgSliderHome';
+  static const String fileSVG = 'fileSVG';
+  static const String homeSVG = 'homeSVG';
 
   static const String next1 = 'Next1';
   static const String next2 = 'Next2';

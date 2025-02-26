@@ -14,6 +14,25 @@
   "Resend code": "اعادة ارسال الرمز",
   "Details": "التفاصيل",
   "Contracts": "العقود",
-  "Visit permits": "تصاريح الزيارة"
+  "Visit permits": "تصاريح الزيارة",
+  "Sector number": "رقم القطاع",
+  "Beach": "شاطيء",
+  "Created in": "تم الإنشاء فى",
+  "Tenant Name": "إسم المستأجر",
+  "villa": "فيلا",
+  "Rental value": "قيمة الإيجار",
+  "Contract Status": "حالة العقد",
+  "Operations on the contract": "العمليات على العقد",
+  "comments": "ملاحظات",
+  "paymentConfirmation": "تأكيدالدفع",
+  "cancelPayment": "إلغاء الدفع",
+  "Payment": "الدفع",
+  "Contract fees": "رسوم العقد",
+  "Saudi Riyal": "ريال سعودي",
+  "Payment via wallet": "الدفع عن طريق المحفظة",
+  "Payment by card": "الدفع عن طريق البطاقة",
+  "Confirmation message": "رسالة تأكيد",
+  "Unit added successfully": "تم إضافة الوحدة بنجاح",
+  "Hey, you .....": "أهلاً بك ....."
 
 }

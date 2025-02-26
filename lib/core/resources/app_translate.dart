@@ -20,6 +20,25 @@ class AppTranslate{
   static const String details = 'Details' ;
   static const String contracts = 'Contracts' ;
   static const String visitPermits = 'Visit permits' ;
+  static const String sectorNumber = 'Sector number' ;
+  static const String beach = 'Beach' ;
+  static const String createIn = 'Created in' ;
+  static const String tenantName = 'Tenant Name' ;
+  static const String villa = 'villa' ;
+  static const String rentalValue = 'Rental value' ;
+  static const String contractStatus = 'Contract Status' ;
+  static const String operationsOTheContract = 'Operations on the contract' ;
+  static const String comments = 'comments' ;
+  static const String paymentConfirmation = 'paymentConfirmation' ;
+  static const String cancelPayment = 'cancelPayment' ;
+  static const String payment = 'Payment' ;
+  static const String contractFees = 'Contract fees' ;
+  static const String saudiRiyal = 'Saudi Riyal' ;
+  static const String paymentViaWallet = 'Payment via wallet' ;
+  static const String paymentByCard = 'Payment by card' ;
+  static const String confirmationMessage = 'Confirmation message' ;
+  static const String unitAddedSuccessfully = 'Unit added successfully' ;
+  static const String heyYou = 'Hey, you .....' ;
 
   //not set yet
   static const String noResultFound = 'noResultFound' ;

@@ -13,6 +13,25 @@
   "Resend code": "Resend code",
   "Details": "Details",
   "Contracts": "Contracts",
-  "Visit permits": "Visit permits"
+  "Visit permits": "Visit permits",
+  "Sector number": "Sector number",
+  "Beach": "Beach",
+  "Created in": "Created in",
+  "Tenant Name": "Tenant Name",
+  "villa": "villa",
+  "Rental value": "Rental value",
+  "Contract Status": "Contract Status",
+  "Operations on the contract": "Operations on the contract",
+  "comments": "Comments",
+  "paymentConfirmation": "Payment confirmation",
+  "cancelPayment": "Cancel payment",
+  "Payment": "Payment",
+  "Contract fees": "Contract fees",
+  "Saudi Riyal": "Saudi Riyal",
+  "Payment via wallet": "Payment via wallet",
+  "Payment by card": "Payment by card",
+  "Confirmation message": "Confirmation message",
+  "Unit added successfully": "Unit added successfully",
+  "Hey, you .....": "Hey, you ....."
 
 }
