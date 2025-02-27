@@ -6,10 +6,13 @@ class AppColors {
   static const Color textColor = Color(0xff778087);
   static const Color textColor2 = Color(0xff404040);
   static const Color textColor3 = Color(0xff656565);
+  static const Color textColor4 = Color(0xff333333);
   static const Color itemBgColor = Color(0xffFAFAFA);
   static const Color blackColor = Color(0xff000000);
   static const Color cardColor = Color(0xffE6F4EC);
   static const Color cardDetailsColor = Color(0xffF5F5F5);
+  static const Color bgHomeColor = Color(0xffF3F3F3);
+  static const Color darkPrimaryColor = Color(0xff0B321C);
 
 
 

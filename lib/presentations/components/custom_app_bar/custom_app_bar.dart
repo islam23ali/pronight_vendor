@@ -68,52 +68,59 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      shadowColor: Colors.transparent,
-      surfaceTintColor: Colors.transparent,
-      systemOverlayStyle: systemUiOverlayStyle ??
-          SystemUiOverlayStyle(
-              statusBarColor:statusBarColor?? AppColors.white,
-              statusBarIconBrightness: topColorIcons ?? Brightness.dark),
-      backgroundColor:bgColor?? AppColors.white,
-      // surfaceTintColor: AppColors.white,
-      // shadowColor: AppColors.white,
-      elevation: .3,
-      bottom: bottom,
-      title: CustomText(
-          title: title ?? '',
-          fontSize: AppFonts.font_14,
-          fontColor: AppColors.textColor2,
-          fontWeight: FontWeight.w400),
-      centerTitle: false,
-      leading: leading ??
-          (isBackButtonExist ? InkWell(
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () {
-              NavigatorHandler.pop(context);
-            },
-            child: Padding(
-              padding: EdgeInsets.only(
-                  right: context.locale.languageCode == 'ar'
-                      ? Dimens.padding_16
-                      : 0,
-                  left: context.locale.languageCode == 'en'
-                      ? Dimens.padding_16
-                      : 0),
-              child: Transform.rotate(
-                angle: context.locale.languageCode == 'en' ? math.pi : 0,
-                // Rotate by 45 degrees (π/4 radians)
-                child: CustomSvgIcon(
-                    assetName: AppAssets.back,
-                    width: 25.w,
-                    height: 25.h),
-              ),
-            ),
-          ):const SizedBox.shrink()),
-      actions: actions,
-      leadingWidth: leadingWidth ?? 46.w,
-      automaticallyImplyLeading: true,
+    return Column(
+      children: [
+        AppBar(
+          shadowColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          systemOverlayStyle: systemUiOverlayStyle ??
+              SystemUiOverlayStyle(
+                  statusBarColor:statusBarColor?? AppColors.white,
+                  statusBarIconBrightness: topColorIcons ?? Brightness.dark),
+          backgroundColor:bgColor?? AppColors.white,
+          // surfaceTintColor: AppColors.white,
+          // shadowColor: AppColors.white,
+          elevation: .3,
+          bottom: bottom,
+          title: CustomText(
+              title: title ?? '',
+              fontSize: AppFonts.font_14,
+              fontColor:fontColor?? AppColors.textColor2,
+              fontWeight:fontWeight?? FontWeight.w400),
+          centerTitle: false,
+          leading: leading ??
+              (isBackButtonExist ? InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () {
+                  NavigatorHandler.pop(context);
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      right: context.locale.languageCode == 'ar'
+                          ? Dimens.padding_16
+                          : 0,
+                      left: context.locale.languageCode == 'en'
+                          ? Dimens.padding_16
+                          : 0),
+                  child: Transform.rotate(
+                    angle: context.locale.languageCode == 'en' ? math.pi : 0,
+                    // Rotate by 45 degrees (π/4 radians)
+                    child: CustomSvgIcon(
+                        assetName: AppAssets.back,
+                        width: 25.w,
+                        height: 25.h),
+                  ),
+                ),
+              ):const SizedBox.shrink()),
+          actions: actions,
+          leadingWidth: leadingWidth ?? 46.w,
+          automaticallyImplyLeading: true,
+        ),
+        buttonWidget==null?const SizedBox.shrink(): Container(
+          height: height!-56,alignment: Alignment.center,
+          child: buttonWidget,color: bgColor,)
+      ],
     );
   }
 

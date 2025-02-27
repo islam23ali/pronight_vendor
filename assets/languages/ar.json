@@ -33,6 +33,26 @@
   "Payment by card": "الدفع عن طريق البطاقة",
   "Confirmation message": "رسالة تأكيد",
   "Unit added successfully": "تم إضافة الوحدة بنجاح",
-  "Hey, you .....": "أهلاً بك ....."
+  "Hey, you .....": "أهلاً بك .....",
+  "yourUniqueApplicationPronight": "تطبيقك المميز برونايت",
+  "Reservations": "الحجوزات",
+  "Billing": "الفواتير",
+  "Reports": "التقارير",
+  "showMore": "عرض المزيد",
+  "Contract Details": "تفاصيل العقود",
+  "Report details": "تفاصيل التقرير",
+  "Basic data about the units...": "البيانات الأساسية التي تخص الوحدات ...",
+  "Unit name": "اسم الوحدة",
+  "Unit location": "مكان الوحدة",
+  "Number of rooms available": "عدد الغرف المتاحة",
+  "Available rooms": "غرف متاحة",
+  "Last update": "آخر تحديث",
+  "Place type": "نوع المكان",
+  "Number of rooms": "عدد الغرف",
+  "room": "غرفة",
+  "Number of rooms booked": "عدد الغرف المحجوزة",
+  "Booked rooms": "غرف محجوزة",
+  "Notifications": "الإشعارات",
+  "There are no notifications yet.": "لا يوجد إشعارات بعد"
 
 }

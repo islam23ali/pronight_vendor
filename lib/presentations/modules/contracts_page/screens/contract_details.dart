@@ -27,7 +27,7 @@ class _ContractDetailsState extends State<ContractDetails> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      appBar: CustomAppBar(title: 'تفاصيل العقود ',),
+      appBar: CustomAppBar(title: AppTranslate.contractDetails.tr(),height: 64.h,),
       body: Padding(
         padding: EdgeInsets.all(Dimens.padding_16),
         child: CustomCouponCard(height: 649.h,

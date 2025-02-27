@@ -39,6 +39,27 @@ class AppTranslate{
   static const String confirmationMessage = 'Confirmation message' ;
   static const String unitAddedSuccessfully = 'Unit added successfully' ;
   static const String heyYou = 'Hey, you .....' ;
+  static const String yourUniqueApplicationPronight = 'yourUniqueApplicationPronight' ;
+  static const String reservations = 'Reservations' ;
+  static const String billing = 'Billing' ;
+  static const String reports = 'Reports' ;
+  static const String contractDetails = 'Contract Details' ;
+  static const String showMore = 'showMore' ;
+  static const String reportDetails = 'reportDetails' ;
+  static const String basicDataAboutTheUnits = 'Basic data about the units...' ;
+  static const String unitName = 'Unit name' ;
+  static const String unitLocation = 'Unit location' ;
+  static const String numberRoomsAvailable = 'Number of rooms available' ;
+  static const String availableRooms = 'Available rooms' ;
+  static const String lastUpdate = 'Last update' ;
+  static const String placeType = 'Place type' ;
+  static const String numberOfRooms = 'Number of rooms' ;
+  static const String room = 'room' ;
+  static const String numberRoomsBooked = 'Number of rooms booked' ;
+  static const String bookedRooms = 'Booked rooms' ;
+  static const String notifications = 'Notifications' ;
+  static const String notificationLogo = 'notificationLogo' ;
+  static const String thereNoNotificationsYet = 'There are no notifications yet.' ;
 
   //not set yet
   static const String noResultFound = 'noResultFound' ;

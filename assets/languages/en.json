@@ -32,6 +32,25 @@
   "Payment by card": "Payment by card",
   "Confirmation message": "Confirmation message",
   "Unit added successfully": "Unit added successfully",
-  "Hey, you .....": "Hey, you ....."
+  "Hey, you .....": "Hey, you .....",
+  "yourUniqueApplicationPronight": "Your unique application Pronight",
+  "Reservations": "Reservations",
+  "Billing": "Billing",
+  "Reports": "Reports",
+  "Contract Details": "Contract Details",
+  "Report details": "Report details",
+  "Basic data about the units...": "Basic data about the units...",
+  "Unit name": "Unit name",
+  "Unit location": "Unit location",
+  "Number of rooms available": "Number of rooms available",
+  "Available rooms": "Available rooms",
+  "Last update": "Last update",
+  "Place type": "Place type",
+  "Number of rooms": "Number of rooms",
+  "room": "room",
+  "Number of rooms booked": "Number of rooms booked",
+  "Booked rooms": "Booked rooms",
+  "Notifications": "Notifications",
+  "There are no notifications yet.": "There are no notifications yet."
 
 }

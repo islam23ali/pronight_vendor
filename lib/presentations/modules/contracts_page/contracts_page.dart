@@ -1,22 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:pronight_vendor/core/app_theme/app_colors.dart';
 import 'package:pronight_vendor/core/dimens/dimens.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
-import 'package:pronight_vendor/core/my_separator.dart';
 import 'package:pronight_vendor/core/resources/app_assets.dart';
 import 'package:pronight_vendor/core/resources/app_translate.dart';
 import 'package:pronight_vendor/core/resources/font_size.dart';
-import 'package:pronight_vendor/presentations/components/custom_button/custom_button.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
 import 'package:pronight_vendor/presentations/components/custom_text/custom_text.dart';
 import 'package:pronight_vendor/presentations/components/inputs/custom_text_form.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/widgets/custom_contract_list.dart';
-
 import '../../components/custom_app_bar/custom_app_bar.dart';
-import 'custom_coupon_card.dart';
-
 
 
 class ContractsPage extends StatefulWidget {
@@ -103,6 +97,7 @@ class _ContractsPageState extends State<ContractsPage> {
               CustomSvgIcon(assetName: AppAssets.buttonSearch,width: 52.5.w,height: 36.h)
             ],
           ),
+          SizedBox(height: 10.h),
           Expanded(
             child: PageView(
               controller: pageController,

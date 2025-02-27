@@ -37,7 +37,14 @@ class AppAssets {
   static const String bgSliderHome = 'bgSliderHome';
   static const String fileSVG = 'fileSVG';
   static const String wallet = 'wallet';
+  static const String billing = 'billing';
   static const String homeSVG = 'homeSVG';
+  static const String homeIcon = 'homeIcon';
+  static const String reportsIcon = 'reportsIcon';
+  static const String notifcationIcon = 'notifcationIcon';
+  static const String room = 'room';
+  static const String bed = 'bed';
+  static const String roomReservation = 'roomReservation';
 
   static const String next1 = 'Next1';
   static const String next2 = 'Next2';

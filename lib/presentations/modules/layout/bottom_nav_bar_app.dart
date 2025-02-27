@@ -6,6 +6,7 @@ import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
 import '../../../../core/resources/app_assets.dart';
 import '../../../core/app_theme/app_colors.dart';
+import '../../components/custom_app_bar/custom_app_bar.dart';
 import '../contracts_page/contracts_page.dart';
 import '../home_page/home_page.dart';
 import '../item_page/item_page.dart';
@@ -116,7 +117,7 @@ class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMix
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar:
+      // appBar:CustomAppBar(height: 0,bgColor: AppColors.bgHomeColor,statusBarColor: AppColors.bgHomeColor,topColor: AppColors.bgHomeColor,),
       extendBody: true,
       body: SafeArea(
         child: NotificationListener<ScrollNotification>(
