@@ -5,6 +5,7 @@ import 'package:pronight_vendor/core/utils/social_media_helper.dart';
 import 'package:pronight_vendor/presentations/components/custom_app_bar/custom_app_bar.dart';
 import 'package:pronight_vendor/presentations/components/custom_button/custom_button.dart';
 import 'package:pronight_vendor/presentations/components/custom_scaffold/custom_scaffold.dart';
+import 'package:pronight_vendor/presentations/modules/contracts_page/screens/widget/delete_item_sheet.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/screens/widget/payment_type_sheet.dart';
 import '../../../../core/app_theme/app_colors.dart';
 import '../../../../core/dimens/dimens.dart';
@@ -39,7 +40,7 @@ class _ContractDetailsState extends State<ContractDetails> {
               children: [
                 CustomButton(onTap: (){socialMediaHelper.openFacebookApp('https://pro-night.com/contract/79MK1v3Dn90wNtM8RNg0');},width: 70.w,height: 54.h,icon: AppAssets.showContract,iconWidth: 25.w,iconHeight: 25.h,),
                 CustomButton(onTap: (){},width: 70.w,height: 54.h,icon: AppAssets.editContract,iconWidth: 23.w,iconHeight: 23.h,),
-                CustomButton(onTap: (){},width: 70.w,height: 54.h,icon: AppAssets.deleteContract,iconWidth: 25.w,iconHeight: 25.h,),
+                CustomButton(onTap: (){showDeleteItemSheet();},width: 70.w,height: 54.h,icon: AppAssets.deleteContract,iconWidth: 25.w,iconHeight: 25.h,),
               ],
             )),
             firstChild: Column(
@@ -171,5 +172,18 @@ class _ContractDetailsState extends State<ContractDetails> {
             )),
         builder: (BuildContext context) {
           return const PaymentTypeSheet();
+        });}
+  Future<dynamic> showDeleteItemSheet() async {
+    return  showModalBottomSheet(
+      // isDismissible: false,
+      //   isScrollControlled: true,
+        backgroundColor: AppColors.white,
+        context: context,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(24.r),
+            )),
+        builder: (BuildContext context) {
+          return const DeleteItemSheet();
         });}
 }

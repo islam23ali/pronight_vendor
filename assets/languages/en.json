@@ -51,6 +51,9 @@
   "Number of rooms booked": "Number of rooms booked",
   "Booked rooms": "Booked rooms",
   "Notifications": "Notifications",
-  "There are no notifications yet.": "There are no notifications yet."
+  "There are no notifications yet.": "There are no notifications yet.",
+  "Confirm deletion": "Confirm deletion",
+  "youSureWantDelete": "Are you sure you want to delete?",
+  "Cancel deletion": "Cancel deletion"
 
 }

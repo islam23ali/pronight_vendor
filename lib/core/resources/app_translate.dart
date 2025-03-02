@@ -45,7 +45,7 @@ class AppTranslate{
   static const String reports = 'Reports' ;
   static const String contractDetails = 'Contract Details' ;
   static const String showMore = 'showMore' ;
-  static const String reportDetails = 'reportDetails' ;
+  static const String reportDetails = 'Report details' ;
   static const String basicDataAboutTheUnits = 'Basic data about the units...' ;
   static const String unitName = 'Unit name' ;
   static const String unitLocation = 'Unit location' ;
@@ -60,6 +60,9 @@ class AppTranslate{
   static const String notifications = 'Notifications' ;
   static const String notificationLogo = 'notificationLogo' ;
   static const String thereNoNotificationsYet = 'There are no notifications yet.' ;
+  static const String confirmDeletion = 'Confirm deletion' ;
+  static const String youSureWantDelete = 'youSureWantDelete' ;
+  static const String cancelDeletion = 'Cancel deletion' ;
 
   //not set yet
   static const String noResultFound = 'noResultFound' ;

@@ -53,6 +53,9 @@
   "Number of rooms booked": "عدد الغرف المحجوزة",
   "Booked rooms": "غرف محجوزة",
   "Notifications": "الإشعارات",
-  "There are no notifications yet.": "لا يوجد إشعارات بعد"
+  "There are no notifications yet.": "لا يوجد إشعارات بعد",
+  "Confirm deletion": "تأكيد الحذف",
+  "youSureWantDelete": "هل أنت متأكد من الحذف",
+  "Cancel deletion": "إلغاء الحذف"
 
 }

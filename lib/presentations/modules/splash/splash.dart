@@ -37,8 +37,8 @@ class _SplashState extends State<Splash> {
     //   } else {
     //     if(_localUserData.isShowIntro()==false){
     //       // NavigatorHandler.pushAndRemoveUntil(MainScreen());
-    //       NavigatorHandler.pushAndRemoveUntil(IntroScreen());
-          NavigatorHandler.push(BottomNavBar(bottomNavIndex: 0,));
+          NavigatorHandler.pushAndRemoveUntil(IntroScreen());
+          // NavigatorHandler.push(BottomNavBar(bottomNavIndex: 0,));
 
       //     }
     //     NavigatorHandler.pushAndRemoveUntil(const LoginScreen());
@@ -55,7 +55,7 @@ class _SplashState extends State<Splash> {
       backgroundColor:AppColors.white,
       statusBarColor:AppColors.white,
       systemNavigationBarColor:AppColors.white,
-      appBar: const CustomAppBar(height: 0,statusBarColor:AppColors.white),
+      appBar: const CustomAppBar(height: 0,statusBarColor:AppColors.white,isBackButtonExist: false,),
       body: Container(color: AppColors.white,
         height: double.maxFinite,
         width: double.maxFinite,

@@ -31,6 +31,7 @@ class AppAssets {
   static const String selectedPayment = 'selectedPayment';
   static const String unSelectedPayment = 'unSelectedPayment';
   static const String successDone = 'successDone';
+  static const String deleteItem = 'deleteItem';
   static const String pronightLogo = 'pronightLogo';
   static const String notificationIcon = 'notificationIcon';
   static const String notIcon = 'notIcon';
@@ -45,6 +46,9 @@ class AppAssets {
   static const String room = 'room';
   static const String bed = 'bed';
   static const String roomReservation = 'roomReservation';
+  static const String progress = 'prograss';
+  static const String unProgress = 'unPrograss';
+  static const String reportDetails = 'reportDetails';
 
   static const String next1 = 'Next1';
   static const String next2 = 'Next2';

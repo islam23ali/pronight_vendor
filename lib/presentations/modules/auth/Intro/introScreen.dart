@@ -56,7 +56,7 @@ Preferences pre =Preferences();
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      appBar: const CustomAppBar(height: 20,statusBarColor:AppColors.white,bgColor: AppColors.white,),
+      appBar: const CustomAppBar(height: 56,statusBarColor:AppColors.white,bgColor: AppColors.white,isBackButtonExist: false,),
       backgroundColor:AppColors.white,
         systemNavigationBarColor:AppColors.white,
       body: Column(

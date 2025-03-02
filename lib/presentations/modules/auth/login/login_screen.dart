@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return CustomScaffold(backgroundColor: AppColors.white,
       systemNavigationBarColor: AppColors.white,
-      appBar: CustomAppBar(height: 30.h,bgColor: AppColors.white,statusBarColor: AppColors.white,),
+      appBar: CustomAppBar(height: 66.h,bgColor: AppColors.white,statusBarColor: AppColors.white,isBackButtonExist: false),
       body:Consumer<LoginViewModel>(
         builder: (context,data,_) {
           return Padding(
@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 20.h),
                   CustomText(title: AppTranslate.welcome.tr(),fontColor: AppColors.blackColor,fontWeight: FontWeight.bold,fontSize: AppFonts.font_18),
                   SizedBox(height: 35.h),
-                  CustomText(title: AppTranslate.titleLogin.tr(),
+                  CustomText(title: AppTranslate.titleLogin.tr(),textAlign: TextAlign.center,
                     fontSize: AppFonts.font_15,fontColor: AppColors.textColor,),
                   SizedBox(height: 70.h),
                   Column(crossAxisAlignment: CrossAxisAlignment.start,
