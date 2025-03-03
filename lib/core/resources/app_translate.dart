@@ -63,6 +63,8 @@ class AppTranslate{
   static const String confirmDeletion = 'Confirm deletion' ;
   static const String youSureWantDelete = 'youSureWantDelete' ;
   static const String cancelDeletion = 'Cancel deletion' ;
+  static const String choose = 'choose' ;
+  static const String next = 'next' ;
 
   //not set yet
   static const String noResultFound = 'noResultFound' ;

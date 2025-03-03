@@ -37,8 +37,8 @@ class _SplashState extends State<Splash> {
     //   } else {
     //     if(_localUserData.isShowIntro()==false){
     //       // NavigatorHandler.pushAndRemoveUntil(MainScreen());
-          NavigatorHandler.pushAndRemoveUntil(IntroScreen());
-          // NavigatorHandler.push(BottomNavBar(bottomNavIndex: 0,));
+    //       NavigatorHandler.pushAndRemoveUntil(IntroScreen());
+          NavigatorHandler.push(BottomNavBar(bottomNavIndex: 0,));
 
       //     }
     //     NavigatorHandler.pushAndRemoveUntil(const LoginScreen());

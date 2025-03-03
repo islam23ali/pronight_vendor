@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/resources/app_assets.dart';
@@ -6,6 +7,7 @@ import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIco
 import '../../../../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../../../../core/dimens/dimens.dart';
 import '../../../../../../../../../core/resources/font_size.dart';
+import '../../../../../../core/resources/app_translate.dart';
 import '../../../../../components/custom_text/custom_text.dart';
 
 /// CustomDropdownButton
@@ -49,18 +51,19 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: widget.width,
-      height:56.h ,
+      height:60.h ,
       child: DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
           isExpanded: true,
-          underline:Container(height: 20.h,width: 300,color: Colors.grey,),
+          underline:Container(height: 20.h,width: 300.w,color: Colors.black,),
           isDense: true,
-          hint:widget.hint??  Row(
+          disabledHint: Container(height: 2.h,width: Dimens.width.w,color: Colors.grey,),
+          hint:widget.hint?? Row(
             mainAxisAlignment: widget.isCenter==true?MainAxisAlignment.center:MainAxisAlignment.start,
             children: [
               CustomSvgIcon(assetName: AppAssets.clearField,width: 18.23.w,height: 16.h,),
               SizedBox(width: 10.w),
-              CustomText(title:widget.value?? 'AppTranslate.choose.tr()',fontWeight: FontWeight.normal,fontColor: widget.color?? AppColors.darkColor,fontSize: AppFonts.font_14)
+              CustomText(title:widget.value?? AppTranslate.choose.tr(),fontWeight: FontWeight.normal,fontColor: widget.color?? AppColors.darkColor,fontSize: AppFonts.font_14)
             ],
           ),
           items: widget.items.map((String item) => DropdownMenuItem<String>(
@@ -83,8 +86,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
                 //   Divider(color: AppColors.inputHint, height: 1.h),
               ],
             ),
-          ))
-              .toList(),
+          )).toList(),
           value:widget.selectedCity,
           onChanged: widget.onChanged,
           buttonStyleData:  ButtonStyleData(
