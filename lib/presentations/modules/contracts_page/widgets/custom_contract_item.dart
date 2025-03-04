@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/core/resources/app_translate.dart';
-import 'package:pronight_vendor/presentations/modules/contracts_page/screens/contract_details.dart';
-
 import '../../../../core/app_theme/app_colors.dart';
 import '../../../../core/dimens/dimens.dart';
 import '../../../../core/resources/app_assets.dart';
 import '../../../../core/resources/font_size.dart';
 import '../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../components/custom_text/custom_text.dart';
-import '../custom_coupon_card.dart';
+import '../contract_screens/contract_details.dart';
+import 'custom_coupon_card.dart';
 
 class CustomContractItem extends StatefulWidget {
   const CustomContractItem({super.key});

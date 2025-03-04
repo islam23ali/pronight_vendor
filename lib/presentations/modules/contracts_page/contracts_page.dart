@@ -10,9 +10,10 @@ import 'package:pronight_vendor/core/resources/font_size.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
 import 'package:pronight_vendor/presentations/components/custom_text/custom_text.dart';
 import 'package:pronight_vendor/presentations/components/inputs/custom_text_form.dart';
-import 'package:pronight_vendor/presentations/modules/contracts_page/screens/add_contract/add_contract.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/widgets/custom_contract_list.dart';
+import 'package:pronight_vendor/presentations/modules/contracts_page/widgets/custom_visit_permits_list.dart';
 import '../../components/custom_app_bar/custom_app_bar.dart';
+import 'contract_screens/add_contract/add_contract.dart';
 
 
 class ContractsPage extends StatefulWidget {
@@ -44,6 +45,7 @@ class _ContractsPageState extends State<ContractsPage> {
               padding: EdgeInsets.symmetric(horizontal:Dimens.padding_16h),
               child: InkWell(
                 onTap: (){
+                  // (isContract==0)?      // when U add visit permation ...
                   NavigatorHandler.push(const AddContract());
                 },
                 child: CustomSvgIcon(assetName:AppAssets.addContracts, width: 24.w, height: 24.h),
@@ -110,9 +112,9 @@ class _ContractsPageState extends State<ContractsPage> {
                 });
               },
               physics: const NeverScrollableScrollPhysics(),
-              children: [
+              children:const [
                 CustomContractList(),
-                CustomContractList(),
+                CustomVisitPermitsList(),
               ],),
           )
       ],),

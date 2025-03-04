@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/presentations/modules/auth/login/login_view_model.dart';
-import 'package:pronight_vendor/presentations/modules/contracts_page/screens/add_contract/add_contract_view_model.dart';
+import 'package:pronight_vendor/presentations/modules/contracts_page/contract_screens/add_contract/add_contract_view_model.dart';
 import 'package:provider/provider.dart';
 import 'core/islam_theme/islam_theme.dart';
 import 'injection.dart';

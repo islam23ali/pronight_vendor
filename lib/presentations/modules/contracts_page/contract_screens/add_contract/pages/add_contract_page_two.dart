@@ -1,19 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
-import 'package:pronight_vendor/presentations/modules/contracts_page/screens/add_contract/add_contract_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../core/dimens/dimens.dart';
 import '../../../../../../core/resources/app_assets.dart';
 import '../../../../../../core/resources/app_translate.dart';
 import '../../../../../../core/resources/font_size.dart';
-import '../../../../../components/alerts/custom_select_date.dart';
 import '../../../../../components/custom_button/custom_button.dart';
 import '../../../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../../../components/custom_text/custom_text.dart';
 import '../../../../../components/inputs/custom_text_form.dart';
-import '../widget/custom_dropdown.dart';
+import '../add_contract_view_model.dart';
 
 class AddContractPageTwo extends StatefulWidget {
   const AddContractPageTwo({super.key});
@@ -23,11 +21,6 @@ class AddContractPageTwo extends StatefulWidget {
 }
 
 class _AddContractPageTwoState extends State<AddContractPageTwo> {
-
-  TextEditingController controller =TextEditingController();
-  TextEditingController dateController =TextEditingController();
-  List<String>? cityList = ['القاهرة', 'المنوفية'];
-  String? value;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +37,7 @@ class _AddContractPageTwoState extends State<AddContractPageTwo> {
                     Container(height: 59.h,
                         decoration: BoxDecoration(
                             borderRadius:BorderRadius.circular(Dimens.padding_8),
-                            color: Color(0xffF0FAFF),border: Border.all(width:1.w,color: Color(0xffFFF9DC))),
+                            color: const Color(0xffF0FAFF),border: Border.all(width:1.w,color: const Color(0xffFFF9DC))),
                         padding: EdgeInsets.symmetric(vertical: Dimens.padding_12v,horizontal:Dimens.padding_24h ),
                         child:Row(
                           children: [
@@ -53,16 +46,16 @@ class _AddContractPageTwoState extends State<AddContractPageTwo> {
                             Column(crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                CustomText(title: 'بيانات المستأجر',fontSize: AppFonts.font_12,),
-                                CustomText(title: 'البيانات الأساسية التي تخص المستأجر ...',fontSize: AppFonts.font_10,fontColor: Colors.grey,)
+                                CustomText(title: AppTranslate.tenantInformation.tr(),fontSize: AppFonts.font_12,),
+                                CustomText(title: AppTranslate.basicAboutTenant.tr(),fontSize: AppFonts.font_10,fontColor: Colors.grey,)
                               ],)
                           ],)),
                     Column(children: [
                       SizedBox(height: 20.h),
                       Column(crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomText(title: 'اسم المستأجر',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                          CustomTextFormField(controller: dateController,
+                          CustomText(title: AppTranslate.tenantName.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                          CustomTextFormField(controller: data.tenantNameController,
                             height: 56.h,textInputType: TextInputType.text,
                             prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
                           )
@@ -71,8 +64,8 @@ class _AddContractPageTwoState extends State<AddContractPageTwo> {
                       SizedBox(height: 20.h),
                       Column(crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomText(title: 'رقم الهوية',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                          CustomTextFormField(controller: dateController,
+                          CustomText(title: AppTranslate.iDNumber.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                          CustomTextFormField(controller: data.iDNumberController,
                             height: 56.h,textInputType: TextInputType.number,
                             prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
                           )
@@ -81,8 +74,8 @@ class _AddContractPageTwoState extends State<AddContractPageTwo> {
                       SizedBox(height: 20.h),
                       Column(crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomText(title: 'الجنسية',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                          CustomTextFormField(controller: dateController,
+                          CustomText(title: AppTranslate.nationality.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                          CustomTextFormField(controller: data.nationalityController,
                             height: 56.h,textInputType: TextInputType.text,
                             prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
                           )
@@ -91,8 +84,8 @@ class _AddContractPageTwoState extends State<AddContractPageTwo> {
                       SizedBox(height: 20.h),
                       Column(crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomText(title: 'رقم الجوال',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                          CustomTextFormField(controller: dateController,
+                          CustomText(title: AppTranslate.mobileNumber.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                          CustomTextFormField(controller: data.mobileNumberController,
                             height: 56.h,textInputType: TextInputType.number,
                             prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
                           )
@@ -105,8 +98,8 @@ class _AddContractPageTwoState extends State<AddContractPageTwo> {
                           child:
                             Column(crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                CustomText(title: 'قيمة الإيجار',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                                CustomTextFormField(controller: dateController,
+                                CustomText(title: AppTranslate.rentalValue.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                                CustomTextFormField(controller: data.rentalValueController,
                                   height: 56.h,textInputType: TextInputType.number,
                                   prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
                                 )
@@ -116,8 +109,8 @@ class _AddContractPageTwoState extends State<AddContractPageTwo> {
                           child:
                             Column(crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                CustomText(title: 'قيمة التأمين',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                                CustomTextFormField(controller: dateController,
+                                CustomText(title: AppTranslate.insuranceValue.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                                CustomTextFormField(controller: data.insuranceValueController,
                                   height: 56.h,textInputType: TextInputType.number,
                                   prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
                                 )
@@ -127,28 +120,45 @@ class _AddContractPageTwoState extends State<AddContractPageTwo> {
                       SizedBox(height: 20.h),
                       Column(crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomText(title: 'رسوم العقد',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                          CustomTextFormField(controller: dateController,
+                          CustomText(title: AppTranslate.contractFees.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                          CustomTextFormField(controller: data.contractFeesController,
                             height: 56.h,textInputType: TextInputType.number,
                             prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
                           )
                         ],
                       ),
                       SizedBox(height: 20.h),
-                      CustomButton(onTap: (){
-                        setState(() {
-                          data.currentPage=2;
-                        });
-                        // _pageController.animateToPage(
-                        //   1,
-                        //   duration: const Duration(milliseconds: 300),
-                        //   curve: Curves.easeInOut,
-                        // );
-                        data.pageController.animateToPage(data.currentPage,
-                            duration: const Duration(seconds: 1),
-                            curve: Curves.easeInOut);
-                      },
-                        title: AppTranslate.next.tr(),)
+                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                        CustomButton(onTap: (){
+                          setState(() {
+                            data.currentPage=1;
+                          });
+                          data.pageController.previousPage(
+                              duration: const Duration(seconds: 1),
+                              curve: Curves.easeInOut);
+                        },
+                          bg: AppColors.white,
+                          borderColor: AppColors.primaryColor,
+                          fontColor: AppColors.primaryColor,
+                          width: 150.w,
+                          title: AppTranslate.previous.tr(),),
+                        CustomButton(onTap: (){
+                          setState(() {
+                            data.currentPage=2;
+                          });
+                          // _pageController.animateToPage(
+                          //   1,
+                          //   duration: const Duration(milliseconds: 300),
+                          //   curve: Curves.easeInOut,
+                          // );
+                          data.pageController.animateToPage(data.currentPage,
+                              duration: const Duration(seconds: 1),
+                              curve: Curves.easeInOut);
+                        },
+                          width: 150.w,
+                          title: AppTranslate.next.tr(),)
+                      ],)
                     ],)
                   ],
                 ),

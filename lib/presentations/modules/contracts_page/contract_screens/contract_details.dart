@@ -5,8 +5,8 @@ import 'package:pronight_vendor/core/utils/social_media_helper.dart';
 import 'package:pronight_vendor/presentations/components/custom_app_bar/custom_app_bar.dart';
 import 'package:pronight_vendor/presentations/components/custom_button/custom_button.dart';
 import 'package:pronight_vendor/presentations/components/custom_scaffold/custom_scaffold.dart';
-import 'package:pronight_vendor/presentations/modules/contracts_page/screens/widget/delete_item_sheet.dart';
-import 'package:pronight_vendor/presentations/modules/contracts_page/screens/widget/payment_type_sheet.dart';
+import 'package:pronight_vendor/presentations/modules/contracts_page/contract_screens/widget/delete_item_sheet.dart';
+import 'package:pronight_vendor/presentations/modules/contracts_page/contract_screens/widget/payment_type_sheet.dart';
 import '../../../../core/app_theme/app_colors.dart';
 import '../../../../core/dimens/dimens.dart';
 import '../../../../core/resources/app_assets.dart';
@@ -14,7 +14,7 @@ import '../../../../core/resources/app_translate.dart';
 import '../../../../core/resources/font_size.dart';
 import '../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../components/custom_text/custom_text.dart';
-import '../custom_coupon_card.dart';
+import '../widgets/custom_coupon_card.dart';
 
 class ContractDetails extends StatefulWidget {
   const ContractDetails({super.key});

@@ -1,10 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
-import 'package:pronight_vendor/presentations/modules/contracts_page/screens/add_contract/add_contract_view_model.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../core/dimens/dimens.dart';
 import '../../../../../../core/resources/app_assets.dart';
@@ -15,6 +12,7 @@ import '../../../../../components/custom_button/custom_button.dart';
 import '../../../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../../../components/custom_text/custom_text.dart';
 import '../../../../../components/inputs/custom_text_form.dart';
+import '../add_contract_view_model.dart';
 import '../widget/custom_dropdown.dart';
 
 class AddContractPageOne extends StatefulWidget {
@@ -25,11 +23,6 @@ class AddContractPageOne extends StatefulWidget {
 }
 
 class _AddContractPageOneState extends State<AddContractPageOne> {
-
-  TextEditingController controller =TextEditingController();
-  TextEditingController dateController =TextEditingController();
-  List<String>? cityList = ['القاهرة', 'المنوفية'];
-  String? value;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +39,7 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                   Container(height: 59.h,
                       decoration: BoxDecoration(
                           borderRadius:BorderRadius.circular(Dimens.padding_8),
-                          color: Color(0xffF0FAFF),border: Border.all(width:1.w,color: Color(0xffFFF9DC))),
+                          color: const Color(0xffF0FAFF),border: Border.all(width:1.w,color: const Color(0xffFFF9DC))),
                       padding: EdgeInsets.symmetric(vertical: Dimens.padding_12v,horizontal:Dimens.padding_24h ),
                       child:Row(
                         children: [
@@ -63,13 +56,13 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                     SizedBox(height: 20.h),
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText(title: 'تاريخ الوصول',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        CustomTextFormField(controller: dateController,readOnly: true,
+                        CustomText(title: AppTranslate.arrivalDate.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                        CustomTextFormField(controller: data.arrivalDateController,readOnly: true,
                           onTap: (){
                             showDialog<String>(
                                 context: context,
                                 builder: (BuildContext context) =>
-                                    CustomSelectDate(onDateSelected: (String value) {dateController.text=value;},));
+                                    CustomSelectDate(onDateSelected: (String value) {data.arrivalDateController.text=value;},));
                           },
                           height: 60.h,textInputType: TextInputType.number,
                           suffix: CustomSvgIcon(assetName: AppAssets.date,color: Colors.black.withAlpha((0.50*244).round()),),
@@ -80,13 +73,13 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                     SizedBox(height: 20.h),
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText(title: 'تاريخ الخروج',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        CustomTextFormField(controller: dateController,readOnly: true,
+                        CustomText(title: AppTranslate.exitDate.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                        CustomTextFormField(controller: data.exitDateController,readOnly: true,
                           onTap: (){
                             showDialog<String>(
                                 context: context,
                                 builder: (BuildContext context) =>
-                                    CustomSelectDate(onDateSelected: (String value) {dateController.text=value;},));
+                                    CustomSelectDate(onDateSelected: (String value) {data.exitDateController.text=value;},));
                           },
                           height: 60.h,textInputType: TextInputType.number,
                           suffix: CustomSvgIcon(assetName: AppAssets.date,color: Colors.black.withAlpha((0.50*244).round()),),
@@ -97,16 +90,16 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                     SizedBox(height: 20.h),
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText(title: 'اختر القطاع',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                        CustomText(title: AppTranslate.selectSector.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                         Column(
                           children: [
                             CustomDropdownButton(
                               color: AppColors.darkColor,
-                              items: cityList ?? [],
-                              value: value,
+                              items: data.cityList ?? [],
+                              value: data.value,
                               onChanged: (String? newValue) {
                                 setState(() {
-                                  value = newValue;
+                                  data.value = newValue;
                                 });
                               },
                             ),
@@ -118,16 +111,16 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                     SizedBox(height: 20.h),
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText(title: 'فيلا',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                        CustomText(title: AppTranslate.villa.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                         Column(
                           children: [
                             CustomDropdownButton(
                               color: AppColors.darkColor,
-                              items: cityList ?? [],
-                              value: value,
+                              items: data.cityList ?? [],
+                              value: data.value,
                               onChanged: (String? newValue) {
                                 setState(() {
-                                  value = newValue;
+                                  data.value = newValue;
                                 });
                               },
                             ),
@@ -139,16 +132,16 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                     SizedBox(height: 20.h),
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText(title: 'شاطيء',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                        CustomText(title: AppTranslate.beach.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                         Column(
                           children: [
                             CustomDropdownButton(
                               color: AppColors.darkColor,
-                              items: cityList ?? [],
-                              value: value,
+                              items: data.cityList ?? [],
+                              value: data.value,
                               onChanged: (String? newValue) {
                                 setState(() {
-                                  value = newValue;
+                                  data.value = newValue;
                                 });
                               },
                             ),
