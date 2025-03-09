@@ -49,6 +49,19 @@ class AppAssets {
   static const String progress = 'prograss';
   static const String unProgress = 'unPrograss';
   static const String reportDetails = 'reportDetails';
+  static const String addVisitor = 'addVisitor';
+  static const String deleteVisitor = 'deleteVisitor';
+  static const String bgItemDetails = 'bgItemDetails';
+  static const String mm = 'mm';
+  static const String profileIcon = 'profileIcone';
+  static const String image = 'image';
+  static const String billNoti = 'billNoti';
+  static const String reportes = 'reportes';
+  static const String moneyWay = 'moneyWay';
+  static const String statuss = 'statuss';
+  static const String messages = 'messages';
+  static const String setting = 'setting';
+  static const String unSee = 'unSee';
 
   static const String next1 = 'Next1';
   static const String next2 = 'Next2';

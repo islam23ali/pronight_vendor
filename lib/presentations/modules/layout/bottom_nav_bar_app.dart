@@ -6,11 +6,10 @@ import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
 import '../../../../core/resources/app_assets.dart';
 import '../../../core/app_theme/app_colors.dart';
-import '../../components/custom_app_bar/custom_app_bar.dart';
 import '../contracts_page/contracts_page.dart';
 import '../home_page/home_page.dart';
-import '../item_page/item_page.dart';
 import '../setting_page/setting_page.dart';
+import '../units_page/units_page.dart';
 
 
 class BottomNavBar extends StatefulWidget {
@@ -49,7 +48,7 @@ class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMix
   final widgetList = <Widget>[
    const HomePage(),
    const ContractsPage(),
-   const ItemPage(),
+   const UnitsPage(),
    const SettingPage()
   ];
 
@@ -180,7 +179,7 @@ class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMix
         splashColor: AppColors.primaryColor,
         notchAndCornersAnimation: borderRadiusAnimation,
         splashSpeedInMilliseconds: 300,
-        notchSmoothness: NotchSmoothness.defaultEdge,
+        notchSmoothness: NotchSmoothness.softEdge,
         gapLocation: GapLocation.center,
         leftCornerRadius: 0,
         rightCornerRadius: 0,

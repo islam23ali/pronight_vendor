@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:pronight_vendor/core/app_theme/app_colors.dart';
 import 'package:pronight_vendor/core/dimens/dimens.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/core/resources/app_assets.dart';
 import 'package:pronight_vendor/presentations/components/custom_asset_image/custom_asset_image.dart';
 import 'package:flutter/material.dart';
 
@@ -41,13 +42,13 @@ class CustomAvatar extends StatelessWidget {
                   return SizedBox(
                     width: radius/2,
                     height: radius/2,
-                    child:  CustomAssetImage(assetName: 'placeholder_avatar',width: radius/2,height: radius/2,),);
+                    child:  CustomAssetImage(assetName: AppAssets.splashLogo,width: radius/2,height: radius/2,),);
 
                 },
                 errorWidget: (context,url,error){return SizedBox(
                   width: radius/2,
                   height: radius/2,
-                  child:  CustomAssetImage(assetName: 'placeholder_avatar',width: radius/2,height: radius/2,),);}
+                  child:  CustomAssetImage(assetName: AppAssets.splashLogo,width: radius/2,height: radius/2,),);}
             ) : Container(
               width: radius,
               height: radius,
