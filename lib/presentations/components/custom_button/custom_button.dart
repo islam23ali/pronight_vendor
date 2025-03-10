@@ -25,6 +25,7 @@ class CustomButton extends StatelessWidget {
   final String? icon;
   final Color? iconColor;
   final Color? borderColor;
+  final double? borderWidth;
 
   const CustomButton(
       {super.key,
@@ -35,7 +36,7 @@ class CustomButton extends StatelessWidget {
       this.bg,
       required this.onTap,
       this.width,
-      this.radius, this.height, this.elevation, this.icon, this.iconColor, this.iconHeight, this.iconWidth,this.borderColor, this.titleWidget
+      this.radius, this.height, this.elevation, this.icon, this.iconColor, this.iconHeight, this.iconWidth,this.borderColor, this.titleWidget, this.borderWidth
 
       });
 
@@ -57,7 +58,7 @@ class CustomButton extends StatelessWidget {
           elevation: elevation??0,
           color: bg??AppColors.primaryColor,
           shape: RoundedRectangleBorder(
-              side: BorderSide(
+              side: BorderSide(width: borderWidth??1,
                 color:borderColor??bg??AppColors.primaryColor,
               ),
               borderRadius: BorderRadius.circular(radius??12.r)),

@@ -23,7 +23,7 @@ class SettingPage extends StatefulWidget {
 class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Column(children: [
+    return  Container(child: Column(children: [
       CustomAppBar(title: AppTranslate.profile.tr(),isBackButtonExist: false,fontWeight: FontWeight.bold,fontSize: AppFonts.font_14,),
       Expanded(
         child: SingleChildScrollView(

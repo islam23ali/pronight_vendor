@@ -134,6 +134,25 @@
   "Settings": "الإعدادات",
   "confirmPassword": "تأكيد كلمة المرور",
   "password": "كلمة المرور",
-  "Email": "البريد الالكتروني"
-
+  "Email": "البريد الالكتروني",
+  "takePicture": "إلتقط صورة",
+  "chooseFromGallery": "اختر من المعرض",
+  "January": "يناير",
+  "February": "فبراير",
+  "March": "مارس",
+  "April": "أبريل",
+  "May": "مايو",
+  "June": "يونيو",
+  "July": "يوليو",
+  "August": "أغسطس",
+  "September": "سبتمبر",
+  "October": "أكتوبر",
+  "November": "نوفمبر",
+  "December": "ديسمبر",
+  "unit": "وحدة",
+  "duringYear": "خلال السنة",
+  "numberOfUnitsDuringYear": "عدد الوحدات خلال السنة",
+  "numberContractsDuringYear": "عدد العقود خلال السنة ",
+  "New": "الجديدة",
+  "Current": "الحالية"
 }

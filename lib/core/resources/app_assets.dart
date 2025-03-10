@@ -62,6 +62,8 @@ class AppAssets {
   static const String messages = 'messages';
   static const String setting = 'setting';
   static const String unSee = 'unSee';
+  static const String upload = 'upload';
+  static const String reservationIcon = 'reservationIcon';
 
   static const String next1 = 'Next1';
   static const String next2 = 'Next2';

@@ -8,9 +8,14 @@ import 'package:pronight_vendor/core/resources/app_translate.dart';
 import 'package:pronight_vendor/core/resources/font_size.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
 import 'package:pronight_vendor/presentations/components/custom_text/custom_text.dart';
+import 'package:pronight_vendor/presentations/modules/home_page/screens/all_reports/all_reports.dart';
+import 'package:pronight_vendor/presentations/modules/notification_screen/notification_screen.dart';
 import '../../../../core/app_theme/app_colors.dart';
 import '../../../../core/resources/app_assets.dart';
-import '../pages/update_profile/update_profile.dart';
+import '../screens/reservation_screen/reservation_screen.dart';
+import '../screens/statistics_page/statistics_page.dart';
+import '../screens/unit_images_page/unit_image_pages.dart';
+import '../screens/update_profile/update_profile.dart';
 
 class PersonalDataCard extends StatefulWidget {
   const  PersonalDataCard({Key? key}) : super(key: key);
@@ -45,7 +50,7 @@ class _PersonalDataCardState extends State<PersonalDataCard> {
               image: AppAssets.image,
               title: tr(AppTranslate.pictures),
               onTap: () {
-                // push(const WalletScreen());
+               NavigatorHandler.push(const UnitImagePages());
               },
             ),
             _buildItem(context,
@@ -53,7 +58,7 @@ class _PersonalDataCardState extends State<PersonalDataCard> {
               image: AppAssets.billNoti,
               title: tr(AppTranslate.myNotifications),
               onTap: () {
-                // push(const PointsScreen());
+                NavigatorHandler.push(const NotificationScreen());
               },
             ),
             _buildItem(context,
@@ -61,7 +66,7 @@ class _PersonalDataCardState extends State<PersonalDataCard> {
               image: AppAssets.reportes,
               title: tr(AppTranslate.reports),
               onTap: () {
-                // push(const PackagesScreen(fromSetting: true,));
+                NavigatorHandler.push(const AllReportsScreen());
               },
             ),
             _buildItem(context,
@@ -77,7 +82,7 @@ class _PersonalDataCardState extends State<PersonalDataCard> {
               image: AppAssets.statuss,
               title: AppTranslate.statistics.tr(),
               onTap: () {
-                // push(const PackagesScreen(fromSetting: true,));
+                NavigatorHandler.push(const StatisticsPage());
               },
             ),
             _buildItem(context,
@@ -85,7 +90,7 @@ class _PersonalDataCardState extends State<PersonalDataCard> {
               image: AppAssets.moneyWay,
               title: AppTranslate.reservations.tr(),
               onTap: () {
-                // push(const PackagesScreen(fromSetting: true,));
+                NavigatorHandler.push(const ReservationScreen());
               },
             ),
             ],),

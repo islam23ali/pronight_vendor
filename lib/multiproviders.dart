@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pronight_vendor/presentations/modules/auth/login/login_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/contract_screens/add_contract/add_contract_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/add_visit_permit_view_model.dart';
+import 'package:pronight_vendor/presentations/modules/setting_page/screens/unit_images_page/unit_image_view_model.dart';
 import 'package:provider/provider.dart';
 import 'core/islam_theme/islam_theme.dart';
 import 'injection.dart';
@@ -20,6 +21,7 @@ class GenerateMultiProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => getIt<LoginViewModel>()),
         ChangeNotifierProvider(create: (_) => getIt<AddContractViewModel>()),
         ChangeNotifierProvider(create: (_) => getIt<AddVisitPermitViewModel>()),
+        ChangeNotifierProvider(create: (_) => getIt<UnitImageViewModel>()),
       ],
       child: child,
     );

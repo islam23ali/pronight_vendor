@@ -131,6 +131,25 @@
   "Settings": "Settings",
   "confirmPassword": "Confirm password",
   "password": "Password",
-  "Email": "Email"
-
+  "Email": "Email",
+  "takePicture": "Take a picture",
+  "chooseFromGallery": "Choose from gallery",
+  "January":"January",
+  "February":"February",
+  "March":"March",
+  "April":"April",
+  "May":"May",
+  "June":"June",
+  "July":"July",
+  "August":"August",
+  "September":"September",
+  "October":"October",
+  "November":"November",
+  "December":"December",
+  "unit":"Unit",
+  "duringYear":"During the year",
+  "numberOfUnitsDuringYear":"Number of units during the year",
+  "numberContractsDuringYear":"Number of contracts during the year",
+  "New":"New",
+  "Current":"Current"
 }

@@ -5,9 +5,7 @@ import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/resources/app_translate.dart';
 import 'package:pronight_vendor/presentations/components/custom_app_bar/custom_app_bar.dart';
 import 'package:pronight_vendor/presentations/components/custom_avatar/custom_avatar.dart';
-import 'package:pronight_vendor/presentations/components/custom_button/custom_button.dart';
 import 'package:pronight_vendor/presentations/components/custom_scaffold/custom_scaffold.dart';
-
 import '../../../../../core/app_theme/app_colors.dart';
 import '../../../../../core/resources/app_assets.dart';
 import '../../../../../core/resources/font_size.dart';
@@ -91,7 +89,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 ],),
               ),
             ),
-            CustomButton(onTap: (){},title: AppTranslate.confirm.tr(),)
+            // CustomButton(onTap: (){},title: AppTranslate.confirm.tr(),)
           ],
         ),
       ) ,);

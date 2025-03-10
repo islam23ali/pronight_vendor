@@ -83,6 +83,8 @@ class AppTranslate{
   static const String quantity = 'Quantity' ;
   static const String more = 'More' ;
   static const String units = 'Units' ;
+  static const String unit = 'unit' ;
+  static const String duringYear = 'duringYear' ;
   static const String theFamily = 'Family' ;
   static const String family = 'family' ;
   static const String bathrooms = 'Bathrooms' ;
@@ -106,12 +108,6 @@ class AppTranslate{
   static const String confirmPassword = 'confirmPassword' ;
   static const String password = 'password' ;
   static const String email = 'Email' ;
-
-  //not set yet
-  static const String noResultFound = 'noResultFound' ;
-  static const String confirm = 'confirm' ;
-  static const String cancel = 'cancel' ;
-  static const String logout = 'logout' ;
   static const String january  = "January" ;
   static const String february = "February" ;
   static const String march = "March" ;
@@ -124,6 +120,17 @@ class AppTranslate{
   static const String october = "October" ;
   static const String november = "November" ;
   static const String december = "December" ;
+  static const String numberOfUnitsDuringYear = "numberOfUnitsDuringYear" ;
+  static const String numberContractsDuringYear = "numberContractsDuringYear" ;
+  static const String New = "New" ;
+  static const String current = "Current" ;
+  static const String previous = 'previous' ;
+
+  //not set yet
+  static const String noResultFound = 'noResultFound' ;
+  static const String confirm = 'confirm' ;
+  static const String cancel = 'cancel' ;
+  static const String logout = 'logout' ;
   static const String camera = 'Camera' ;
   static const String gallery = 'Gallery' ;
   static const String sureLogout = 'are you sure you want to logout ?' ;
@@ -136,7 +143,6 @@ class AppTranslate{
   static const String nationality = 'Nationality' ;
   static const String mobileNumber = 'Mobile number' ;
   static const String insuranceValue = 'Insurance value' ;
-  static const String previous = 'previous' ;
   static const String tenantsCompanionsData = 'Tenants companions data' ;
   static const String basicDataForTenantsCompanions = 'Basic data for tenants companions...' ;
   static const String theNameOfTheCompanion = 'The name of the companion' ;
