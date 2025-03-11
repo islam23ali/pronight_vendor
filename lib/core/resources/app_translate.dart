@@ -125,6 +125,15 @@ class AppTranslate{
   static const String New = "New" ;
   static const String current = "Current" ;
   static const String previous = 'previous' ;
+  static const String acceptRequest = 'acceptRequest' ;
+  static const String requestDenied = 'requestDenied' ;
+  static const String orderDetails = 'orderDetails' ;
+  static const String orderNumber = 'orderNumber' ;
+  static const String order = 'Order' ;
+  static const String orderDate = 'orderDate' ;
+  static const String orderTime = 'orderTime' ;
+  static const String roomPrice = 'roomPrice' ;
+  static const String totalPrice = 'totalPrice' ;
 
   //not set yet
   static const String noResultFound = 'noResultFound' ;

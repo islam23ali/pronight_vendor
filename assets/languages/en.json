@@ -151,5 +151,14 @@
   "numberOfUnitsDuringYear":"Number of units during the year",
   "numberContractsDuringYear":"Number of contracts during the year",
   "New":"New",
-  "Current":"Current"
+  "Current":"Current",
+  "acceptRequest":"Accept the request",
+  "requestDenied":"Request denied",
+  "orderDetails":"Order details",
+  "orderNumber":"Order number",
+  "Order":"Order",
+  "orderDate":"Order date",
+  "orderTime":"Order time",
+  "roomPrice":"Room price",
+  "totalPrice":"Total price"
 }

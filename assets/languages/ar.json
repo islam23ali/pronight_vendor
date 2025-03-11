@@ -154,5 +154,14 @@
   "numberOfUnitsDuringYear": "عدد الوحدات خلال السنة",
   "numberContractsDuringYear": "عدد العقود خلال السنة ",
   "New": "الجديدة",
-  "Current": "الحالية"
+  "Current": "الحالية",
+  "acceptRequest": "قبول الطلب",
+  "requestDenied": "رفض الطلب",
+  "orderDetails": "تفاصيل الطلب",
+  "orderNumber": "رقم الطلب",
+  "Order": "الطلب",
+  "orderDate": "تاريخ الطلب",
+  "orderTime": "وقت الطلب",
+  "roomPrice": "سعر الغرفة",
+  "totalPrice": "السعر الإجمالي"
 }

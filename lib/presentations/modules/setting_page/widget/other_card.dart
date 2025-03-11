@@ -3,12 +3,14 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/dimens/dimens.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/core/resources/app_translate.dart';
 import 'package:pronight_vendor/core/resources/font_size.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
 import 'package:pronight_vendor/presentations/components/custom_text/custom_text.dart';
 import '../../../../core/app_theme/app_colors.dart';
 import '../../../../core/resources/app_assets.dart';
+import '../screens/messages_screen/messages_screen.dart';
 class OtherCard extends StatefulWidget {
   const  OtherCard({Key? key}) : super(key: key);
 
@@ -35,7 +37,7 @@ class _OtherCardState extends State<OtherCard> {
                     isRow:true,
                     title: AppTranslate.messages.tr(),
                     onTap: () {
-                      // push(const Register(isRegister:false));
+                  NavigatorHandler.push(const MessagesScreen());
                     }),
                 _buildItem(context,
                   isRow:true,

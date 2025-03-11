@@ -31,18 +31,21 @@ class _ReservationScreenState extends State<ReservationScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal:Dimens.padding_16h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CustomAppBar(height: 56.h,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal:Dimens.padding_16h),
+            child: CustomAppBar(height: 56.h,
               bgColor: AppColors.white,
               topColor: AppColors.white,
               title:AppTranslate.reservations.tr(),
               fontWeight: FontWeight.bold,
             ),
-            Center(
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal:Dimens.padding_16h),
+            child: Center(
               child: Container(
                 margin: EdgeInsets.symmetric(vertical: 16.h),
                 height: 41.h,width: 340.w,
@@ -95,25 +98,25 @@ class _ReservationScreenState extends State<ReservationScreen> {
                   ),
                 ],),),
             ),
-            SizedBox(height: 10.h),
-            Expanded(
-              child: PageView(
-                controller: pageController,
-                onPageChanged: (_){
-                  setState(() {
-                    // isContract=pageController.initialPage;
+          ),
+          SizedBox(height: 10.h),
+          Expanded(
+            child: PageView(
+              controller: pageController,
+              onPageChanged: (_){
+                setState(() {
+                  // isContract=pageController.initialPage;
 
-                  });
-                },
-                physics: const NeverScrollableScrollPhysics(),
-                children:const [
-                  CustomReservationList(),
-                  CustomReservationList(),
-                  CustomReservationList(),
-                ],),
-            )
-          ],),
-      ),
+                });
+              },
+              physics: const NeverScrollableScrollPhysics(),
+              children:const [
+                CustomReservationList(isNew: true,),
+                CustomReservationList(isNew: false),
+                CustomReservationList(isNew: false),
+              ],),
+          )
+        ],),
     );
   }
 }
