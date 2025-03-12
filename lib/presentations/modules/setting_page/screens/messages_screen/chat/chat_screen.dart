@@ -2,19 +2,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:easy_localization/easy_localization.dart' as el;
+import 'package:pronight_vendor/core/dimens/dimens.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/resources/app_translate.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/messages_screen/chat/widget/message_chat.dart';
-
 import '../../../../../../core/app_theme/app_colors.dart';
-import '../../../../../../core/dimens/dimens.dart';
-import '../../../../../../core/navigator/navigator.dart';
 import '../../../../../../core/resources/app_assets.dart';
 import '../../../../../../core/resources/font_size.dart';
 import '../../../../../components/custom_app_bar/custom_app_bar.dart';
 import '../../../../../components/custom_scaffold/custom_scaffold.dart';
 import '../../../../../components/custom_svg/CustomSvgIcon.dart';
-import '../../../../../components/custom_text/custom_text.dart';
 import '../../../../../components/inputs/custom_text_form.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -26,10 +23,11 @@ class ChatScreen extends StatefulWidget {
 TextEditingController controller =TextEditingController();
 class _ChatScreenState extends State<ChatScreen> {
   List<Message>messages=[
-    Message(senderId: 2,message: 'وعليكم السلام ورحمة الله ',time: '10:00',date: '10/5/2022',type: 'files',duration: '2:00',
+    Message(senderId: 2,message: 'السلام عليكم',time: '10:00',date: '10/5/2022',type: 'files',duration: '2:00',name: 'محمد أحمد عبدالرحمن',
         latitude: 0,longitude: 0,file: 'https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__340.jpg'),
-    Message(senderId: 1,message: 'السلام عليكم',time: '10:00',date: '10/5/2022',type: 'files',duration: '2:00',
-        latitude: 0,longitude: 0,file: 'https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__340.jpg'),
+    Message(senderId: 1,message: 'السلام عليكم ورحمة الله وبركاته أستاذ أحمد محمد أرجو الموافقة على طلب اجازة وذلك يوم الثلاثاء الموافق يوم 23/7/2024',
+        time: '10:00',date: '10/5/2022',type: 'files',duration: '2:00',name: 'محمد أحمد عبدالرحمن',
+        latitude: 0,longitude: 0,file: 'https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__340.jpg')
   ];
   @override
   Widget build(BuildContext context) {
@@ -46,21 +44,34 @@ class _ChatScreenState extends State<ChatScreen> {
                   shrinkWrap: true,
                   itemBuilder: (context,index){
                   return
-                    MessageChat(isMe:messages[index].senderId==1?true : false,
+                    MessageChat(
+                      isMe:messages[index].senderId==1?true : false,
                       message:  messages[index].message??'',
-                      forwardMessage: messages[index].time,
+                      senderName: messages[index].name,
+                      senderImage: messages[index].file,
                     );
                 }),),
           ),
           Container(color: AppColors.white,
-            padding: EdgeInsets.all(16.r),
-            child: CustomTextFormField(height: 51.h,
-              padding: EdgeInsets.symmetric(horizontal: 10.w),
-              suffix: InkWell(
-                onTap: (){},
-                child:  CustomSvgIcon(assetName: AppAssets.messageGif),
-              ),hint: 'Type your message here...',
-              controller: controller,bgColor: AppColors.bgHomeColor,borderRaduis: 16.r,),)
+            padding: EdgeInsets.symmetric(horizontal:Dimens.padding_24,vertical: Dimens.padding_16),
+            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomTextFormField(height: 40.h,width: 230.w,
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  underLineColor: Colors.transparent,
+                  suffix: InkWell(
+                    onTap: (){},
+                    child:const CustomSvgIcon(assetName: AppAssets.sendMessage),
+                  ),hint: '',
+                  controller: controller,bgColor: AppColors.gray.withAlpha((0.40*255).round()),borderRaduis: 25.r,),
+                Material(borderRadius: BorderRadius.circular(100.r),color: AppColors.white,
+                    elevation: 1,
+                    child: CustomSvgIcon(assetName: AppAssets.mic,width: 35.w,height: 35.h)),
+                Material(borderRadius: BorderRadius.circular(100.r),color: AppColors.white,
+                    elevation: 1,
+                    child: CustomSvgIcon(assetName: AppAssets.smile,width: 35.w,height: 35.h,))
+              ],
+            ),)
         ],
       ),);
   }

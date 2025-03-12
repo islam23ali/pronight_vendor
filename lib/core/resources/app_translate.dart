@@ -134,6 +134,21 @@ class AppTranslate{
   static const String orderTime = 'orderTime' ;
   static const String roomPrice = 'roomPrice' ;
   static const String totalPrice = 'totalPrice' ;
+  static const String theLanguage = 'theLanguage' ;
+  static const String applicationSettings = 'applicationSettings' ;
+  static const String aboutApp = 'aboutApp' ;
+  static const String termsAndConditions = 'termsAndConditions' ;
+  static const String contactUs = 'contactUs' ;
+  static const String supportAssistance = 'supportAssistance' ;
+  static const String inviteFriend = 'inviteFriend' ;
+  static const String appEvaluation = 'appEvaluation' ;
+  static const String excellent = 'excellent' ;
+  static const String veryGood = 'veryGood' ;
+  static const String good = 'good' ;
+  static const String average = 'average' ;
+  static const String privacyPolicy = 'privacyPolicy' ;
+  static const String submitComplaints = 'submitComplaints' ;
+  static const String connectUs = 'connectUs' ;
 
   //not set yet
   static const String noResultFound = 'noResultFound' ;

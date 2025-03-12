@@ -65,6 +65,22 @@ class AppAssets {
   static const String upload = 'upload';
   static const String reservationIcon = 'reservationIcon';
   static const String messageGif = 'messageGif';
+  static const String mic = 'mic';
+  static const String smile = 'smile';
+  static const String sendMessage = 'sendMessage';
+  static const String language = 'language';
+  static const String aboutApp = 'aboutApp';
+  static const String termisAndCondition = 'termisAndCondtion';
+  static const String contactUs = 'contactUs';
+  static const String suppert = 'suppert';
+  static const String rateApp = 'rateApp';
+  static const String share = 'share';
+  static const String copy = 'copy';
+  static const String android = 'android';
+  static const String apple = 'apple';
+  static const String star = 'star';
+  static const String supportAssistanceLogo = 'supportAssistanceLogo';
+
 
   static const String next1 = 'Next1';
   static const String next2 = 'Next2';

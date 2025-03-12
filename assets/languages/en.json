@@ -160,5 +160,20 @@
   "orderDate":"Order date",
   "orderTime":"Order time",
   "roomPrice":"Room price",
-  "totalPrice":"Total price"
+  "totalPrice":"Total price",
+  "theLanguage":"The Language",
+  "applicationSettings":"Application Settings",
+  "aboutApp":"About the application",
+  "termsAndConditions":"Terms and Conditions",
+  "contactUs":"Contact us",
+  "supportAssistance":"Support and assistance",
+  "inviteFriend":"Invite a friend",
+  "appEvaluation":"App evaluation",
+  "excellent":"Excellent",
+  "veryGood":"Very Good",
+  "good":"Good",
+  "average":"Average",
+  "privacyPolicy":"Privacy Policy",
+  "submitComplaints":"Submit complaints",
+  "connectUs":"Contact us"
 }

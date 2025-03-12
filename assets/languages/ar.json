@@ -163,5 +163,20 @@
   "orderDate": "تاريخ الطلب",
   "orderTime": "وقت الطلب",
   "roomPrice": "سعر الغرفة",
-  "totalPrice": "السعر الإجمالي"
+  "totalPrice": "السعر الإجمالي",
+  "theLanguage": "اللغة",
+  "applicationSettings": "إعدادات التطبيق",
+  "aboutApp": "عن التطبيق",
+  "termsAndConditions": "الشروط والأحكام",
+  "contactUs": "اتصل بنا",
+  "supportAssistance": "الدعم والمساندة",
+  "inviteFriend": "دعوة صديق",
+  "appEvaluation": "تقييم التطبيق",
+  "excellent": "ممتاز",
+  "veryGood": "جيد جدا",
+  "good": "جيد",
+  "average": "متوسط",
+  "privacyPolicy": "سياسة الخصوصية",
+  "submitComplaints": "إرسال الشكاوى",
+  "connectUs": "تواصل معنا"
 }

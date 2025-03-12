@@ -11,6 +11,7 @@ import 'package:pronight_vendor/presentations/components/custom_text/custom_text
 import '../../../../core/app_theme/app_colors.dart';
 import '../../../../core/resources/app_assets.dart';
 import '../screens/messages_screen/messages_screen.dart';
+import '../screens/sub_settings_screen/sub_settings_screen.dart';
 class OtherCard extends StatefulWidget {
   const  OtherCard({Key? key}) : super(key: key);
 
@@ -44,7 +45,7 @@ class _OtherCardState extends State<OtherCard> {
                   image: AppAssets.setting,
                   title: tr(AppTranslate.settings),
                   onTap: () {
-                    // push(const WalletScreen());
+                    NavigatorHandler.push(const SubSettingsScreen());
                   },
                 ),
 
