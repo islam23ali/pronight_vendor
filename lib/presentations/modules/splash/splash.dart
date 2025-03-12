@@ -2,16 +2,11 @@ import 'dart:async';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/presentations/components/custom_app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
 import '../../../../../core/app_theme/app_colors.dart';
 import '../../../../../core/navigator/navigator.dart';
 import '../../../../../core/resources/app_assets.dart';
-import '../../../../../data/datasource/local/LocalUserData.dart';
-import '../../../core/app_theme/theme.dart';
-import '../../../core/islam_theme/islam_theme.dart';
 import '../../components/custom_scaffold/custom_scaffold.dart';
-import '../../shared_widget/back_app_bar.dart';
 import '../auth/Intro/introScreen.dart';
 import '../layout/bottom_nav_bar_app.dart';
 
@@ -37,8 +32,8 @@ class _SplashState extends State<Splash> {
     //   } else {
     //     if(_localUserData.isShowIntro()==false){
     //       // NavigatorHandler.pushAndRemoveUntil(MainScreen());
-    //       NavigatorHandler.pushAndRemoveUntil(IntroScreen());
-          NavigatorHandler.push(BottomNavBar(bottomNavIndex: 0,));
+          NavigatorHandler.pushAndRemoveUntil(IntroScreen());
+          // NavigatorHandler.push(BottomNavBar(bottomNavIndex: 0,));
 
       //     }
     //     NavigatorHandler.pushAndRemoveUntil(const LoginScreen());

@@ -178,5 +178,12 @@
   "average": "متوسط",
   "privacyPolicy": "سياسة الخصوصية",
   "submitComplaints": "إرسال الشكاوى",
-  "connectUs": "تواصل معنا"
+  "connectUs": "تواصل معنا",
+  "theMessage": "الرسالة",
+  "WhatsApp": "واتساب",
+  "orContactUs": "او راسلنا",
+  "messageTitle": "عنوان الرسالة",
+  "iDonNotHaveAccount": "ليس لدي حساب ؟",
+  "createNewAccount": "إنشاء حساب جديد",
+  "createAccount": "إنشاء حساب"
 }

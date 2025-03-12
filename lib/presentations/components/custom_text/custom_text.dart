@@ -22,7 +22,7 @@ class CustomText extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return fontWeight==FontWeight.normal?
-    Text(title??'',maxLines: maxLines,overflow: maxLines!=null?TextOverflow.ellipsis:null,style:textStyle?? AppTextStyles().normalText(fontSize: fontSize??AppFonts.font_14,decoration: decoration,).textColorNormal(fontColor?? AppColors.darkColor,),textAlign: textAlign,):
-    Text(title??'',maxLines: maxLines,overflow: maxLines!=null?TextOverflow.ellipsis:null,style:textStyle?? AppTextStyles().normalText(fontSize: fontSize??AppFonts.font_14,decoration: decoration).textColorBold(fontColor?? AppColors.darkColor,),textAlign: textAlign,);
+    Text(title??'',maxLines: maxLines,overflow: maxLines!=null?TextOverflow.ellipsis:null,style:textStyle?? AppTextStyles().normalText(fontSize: fontSize??AppFonts.font_14,decoration: decoration,decorationColor:fontColor).textColorNormal(fontColor?? AppColors.darkColor,),textAlign: textAlign,):
+    Text(title??'',maxLines: maxLines,overflow: maxLines!=null?TextOverflow.ellipsis:null,style:textStyle?? AppTextStyles().normalText(fontSize: fontSize??AppFonts.font_14,decoration: decoration,decorationColor:fontColor).textColorBold(fontColor?? AppColors.darkColor,),textAlign: textAlign,);
   }
 }

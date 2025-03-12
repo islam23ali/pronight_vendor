@@ -3,15 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/app_theme/app_colors.dart';
 import 'package:pronight_vendor/core/dimens/dimens.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
-import 'package:pronight_vendor/core/resources/app_assets.dart';
 import 'package:pronight_vendor/core/resources/app_translate.dart';
 import 'package:pronight_vendor/core/resources/font_size.dart';
 import 'package:pronight_vendor/presentations/components/custom_scaffold/custom_scaffold.dart';
-import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
 import 'package:pronight_vendor/presentations/components/custom_text/custom_text.dart';
-import 'package:pronight_vendor/presentations/components/inputs/custom_text_form.dart';
-import 'package:pronight_vendor/presentations/modules/contracts_page/widgets/custom_contract_list.dart';
-import 'package:pronight_vendor/presentations/modules/contracts_page/widgets/custom_visit_permits_list.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/reservation_screen/widgets/custom_reservation_list.dart';
 
 import '../../../../components/custom_app_bar/custom_app_bar.dart';

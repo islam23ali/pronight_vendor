@@ -80,6 +80,12 @@ class AppAssets {
   static const String apple = 'apple';
   static const String star = 'star';
   static const String supportAssistanceLogo = 'supportAssistanceLogo';
+  static const String contactUsLogo = 'contactUsLogo';
+  static const String email = 'email';
+  static const String whatsApp = 'whatsApp';
+  static const String termsAndConditionLogo = 'termsAndConditionLogo';
+  static const String aboutUsLogo = 'aboutUsLogo';
+  static const String cameraIcon = 'cameraIcon';
 
 
   static const String next1 = 'Next1';

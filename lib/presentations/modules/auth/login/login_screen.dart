@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/app_theme/app_colors.dart';
 import 'package:pronight_vendor/core/dimens/dimens.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/core/resources/app_assets.dart';
 import 'package:pronight_vendor/core/resources/app_translate.dart';
 import 'package:pronight_vendor/core/resources/font_size.dart';
@@ -17,6 +18,7 @@ import 'package:pronight_vendor/presentations/modules/auth/login/widget/confirm_
 import 'package:provider/provider.dart';
 
 import '../../../components/loadings/custom_scaffold_messanger.dart';
+import '../register/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -63,6 +65,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     showSendCodeSheet();
                     }
                   },title: AppTranslate.login.tr()),
+                  SizedBox(height: 20.h),
+                  Align(alignment: Alignment.centerRight,
+                    child: Row(
+                      children: [
+                        CustomText(title:AppTranslate.iDonNotHaveAccount.tr(),fontSize: AppFonts.font_11,fontWeight: FontWeight.bold,),
+                        SizedBox(width: 5.w),
+                        InkWell(onTap: (){
+                          NavigatorHandler.push(const RegisterScreen());
+                        },
+                            child: CustomText(title:AppTranslate.createNewAccount.tr(),fontSize: AppFonts.font_11,fontWeight: FontWeight.bold,fontColor: Color(0xffF3BE1E),decoration: TextDecoration.underline,)),
+                      ],
+                    ),
+                  ),
                   // SizedBox(height: 140.h),
                   // InkWell(
                   //   onTap: (){

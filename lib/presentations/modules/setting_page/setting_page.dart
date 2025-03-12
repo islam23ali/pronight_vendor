@@ -7,9 +7,12 @@ import 'package:pronight_vendor/core/resources/app_translate.dart';
 import 'package:pronight_vendor/core/resources/font_size.dart';
 import 'package:pronight_vendor/presentations/components/custom_app_bar/custom_app_bar.dart';
 import 'package:pronight_vendor/presentations/components/custom_text/custom_text.dart';
+import 'package:pronight_vendor/presentations/modules/setting_page/screens/reservation_screen/reservation_screen.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/widget/personal_data_card.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/widget/other_card.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/widget/user_card.dart';
+
+import '../../../core/navigator/navigator.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -43,16 +46,20 @@ class _SettingPageState extends State<SettingPage> {
                           CustomText(title: '500',fontWeight: FontWeight.w500,fontSize: AppFonts.font_14,fontColor:AppColors.errorColor ,),
                           CustomText(title: AppTranslate.billing.tr(),fontSize: AppFonts.font_12,fontColor:AppColors.textColor ,)
                         ],),)),
-                  Material(elevation: 7,shadowColor: AppColors.white.withAlpha((0.40*255).round()),
-                      borderRadius: BorderRadius.circular(16.r),
-                      child: Container(width: 155.5.w,height: 73.h,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.r),color: AppColors.white),
-                        child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                          CustomText(title: '300',fontWeight: FontWeight.w500,fontSize: AppFonts.font_14,fontColor:AppColors.errorColor ,),
-                          CustomText(title: AppTranslate.reservations.tr(),fontSize: AppFonts.font_12,fontColor:AppColors.textColor ,)
-                        ],),)),
+                  InkWell(onTap: (){
+                    NavigatorHandler.push(const ReservationScreen());
+                  },
+                    child: Material(elevation: 7,shadowColor: AppColors.white.withAlpha((0.40*255).round()),
+                        borderRadius: BorderRadius.circular(16.r),
+                        child: Container(width: 155.5.w,height: 73.h,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.r),color: AppColors.white),
+                          child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                            CustomText(title: '300',fontWeight: FontWeight.w500,fontSize: AppFonts.font_14,fontColor:AppColors.errorColor ,),
+                            CustomText(title: AppTranslate.reservations.tr(),fontSize: AppFonts.font_12,fontColor:AppColors.textColor ,)
+                          ],),)),
+                  ),
                 ],),
                 SizedBox(height: 20.h),
                 const PersonalDataCard(),

@@ -175,5 +175,12 @@
   "average":"Average",
   "privacyPolicy":"Privacy Policy",
   "submitComplaints":"Submit complaints",
-  "connectUs":"Contact us"
+  "connectUs":"Contact us",
+  "theMessage":"The message",
+  "WhatsApp":"WhatsApp",
+  "orContactUs":"Or contact us",
+  "messageTitle":"Message title",
+  "iDonNotHaveAccount":"I don't have an account?",
+  "createNewAccount":"Create a new account",
+  "createAccount":"Create an account"
 }

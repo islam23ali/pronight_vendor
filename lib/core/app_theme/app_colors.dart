@@ -14,6 +14,7 @@ class AppColors {
   static const Color bgHomeColor = Color(0xffF3F3F3);
   static const Color darkPrimaryColor = Color(0xff0B321C);
   static const Color textGrayColor = Color(0xff777777);
+  static const Color whatsAppColor = Color(0xff29A71A);
 
 
 

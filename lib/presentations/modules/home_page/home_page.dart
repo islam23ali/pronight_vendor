@@ -8,7 +8,6 @@ import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/core/resources/app_assets.dart';
 import 'package:pronight_vendor/core/resources/app_translate.dart';
 import 'package:pronight_vendor/core/resources/font_size.dart';
-import 'package:pronight_vendor/presentations/components/custom_app_bar/custom_app_bar.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
 import 'package:pronight_vendor/presentations/components/custom_text/custom_text.dart';
 import 'package:pronight_vendor/presentations/modules/home_page/screens/all_reports/all_reports.dart';
@@ -16,9 +15,6 @@ import 'package:pronight_vendor/presentations/modules/home_page/screens/all_repo
 import 'package:pronight_vendor/presentations/modules/home_page/widgets/custom_home_app_bar.dart';
 import 'package:pronight_vendor/presentations/modules/home_page/widgets/custom_slider_home.dart';
 import 'package:pronight_vendor/presentations/modules/home_page/widgets/home_reservation&billing.dart';
-
-import '../../components/custom_scaffold/custom_scaffold.dart';
-import '../contracts_page/widgets/custom_contract_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

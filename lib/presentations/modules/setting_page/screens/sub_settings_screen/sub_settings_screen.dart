@@ -2,10 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/presentations/components/custom_scaffold/custom_scaffold.dart';
+import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/about_app_screen/about_app_screen.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/change_language/change_language_sheet.dart';
+import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/contact_us_screen/contact_us_screen.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/invite_friend/invite_friend_sheet.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/rate_app_sheet/rate_app_sheet.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/support_and_assistance_screen/support_and_assistance_screen.dart';
+import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/termis_and_condition_screen/termis_and_condition_screen.dart';
 
 import '../../../../../core/app_theme/app_colors.dart';
 import '../../../../../core/dimens/dimens.dart';
@@ -61,21 +64,21 @@ class _SubSettingsScreenState extends State<SubSettingsScreen> {
                                 isRow:true,
                                 title: AppTranslate.aboutApp.tr(),
                                 onTap: () {
-                                  // NavigatorHandler.push(const MessagesScreen());
+                                  NavigatorHandler.push(const AboutAppScreen());
                                 }),
                             _buildItem(context,
                                 image: AppAssets.termisAndCondition,
                                 isRow:true,
                                 title: AppTranslate.termsAndConditions.tr(),
                                 onTap: () {
-                                  // NavigatorHandler.push(const MessagesScreen());
+                                  NavigatorHandler.push(const TermsAndConditionScreen());
                                 }),
                             _buildItem(context,
                                 image: AppAssets.contactUs,
                                 isRow:true,
                                 title: AppTranslate.contactUs.tr(),
                                 onTap: () {
-                                  // NavigatorHandler.push(const MessagesScreen());
+                                  NavigatorHandler.push(const ContactUsScreen());
                                 }),
                             _buildItem(context,
                                 image: AppAssets.suppert,

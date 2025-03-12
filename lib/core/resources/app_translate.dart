@@ -149,6 +149,13 @@ class AppTranslate{
   static const String privacyPolicy = 'privacyPolicy' ;
   static const String submitComplaints = 'submitComplaints' ;
   static const String connectUs = 'connectUs' ;
+  static const String theMessage = 'theMessage' ;
+  static const String whatsApp = 'WhatsApp' ;
+  static const String orContactUs = 'orContactUs' ;
+  static const String messageTitle = 'messageTitle' ;
+  static const String iDonNotHaveAccount = 'iDonNotHaveAccount' ;
+  static const String createNewAccount = 'createNewAccount' ;
+  static const String createAccount = 'createAccount' ;
 
   //not set yet
   static const String noResultFound = 'noResultFound' ;

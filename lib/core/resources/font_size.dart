@@ -11,6 +11,7 @@ class AppFonts{
   static double font_14 = 14.sp;
   static double font_15 = 15.sp;
   static double font_16 = 16.sp;
+  static double font_17 = 17.sp;
   static double font_18 = 18.sp;
   static double font_19 = 19.sp;
   static double font_20 = 20.sp;

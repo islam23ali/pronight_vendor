@@ -8,9 +8,9 @@ String lang = navigatorKey.currentContext!.locale.languageCode;
 
 class AppTextStyles {
 
-  TextStyle normalText({double fontSize = 14,TextDecoration decoration = TextDecoration.none}){
+  TextStyle normalText({double fontSize = 14,TextDecoration decoration = TextDecoration.none,decorationColor}){
 
-    return TextStyle(fontSize: fontSize,fontFamily: 'font_regular',decoration: decoration,decorationColor: AppColors.darkColor);
+    return TextStyle(fontSize: fontSize,fontFamily: 'font_regular',decoration: decoration,decorationColor:decorationColor?? AppColors.darkColor);
 
   }
 
