@@ -27,7 +27,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController nameController =TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(appBar: CustomAppBar(height: 64.h,isBackButtonExist: false,),
+    return CustomScaffold(appBar: CustomAppBar(height: 64.h,title: AppTranslate.createAccount.tr(),fontSize: AppFonts.font_14,fontWeight: FontWeight.bold,),
       body:Padding(
         padding: EdgeInsets.all(Dimens.padding_24),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center,

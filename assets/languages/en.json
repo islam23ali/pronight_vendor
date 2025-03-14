@@ -182,5 +182,13 @@
   "messageTitle":"Message title",
   "iDonNotHaveAccount":"I don't have an account?",
   "createNewAccount":"Create a new account",
-  "createAccount":"Create an account"
+  "createAccount":"Create an account",
+  "addUnit":"Add unit",
+  "descriptionEnglish":"Description (in English)",
+  "descriptionArabic":"Description (in Arabic)",
+  "thePrice":"The price",
+  "unitNameEnglish":"Unit name (in English)",
+  "unitNameArabic":"Unit name (in Arabic)",
+  "basicDataAboutUnit":"Basic data about the unit...",
+  "unitInformation":"Unit information"
 }

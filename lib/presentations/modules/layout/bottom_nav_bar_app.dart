@@ -3,9 +3,11 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
 import '../../../../core/resources/app_assets.dart';
 import '../../../core/app_theme/app_colors.dart';
+import '../add_unit_page/add_unit_page.dart';
 import '../contracts_page/contracts_page.dart';
 import '../home_page/home_page.dart';
 import '../setting_page/setting_page.dart';
@@ -140,6 +142,7 @@ class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMix
               child: SizedBox(width: 40.w,height: 40.h,
                   child: Icon(Icons.add_rounded,size: 36.w,color: AppColors.white,))),
           onPressed: () {
+            NavigatorHandler.push(const AddUnit());
             // _fabAnimationController.reset();
             // _borderRadiusAnimationController.reset();
             // _borderRadiusAnimationController.forward();

@@ -185,5 +185,13 @@
   "messageTitle": "عنوان الرسالة",
   "iDonNotHaveAccount": "ليس لدي حساب ؟",
   "createNewAccount": "إنشاء حساب جديد",
-  "createAccount": "إنشاء حساب"
+  "createAccount": "إنشاء حساب",
+  "addUnit": "إضافة وحدة",
+  "descriptionEnglish": "الوصف ( بالانجليزية )",
+  "descriptionArabic": "الوصف ( بالعربية )",
+  "thePrice": "السعر",
+  "unitNameEnglish": "اسم الوحدة (بالانجليزية )",
+  "unitNameArabic": "اسم الوحدة (بالعربية )",
+  "basicDataAboutUnit": "البيانات الأساسية التي تخص الوحدة ...",
+  "unitInformation": "معلومات الوحدة"
 }

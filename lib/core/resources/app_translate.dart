@@ -156,6 +156,14 @@ class AppTranslate{
   static const String iDonNotHaveAccount = 'iDonNotHaveAccount' ;
   static const String createNewAccount = 'createNewAccount' ;
   static const String createAccount = 'createAccount' ;
+  static const String addUnit = 'addUnit' ;
+  static const String descriptionEnglish = 'descriptionEnglish' ;
+  static const String descriptionArabic = 'descriptionArabic' ;
+  static const String thePrice = 'thePrice' ;
+  static const String unitNameEnglish = 'unitNameEnglish' ;
+  static const String unitNameArabic = 'unitNameArabic' ;
+  static const String basicDataAboutUnit = 'basicDataAboutUnit' ;
+  static const String unitInformation = 'unitInformation' ;
 
   //not set yet
   static const String noResultFound = 'noResultFound' ;
@@ -177,6 +185,7 @@ class AppTranslate{
   static const String tenantsCompanionsData = 'Tenants companions data' ;
   static const String basicDataForTenantsCompanions = 'Basic data for tenants companions...' ;
   static const String theNameOfTheCompanion = 'The name of the companion' ;
+
   static const String facilitiesProximity = 'Facilities proximity' ;
   static const String addFacilities = 'Add facilities' ;
   static const String deleteFacilities = 'Delete facilities' ;

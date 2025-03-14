@@ -86,6 +86,8 @@ class AppAssets {
   static const String termsAndConditionLogo = 'termsAndConditionLogo';
   static const String aboutUsLogo = 'aboutUsLogo';
   static const String cameraIcon = 'cameraIcon';
+  static const String searchIcon = 'searchIcon';
+  static const String doneIcon = 'doneIcon';
 
 
   static const String next1 = 'Next1';

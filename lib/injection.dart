@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pronight_vendor/presentations/modules/add_unit_page/add_unit_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/auth/login/login_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/contract_screens/add_contract/add_contract_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/add_visit_permit_view_model.dart';
@@ -28,6 +29,7 @@ Future<void> init() async{
   getIt.registerLazySingleton(() => AddVisitPermitViewModel());
   getIt.registerLazySingleton(() => UnitImageViewModel());
   getIt.registerLazySingleton(() => LanguageViewModel());
+  getIt.registerLazySingleton(() => AddUnitViewModel());
   ///providers
   // getIt.registerLazySingleton(() => LanguageViewModel());
 
