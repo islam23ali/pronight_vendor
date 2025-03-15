@@ -2,21 +2,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/presentations/modules/add_unit_page/pages/add_unit_page_three/widgets/custom_offer_card.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../../core/dimens/dimens.dart';
 import '../../../../../../../core/resources/app_assets.dart';
 import '../../../../../../../core/resources/app_translate.dart';
 import '../../../../../../../core/resources/font_size.dart';
-import '../../../../components/alerts/custom_select_date.dart';
 import '../../../../components/custom_button/custom_button.dart';
 import '../../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../../components/custom_switch/custom_switch.dart';
 import '../../../../components/custom_text/custom_text.dart';
 import '../../../../components/inputs/custom_text_form.dart';
 import '../../add_unit_view_model.dart';
-import '../../widget/custom_city_dropdown.dart';
-import '../../widget/custom_offer_type_dropdown.dart';
 
 class AddUnitPageThree extends StatefulWidget {
   const AddUnitPageThree({super.key});
@@ -64,11 +62,11 @@ class _AddUnitPageThreeState extends State<AddUnitPageThree> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              title: 'معلومات الوحدة',
+                              title: AppTranslate.unitInformation.tr(),
                               fontSize: AppFonts.font_12,
                             ),
                             CustomText(
-                              title: 'البيانات الأساسية التي تخص الوحدة ...',
+                              title: AppTranslate.basicDataAboutUnit.tr(),
                               fontSize: AppFonts.font_10,
                               fontColor: Colors.grey,
                             )
@@ -81,7 +79,7 @@ class _AddUnitPageThreeState extends State<AddUnitPageThree> {
                     SizedBox(height: 20.h),
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText(title: 'الحد الأقصى لعدد البالغين',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                        CustomText(title: AppTranslate.maximumNumberOfAdults.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                         CustomTextFormField(controller: data.arrivalDateController,
                           height: 60.h,textInputType: TextInputType.number,
                           // inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
@@ -92,7 +90,7 @@ class _AddUnitPageThreeState extends State<AddUnitPageThree> {
                     SizedBox(height: 20.h),
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText(title: 'السعر للبالغ',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                        CustomText(title: AppTranslate.pricePerAdult.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                         CustomTextFormField(controller: data.arrivalDateController,
                           height: 60.h,textInputType: TextInputType.number,
                           // inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
@@ -103,7 +101,7 @@ class _AddUnitPageThreeState extends State<AddUnitPageThree> {
                     SizedBox(height: 20.h),
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText(title: 'الحد الأقصى لعدد الأطفال',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                        CustomText(title: AppTranslate.maximumNumberOfChildren.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                         CustomTextFormField(controller: data.arrivalDateController,
                           height: 60.h,textInputType: TextInputType.number,
                           // inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
@@ -114,7 +112,7 @@ class _AddUnitPageThreeState extends State<AddUnitPageThree> {
                     SizedBox(height: 20.h),
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText(title: 'السعر للطفل',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                        CustomText(title: AppTranslate.pricePerChild.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                         CustomTextFormField(controller: data.arrivalDateController,
                           height: 60.h,textInputType: TextInputType.number,
                           // inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
@@ -125,7 +123,7 @@ class _AddUnitPageThreeState extends State<AddUnitPageThree> {
                     SizedBox(height: 10.h),
                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CustomText(title: 'يوجد عرض',fontSize:AppFonts.font_15,fontColor: AppColors.primaryColor),
+                          CustomText(title: AppTranslate.thereIsOffer.tr(),fontSize:AppFonts.font_15,fontColor: AppColors.primaryColor),
                           CustomSwitch(value: data.isSwitchOffer,
                               activeColor: AppColors.primaryColor,
                               inactiveColor: AppColors.gray,
@@ -135,81 +133,7 @@ class _AddUnitPageThreeState extends State<AddUnitPageThree> {
                                 });
                               })
                         ]),
-                    SizedBox(height: 20.h),
-                    Column(crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomText(title: 'تاريخ بدء العرض',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        CustomTextFormField(controller: data.exitDateController,readOnly: true,
-                          onTap: (){
-                            showDialog<String>(
-                                context: context,
-                                builder: (BuildContext context) =>
-                                    CustomSelectDate(onDateSelected: (String value) {data.exitDateController.text=value;},));
-                          },
-                          height: 60.h,textInputType: TextInputType.number,
-                          suffix: CustomSvgIcon(assetName: AppAssets.date,color: Colors.black.withAlpha((0.50*244).round()),),
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 20.h),
-                    Column(crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomText(title: 'تاريخ انتهاء العرض',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        CustomTextFormField(controller: data.exitDateController,readOnly: true,
-                          onTap: (){
-                            showDialog<String>(
-                                context: context,
-                                builder: (BuildContext context) =>
-                                    CustomSelectDate(onDateSelected: (String value) {data.exitDateController.text=value;},));
-                          },
-                          height: 60.h,textInputType: TextInputType.number,
-                          suffix: CustomSvgIcon(assetName: AppAssets.date,color: Colors.black.withAlpha((0.50*244).round()),),
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 20.h),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomText(
-                            title: 'نوع العرض',
-                            fontSize: AppFonts.font_12,
-                            fontColor: AppColors.primaryColor),
-                        Column(
-                          children: [
-                            CustomOfferTypeDropdownButton(
-                              color: AppColors.darkColor,
-                              items: data.cityList ?? [],
-                              value: data.value,
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  data.value = newValue;
-                                });
-                              },
-                            ),
-                            Container(
-                              height: 2.h,
-                              width: 300,
-                              color: Colors.grey.shade400,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20.h),
-                    Column(crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomText(title: 'قيمة العرض',fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        CustomTextFormField(controller: data.arrivalDateController,
-                          height: 60.h,textInputType: TextInputType.number,
-                          // inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
-                        )
-                      ],
-                    ),
-
+                    data.isSwitchOffer?const CustomOfferCard():const SizedBox(),
                     SizedBox(height: 40.h),
                     CustomButton(
                       onTap: () {
