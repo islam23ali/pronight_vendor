@@ -43,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         child: Container(
                       padding: EdgeInsets.all(8.r),
                       decoration:const BoxDecoration(shape: BoxShape.circle,color: Color(0xffF5F5F5)),
-                      child:CustomSvgIcon(assetName: AppAssets.cameraIcon,width: 15.w,height: 15.h) ,))
+                      child:CustomSvgIcon(assetName: AppAssets.cameraIcon,width: 15.w,height: 15.h)))
                   ],
                 )),
                 SizedBox(height: 40.h),
