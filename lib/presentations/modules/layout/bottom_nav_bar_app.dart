@@ -117,7 +117,7 @@ class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor:widget.bottomNavIndex==0? AppColors.bgHomeColor:Colors.white,
       // appBar:CustomAppBar(height: 0,bgColor: AppColors.bgHomeColor,statusBarColor: AppColors.bgHomeColor,topColor: AppColors.bgHomeColor,),
       extendBody: true,
       body: SafeArea(

@@ -228,5 +228,8 @@
   "licenseImage": "صورة الترخيص",
   "uploadPhotoYourLicenseHere": "قم برفع صورة للترخيص هنا",
   "commercialRegisterPhoto": "صورة السجل التجاري",
-  "uploadYourCommercialRegisterImageHere": "قم برفع صورة السجل التجاري هنا"
+  "uploadYourCommercialRegisterImageHere": "قم برفع صورة السجل التجاري هنا",
+  "sendVisitPermit": "إرسال تصريح الزيارة",
+  "sendingVisitPermitToCustomerPhone": "إرسال تصريح الزيارة الى هاتف العميل",
+  "sendVisitPermitToFacilityOwnerPhoneNumber": "إرسال  تصريح الزيارة لهاتف مالك المنشأة"
 }

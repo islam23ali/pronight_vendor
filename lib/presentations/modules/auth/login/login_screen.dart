@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pronight_vendor/core/app_theme/app_colors.dart';
 import 'package:pronight_vendor/core/dimens/dimens.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
@@ -53,6 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomText(title: AppTranslate.phoneNumber.tr(),fontSize: AppFonts.font_16,fontColor: AppColors.primaryColor),
                       CustomTextFormField(controller: data.phoneNumberController,
                         height: 60,textInputType: TextInputType.number,
+                        inputFormatters: [LengthLimitingTextInputFormatter(10),FilteringTextInputFormatter.digitsOnly],
                         prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
                       )
                     ],
@@ -62,7 +64,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     if(data.phoneNumberController.text.isEmpty){
                       CustomScaffoldMessanger.showToast(title: AppTranslate.enterYourPhone.tr());
                     }else{
-                    showSendCodeSheet();
+                      data.sendCode();
+                    // showSendCodeSheet();
                     }
                   },title: AppTranslate.login.tr()),
                   SizedBox(height: 20.h),
@@ -90,12 +93,5 @@ class _LoginScreenState extends State<LoginScreen> {
         }
       ) ,);
   }
-  Future<dynamic> showSendCodeSheet() async {
-    return showModalBottomSheet(
-        isScrollControlled: true,
-        context: context,
-        backgroundColor: AppColors.white,
-        builder: (context) {
-          return const ConfirmCodeSheet();
-        });}
+
 }

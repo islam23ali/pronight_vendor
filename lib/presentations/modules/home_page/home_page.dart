@@ -27,8 +27,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(color: AppColors.bgHomeColor,
-        padding: EdgeInsets.symmetric(
-            vertical: Dimens.padding_16v, horizontal: Dimens.padding_16h),
+        padding: EdgeInsets.only(
+            top: Dimens.padding_16v, left: Dimens.padding_16h,right: Dimens.padding_16h),
         child: SingleChildScrollView(
           child: Column(
             children: [

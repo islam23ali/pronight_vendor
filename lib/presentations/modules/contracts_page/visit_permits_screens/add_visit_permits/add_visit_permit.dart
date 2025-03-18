@@ -4,6 +4,7 @@ import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/widgets/custom_dropdown_visit_permit.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/widgets/custom_material_card.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/widgets/custom_visitor_data_card.dart';
+import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/widgets/send_visit_permit_sheet.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/app_theme/app_colors.dart';
 import '../../../../../core/dimens/dimens.dart';
@@ -226,7 +227,7 @@ class _AddVisitPermitState extends State<AddVisitPermit> {
                                       const CustomMaterialCard(),
                                       SizedBox(height: 20.h),
                                       CustomButton(onTap: (){
-
+                                        showSendVisitPermitSheet();
                                       },title: AppTranslate.send.tr(),)
                                     ],),
                                   )
@@ -243,4 +244,18 @@ class _AddVisitPermitState extends State<AddVisitPermit> {
       ),
     );
   }
+  Future<dynamic> showSendVisitPermitSheet() async {
+    return  showModalBottomSheet(
+      // isDismissible: false,
+        isScrollControlled: true,
+        backgroundColor: AppColors.white,
+        context: context,
+
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(24.r),
+            )),
+        builder: (BuildContext context) {
+          return const SendVisitPermitSheet();
+        });}
 }

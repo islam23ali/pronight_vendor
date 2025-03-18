@@ -224,5 +224,8 @@
   "licenseImage":"License image",
   "uploadPhotoYourLicenseHere":"Upload a photo of your license here.",
   "commercialRegisterPhoto":"Commercial register photo",
-  "uploadYourCommercialRegisterImageHere":"Upload your commercial register image here"
+  "uploadYourCommercialRegisterImageHere":"Upload your commercial register image here",
+  "sendVisitPermit":"Send visit permit",
+  "sendingVisitPermitToCustomerPhone":"Sending the visit permit to the customer's phone",
+  "sendVisitPermitToFacilityOwnerPhoneNumber":"Send the visit permit to the facility owner's phone number"
 }

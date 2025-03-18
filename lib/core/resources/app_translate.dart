@@ -199,6 +199,9 @@ class AppTranslate{
   static const String uploadPhotoYourLicenseHere = 'uploadPhotoYourLicenseHere' ;
   static const String commercialRegisterPhoto = 'commercialRegisterPhoto' ;
   static const String uploadYourCommercialRegisterImageHere = 'uploadYourCommercialRegisterImageHere' ;
+  static const String sendVisitPermit = 'sendVisitPermit' ;
+  static const String sendingVisitPermitToCustomerPhone = 'sendingVisitPermitToCustomerPhone' ;
+  static const String sendVisitPermitToFacilityOwnerPhoneNumber = 'sendVisitPermitToFacilityOwnerPhoneNumber' ;
 
   //not set yet
   static const String noResultFound = 'noResultFound' ;
