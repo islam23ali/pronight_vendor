@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     if(data.phoneNumberController.text.isEmpty){
                       CustomScaffoldMessanger.showToast(title: AppTranslate.enterYourPhone.tr());
                     }else{
-                      data.sendCode();
+                      data.sendCode(true);
                     // showSendCodeSheet();
                     }
                   },title: AppTranslate.login.tr()),

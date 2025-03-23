@@ -51,7 +51,8 @@ class _ResendConfirmCodeState extends State<ResendConfirmCode> {
                 SizedBox(
                   child:InkWell(
                     onTap: () {
-                      // Provider.of<ForgotPasswordViewModel>(context,listen: false).sendCode(true);
+                      Provider.of<LoginViewModel>(context,listen: false).sendCode(false);
+                      data.startTimer();
                     },
                     child: CustomText(
                      title:  AppTranslate.resendCode.tr(),

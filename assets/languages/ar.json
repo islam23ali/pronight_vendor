@@ -231,5 +231,6 @@
   "uploadYourCommercialRegisterImageHere": "قم برفع صورة السجل التجاري هنا",
   "sendVisitPermit": "إرسال تصريح الزيارة",
   "sendingVisitPermitToCustomerPhone": "إرسال تصريح الزيارة الى هاتف العميل",
-  "sendVisitPermitToFacilityOwnerPhoneNumber": "إرسال  تصريح الزيارة لهاتف مالك المنشأة"
+  "sendVisitPermitToFacilityOwnerPhoneNumber": "إرسال  تصريح الزيارة لهاتف مالك المنشأة",
+  "PleaseEnterVerificationCodeSentYourMobileNumber": "من فضلك ادخل رمز التحقق المرسل الي رقم الجوال "
 }

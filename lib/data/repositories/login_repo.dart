@@ -21,7 +21,19 @@ class LoginRepo {
           formData: FormData.fromMap({
             'phone': phone,
             'phone_code': phoneCode,
-            // 'device_token':hashDeviceId(await _getDeviceToken()??''),
+          }));
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+  Future<ApiResponse> confirmCodeRepo(String phone,phoneCode,code) async {
+    try {
+      Response response = await _dioClient.post(AppUrls.confirmCodeUrl,
+          formData: FormData.fromMap({
+            'phone': phone,
+            'phone_code': phoneCode,
+            'code': code,
           }));
       return ApiResponse.withSuccess(response);
     } catch (e) {

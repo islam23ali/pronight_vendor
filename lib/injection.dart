@@ -11,6 +11,7 @@ import 'core/islam_theme/islam_theme.dart';
 import 'data/datasource/local/LocalUserData.dart';
 import 'data/datasource/remote/dio/dio_client.dart';
 import 'data/datasource/remote/dio/logging_interceptor.dart';
+import 'data/repositories/login_repo.dart';
 final getIt = GetIt.instance;
 
 Future<void> init() async{
@@ -35,6 +36,6 @@ Future<void> init() async{
   getIt.registerLazySingleton(() => ThemeNotifier());
 
   ///repositories
-  // getIt.registerLazySingleton(() => SettingRepository());
+  getIt.registerLazySingleton(() => LoginRepo());
 
 }

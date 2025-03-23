@@ -53,7 +53,7 @@ class _ConfirmCodeSheetState extends State<ConfirmCodeSheet> {
             child: Column(
               children: [
                 CustomText(
-                 title: 'من فضلك ادخل رمز التحقق المرسل الي رقم الجوال ',
+                 title: AppTranslate.pleaseEnterVerificationCodeSentYourMobileNumber.tr(),
                   fontColor: AppColors.blackColor,
                   fontSize: AppFonts.font_14,
                   textAlign: TextAlign.center,
@@ -86,11 +86,8 @@ class _ConfirmCodeSheetState extends State<ConfirmCodeSheet> {
               if (MediaQuery.of(context).viewInsets.bottom > 0) {
                 FocusScope.of(context).unfocus();
               }
-              NavigatorHandler.push(BottomNavBar(bottomNavIndex: 0,));
-// provider.confirmCode(provider.controller.text);
-            }:(){
-
-            },
+              data.confirmCode();
+            }:(){},
             title:  tr(AppTranslate.confirm),
           ),
         ],

@@ -227,5 +227,6 @@
   "uploadYourCommercialRegisterImageHere":"Upload your commercial register image here",
   "sendVisitPermit":"Send visit permit",
   "sendingVisitPermitToCustomerPhone":"Sending the visit permit to the customer's phone",
-  "sendVisitPermitToFacilityOwnerPhoneNumber":"Send the visit permit to the facility owner's phone number"
+  "sendVisitPermitToFacilityOwnerPhoneNumber":"Send the visit permit to the facility owner's phone number",
+  "PleaseEnterVerificationCodeSentYourMobileNumber":"Please enter the verification code sent to your mobile number."
 }

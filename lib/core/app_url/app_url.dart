@@ -1,4 +1,5 @@
 class AppUrls {
-  static String baseUrl = "https://new.shserial.com/public/";
-  static String sendCodeUrl = "api/send-code";
+  static String baseUrl = "https://pro-night.com/api";
+  static String sendCodeUrl = "/provider/send-code";
+  static String confirmCodeUrl = "/provider/confirm-code";
 }

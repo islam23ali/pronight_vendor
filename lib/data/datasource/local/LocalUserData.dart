@@ -22,7 +22,14 @@ class LocalUserData {
       rethrow;
     }
   }
-
+  Future<void> saveUserToken(String token) async {
+    // dioClient.updateHeader(userTOKEN,sharedPreferences.getString(AppConstants.lang));
+    try {
+      await sharedPreferences.setString(userTOKEN, token);
+    } catch (e) {
+      rethrow;
+    }
+  }
   Future<void> saveLang(String lang) async {
     try {
       await sharedPreferences.setString(localAppLanguage, lang);
@@ -47,7 +54,9 @@ class LocalUserData {
     }
     return null;
   }
-
+  String getUserToken() {
+    return sharedPreferences.getString(userTOKEN) ?? "";
+  }
   String getLang() {
     return sharedPreferences.getString(localAppLanguage) ?? "ar";
   }
@@ -56,6 +65,7 @@ class LocalUserData {
   }
   ///clear SharedData
   Future<bool> clearUserData() async {
+    await sharedPreferences.remove(userTOKEN);
     await sharedPreferences.remove(localUserData);
     await sharedPreferences.remove(localAppLanguage);
     NavigatorHandler.pushAndRemoveUntil(const Splash());

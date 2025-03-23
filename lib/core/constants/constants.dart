@@ -18,6 +18,7 @@ const String delete ='delete';
 const String add ='add';
 const String showIntro = 'showIntro';
 const String localUserData ='localUserData';
+const String userTOKEN ='userTOKEN';
 const String localAppLanguage ='localAppLanguage';
 const String appPackageName = 'com.app.serialCheckAdmin';
 var appLanguage  = [
