@@ -232,5 +232,8 @@
   "sendVisitPermit": "إرسال تصريح الزيارة",
   "sendingVisitPermitToCustomerPhone": "إرسال تصريح الزيارة الى هاتف العميل",
   "sendVisitPermitToFacilityOwnerPhoneNumber": "إرسال  تصريح الزيارة لهاتف مالك المنشأة",
-  "PleaseEnterVerificationCodeSentYourMobileNumber": "من فضلك ادخل رمز التحقق المرسل الي رقم الجوال "
+  "PleaseEnterVerificationCodeSentYourMobileNumber": "من فضلك ادخل رمز التحقق المرسل الي رقم الجوال ",
+  "search": "بحث",
+  "sector": "قطاع",
+  "detailsContract": "تفاصيل العقد"
 }

@@ -22,9 +22,9 @@ class _AppLoaderState extends State<AppLoader> {
       children: [
          Center(
           child: SizedBox(
-              width: 36.w,
-              height: 36.w,
-              child: CircularProgressIndicator()),
+              width: 200.w,
+              height: 200.w,
+              child:  Lottie.asset('assets/images/json/loaderEstate.json')),
         ),
         SizedBox(height: 20.h),
         Text(widget.title ?? '',

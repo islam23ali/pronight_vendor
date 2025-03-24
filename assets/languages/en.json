@@ -228,5 +228,8 @@
   "sendVisitPermit":"Send visit permit",
   "sendingVisitPermitToCustomerPhone":"Sending the visit permit to the customer's phone",
   "sendVisitPermitToFacilityOwnerPhoneNumber":"Send the visit permit to the facility owner's phone number",
-  "PleaseEnterVerificationCodeSentYourMobileNumber":"Please enter the verification code sent to your mobile number."
+  "PleaseEnterVerificationCodeSentYourMobileNumber":"Please enter the verification code sent to your mobile number.",
+  "search":"Search",
+  "sector":"Sector",
+  "detailsContract":"Details of the contract"
 }

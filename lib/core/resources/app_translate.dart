@@ -203,6 +203,7 @@ class AppTranslate{
   static const String sendingVisitPermitToCustomerPhone = 'sendingVisitPermitToCustomerPhone' ;
   static const String sendVisitPermitToFacilityOwnerPhoneNumber = 'sendVisitPermitToFacilityOwnerPhoneNumber' ;
   static const String pleaseEnterVerificationCodeSentYourMobileNumber = 'PleaseEnterVerificationCodeSentYourMobileNumber' ;
+  static const String search = 'search' ;
 
   //not set yet
   static const String noResultFound = 'noResultFound' ;
@@ -224,6 +225,9 @@ class AppTranslate{
   static const String tenantsCompanionsData = 'Tenants companions data' ;
   static const String basicDataForTenantsCompanions = 'Basic data for tenants companions...' ;
   static const String theNameOfTheCompanion = 'The name of the companion' ;
+  static const String sector = 'sector' ;
+  static const String detailsContract = 'detailsContract' ;
+
 
   static const String facilitiesProximity = 'Facilities proximity' ;
   static const String addFacilities = 'Add facilities' ;

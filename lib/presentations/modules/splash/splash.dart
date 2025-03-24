@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/data/datasource/local/LocalUserData.dart';
 import 'package:pronight_vendor/presentations/components/custom_app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
@@ -20,16 +21,16 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-
+LocalUserData _localUserData =LocalUserData();
   @override
   void initState() {
     super.initState();
 
     Timer(const Duration(seconds: 2), () async{
-    //   if (_localUserData.getUserData()?.data?.token?.isNotEmpty ?? false) {
+      if (_localUserData.getUserData()?.data?.token?.isNotEmpty ?? false) {
     //     // await _loginViewModel.updateToken();
-    //     NavigatorHandler.pushAndRemoveUntil(const MainScreen());
-    //   } else {
+        NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 0));
+      } else {
     //     if(_localUserData.isShowIntro()==false){
     //       // NavigatorHandler.pushAndRemoveUntil(MainScreen());
           NavigatorHandler.pushAndRemoveUntil(IntroScreen());
@@ -41,7 +42,7 @@ class _SplashState extends State<Splash> {
     //     NavigatorHandler.pushAndRemoveUntil(IntroScreen());
     //     // NavigatorHandler.pushAndRemoveUntil(const Login());
     //   NavigatorHandler.push(IslamTheme());
-    //   }
+      }
     });
   }
   @override
