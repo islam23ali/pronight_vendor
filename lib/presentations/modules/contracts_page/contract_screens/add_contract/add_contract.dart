@@ -10,6 +10,7 @@ import 'package:pronight_vendor/presentations/modules/contracts_page/contract_sc
 import 'package:pronight_vendor/presentations/modules/contracts_page/contract_screens/add_contract/widget/custom_add_contract_status.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/resources/font_size.dart';
+import '../../../../../injection.dart';
 import '../../../../components/custom_app_bar/custom_app_bar.dart';
 import '../../../../components/custom_scaffold/custom_scaffold.dart';
 import 'add_contract_view_model.dart';
@@ -22,8 +23,14 @@ class AddContract extends StatefulWidget {
 }
 
 class _AddContractState extends State<AddContract> {
-
-
+AddContractViewModel provider = getIt();
+@override
+  void initState() {
+    super.initState();
+WidgetsBinding.instance.addPostFrameCallback((timeStamp){
+  provider.initAddContract();
+});
+  }
 
   @override
   Widget build(BuildContext context) {

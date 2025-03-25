@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/core/utils/social_media_helper.dart';
 import 'package:pronight_vendor/presentations/app_loader.dart';
 import 'package:pronight_vendor/presentations/components/custom_app_bar/custom_app_bar.dart';
@@ -100,7 +101,7 @@ class _ContractDetailsState extends State<ContractDetails> {
                                 SizedBox(height: 20.h),
                                 CustomText(title: AppTranslate.contractStatus.tr(),fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
                                 SizedBox(height: 10.h),
-                                CustomText(title: ' waiting for back قيد الدفع',fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
+                                CustomText(title:(data.oneContractModel?.data?.isPaid==true)?AppTranslate.paymentConfirmed.tr():AppTranslate.paymentPending.tr(),fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
 
                               ],),
                             ),
@@ -140,11 +141,13 @@ class _ContractDetailsState extends State<ContractDetails> {
                           CustomText(title: AppTranslate.operationsOTheContract.tr(),fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
                           Row(
                             children: [
-                              Container(
-                                padding: EdgeInsets.all(Dimens.padding_4),
-                                margin: EdgeInsets.symmetric(horizontal:Dimens.padding_4h),
-                                decoration: BoxDecoration( borderRadius: BorderRadius.circular(3.r),border: Border.all(width: 1.5.w,color: AppColors.primaryColor)),
-                                child:CustomSvgIcon(assetName: AppAssets.showContract,width: 20.w,height: 20.w,color: AppColors.primaryColor,) ,),
+                              InkWell(onTap: (){socialMediaHelper.openFacebookApp('https://pro-night.com/contract/79MK1v3Dn90wNtM8RNg0');},
+                                child: Container(
+                                  padding: EdgeInsets.all(Dimens.padding_4),
+                                  margin: EdgeInsets.symmetric(horizontal:Dimens.padding_4h),
+                                  decoration: BoxDecoration( borderRadius: BorderRadius.circular(3.r),border: Border.all(width: 1.5.w,color: AppColors.primaryColor)),
+                                  child:CustomSvgIcon(assetName: AppAssets.showContract,width: 20.w,height: 20.w,color: AppColors.primaryColor,) ,),
+                              ),
                               InkWell(onTap:(){
                                 showPaymentTypesSheet();
                               },
@@ -154,18 +157,22 @@ class _ContractDetailsState extends State<ContractDetails> {
                                   decoration: BoxDecoration( borderRadius: BorderRadius.circular(3.r),border: Border.all(width: 1.5.w,color: AppColors.primaryColor)),
                                   child:CustomSvgIcon(assetName: AppAssets.payMoney,width: 20.w,height: 20.w,color: AppColors.primaryColor,) ,),
                               ),
-                              Container(
-                                padding: EdgeInsets.all(Dimens.padding_4),
-                                margin: EdgeInsets.symmetric(horizontal:Dimens.padding_4h),
-                                decoration: BoxDecoration( borderRadius: BorderRadius.circular(3.r),border: Border.all(width: 1.5.w,color: AppColors.primaryColor)),
-                                child:CustomSvgIcon(assetName: AppAssets.filePDF,width: 20.w,height: 20.w,color: AppColors.primaryColor,) ,),
+                              InkWell(onTap: (){
+                                data.printContract(widget.id.toString());
+                              },
+                                child: Container(
+                                  padding: EdgeInsets.all(Dimens.padding_4),
+                                  margin: EdgeInsets.symmetric(horizontal:Dimens.padding_4h),
+                                  decoration: BoxDecoration( borderRadius: BorderRadius.circular(3.r),border: Border.all(width: 1.5.w,color: AppColors.primaryColor)),
+                                  child:CustomSvgIcon(assetName: AppAssets.filePDF,width: 20.w,height: 20.w,color: AppColors.primaryColor,) ,),
+                              ),
                             ],
                           ),
                           ],),
                         SizedBox(height: 20.h),
                         CustomText(title: AppTranslate.comments.tr(),fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
                         SizedBox(height: 10.h),
-                        CustomText(title: 'يتم هنا كتابة أى ملاحظات خاصة بالعقد ',fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
+                        CustomText(title: 'يتم هنا كتابة أى ملاحظات خاصة بالعقد waiting for back ',fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
                       ],
                     ),),
                   ],
@@ -199,6 +206,10 @@ class _ContractDetailsState extends State<ContractDetails> {
               top: Radius.circular(24.r),
             )),
         builder: (BuildContext context) {
-          return const DeleteItemSheet();
+          return  DeleteItemSheet(
+            onConfirmed: () {
+              NavigatorHandler.pop();
+            provider.deleteContract(widget.id.toString());
+             });
         });}
 }

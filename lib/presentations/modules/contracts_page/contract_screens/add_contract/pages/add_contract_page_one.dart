@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/data/models/response/sectors_model.dart';
+import 'package:pronight_vendor/data/models/response/villas_model.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../core/dimens/dimens.dart';
@@ -13,7 +15,10 @@ import '../../../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../../../components/custom_text/custom_text.dart';
 import '../../../../../components/inputs/custom_text_form.dart';
 import '../add_contract_view_model.dart';
+import '../widget/custom_beaches_dropdown.dart';
 import '../widget/custom_dropdown.dart';
+import '../widget/custom_sector_dropdown.dart';
+import '../widget/custom_villas_dropdown.dart';
 
 class AddContractPageOne extends StatefulWidget {
   const AddContractPageOne({super.key});
@@ -93,13 +98,19 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                         CustomText(title: AppTranslate.selectSector.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                         Column(
                           children: [
-                            CustomDropdownButton(
+                            (data.isLoading==true)?SizedBox(width: 30.w,height: 30.h,
+                                child: CircularProgressIndicator(color: AppColors.primaryColor,strokeWidth: 2.w,)):
+                            CustomSectorDropdownButton(
                               color: AppColors.darkColor,
-                              items: data.cityList ?? [],
-                              value: data.value,
-                              onChanged: (String? newValue) {
+                              items: data.sectorsModel?.data ?? [],
+                              value: data.selectedSector,
+                              onChanged: (OneSector? newValue) {
                                 setState(() {
-                                  data.value = newValue;
+                                  data.selectedSector = newValue;
+                                  data.selectedVilla = null;
+                                  data.selectedBeach = null;
+                                  data.getAllVillas(data.selectedSector?.id.toString());
+                                  data.getAllBeaches(data.selectedSector?.id.toString());
                                 });
                               },
                             ),
@@ -114,13 +125,17 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                         CustomText(title: AppTranslate.villa.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                         Column(
                           children: [
-                            CustomDropdownButton(
+                            (data.isVilLoading==true)?SizedBox(width: 30.w,height: 30.h,
+                                child: CircularProgressIndicator(color: AppColors.primaryColor,strokeWidth: 2.w,)):
+                            CustomVillasDropdownButton(
                               color: AppColors.darkColor,
-                              items: data.cityList ?? [],
-                              value: data.value,
-                              onChanged: (String? newValue) {
+                              inputColor:data.selectedSector==null? Colors.black12:Colors.transparent,
+                              items: data.villasModel?.data ?? [],
+                              value: data.selectedVilla,
+                              disabledTitle: AppTranslate.selectSectorFirst.tr(),
+                              onChanged: (OneVilla? newValue) {
                                 setState(() {
-                                  data.value = newValue;
+                                  data.selectedVilla = newValue;
                                 });
                               },
                             ),
@@ -135,13 +150,17 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                         CustomText(title: AppTranslate.beach.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                         Column(
                           children: [
-                            CustomDropdownButton(
+                            (data.isBeaLoading==true)?SizedBox(width: 30.w,height: 30.h,
+                                child: CircularProgressIndicator(color: AppColors.primaryColor,strokeWidth: 2.w,)):
+                            CustomBeachesDropdownButton(
                               color: AppColors.darkColor,
-                              items: data.cityList ?? [],
-                              value: data.value,
-                              onChanged: (String? newValue) {
+                              items: data.beachesModel?.data ?? [],
+                              value: data.selectedBeach,
+                              inputColor:data.selectedSector==null? Colors.black12:Colors.transparent,
+                              disabledTitle: AppTranslate.selectSectorFirst.tr(),
+                              onChanged: (OneVilla? newValue) {
                                 setState(() {
-                                  data.value = newValue;
+                                  data.selectedBeach = newValue;
                                 });
                               },
                             ),

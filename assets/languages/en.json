@@ -231,5 +231,10 @@
   "PleaseEnterVerificationCodeSentYourMobileNumber":"Please enter the verification code sent to your mobile number.",
   "search":"Search",
   "sector":"Sector",
-  "detailsContract":"Details of the contract"
+  "detailsContract":"Details of the contract",
+  "paymentConfirmed":"Payment confirmed",
+  "paymentPending":"Payment pending",
+  "print":"Print",
+  "delete":"Delete",
+  "selectSectorFirst":"Select the sector first."
 }

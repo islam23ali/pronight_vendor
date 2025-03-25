@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/core/resources/app_assets.dart';
 import 'package:pronight_vendor/presentations/components/custom_button/custom_button.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
@@ -12,7 +13,8 @@ import '../../../../../core/resources/font_size.dart';
 import '../../../../components/custom_text/custom_text.dart';
 
 class DeleteItemSheet extends StatefulWidget {
-  const DeleteItemSheet({super.key});
+  final VoidCallback? onConfirmed;
+  const DeleteItemSheet({super.key, required this.onConfirmed});
 
   @override
   State<DeleteItemSheet> createState() => _DeleteItemSheetState();
@@ -43,8 +45,8 @@ class _DeleteItemSheetState extends State<DeleteItemSheet> {
                 SizedBox(height: 20.h),
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                  CustomButton(onTap: (){},width: 155.w,title: AppTranslate.confirmDeletion.tr(),),
-                  CustomButton(onTap: (){},width: 155.w,title: AppTranslate.cancelDeletion.tr(),fontColor: AppColors.primaryColor,borderColor: AppColors.primaryColor,bg: AppColors.white,),
+                  CustomButton(onTap:widget.onConfirmed??(){},width: 155.w,title: AppTranslate.confirmDeletion.tr(),),
+                  CustomButton(onTap: (){NavigatorHandler.pop();},width: 155.w,title: AppTranslate.cancelDeletion.tr(),fontColor: AppColors.primaryColor,borderColor: AppColors.primaryColor,bg: AppColors.white,),
                 ],)
 
               ],) ,),

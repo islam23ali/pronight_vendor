@@ -227,6 +227,11 @@ class AppTranslate{
   static const String theNameOfTheCompanion = 'The name of the companion' ;
   static const String sector = 'sector' ;
   static const String detailsContract = 'detailsContract' ;
+  static const String paymentConfirmed = 'paymentConfirmed' ;
+  static const String paymentPending = 'paymentPending' ;
+  static const String print = 'print' ;
+  static const String delete = 'delete' ;
+  static const String selectSectorFirst = 'selectSectorFirst' ;
 
 
   static const String facilitiesProximity = 'Facilities proximity' ;

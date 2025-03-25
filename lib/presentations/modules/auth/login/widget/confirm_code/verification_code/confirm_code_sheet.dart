@@ -31,7 +31,12 @@ class ConfirmCodeSheet extends StatefulWidget {
 }
 
 class _ConfirmCodeSheetState extends State<ConfirmCodeSheet> {
-
+  LoginViewModel provider =getIt();
+@override
+  void initState() {
+    super.initState();
+    provider.controller.clear();
+  }
   @override
   Widget build(BuildContext context) {
     return

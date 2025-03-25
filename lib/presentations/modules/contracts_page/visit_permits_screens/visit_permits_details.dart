@@ -154,6 +154,6 @@ class _VisitPermitsDetailsState extends State<VisitPermitsDetails> {
               top: Radius.circular(24.r),
             )),
         builder: (BuildContext context) {
-          return const DeleteItemSheet();
+          return  DeleteItemSheet(onConfirmed: (){},);    //put link here
         });}
 }

@@ -235,5 +235,10 @@
   "PleaseEnterVerificationCodeSentYourMobileNumber": "من فضلك ادخل رمز التحقق المرسل الي رقم الجوال ",
   "search": "بحث",
   "sector": "قطاع",
-  "detailsContract": "تفاصيل العقد"
+  "detailsContract": "تفاصيل العقد",
+  "paymentConfirmed": "تم تأكيد الدفع",
+  "paymentPending": "قيد الدفع",
+  "print": "طباعة",
+  "delete": "حذف",
+  "selectSectorFirst": "حدد القطاع أولاً"
 }
