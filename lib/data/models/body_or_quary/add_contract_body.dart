@@ -1,3 +1,7 @@
+import 'package:pronight_vendor/data/models/response/sub_models/add_escort_model.dart' show AddEscort;
+
+import '../response/sub_models/add_car_model.dart';
+
 class AddContractBody {
   String? startDate;
   String? endDate;
@@ -12,7 +16,8 @@ class AddContractBody {
   String? rentValue;
   String? insuranceValue;
   String? price;
-  List<Escort>? escorts;
+  List<AddEscort>? escorts;
+  List<Car>? cars;
 
 
   AddContractBody({
@@ -30,6 +35,7 @@ class AddContractBody {
     this.insuranceValue,
     this.price,
     this.escorts,
+    this.cars,
 
   });
 
@@ -49,38 +55,35 @@ class AddContractBody {
     "insurance_value": insuranceValue,
     "price": price,
     "escorts": escorts == null ? [] : List<dynamic>.from(escorts!.map((x) => x.toJson())),
+    "cars": cars == null ? [] : List<dynamic>.from(cars!.map((x) => x.toJson())),
 
 
   };
 }
-class Escort {
-  int? id;
-  int? contractId;
-  String? name;
-  String? idNo;
-  String? nationality;
-  String? kinship;
-  String? createdAt;
-  String? updatedAt;
-
-  Escort({
-    this.name,
-    this.idNo,
-    this.nationality,
-    this.kinship,
-  });
-
-  factory Escort.fromJson(Map<String, dynamic> json) => Escort(
-    name: json["name"],
-    idNo: json["id_no"],
-    nationality: json["nationality"],
-    kinship: json["kinship"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "name": name,
-    "id_no": idNo,
-    "nationality": nationality,
-    "kinship": kinship,
-  };
-}
+// class Escort {
+//   String? name;
+//   String? idNo;
+//   String? nationality;
+//   String? kinship;
+//
+//   Escort({
+//     this.name,
+//     this.idNo,
+//     this.nationality,
+//     this.kinship,
+//   });
+//
+//   factory Escort.fromJson(Map<String, dynamic> json) => Escort(
+//     name: json["name"],
+//     idNo: json["id_no"],
+//     nationality: json["nationality"],
+//     kinship: json["kinship"],
+//   );
+//
+//   Map<String, dynamic> toJson() => {
+//     "name": name,
+//     "id_no": idNo,
+//     "nationality": nationality,
+//     "kinship": kinship,
+//   };
+// }

@@ -240,5 +240,18 @@
   "paymentPending": "قيد الدفع",
   "print": "طباعة",
   "delete": "حذف",
-  "selectSectorFirst": "حدد القطاع أولاً"
+  "selectSectorFirst": "حدد القطاع أولاً",
+  "arrivalDateIsRequired": "تاريخ الوصول مطلوبً",
+  "exitDateIsRequired": "تاريخ الخروج مطلوب",
+  "villaIsRequired": "الفيلا مطلوب",
+  "beachIsRequired": "الشاطئ مطلوب",
+  "tenantNameIsRequired": "اسم المستأجر مطلوب",
+  "iDNumberRequired": "رقم الهوية مطلوب",
+  "nationalityRequired": "الجنسية مطلوبة",
+  "phoneNumberRequired": "رقم الهاتف مطلوب",
+  "rentalValueRequired": "قيمة الإيجار مطلوبة",
+  "insuranceValueRequired": "قيمة التأمين المطلوبة",
+  "contractFeesRequired": "رسوم العقد المطلوبة",
+  "accompanyingTenantDataRequired": "بيانات المستأجرين المرافقين مطلوبة",
+  "renterCarDataRequired": "بيانات سيارات المستأجر مطلوبة"
 }

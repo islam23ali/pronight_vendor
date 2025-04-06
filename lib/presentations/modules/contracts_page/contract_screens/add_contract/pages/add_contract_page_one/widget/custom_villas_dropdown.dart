@@ -3,18 +3,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/resources/app_assets.dart';
+import 'package:pronight_vendor/data/models/response/villas_model.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
-import '../../../../../../../../../core/app_theme/app_colors.dart';
-import '../../../../../../../../../core/dimens/dimens.dart';
-import '../../../../../../../../../core/resources/font_size.dart';
-import '../../../../../../core/resources/app_translate.dart';
-import '../../../../../../data/models/response/sectors_model.dart';
-import '../../../../../components/custom_text/custom_text.dart';
+import '../../../../../../../../../../../core/app_theme/app_colors.dart';
+import '../../../../../../../../../../../core/dimens/dimens.dart';
+import '../../../../../../../../../../../core/resources/font_size.dart';
+import '../../../../../../../../core/resources/app_translate.dart';
+import '../../../../../../../../data/models/response/sectors_model.dart';
+import '../../../../../../../components/custom_text/custom_text.dart';
 
 /// CustomDropdownButton
-class CustomSectorDropdownButton extends StatefulWidget {
-  final List<OneSector> items;
-  final OneSector? value;
+class CustomVillasDropdownButton extends StatefulWidget {
+  final List<OneVilla> items;
+  final OneVilla? value;
   final Color? color;
   final Color? fontColor;
   final Color? iconEnabledColor;
@@ -25,12 +26,13 @@ class CustomSectorDropdownButton extends StatefulWidget {
   final Widget? hint;
   final TextStyle? textStyle;
   final bool? isCenter;
-  final OneSector? selectedItem;
+  final OneVilla? selectedItem;
+  final String? disabledTitle;
 
-  final  Function(OneSector?) onChanged;
+  final  Function(OneVilla?) onChanged;
 
 
-  const CustomSectorDropdownButton({super.key,
+  const CustomVillasDropdownButton({super.key,
     required this.items,
     required this.value,
     required this.onChanged,
@@ -39,14 +41,14 @@ class CustomSectorDropdownButton extends StatefulWidget {
     this.iconEnabledColor,
     this.width,
     this.inputColor,
-    this.iconDisabledColor, this.isCenter, this.textStyle, this.hint, this.height, this.selectedItem,
+    this.iconDisabledColor, this.isCenter, this.textStyle, this.hint, this.height, this.selectedItem, this.disabledTitle,
   });
 
   @override
-  State<CustomSectorDropdownButton> createState() => _CustomSectorDropdownButtonState();
+  State<CustomVillasDropdownButton> createState() => _CustomVillasDropdownButtonState();
 }
 
-class _CustomSectorDropdownButtonState extends State<CustomSectorDropdownButton> {
+class _CustomVillasDropdownButtonState extends State<CustomVillasDropdownButton> {
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +56,11 @@ class _CustomSectorDropdownButtonState extends State<CustomSectorDropdownButton>
       width: widget.width,
       height:60.h ,
       child: DropdownButtonHideUnderline(
-        child: DropdownButton2<OneSector>(
+        child: DropdownButton2<OneVilla>(
           isExpanded: true,
           underline:Container(height: 20.h,width: 300.w,color: Colors.black,),
           isDense: true,
-          disabledHint: Container(height: 2.h,width: Dimens.width.w,color: Colors.grey,),
+          disabledHint: CustomText(title:widget.disabledTitle?? AppTranslate.choose.tr(),fontWeight: FontWeight.normal,fontColor: widget.color?? AppColors.darkColor,fontSize: AppFonts.font_14),
           hint:widget.hint?? Row(
             mainAxisAlignment: widget.isCenter==true?MainAxisAlignment.center:MainAxisAlignment.start,
             children: [
@@ -67,7 +69,7 @@ class _CustomSectorDropdownButtonState extends State<CustomSectorDropdownButton>
               CustomText(title:widget.value?.name?? AppTranslate.choose.tr(),fontWeight: FontWeight.normal,fontColor: widget.color?? AppColors.darkColor,fontSize: AppFonts.font_14)
             ],
           ),
-          items: widget.items.map((OneSector item) => DropdownMenuItem<OneSector>(
+          items: widget.items.map((OneVilla item) => DropdownMenuItem<OneVilla>(
             value: item,
             child:Column(
               mainAxisSize: MainAxisSize.min,
@@ -102,7 +104,7 @@ class _CustomSectorDropdownButtonState extends State<CustomSectorDropdownButton>
             // icon:CustomSvgIcon(assetName: AppAssets.block,width: 24.w,height: 24.w),
             iconSize: 16.r,
             iconEnabledColor:widget.iconEnabledColor?? AppColors.darkColor,
-            iconDisabledColor:widget.iconDisabledColor?? AppColors.errorColor,
+            iconDisabledColor:widget.iconDisabledColor?? Colors.transparent,
           ),
           dropdownStyleData: DropdownStyleData(
             maxHeight: 200,

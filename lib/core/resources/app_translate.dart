@@ -232,6 +232,19 @@ class AppTranslate{
   static const String print = 'print' ;
   static const String delete = 'delete' ;
   static const String selectSectorFirst = 'selectSectorFirst' ;
+  static const String exitDateIsRequired = 'exitDateIsRequired' ;
+  static const String arrivalDateIsRequired = 'arrivalDateIsRequired' ;
+  static const String villaIsRequired = 'villaIsRequired' ;
+  static const String beachIsRequired = 'beachIsRequired' ;
+  static const String tenantNameIsRequired = 'tenantNameIsRequired' ;
+  static const String iDNumberRequired = 'iDNumberRequired' ;
+  static const String nationalityRequired = 'nationalityRequired' ;
+  static const String phoneNumberRequired = 'phoneNumberRequired' ;
+  static const String rentalValueRequired = 'rentalValueRequired' ;
+  static const String insuranceValueRequired = 'insuranceValueRequired' ;
+  static const String contractFeesRequired = 'contractFeesRequired' ;
+  static const String accompanyingTenantDataRequired = 'accompanyingTenantDataRequired' ;
+  static const String renterCarDataRequired = 'renterCarDataRequired' ;
 
 
   static const String facilitiesProximity = 'Facilities proximity' ;

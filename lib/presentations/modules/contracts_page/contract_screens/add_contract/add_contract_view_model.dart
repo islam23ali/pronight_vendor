@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 
@@ -9,6 +10,8 @@ import '../../../../../data/models/api_response.dart';
 import '../../../../../data/models/body_or_quary/add_contract_body.dart';
 import '../../../../../data/models/response/empty_model.dart';
 import '../../../../../data/models/response/sectors_model.dart';
+import '../../../../../data/models/response/sub_models/add_car_model.dart';
+import '../../../../../data/models/response/sub_models/add_escort_model.dart';
 import '../../../../../data/models/response/villas_model.dart';
 import '../../../../../data/repositories/contract_repo.dart';
 import '../../../../../injection.dart';
@@ -24,8 +27,6 @@ class AddContractViewModel extends ChangeNotifier{
   //page one data ...
   TextEditingController arrivalDateController =TextEditingController();
   TextEditingController exitDateController =TextEditingController();
-  List<String>? cityList = ['القاهرة', 'المنوفية'];
-  String? value;
   // page two data ...
   TextEditingController tenantNameController =TextEditingController();
   TextEditingController iDNumberController =TextEditingController();
@@ -35,16 +36,19 @@ class AddContractViewModel extends ChangeNotifier{
   TextEditingController insuranceValueController =TextEditingController();
   TextEditingController contractFeesController =TextEditingController();
   // page three data ...
-  TextEditingController companionNameController =TextEditingController();
-  TextEditingController iDNumberCompanionsController =TextEditingController();
-  TextEditingController nationalityCompanionsController =TextEditingController();
-  TextEditingController facilitiesProximityController =TextEditingController();
+  List<AddEscort> escorts = [AddEscort(name: '', idNo: '', nationality: '', kinship: '')];
+  // TextEditingController companionNameController =TextEditingController();
+  // TextEditingController iDNumberCompanionsController =TextEditingController();
+  // TextEditingController nationalityCompanionsController =TextEditingController();
+  // TextEditingController facilitiesProximityController =TextEditingController();
   // page four data ...
-  TextEditingController carTypeController =TextEditingController();
-  TextEditingController plateNumberController =TextEditingController();
-  TextEditingController driverNameController =TextEditingController();
-  TextEditingController driverIDNumberController =TextEditingController();
+  List<Car> cars = [Car(type: '',plateNo: '',driverName: '',driverIdNo: '',)];
+  // TextEditingController carTypeController =TextEditingController();
+  // TextEditingController plateNumberController =TextEditingController();
+  // TextEditingController driverNameController =TextEditingController();
+  // TextEditingController driverIDNumberController =TextEditingController();
 
+  int? isSelected;
   bool ? _isLoading;
   bool ? _isVilLoading;
   bool ? _isBeaLoading;
@@ -80,6 +84,35 @@ void initAddContract(){
     AddContractBody addContractBody = AddContractBody();
     addContractBody.startDate=arrivalDateController.text;
     addContractBody.endDate=exitDateController.text;
+    addContractBody.sectorId=selectedSector?.id.toString();
+    addContractBody.villaId=selectedVilla?.id.toString();
+    addContractBody.beachId=selectedBeach?.id.toString();
+
+    addContractBody.tenantName=tenantNameController.text;
+    addContractBody.tenantIdNo=iDNumberController.text;
+    addContractBody.tenantNationality=nationalityController.text;
+    addContractBody.tenantPhoneCode='+966';
+    addContractBody.tenantPhone=mobileNumberController.text;
+    addContractBody.rentValue=rentalValueController.text;
+    addContractBody.insuranceValue=insuranceValueController.text;
+    addContractBody.price=contractFeesController.text;
+
+    addContractBody.escorts=escorts;
+    addContractBody.cars=cars;
+    // for(int i=0;i<(escorts.length);i++){
+    // for(int e=0;e<(addContractBody.escorts?.length??0);e++){
+    //   addContractBody.escorts?[e].name=escorts[i].name;
+    //   addContractBody.escorts?[e].nationality=escorts[i].nationality;
+    //   addContractBody.escorts?[e].idNo=escorts[i].idNo;
+    //   addContractBody.escorts?[e].kinship=escorts[i].kinship;
+    // }
+    // }
+    // for(int i=0;i<(cars.length);i++){
+    // for(int e=0;e<(addContractBody.escorts?.length??0);e++){
+    //   addContractBody.escorts?[e].name=cars[i].name;
+    // }
+    // }
+
 
 
     ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.addContract.tr()} ...");
@@ -90,7 +123,9 @@ void initAddContract(){
       _emptyModel = EmptyModel.fromJson(responseModel.response?.data);
       notifyListeners();
       if (_emptyModel != null && _emptyModel?.code == 200) {
-
+        if(kDebugMode){
+          CustomScaffoldMessanger.showToast(title: 'الله ينور ياعمناااا <<<<<<<<<<');
+        }
         notifyListeners();
       } else{
         CustomScaffoldMessanger.showToast(title: _emptyModel?.message??'');

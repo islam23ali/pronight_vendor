@@ -5,15 +5,15 @@ import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/resources/app_assets.dart';
 import 'package:pronight_vendor/data/models/response/villas_model.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
-import '../../../../../../../../../core/app_theme/app_colors.dart';
-import '../../../../../../../../../core/dimens/dimens.dart';
-import '../../../../../../../../../core/resources/font_size.dart';
-import '../../../../../../core/resources/app_translate.dart';
-import '../../../../../../data/models/response/sectors_model.dart';
-import '../../../../../components/custom_text/custom_text.dart';
+import '../../../../../../../../../../../core/app_theme/app_colors.dart';
+import '../../../../../../../../../../../core/dimens/dimens.dart';
+import '../../../../../../../../../../../core/resources/font_size.dart';
+import '../../../../../../../../core/resources/app_translate.dart';
+import '../../../../../../../../data/models/response/sectors_model.dart';
+import '../../../../../../../components/custom_text/custom_text.dart';
 
 /// CustomDropdownButton
-class CustomVillasDropdownButton extends StatefulWidget {
+class CustomBeachesDropdownButton extends StatefulWidget {
   final List<OneVilla> items;
   final OneVilla? value;
   final Color? color;
@@ -32,7 +32,7 @@ class CustomVillasDropdownButton extends StatefulWidget {
   final  Function(OneVilla?) onChanged;
 
 
-  const CustomVillasDropdownButton({super.key,
+  const CustomBeachesDropdownButton({super.key,
     required this.items,
     required this.value,
     required this.onChanged,
@@ -45,10 +45,10 @@ class CustomVillasDropdownButton extends StatefulWidget {
   });
 
   @override
-  State<CustomVillasDropdownButton> createState() => _CustomVillasDropdownButtonState();
+  State<CustomBeachesDropdownButton> createState() => _CustomBeachesDropdownButtonState();
 }
 
-class _CustomVillasDropdownButtonState extends State<CustomVillasDropdownButton> {
+class _CustomBeachesDropdownButtonState extends State<CustomBeachesDropdownButton> {
 
   @override
   Widget build(BuildContext context) {

@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/data/models/response/sectors_model.dart';
 import 'package:pronight_vendor/data/models/response/villas_model.dart';
+import 'package:pronight_vendor/presentations/components/loadings/custom_scaffold_messanger.dart';
 import 'package:provider/provider.dart';
-import '../../../../../../core/app_theme/app_colors.dart';
-import '../../../../../../core/dimens/dimens.dart';
-import '../../../../../../core/resources/app_assets.dart';
-import '../../../../../../core/resources/app_translate.dart';
-import '../../../../../../core/resources/font_size.dart';
-import '../../../../../components/alerts/custom_select_date.dart';
-import '../../../../../components/custom_button/custom_button.dart';
-import '../../../../../components/custom_svg/CustomSvgIcon.dart';
-import '../../../../../components/custom_text/custom_text.dart';
-import '../../../../../components/inputs/custom_text_form.dart';
-import '../add_contract_view_model.dart';
-import '../widget/custom_beaches_dropdown.dart';
-import '../widget/custom_dropdown.dart';
-import '../widget/custom_sector_dropdown.dart';
-import '../widget/custom_villas_dropdown.dart';
+import '../../../../../../../core/app_theme/app_colors.dart';
+import '../../../../../../../core/dimens/dimens.dart';
+import '../../../../../../../core/resources/app_assets.dart';
+import '../../../../../../../core/resources/app_translate.dart';
+import '../../../../../../../core/resources/font_size.dart';
+import '../../../../../../components/alerts/custom_select_date.dart';
+import '../../../../../../components/custom_button/custom_button.dart';
+import '../../../../../../components/custom_svg/CustomSvgIcon.dart';
+import '../../../../../../components/custom_text/custom_text.dart';
+import '../../../../../../components/inputs/custom_text_form.dart';
+import '../../add_contract_view_model.dart';
+import 'widget/custom_beaches_dropdown.dart';
+import 'widget/custom_sector_dropdown.dart';
+import 'widget/custom_villas_dropdown.dart';
 
 class AddContractPageOne extends StatefulWidget {
   const AddContractPageOne({super.key});
@@ -71,7 +71,11 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                           },
                           height: 60.h,textInputType: TextInputType.number,
                           suffix: CustomSvgIcon(assetName: AppAssets.date,color: Colors.black.withAlpha((0.50*244).round()),),
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                          prefix: InkWell(onTap: (){
+                            data.arrivalDateController.clear();
+                            data.refreshData();
+                          },
+                              child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                         )
                       ],
                     ),
@@ -88,7 +92,11 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                           },
                           height: 60.h,textInputType: TextInputType.number,
                           suffix: CustomSvgIcon(assetName: AppAssets.date,color: Colors.black.withAlpha((0.50*244).round()),),
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                          prefix: InkWell(onTap: (){
+                            data.exitDateController.clear();
+                            data.refreshData();
+                          },
+                              child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                         )
                       ],
                     ),
@@ -171,17 +179,23 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                     ),
                     SizedBox(height: 20.h),
                     CustomButton(onTap: (){
+                      if(data.arrivalDateController.text.isEmpty){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.arrivalDateIsRequired.tr());
+                      }else if (data.exitDateController.text.isEmpty){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.exitDateIsRequired.tr());
+                      }else if(data.selectedSector==null){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.selectSectorFirst.tr());
+                      }else if(data.selectedVilla==null){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.villaIsRequired.tr());
+                      }else if(data.selectedBeach==null){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.beachIsRequired.tr());
+                      }else{
                       setState(() {
                         data.currentPage=1;
                       });
-                      // _pageController.animateToPage(
-                      //   1,
-                      //   duration: const Duration(milliseconds: 300),
-                      //   curve: Curves.easeInOut,
-                      // );
                       data.pageController.animateToPage(data.currentPage,
                           duration: const Duration(seconds: 1),
-                          curve: Curves.easeInOut);
+                          curve: Curves.easeInOut);}
                     },title: AppTranslate.next.tr(),)
                   ],)
                 ],
@@ -190,5 +204,8 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
         }
       ),
     );
+  }
+  _onSubmit(){
+
   }
 }

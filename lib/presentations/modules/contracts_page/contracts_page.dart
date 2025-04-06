@@ -107,6 +107,9 @@ class _ContractsPageState extends State<ContractsPage> {
                 children: [
                   SizedBox(width: 284.w,height: 36.h,
                       child: CustomTextFormField(controller: data.searchController,underLineColor: Colors.transparent,
+                          onChange: (_){
+                        data.allContracts();
+                          },
                           borderRaduis: 7.r,
                           padding:EdgeInsets.symmetric(horizontal: Dimens.padding_12h) ,
                           bgColor: const Color(0xffEFF8F2),hint: AppTranslate.search.tr(),hintFontColor: AppColors.primaryColor,)),

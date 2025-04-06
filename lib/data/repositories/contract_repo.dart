@@ -52,6 +52,9 @@ class ContractRepo {
 
   Future<ApiResponse> addContractRepo (AddContractBody addContractBody) async {
     try {
+      print('addContractRepo BODY${addContractBody.toJson()}');
+      print('addContractRepo CAR${addContractBody.cars?[0].toJson()}');
+      print('addContractRepo Escorts${addContractBody.escorts?[0].toJson()}');
       Response response = await _dioClient.post(AppUrls.addContractUrl,formData: FormData.fromMap(addContractBody.toJson()));
       return ApiResponse.withSuccess(response);
     } catch (e) {

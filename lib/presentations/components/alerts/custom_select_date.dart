@@ -1,16 +1,15 @@
-import 'package:pronight_vendor/core/dimens/dimens.dart';
-import 'package:pronight_vendor/core/extensions/num_extensions.dart';
-import 'package:pronight_vendor/core/navigator/navigator.dart';
-import 'package:pronight_vendor/presentations/components/custom_button/custom_button.dart';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import '../../../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../../../core/resources/app_translate.dart';
 import '../../../../../../../../core/resources/font_size.dart';
+import '../../../../../core/dimens/dimens.dart';
+import '../../../../../core/navigator/navigator.dart';
+import '../custom_button/custom_button.dart';
 import '../custom_text/custom_text.dart';
-
 class CustomSelectDate extends StatefulWidget {
   final ValueChanged<String> onDateSelected;
 
@@ -51,7 +50,12 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
     selectedYear = now.year;
     years = List.generate(151, (index) => now.year - 150 + index);
     days = _getDaysInMonth(selectedMonth, selectedYear);
-    controller.text = '${selectedDay}/${selectedMonth}/${selectedYear}';
+    controller.text = '$selectedYear-${_formatNumber(selectedMonth)}-${_formatNumber(selectedDay)}';
+  }
+
+  /// Helper function to add leading zero to single-digit numbers
+  String _formatNumber(int number) {
+    return number.toString().padLeft(2, '0');
   }
 
   /// دي ياباشا علشان تحديد السنه بسيطه ولا كبيسه والشهور اللي هيا 31 ولا 30 اخوك اسلام اللي عامل الكلام دة
@@ -76,7 +80,7 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
       if (selectedDay > days.length) {
         selectedDay = days.last;
       }
-      controller.text = '${selectedDay}/${selectedMonth}/${selectedYear}';
+      controller.text ='$selectedYear-${_formatNumber(selectedMonth)}-${_formatNumber(selectedDay)}';
     });
   }
 
@@ -114,7 +118,7 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
                       return Center(
                         child: CustomText(
                           title: year.toString(),
-                          fontSize: AppFonts.font_20,
+                          fontSize: AppFonts.font_19,
                         ),
                       );
                     }).toList(),
@@ -129,14 +133,14 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
                     onSelectedItemChanged: (int index) {
                       setState(() {
                         selectedDay = days[index];
-                        controller.text = '${selectedDay}/${selectedMonth}/${selectedYear}';
+                        controller.text ='$selectedYear-${_formatNumber(selectedMonth)}-${_formatNumber(selectedDay)}';
                       });
                     },
                     children: days.map((day) {
                       return Center(
                         child: CustomText(
                           title: day.toString(),
-                          fontSize: AppFonts.font_20,
+                          fontSize: AppFonts.font_19,
                         ),
                       );
                     }).toList(),
@@ -158,7 +162,7 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
                       return Center(
                         child: CustomText(
                           title: month,
-                          fontSize: AppFonts.font_20,
+                          fontSize: AppFonts.font_22,
                         ),
                       );
                     }).toList(),

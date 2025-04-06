@@ -236,5 +236,18 @@
   "paymentPending":"Payment pending",
   "print":"Print",
   "delete":"Delete",
-  "selectSectorFirst":"Select the sector first."
+  "selectSectorFirst":"Select the sector first.",
+  "arrivalDateIsRequired":"Arrival date is required",
+  "exitDateIsRequired":"Exit date is required",
+  "villaIsRequired":"Villa is required",
+  "beachIsRequired":"Beach is required",
+  "tenantNameIsRequired":"Tenant Name is required",
+  "iDNumberRequired":"ID Number is required",
+  "nationalityRequired":"nationality is required",
+  "phoneNumberRequired":"Phone number is required",
+  "rentalValueRequired":"Rental Value is required",
+  "insuranceValueRequired":"Insurance Value is required",
+  "contractFeesRequired":"Contract Fees is required",
+  "accompanyingTenantDataRequired":"Accompanying tenant data is required.",
+  "renterCarDataRequired":"Renter car data required"
 }
