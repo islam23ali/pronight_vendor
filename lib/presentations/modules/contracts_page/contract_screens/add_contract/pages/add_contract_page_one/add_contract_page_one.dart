@@ -88,7 +88,8 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                             showDialog<String>(
                                 context: context,
                                 builder: (BuildContext context) =>
-                                    CustomSelectDate(onDateSelected: (String value) {data.exitDateController.text=value;},));
+                                    CustomSelectDate(initialDate:data.arrivalDateController.text,
+                                      onDateSelected: (String value) {data.exitDateController.text=value;},));
                           },
                           height: 60.h,textInputType: TextInputType.number,
                           suffix: CustomSvgIcon(assetName: AppAssets.date,color: Colors.black.withAlpha((0.50*244).round()),),

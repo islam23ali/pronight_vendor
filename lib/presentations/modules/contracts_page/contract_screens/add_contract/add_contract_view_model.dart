@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
+import 'package:pronight_vendor/core/navigator/navigator.dart';
 
 import '../../../../../core/resources/app_translate.dart';
 import '../../../../../data/datasource/local/LocalUserData.dart';
@@ -17,6 +18,7 @@ import '../../../../../data/repositories/contract_repo.dart';
 import '../../../../../injection.dart';
 import '../../../../components/loadings/custom_scaffold_messanger.dart';
 import '../../../../components/loadings/progress_dialog.dart';
+import '../../../layout/bottom_nav_bar_app.dart';
 
 class AddContractViewModel extends ChangeNotifier{
   final ContractRepo _contractRepo = getIt();
@@ -37,16 +39,8 @@ class AddContractViewModel extends ChangeNotifier{
   TextEditingController contractFeesController =TextEditingController();
   // page three data ...
   List<AddEscort> escorts = [AddEscort(name: '', idNo: '', nationality: '', kinship: '')];
-  // TextEditingController companionNameController =TextEditingController();
-  // TextEditingController iDNumberCompanionsController =TextEditingController();
-  // TextEditingController nationalityCompanionsController =TextEditingController();
-  // TextEditingController facilitiesProximityController =TextEditingController();
   // page four data ...
   List<Car> cars = [Car(type: '',plateNo: '',driverName: '',driverIdNo: '',)];
-  // TextEditingController carTypeController =TextEditingController();
-  // TextEditingController plateNumberController =TextEditingController();
-  // TextEditingController driverNameController =TextEditingController();
-  // TextEditingController driverIDNumberController =TextEditingController();
 
   int? isSelected;
   bool ? _isLoading;
@@ -87,7 +81,6 @@ void initAddContract(){
     addContractBody.sectorId=selectedSector?.id.toString();
     addContractBody.villaId=selectedVilla?.id.toString();
     addContractBody.beachId=selectedBeach?.id.toString();
-
     addContractBody.tenantName=tenantNameController.text;
     addContractBody.tenantIdNo=iDNumberController.text;
     addContractBody.tenantNationality=nationalityController.text;
@@ -96,24 +89,8 @@ void initAddContract(){
     addContractBody.rentValue=rentalValueController.text;
     addContractBody.insuranceValue=insuranceValueController.text;
     addContractBody.price=contractFeesController.text;
-
     addContractBody.escorts=escorts;
     addContractBody.cars=cars;
-    // for(int i=0;i<(escorts.length);i++){
-    // for(int e=0;e<(addContractBody.escorts?.length??0);e++){
-    //   addContractBody.escorts?[e].name=escorts[i].name;
-    //   addContractBody.escorts?[e].nationality=escorts[i].nationality;
-    //   addContractBody.escorts?[e].idNo=escorts[i].idNo;
-    //   addContractBody.escorts?[e].kinship=escorts[i].kinship;
-    // }
-    // }
-    // for(int i=0;i<(cars.length);i++){
-    // for(int e=0;e<(addContractBody.escorts?.length??0);e++){
-    //   addContractBody.escorts?[e].name=cars[i].name;
-    // }
-    // }
-
-
 
     ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.addContract.tr()} ...");
     await dialog.show();
@@ -123,6 +100,7 @@ void initAddContract(){
       _emptyModel = EmptyModel.fromJson(responseModel.response?.data);
       notifyListeners();
       if (_emptyModel != null && _emptyModel?.code == 200) {
+        NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 1));
         if(kDebugMode){
           CustomScaffoldMessanger.showToast(title: 'الله ينور ياعمناااا <<<<<<<<<<');
         }
