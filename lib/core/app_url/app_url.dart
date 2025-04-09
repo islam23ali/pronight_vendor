@@ -9,4 +9,5 @@ class AppUrls {
   static String sectorsUrl = "/provider/sectors";
   static String villasUrl = "/provider/villas?sector_id=";
   static String beachesUrl = "/provider/beaches?sector_id=";
+  static String allUnitsUrl = "/provider/units?limit=";
 }
