@@ -29,11 +29,12 @@ class _UnitsPageState extends State<UnitsPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timestamp){
-      provider.initUnits();
-    });
+    _loadData();
   }
-
+  Future<void> _loadData() async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      provider.initUnits();
+    });}
   @override
   Widget build(BuildContext context) {
     return Consumer<UnitsViewModel>(
@@ -75,31 +76,36 @@ class _UnitsPageState extends State<UnitsPage> {
                         bgColor: Color(0xffEFF8F2),hint: AppTranslate.search.tr(),hintFontColor: AppColors.primaryColor,)),
                   CustomSvgIcon(assetName: AppAssets.buttonSearch,width: 52.5.w,height: 36.h)
                 ],
-              ),
-                  SizedBox(height: 10.h),
+              ),SizedBox(height: 10.h),
                   Expanded(
-                    child: AnimationLimiter(
-                      child: ListView.builder(
-                        controller: data.controller,
-                          padding: EdgeInsets.symmetric(vertical: Dimens.padding_12v),
-                          shrinkWrap: true,
-                          itemCount: data.allUnitsList.length,
-                          itemBuilder: (context, index) {
-                            return AnimationConfiguration.staggeredGrid(
-                                duration:const Duration(milliseconds: 900),
-                                position: index,
-                                columnCount: 1,
-                                child: ScaleAnimation(
-                                    duration:const Duration(milliseconds: 1000),
-                                    curve: Curves.fastLinearToSlowEaseIn,
-                                    child: FadeInAnimation(child:
-                                    InkWell(onTap: (){
-                                      NavigatorHandler.push(const UnitDetails());
-                                    },child: CustomUnitCard(model: data.allUnitsList[index])),
-                                    )
-                                )
-                            );
-                          }),
+                    child: RefreshIndicator(
+                      color: AppColors.primaryColor,
+                      backgroundColor: AppColors.white,
+                      onRefresh: ()async{
+                        await  _loadData();},
+                      child: AnimationLimiter(
+                        child: ListView.builder(
+                          controller: data.controller,
+                            padding: EdgeInsets.symmetric(vertical: Dimens.padding_12v),
+                            shrinkWrap: true,
+                            itemCount: data.allUnitsList.length,
+                            itemBuilder: (context, index) {
+                              return AnimationConfiguration.staggeredGrid(
+                                  duration:const Duration(milliseconds: 900),
+                                  position: index,
+                                  columnCount: 1,
+                                  child: ScaleAnimation(
+                                      duration:const Duration(milliseconds: 1000),
+                                      curve: Curves.fastLinearToSlowEaseIn,
+                                      child: FadeInAnimation(child:
+                                      InkWell(onTap: (){
+                                        NavigatorHandler.push(const UnitDetails());
+                                      },child: CustomUnitCard(model: data.allUnitsList[index])),
+                                      )
+                                  )
+                              );
+                            }),
+                      ),
                     ),
                   )
             ]));

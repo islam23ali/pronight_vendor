@@ -25,5 +25,13 @@ class UnitsRepo {
       return ApiResponse.withError(ApiErrorHandler.handleError(e));
     }
   }
+  Future<ApiResponse> oneUnitsRepo(String id) async {
+    try {
+      Response response = await _dioClient.get(AppUrls.oneUnitsUrl+id);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
 
 }
