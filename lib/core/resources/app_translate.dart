@@ -204,6 +204,8 @@ class AppTranslate{
   static const String sendVisitPermitToFacilityOwnerPhoneNumber = 'sendVisitPermitToFacilityOwnerPhoneNumber' ;
   static const String pleaseEnterVerificationCodeSentYourMobileNumber = 'PleaseEnterVerificationCodeSentYourMobileNumber' ;
   static const String search = 'search' ;
+  static const String meter = 'meter' ;
+
 
   //not set yet
   static const String noResultFound = 'noResultFound' ;

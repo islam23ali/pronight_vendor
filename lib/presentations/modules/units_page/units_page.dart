@@ -99,7 +99,7 @@ class _UnitsPageState extends State<UnitsPage> {
                                       curve: Curves.fastLinearToSlowEaseIn,
                                       child: FadeInAnimation(child:
                                       InkWell(onTap: (){
-                                        NavigatorHandler.push(const UnitDetails());
+                                        NavigatorHandler.push( UnitDetails(id: data.allUnitsList[index]?.id.toString()??'',));
                                       },child: CustomUnitCard(model: data.allUnitsList[index])),
                                       )
                                   )

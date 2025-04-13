@@ -249,5 +249,6 @@
   "insuranceValueRequired":"Insurance Value is required",
   "contractFeesRequired":"Contract Fees is required",
   "accompanyingTenantDataRequired":"Accompanying tenant data is required.",
-  "renterCarDataRequired":"Renter car data required"
+  "renterCarDataRequired":"Renter car data required",
+  "meter":"Meter"
 }

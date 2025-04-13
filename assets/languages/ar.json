@@ -253,5 +253,6 @@
   "insuranceValueRequired": "قيمة التأمين المطلوبة",
   "contractFeesRequired": "رسوم العقد المطلوبة",
   "accompanyingTenantDataRequired": "بيانات المستأجرين المرافقين مطلوبة",
-  "renterCarDataRequired": "بيانات سيارات المستأجر مطلوبة"
+  "renterCarDataRequired": "بيانات سيارات المستأجر مطلوبة",
+  "meter": "متر"
 }

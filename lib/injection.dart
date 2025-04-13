@@ -9,6 +9,7 @@ import 'package:pronight_vendor/presentations/modules/contracts_page/contracts_v
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/add_visit_permit_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/change_language/language_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/unit_images_page/unit_image_view_model.dart';
+import 'package:pronight_vendor/presentations/modules/units_page/unit_details/one_unit_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/units_page/units_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'core/islam_theme/islam_theme.dart';
@@ -36,6 +37,7 @@ Future<void> init() async{
   getIt.registerLazySingleton(() => AddUnitViewModel());
   getIt.registerLazySingleton(() => ContractViewModel());
   getIt.registerLazySingleton(() => UnitsViewModel());
+  getIt.registerLazySingleton(() => OneUnitViewModel());
   ///providers
   // getIt.registerLazySingleton(() => LanguageViewModel());
 

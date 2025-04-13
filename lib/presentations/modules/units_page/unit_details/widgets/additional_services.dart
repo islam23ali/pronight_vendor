@@ -3,10 +3,12 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import '../../../../../core/app_theme/app_colors.dart';
 import '../../../../../core/resources/font_size.dart';
+import '../../../../../data/models/response/one_unit_model.dart';
 import '../../../../components/custom_text/custom_text.dart';
 
 class AdditionalServicesUnit extends StatefulWidget {
-  const AdditionalServicesUnit({super.key});
+  const AdditionalServicesUnit({super.key, required this.additionalService});
+  final List<AdditionalService>? additionalService;
 
   @override
   State<AdditionalServicesUnit> createState() => _AdditionalServicesState();
@@ -25,7 +27,7 @@ class _AdditionalServicesState extends State<AdditionalServicesUnit> {
           ),
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          itemCount: 5,
+          itemCount: widget.additionalService?.length??0,
           itemBuilder: (context, index) {
             return AnimationConfiguration.staggeredGrid(
                 duration:const Duration(milliseconds: 900),
@@ -38,7 +40,7 @@ class _AdditionalServicesState extends State<AdditionalServicesUnit> {
                     Container(
                       // padding: EdgeInsets.all(Dimens.padding_8),
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
-                      child: CustomText(title: ' تنظيف الملابس',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),),
+                      child: CustomText(title: widget.additionalService?[index].title??'',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),),
                     )));
           }),
     );
