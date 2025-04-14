@@ -250,5 +250,6 @@
   "contractFeesRequired":"Contract Fees is required",
   "accompanyingTenantDataRequired":"Accompanying tenant data is required.",
   "renterCarDataRequired":"Renter car data required",
-  "meter":"Meter"
+  "meter":"Meter",
+  "days":"Days"
 }

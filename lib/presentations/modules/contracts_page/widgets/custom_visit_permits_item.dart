@@ -69,7 +69,7 @@ class _CustomVisitPermitsItemState extends State<CustomVisitPermitsItem> {
                     ],),
                   Align(alignment: Alignment.bottomLeft,
                     child: InkWell(onTap: (){
-                      NavigatorHandler.push(const VisitPermitsDetails());
+                      NavigatorHandler.push( VisitPermitsDetails(id: '4',));
                     },
                       child: CustomText(textAlign: TextAlign.left,
                         title: AppTranslate.details.tr(),fontSize: AppFonts.font_9,fontWeight: FontWeight.bold,fontColor: Color(0xff1C472E),),

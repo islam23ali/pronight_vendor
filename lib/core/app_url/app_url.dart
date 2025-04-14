@@ -11,6 +11,10 @@ class AppUrls {
   static String villasUrl = "/provider/villas?sector_id=";
   static String beachesUrl = "/provider/beaches?sector_id=";
 
+  static String oneVisitPermitUrl = "/provider/visit-permits/";
+  static String printVisitPermitUrl = "/provider/print-visit-permits/";
+  static String deleteVisitPermitUrl = "/provider/visit-permits/";
+
   static String allUnitsUrl = "/provider/units?limit=";
   static String oneUnitsUrl = "/provider/unit/";
 }

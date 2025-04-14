@@ -247,6 +247,7 @@ class AppTranslate{
   static const String contractFeesRequired = 'contractFeesRequired' ;
   static const String accompanyingTenantDataRequired = 'accompanyingTenantDataRequired' ;
   static const String renterCarDataRequired = 'renterCarDataRequired' ;
+  static const String days = 'days' ;
 
 
   static const String facilitiesProximity = 'Facilities proximity' ;
