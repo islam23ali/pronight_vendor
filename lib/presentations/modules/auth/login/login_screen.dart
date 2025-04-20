@@ -14,7 +14,7 @@ import 'package:pronight_vendor/presentations/components/custom_scaffold/custom_
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
 import 'package:pronight_vendor/presentations/components/custom_text/custom_text.dart';
 import 'package:pronight_vendor/presentations/components/inputs/custom_text_form.dart';
-import 'package:pronight_vendor/presentations/modules/auth/login/login_view_model.dart';
+import 'package:pronight_vendor/presentations/modules/auth/auth_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/auth/login/widget/confirm_code/verification_code/confirm_code_sheet.dart';
 import 'package:provider/provider.dart';
 
@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return CustomScaffold(backgroundColor: AppColors.white,
       systemNavigationBarColor: AppColors.white,
       appBar: CustomAppBar(height: 66.h,bgColor: AppColors.white,statusBarColor: AppColors.white,isBackButtonExist: false),
-      body:Consumer<LoginViewModel>(
+      body:Consumer<AuthViewModel>(
         builder: (context,data,_) {
           return Padding(
             padding: EdgeInsets.all(Dimens.padding_16),
@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     if(data.phoneNumberController.text.isEmpty){
                       CustomScaffoldMessanger.showToast(title: AppTranslate.enterYourPhone.tr());
                     }else{
-                      data.sendCode(true);
+                      data.sendCode(true,'login');
                     // showSendCodeSheet();
                     }
                   },title: AppTranslate.login.tr()),

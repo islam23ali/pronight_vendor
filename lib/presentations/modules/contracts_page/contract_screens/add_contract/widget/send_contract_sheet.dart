@@ -39,38 +39,47 @@ class _SendContractSheetState extends State<SendContractSheet> {
               Padding(padding: EdgeInsets.symmetric(horizontal: Dimens.padding_16),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InkWell(onTap: (){setState(() {
-                      data.isSelected=0;
-                      data.refreshData();
-                    });},
+                    InkWell(onTap: (){
+                      if(data.sendClient==false){
+                        data.sendClient=true;
+                        data.refreshData();
+                      }else{
+                        data.sendClient=false;
+                        data.refreshData();
+                      }
+                    },
                       child: Container(
                         padding: EdgeInsets.all(Dimens.padding_12),
                         margin: EdgeInsets.symmetric(vertical:Dimens.padding_8),
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),border: Border.all(width: 2.w,color: AppColors.primaryColor),),
                         child:Row(children: [
-                          (data.isSelected==0)? CustomSvgIcon(assetName: AppAssets.selectedPayment,width: 20.w,height: 20.h):
+                          (data.sendClient==true)? CustomSvgIcon(assetName: AppAssets.selectedPayment,width: 20.w,height: 20.h):
                           CustomSvgIcon(assetName: AppAssets.unSelectedPayment,width: 18.w,height: 18.h),
                           SizedBox(width: 10.w),
                           CustomText(title: AppTranslate.sendContractToCustomersPhone.tr(),fontSize: AppFonts.font_14,fontColor: AppColors.textColor2,)
                         ],) ,),
                     ),
-                    InkWell(onTap: (){setState(() {
-                      data.isSelected=1;
+                    InkWell(onTap: (){
+                      if(data.sendProvider==false){
+                      data.sendProvider=true;
+                      data.refreshData();}else{
+                        data.sendProvider=false;
+                      }
                       data.refreshData();
-                    });},
+                    },
                       child: Container(
                         padding: EdgeInsets.all(Dimens.padding_12),
                         margin: EdgeInsets.symmetric(vertical:Dimens.padding_8),
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),border: Border.all(width: 2.w,color: AppColors.primaryColor),),
                         child:Row(children: [
-                          (data.isSelected==1)? CustomSvgIcon(assetName: AppAssets.selectedPayment,width: 20.w,height: 20.h):
+                          (data.sendProvider==true)? CustomSvgIcon(assetName: AppAssets.selectedPayment,width: 20.w,height: 20.h):
                           CustomSvgIcon(assetName: AppAssets.unSelectedPayment,width: 18.w,height: 18.h),
                           SizedBox(width: 10.w),
                           CustomText(title: AppTranslate.sendContractFacilityOwnersPhone.tr(),fontSize: AppFonts.font_14,fontColor: AppColors.textColor2,)
                         ],) ,),
                     ),
                     SizedBox(height: 20.h),
-                    (data.isSelected==null)?const SizedBox(): CustomButton(onTap: (){
+                    (data.sendProvider==false&&data.sendClient==false)?const SizedBox(): CustomButton(onTap: (){
                       data.addContract();
                     },title: AppTranslate.confirm.tr(),)
                   ],) ,),

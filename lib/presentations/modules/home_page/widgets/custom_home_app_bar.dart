@@ -2,12 +2,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/navigator/navigator.dart';
+import 'package:pronight_vendor/data/datasource/local/LocalUserData.dart';
+import 'package:pronight_vendor/presentations/components/images/network_image.dart';
 
 import '../../../../core/app_theme/app_colors.dart';
 import '../../../../core/dimens/dimens.dart';
 import '../../../../core/resources/app_assets.dart';
 import '../../../../core/resources/app_translate.dart';
 import '../../../../core/resources/font_size.dart';
+import '../../../../injection.dart';
 import '../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../components/custom_text/custom_text.dart';
 import '../../notification_screen/notification_screen.dart';
@@ -20,6 +23,7 @@ class CustomHomeAppBar extends StatefulWidget {
 }
 
 class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
+  LocalUserData saveData =getIt();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,11 +32,15 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(children: [
-            CustomPngIcon(
-              assetName: AppAssets.pronightLogo,
-              width: 35.w,
-              height: 35.w,
-            ),
+            AppNetworkImage(
+              errorImage: AppAssets.pronightLogo,
+              imageUrl: saveData.getUserData()?.data?.image?? AppAssets.pronightLogo ,width: 35.w,borderRadius: 100,
+              height: 35.w,),
+            // CustomPngIcon(
+            //   assetName: AppAssets.pronightLogo,
+            //   width: 35.w,
+            //   height: 35.w,
+            // ),
             SizedBox(width: 5.w),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

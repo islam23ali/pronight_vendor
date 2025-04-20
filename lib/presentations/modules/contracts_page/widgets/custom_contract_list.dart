@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:pronight_vendor/core/screen_state/no_data.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/contracts_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/dimens/dimens.dart';
@@ -18,7 +19,9 @@ class _CustomContractListState extends State<CustomContractList> {
   Widget build(BuildContext context) {
     return Consumer<ContractViewModel>(
       builder: (context,data,_) {
-        return data.isLoading?const Center(child: AppLoader()): AnimationLimiter(
+        return data.isLoading?const Center(child: AppLoader()):
+        data.allContractsModel?.data?.isEmpty==true?const NoDataScreen():
+        AnimationLimiter(
           child: ListView.builder(
               padding: EdgeInsets.symmetric(vertical: Dimens.padding_12v),
               shrinkWrap: true,

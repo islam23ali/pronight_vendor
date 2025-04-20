@@ -17,9 +17,9 @@ import '../models/body_or_quary/add_contract_body.dart';
 class UnitsRepo {
   final DioClient _dioClient = getIt();
 
-  Future<ApiResponse> allUnitsRepo(int page) async {
+  Future<ApiResponse> allUnitsRepo(int page,search) async {
     try {
-      Response response = await _dioClient.get('${AppUrls.allUnitsUrl}10&page=$page');
+      Response response = await _dioClient.get('${AppUrls.allUnitsUrl}10&page=$page&search=$search');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.handleError(e));

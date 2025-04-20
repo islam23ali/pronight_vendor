@@ -67,6 +67,9 @@ class ContractRepo {
       body['rent_value']=addContractBody.rentValue;
       body['insurance_value']=addContractBody.insuranceValue;
       body['price']=addContractBody.price;
+      body['send_provider']=addContractBody.sendProvider;
+      body['send_client']=addContractBody.sendClient;
+      if(addContractBody.note!=null||addContractBody.note!='')body['note']=addContractBody.note;
       for (int e = 0; e < (addContractBody.escorts??[]).length; e++) {
         body["escorts[$e][name]"] = addContractBody.escorts?[e].companionNameController.text;
         body["escorts[$e][id_no]"] = addContractBody.escorts?[e].iDNumberCompanionsController.text;

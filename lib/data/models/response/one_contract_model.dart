@@ -31,6 +31,7 @@ class Data {
   Beach? beach;
   Provider? provider;
   int? rentValue;
+  String? note;
   int? insuranceValue;
   int? price;
   double? taxValue;
@@ -57,6 +58,7 @@ class Data {
     this.insuranceValue,
     this.price,
     this.taxValue,
+    this.note,
     this.total,
     this.tenant,
     this.startDate,
@@ -78,6 +80,7 @@ class Data {
     beach: json["beach"] == null ? null : Beach.fromJson(json["beach"]),
     provider: json["provider"] == null ? null : Provider.fromJson(json["provider"]),
     rentValue: json["rent_value"],
+    note: json["note"],
     insuranceValue: json["insurance_value"],
     price: json["price"],
     taxValue: json["tax_value"]?.toDouble(),
@@ -102,6 +105,7 @@ class Data {
     "beach": beach?.toJson(),
     "provider": provider?.toJson(),
     "rent_value": rentValue,
+    "note": note,
     "insurance_value": insuranceValue,
     "price": price,
     "tax_value": taxValue,

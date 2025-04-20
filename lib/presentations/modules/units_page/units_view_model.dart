@@ -48,7 +48,7 @@ class UnitsViewModel extends ChangeNotifier{
       allUnitsList = [];
       cancelToken ??= CancelToken();
       notifyListeners();
-    ApiResponse responseModel = await _unitsRepo.allUnitsRepo(page);
+    ApiResponse responseModel = await _unitsRepo.allUnitsRepo(page,searchController.text);
       cancelToken = null;
     if (responseModel.response != null && responseModel.response?.statusCode == 200) {
       _allUnitsModel = AllUnitsModel.fromJson(responseModel.response?.data);
@@ -81,7 +81,7 @@ class UnitsViewModel extends ChangeNotifier{
       cancelTokenLoadMore ??= CancelToken();
       notifyListeners();
 
-      ApiResponse responseModel = await _unitsRepo.allUnitsRepo(page);
+      ApiResponse responseModel = await _unitsRepo.allUnitsRepo(page,searchController.text);
       if (allUnitsList.last == null) {
         allUnitsList.removeLast();
       }

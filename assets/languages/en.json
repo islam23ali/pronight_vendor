@@ -251,5 +251,6 @@
   "accompanyingTenantDataRequired":"Accompanying tenant data is required.",
   "renterCarDataRequired":"Renter car data required",
   "meter":"Meter",
-  "days":"Days"
+  "days":"Days",
+  "noResultFound":"No result found"
 }

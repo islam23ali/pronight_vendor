@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/presentations/components/inputs/custom_pin_code_field.dart';
-import 'package:pronight_vendor/presentations/modules/auth/login/login_view_model.dart';
+import 'package:pronight_vendor/presentations/modules/auth/auth_view_model.dart';
 
 import 'package:provider/provider.dart';
 import '../../../../../../../core/app_theme/app_colors.dart';
@@ -23,24 +23,25 @@ import 'dart:ui' as ui;
 
 
 class ConfirmCodeSheet extends StatefulWidget {
+  final String? type;
 
-  const ConfirmCodeSheet({super.key}) ;
+  const ConfirmCodeSheet({super.key, required this.type}) ;
 
   @override
   State<ConfirmCodeSheet> createState() => _ConfirmCodeSheetState();
 }
 
 class _ConfirmCodeSheetState extends State<ConfirmCodeSheet> {
-  LoginViewModel provider =getIt();
+  AuthViewModel provider =getIt();
 @override
   void initState() {
     super.initState();
-    provider.controller.clear();
+    provider.otpController.clear();
   }
   @override
   Widget build(BuildContext context) {
     return
-      Consumer<LoginViewModel>(
+      Consumer<AuthViewModel>(
         builder: (context, data, _) {return Container(
         margin:EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       decoration: BoxDecoration(
@@ -66,7 +67,7 @@ class _ConfirmCodeSheetState extends State<ConfirmCodeSheet> {
                 Directionality(
                   textDirection: ui.TextDirection.ltr,
                   child: CustomText(
-                  title:   ' ${"+962"} ${(data.phoneNumberController.text)} ',
+                  title:   ' ${data.phoneCode} ${(data.phoneNumberController.text)} ',
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -74,24 +75,24 @@ class _ConfirmCodeSheetState extends State<ConfirmCodeSheet> {
             ),
           ),
           SizedBox(height:16.h),
-          CustomPinCodeTextField(controller: data.controller, fieldsCount: 5,
+          CustomPinCodeTextField(controller: data.otpController, fieldsCount: 5,
           // onCompleted: (value){
           //   provider.refreshData();
           // },
           ),
           SizedBox(height:16.h),
           ResendConfirmCode(
-            fontSize: AppFonts.font_14, fromRegister:false,),
+            fontSize: AppFonts.font_14, fromRegister:false, type: widget.type),
           SizedBox(height:16.h),
           CustomButton(
             height: 50.h,
-            bg: data.controller.text.length==5?AppColors.primaryColor:AppColors.greyColor,
+            bg: data.otpController.text.length==5?AppColors.primaryColor:AppColors.greyColor,
             // loading: isLoading,
-            onTap:data.controller.text.length==5? () {
+            onTap:data.otpController.text.length==5? () {
               if (MediaQuery.of(context).viewInsets.bottom > 0) {
                 FocusScope.of(context).unfocus();
               }
-              data.confirmCode();
+              data.confirmCode(widget.type);
             }:(){},
             title:  tr(AppTranslate.confirm),
           ),

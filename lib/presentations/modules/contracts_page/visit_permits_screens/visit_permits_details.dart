@@ -120,7 +120,7 @@ class _VisitPermitsDetailsState extends State<VisitPermitsDetails> {
                                 Row(children: [
                                   CustomSvgIcon(assetName: AppAssets.sectorNumber,width: 15.w,height: 15.h,),
                                   SizedBox(width: 5.w),
-                                  CustomText(title: '${AppTranslate.unit.tr()} waiting from back >>>',fontSize: AppFonts.font_11,fontWeight: FontWeight.bold,fontColor: AppColors.textColor3,)
+                                  CustomText(title: data.oneVisitPermitModel?.data?.villa?.name??'',fontSize: AppFonts.font_11,fontWeight: FontWeight.bold,fontColor: AppColors.textColor3,)
                                 ]),
                                 SizedBox(height: 20.h),
                                 CustomText(title: AppTranslate.beach.tr(),fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
@@ -151,10 +151,10 @@ class _VisitPermitsDetailsState extends State<VisitPermitsDetails> {
                               ],),
                             ),
                           ],),
-                        SizedBox(height: 20.h),
-                        CustomText(title: AppTranslate.comments.tr(),fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
-                        SizedBox(height: 10.h),
-                        CustomText(title: 'يتم هنا كتابة أى ملاحظات خاصة بالعقد waiting for back >>>>>>>>>>>',fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
+                        (data.oneVisitPermitModel?.data?.note==null||data.oneVisitPermitModel?.data?.note=='')?SizedBox(): SizedBox(height: 20.h),
+                        (data.oneVisitPermitModel?.data?.note==null||data.oneVisitPermitModel?.data?.note=='')?SizedBox(): CustomText(title: AppTranslate.comments.tr(),fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
+                        (data.oneVisitPermitModel?.data?.note==null||data.oneVisitPermitModel?.data?.note=='')?SizedBox(): SizedBox(height: 10.h),
+                        (data.oneVisitPermitModel?.data?.note==null||data.oneVisitPermitModel?.data?.note=='')?SizedBox(): CustomText(title: data.oneVisitPermitModel?.data?.note??'',fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
                       ],
                     ),),
                   ],

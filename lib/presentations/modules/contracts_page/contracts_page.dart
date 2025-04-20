@@ -12,6 +12,7 @@ import 'package:pronight_vendor/presentations/components/custom_text/custom_text
 import 'package:pronight_vendor/presentations/components/inputs/custom_text_form.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/contracts_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/add_visit_permit.dart';
+import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/visit_permit_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/widgets/custom_contract_list.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/widgets/custom_visit_permits_list.dart';
 import 'package:provider/provider.dart';
@@ -38,8 +39,8 @@ class _ContractsPageState extends State<ContractsPage> {
   }
   @override
   Widget build(BuildContext context) {
-    return Consumer<ContractViewModel>(
-      builder: (context,data,_) {
+    return Consumer2<ContractViewModel,VisitPermitViewModel>(
+      builder: (context,data,visitProvider,_) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal:Dimens.padding_16h),
           child: Column(
@@ -76,6 +77,7 @@ class _ContractsPageState extends State<ContractsPage> {
                 InkWell(onTap: (){
                   setState(() {
                     isContract=0;
+                    data.initContracts();
                   });
                   pageController.animateToPage(isContract,
                       duration: const Duration(seconds: 1),
@@ -90,6 +92,7 @@ class _ContractsPageState extends State<ContractsPage> {
                   InkWell(onTap: (){
                     setState(() {
                       isContract=1;
+                      visitProvider.initVisitPermit();
                     });
                     pageController.animateToPage(isContract,
                         duration: const Duration(seconds: 1),
@@ -106,9 +109,9 @@ class _ContractsPageState extends State<ContractsPage> {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(width: 284.w,height: 36.h,
-                      child: CustomTextFormField(controller: data.searchController,underLineColor: Colors.transparent,
+                      child: CustomTextFormField(controller:isContract==0? data.searchController:visitProvider.searchVisitPermitController,underLineColor: Colors.transparent,
                           onChange: (_){
-                        data.allContracts();
+                            isContract==0? data.allContracts():visitProvider.allVisitPermit();
                           },
                           borderRaduis: 7.r,
                           padding:EdgeInsets.symmetric(horizontal: Dimens.padding_12h) ,

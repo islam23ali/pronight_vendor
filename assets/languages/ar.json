@@ -255,5 +255,6 @@
   "accompanyingTenantDataRequired": "بيانات المستأجرين المرافقين مطلوبة",
   "renterCarDataRequired": "بيانات سيارات المستأجر مطلوبة",
   "meter": "متر",
-  "days": "أيام"
+  "days": "أيام",
+  "noResultFound": "لم يتم العثور على نتيجة"
 }

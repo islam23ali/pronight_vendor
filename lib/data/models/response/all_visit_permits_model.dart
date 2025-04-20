@@ -1,29 +1,31 @@
 
-class OneVisitPermitModel {
-  Data? data;
+import 'all_conntracts_model.dart';
+
+class VisitPermitsModel {
+  List<OneVisitPermit>? data;
   String? message;
   int? code;
 
-  OneVisitPermitModel({
+  VisitPermitsModel({
     this.data,
     this.message,
     this.code,
   });
 
-  factory OneVisitPermitModel.fromJson(Map<String, dynamic> json) => OneVisitPermitModel(
-    data: json["data"] == null ? null : Data.fromJson(json["data"]),
+  factory VisitPermitsModel.fromJson(Map<String, dynamic> json) => VisitPermitsModel(
+    data: json["data"] == null ? [] : List<OneVisitPermit>.from(json["data"]!.map((x) => OneVisitPermit.fromJson(x))),
     message: json["message"],
     code: json["code"],
   );
 
   Map<String, dynamic> toJson() => {
-    "data": data?.toJson(),
+    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
     "message": message,
     "code": code,
   };
 }
 
-class Data {
+class OneVisitPermit {
   int? id;
   String? slug;
   Sector? sector;
@@ -32,14 +34,13 @@ class Data {
   String? visitDate;
   int? daysCount;
   String? status;
-  String? note;
   String? driverName;
   Provider? provider;
   List<Visitor>? visitors;
   List<Material>? materials;
   String? createdAt;
 
-  Data({
+  OneVisitPermit({
     this.id,
     this.slug,
     this.sector,
@@ -48,7 +49,6 @@ class Data {
     this.visitDate,
     this.daysCount,
     this.status,
-    this.note,
     this.driverName,
     this.provider,
     this.visitors,
@@ -56,7 +56,7 @@ class Data {
     this.createdAt,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory OneVisitPermit.fromJson(Map<String, dynamic> json) => OneVisitPermit(
     id: json["id"],
     slug: json["slug"],
     sector: json["sector"] == null ? null : Sector.fromJson(json["sector"]),
@@ -65,7 +65,6 @@ class Data {
     visitDate: json["visit_date"],
     daysCount: json["days_count"],
     status: json["status"],
-    note: json["note"],
     driverName: json["driver_name"],
     provider: json["provider"] == null ? null : Provider.fromJson(json["provider"]),
     visitors: json["visitors"] == null ? [] : List<Visitor>.from(json["visitors"]!.map((x) => Visitor.fromJson(x))),
@@ -82,7 +81,6 @@ class Data {
     "visit_date": visitDate,
     "days_count": daysCount,
     "status": status,
-    "note": note,
     "driver_name": driverName,
     "provider": provider?.toJson(),
     "visitors": visitors == null ? [] : List<dynamic>.from(visitors!.map((x) => x.toJson())),
@@ -115,6 +113,9 @@ class Beach {
   };
 }
 
+
+
+
 class Material {
   int? id;
   String? name;
@@ -136,25 +137,6 @@ class Material {
     "id": id,
     "name": name,
     "qty": qty,
-  };
-}
-class Sector {
-  int? id;
-  String? name;
-
-  Sector({
-    this.id,
-    this.name,
-  });
-
-  factory Sector.fromJson(Map<String, dynamic> json) => Sector(
-    id: json["id"],
-    name: json["name"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
   };
 }
 
@@ -229,3 +211,5 @@ class Visitor {
     "phone": phone,
   };
 }
+
+

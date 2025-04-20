@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/core/resources/app_translate.dart';
+import 'package:pronight_vendor/data/models/response/all_visit_permits_model.dart';
 import '../../../../core/app_theme/app_colors.dart';
 import '../../../../core/dimens/dimens.dart';
 import '../../../../core/resources/app_assets.dart';
@@ -14,7 +15,8 @@ import '../visit_permits_screens/visit_permits_details.dart';
 import 'custom_coupon_card.dart';
 
 class CustomVisitPermitsItem extends StatefulWidget {
-  const CustomVisitPermitsItem({super.key});
+  const CustomVisitPermitsItem({super.key, required this.model});
+  final OneVisitPermit? model;
 
   @override
   State<CustomVisitPermitsItem> createState() => _CustomVisitPermitsItemState();
@@ -42,13 +44,13 @@ class _CustomVisitPermitsItemState extends State<CustomVisitPermitsItem> {
                           Row(children: [
                             CustomSvgIcon(assetName: AppAssets.address,width: 13.w,height: 14.h,),
                             SizedBox(width: 5.w),
-                            CustomText(title: 'فيلا تجريبي',fontSize: AppFonts.font_10,fontWeight: FontWeight.bold,fontColor: AppColors.textColor3,)
+                            CustomText(title: widget.model?.villa?.name??'',fontSize: AppFonts.font_10,fontWeight: FontWeight.bold,fontColor: AppColors.textColor3,)
                           ]),
                           SizedBox(height: 10.h),
                           Row(children: [
                             CustomSvgIcon(assetName: AppAssets.date,width: 13.w,height: 14.h,),
                             SizedBox(width: 5.w),
-                            CustomText(title: '2023-09-12',fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,)
+                            CustomText(title:  widget.model?.visitDate??'',fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,)
                           ]),
                         ],),),
                       SizedBox(child: Column(crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,20 +58,20 @@ class _CustomVisitPermitsItemState extends State<CustomVisitPermitsItem> {
                           Row(children: [
                             CustomSvgIcon(assetName: AppAssets.beach,width: 20.w,height: 20.h,),
                             SizedBox(width: 5.w),
-                            CustomText(title: 'شاطيء الأحلام',fontSize: AppFonts.font_11,fontColor: AppColors.textColor3,)
+                            CustomText(title:  widget.model?.beach?.name??'',fontSize: AppFonts.font_11,fontColor: AppColors.textColor3,)
                           ]),
                           SizedBox(height: 10.h),
                           Row(children: [
                             CustomSvgIcon(assetName: AppAssets.date,width: 13.w,height: 14.h,),
                             SizedBox(width: 5.w),
-                            CustomText(title: '2023-09-12',fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,)
+                            CustomText(title:  widget.model?.createdAt??'',fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,)
                           ]),
                         ],
                       ),)
                     ],),
                   Align(alignment: Alignment.bottomLeft,
                     child: InkWell(onTap: (){
-                      NavigatorHandler.push( VisitPermitsDetails(id: '4',));
+                      NavigatorHandler.push( VisitPermitsDetails(id: widget.model?.id.toString()??'',));
                     },
                       child: CustomText(textAlign: TextAlign.left,
                         title: AppTranslate.details.tr(),fontSize: AppFonts.font_9,fontWeight: FontWeight.bold,fontColor: Color(0xff1C472E),),
@@ -82,7 +84,7 @@ class _CustomVisitPermitsItemState extends State<CustomVisitPermitsItem> {
         Positioned(right: 0,bottom: 0,top: 0,
           child:Container(padding: EdgeInsets.all(Dimens.padding_8),
             decoration: BoxDecoration(shape: BoxShape.circle,color: AppColors.primaryColor,),
-            child: Center(child: CustomText(title: '22',fontSize: AppFonts.font_15,fontWeight: FontWeight.bold,fontColor: AppColors.white,)),) ,)
+            child: Center(child: CustomText(title: widget.model?.sector?.name??'',fontSize: AppFonts.font_15,fontWeight: FontWeight.bold,fontColor: AppColors.white,)),) ,)
       ],
     );
   }

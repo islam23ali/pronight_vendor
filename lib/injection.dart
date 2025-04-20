@@ -4,7 +4,7 @@ import 'package:pronight_vendor/data/repositories/contract_repo.dart';
 import 'package:pronight_vendor/data/repositories/units_repo.dart';
 import 'package:pronight_vendor/data/repositories/visit_permit_repo.dart';
 import 'package:pronight_vendor/presentations/modules/add_unit_page/add_unit_view_model.dart';
-import 'package:pronight_vendor/presentations/modules/auth/login/login_view_model.dart';
+import 'package:pronight_vendor/presentations/modules/auth/auth_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/contract_screens/add_contract/add_contract_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/contracts_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/add_visit_permit_view_model.dart';
@@ -31,7 +31,7 @@ Future<void> init() async{
   getIt.registerLazySingleton(() => LoggingInterceptor());
   getIt.registerLazySingleton(() => DioClient());
   getIt.registerLazySingleton(() => LocalUserData());
-  getIt.registerLazySingleton(() => LoginViewModel());
+  getIt.registerLazySingleton(() => AuthViewModel());
   getIt.registerLazySingleton(() => AddContractViewModel());
   getIt.registerLazySingleton(() => AddVisitPermitViewModel());
   getIt.registerLazySingleton(() => UnitImageViewModel());

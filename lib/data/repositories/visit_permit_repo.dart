@@ -13,10 +13,58 @@ import '../datasource/remote/dio/dio_client.dart';
 import '../datasource/remote/exception/api_error_handler.dart';
 import '../models/api_response.dart';
 import '../models/body_or_quary/add_contract_body.dart';
+import '../models/body_or_quary/add_visit_permit_body.dart';
 
 class VisitPermitRepo {
   final DioClient _dioClient = getIt();
 
+
+  Future<ApiResponse> addVisitPermitRepo (AddVisitPermitBody addVisitPermitBody) async {
+    try {
+      Map<String, dynamic> body = {};
+      body["visit_date"] = addVisitPermitBody.visitDate;
+      body["sector_id"] = addVisitPermitBody.sectorId;
+      body["villa_id"] = addVisitPermitBody.villaId;
+      body["beach_id"] = addVisitPermitBody.beachId;
+      body["days_count"] = addVisitPermitBody.daysCount;
+      body["status"] = addVisitPermitBody.status;
+      body["driver_name"] = addVisitPermitBody.driverName;
+      body["visitors_switch"] = addVisitPermitBody.visitorsSwitch;
+      body["materials_switch"] = addVisitPermitBody.materialsSwitch;
+
+      if(addVisitPermitBody.note!=null||addVisitPermitBody.note!='')body['note']=addVisitPermitBody.note;
+      for (int e = 0; e < (addVisitPermitBody.visitor??[]).length; e++) {
+        body["visitors[$e][name]"] = addVisitPermitBody.visitor?[e].visitorNameController.text;
+        body["visitors[$e][id_no]"] = addVisitPermitBody.visitor?[e].visitorIDNumberController.text;
+        body["visitors[$e][phone_code]"] = addVisitPermitBody.visitor?[e].visitorPhoneCodeController.text;
+        body["visitors[$e][phone]"] = addVisitPermitBody.visitor?[e].visitorPhoneController.text;
+      }
+
+      for (int i = 0; i < (addVisitPermitBody.material??[]).length; i++) {
+        body["materials[$i][name]"] = addVisitPermitBody.material?[i].materialNameController.text;
+        body["materials[$i][qty]"] = addVisitPermitBody.material?[i].materialQtyController.text;
+      }
+
+      if(kDebugMode){
+        print('addVisitPermitRepo BODY${addVisitPermitBody.toJson()}');
+        print('addVisitPermitRepo CAR${addVisitPermitBody.visitor?[0].toJson()}');
+        print('addVisitPermitRepo Escorts${addVisitPermitBody.material?[0].toJson()}');
+      }
+      Response response = await _dioClient.post(AppUrls.addVisitPermitUrl,formData: FormData.fromMap(body));
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+  
+  Future<ApiResponse> allVisitPermitRepo(String search) async {
+    try {
+      Response response = await _dioClient.get(AppUrls.visitPermitsUrl+search);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
   Future<ApiResponse> oneVisitPermitRepo (String id) async {
     try {
       Response response = await _dioClient.get(AppUrls.oneVisitPermitUrl+id);

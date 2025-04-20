@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/navigator/navigator.dart';
+import 'package:pronight_vendor/core/screen_state/no_data.dart';
+import 'package:pronight_vendor/presentations/app_loader.dart';
 import 'package:pronight_vendor/presentations/modules/units_page/unit_details/unit_details.dart';
 import 'package:pronight_vendor/presentations/modules/units_page/units_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/units_page/widgets/custom_unit_card.dart';
@@ -71,6 +73,9 @@ class _UnitsPageState extends State<UnitsPage> {
                 children: [
                   SizedBox(width: 284.w,height: 36.h,
                       child: CustomTextFormField(controller: data.searchController,underLineColor: Colors.transparent,
+                        onChange: (_){
+                        data.allUnits();
+                        },
                         borderRaduis: 7.r,
                         padding:EdgeInsets.symmetric(horizontal: Dimens.padding_12h) ,
                         bgColor: Color(0xffEFF8F2),hint: AppTranslate.search.tr(),hintFontColor: AppColors.primaryColor,)),
@@ -84,7 +89,10 @@ class _UnitsPageState extends State<UnitsPage> {
                       onRefresh: ()async{
                         await  _loadData();},
                       child: AnimationLimiter(
-                        child: ListView.builder(
+                        child:
+                        data.isLoading?const AppLoader():
+                        data.allUnitsList.isEmpty==true?const NoDataScreen():
+                        ListView.builder(
                           controller: data.controller,
                             padding: EdgeInsets.symmetric(vertical: Dimens.padding_12v),
                             shrinkWrap: true,

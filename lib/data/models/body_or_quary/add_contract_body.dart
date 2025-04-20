@@ -16,6 +16,9 @@ class AddContractBody {
   String? rentValue;
   String? insuranceValue;
   String? price;
+  String? note;
+  bool? sendClient;
+  bool? sendProvider;
   List<AddEscort>? escorts;
   List<Car>? cars;
 
@@ -34,6 +37,9 @@ class AddContractBody {
     this.rentValue,
     this.insuranceValue,
     this.price,
+    this.note,
+    this.sendClient,
+    this.sendProvider,
     this.escorts,
     this.cars,
 
@@ -54,36 +60,12 @@ class AddContractBody {
     "rent_value": rentValue,
     "insurance_value": insuranceValue,
     "price": price,
+    "note": note,
+    "send_client": sendClient,
+    "send_provider": sendProvider,
     "escorts": escorts == null ? [] : List<dynamic>.from(escorts!.map((x) => x.toJson())),
     "cars": cars == null ? [] : List<dynamic>.from(cars!.map((x) => x.toJson())),
 
 
   };
 }
-// class Escort {
-//   String? name;
-//   String? idNo;
-//   String? nationality;
-//   String? kinship;
-//
-//   Escort({
-//     this.name,
-//     this.idNo,
-//     this.nationality,
-//     this.kinship,
-//   });
-//
-//   factory Escort.fromJson(Map<String, dynamic> json) => Escort(
-//     name: json["name"],
-//     idNo: json["id_no"],
-//     nationality: json["nationality"],
-//     kinship: json["kinship"],
-//   );
-//
-//   Map<String, dynamic> toJson() => {
-//     "name": name,
-//     "id_no": idNo,
-//     "nationality": nationality,
-//     "kinship": kinship,
-//   };
-// }

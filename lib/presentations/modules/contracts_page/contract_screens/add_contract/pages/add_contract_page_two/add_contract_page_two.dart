@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/presentations/components/inputs/custom_text_form_area.dart';
 import 'package:pronight_vendor/presentations/components/loadings/custom_scaffold_messanger.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../../core/app_theme/app_colors.dart';
@@ -150,6 +151,21 @@ class _AddContractPageTwoState extends State<AddContractPageTwo> {
                             height: 56.h,textInputType: TextInputType.number,
                             prefix: InkWell(onTap: (){
                               data.contractFeesController.clear();
+                              data.refreshData();
+                            },
+                                child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 20.h),
+                      Column(crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomText(title: AppTranslate.details.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                          CustomTextFormFieldArea(controller: data.detailsController,
+                            // height: 156.h,
+                            borderColor: Colors.transparent,
+                            prefix: InkWell(onTap: (){
+                              data.detailsController.clear();
                               data.refreshData();
                             },
                                 child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),

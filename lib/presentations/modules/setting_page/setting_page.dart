@@ -6,7 +6,9 @@ import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/resources/app_translate.dart';
 import 'package:pronight_vendor/core/resources/font_size.dart';
 import 'package:pronight_vendor/presentations/components/custom_app_bar/custom_app_bar.dart';
+import 'package:pronight_vendor/presentations/components/custom_button/custom_button.dart';
 import 'package:pronight_vendor/presentations/components/custom_text/custom_text.dart';
+import 'package:pronight_vendor/presentations/modules/auth/login/login_screen.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/reservation_screen/reservation_screen.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/widget/personal_data_card.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/widget/other_card.dart';
@@ -66,6 +68,7 @@ class _SettingPageState extends State<SettingPage> {
                 SizedBox(height: 20.h),
                 const OtherCard(),
                 SizedBox(height: 60.h),
+                CustomButton(onTap:(){NavigatorHandler.pushAndRemoveUntil(LoginScreen());})
               ],
             ),
           ),

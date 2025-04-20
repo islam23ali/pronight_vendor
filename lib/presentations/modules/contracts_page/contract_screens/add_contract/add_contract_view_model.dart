@@ -37,12 +37,12 @@ class AddContractViewModel extends ChangeNotifier{
   TextEditingController rentalValueController =TextEditingController();
   TextEditingController insuranceValueController =TextEditingController();
   TextEditingController contractFeesController =TextEditingController();
+  TextEditingController detailsController =TextEditingController();
   // page three data ...
   List<AddEscort> escorts = [AddEscort(name: '', idNo: '', nationality: '', kinship: '')];
   // page four data ...
   List<Car> cars = [Car(type: '',plateNo: '',driverName: '',driverIdNo: '',)];
 
-  int? isSelected;
   bool ? _isLoading;
   bool ? _isVilLoading;
   bool ? _isBeaLoading;
@@ -53,6 +53,8 @@ class AddContractViewModel extends ChangeNotifier{
   VillasModel ? _beachesModel;
   OneVilla? selectedVilla;
   OneVilla? selectedBeach;
+  bool sendClient=false;
+  bool sendProvider=false;
 
   bool? get isLoading => _isLoading;
   bool? get isVilLoading => _isVilLoading;
@@ -89,6 +91,9 @@ void initAddContract(){
     addContractBody.rentValue=rentalValueController.text;
     addContractBody.insuranceValue=insuranceValueController.text;
     addContractBody.price=contractFeesController.text;
+    addContractBody.note=detailsController.text;
+    addContractBody.sendClient=sendClient;
+    addContractBody.sendProvider=sendProvider;
     addContractBody.escorts=escorts;
     addContractBody.cars=cars;
 

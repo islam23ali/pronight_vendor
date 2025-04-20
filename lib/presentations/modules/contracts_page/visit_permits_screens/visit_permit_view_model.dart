@@ -7,6 +7,7 @@ import 'package:pronight_vendor/data/repositories/visit_permit_repo.dart';
 import '../../../../core/navigator/navigator.dart';
 import '../../../../core/resources/app_translate.dart';
 import '../../../../data/models/api_response.dart';
+import '../../../../data/models/response/all_visit_permits_model.dart';
 import '../../../../data/models/response/empty_model.dart';
 import '../../../../data/models/response/one_visit_permit_model.dart';
 import '../../../../data/models/response/send_code_model.dart';
@@ -16,20 +17,51 @@ import '../../../components/loadings/progress_dialog.dart';
 import '../contract_screens/print_wepview/print_item_wep_view.dart';
 
 class VisitPermitViewModel extends ChangeNotifier{
-  TextEditingController searchController =TextEditingController();
+  TextEditingController searchVisitPermitController =TextEditingController();
   final VisitPermitRepo _visitPermitRepo = getIt();
   final LocalUserData saveUserData = getIt();
 
   bool _isLoading = false;
 
+  VisitPermitsModel? _visitPermitsModel;
   OneVisitPermitModel? _oneVisitPermitModel;
   SendCodeModel? _printVisitPermit;
   EmptyModel? _deleteVisitPermit;
 
   bool get isLoading => _isLoading;
   OneVisitPermitModel? get oneVisitPermitModel => _oneVisitPermitModel;
+  VisitPermitsModel? get visitPermitsModel => _visitPermitsModel;
   SendCodeModel? get printVisitPermit => _printVisitPermit;
   EmptyModel? get deleteVisitPermit => _deleteVisitPermit;
+
+  List<OneVisitPermit>? allVisitPermitList =[];
+
+  initVisitPermit(){
+    allVisitPermitList=[];
+    searchVisitPermitController.clear();
+    allVisitPermit();
+  }
+
+  Future<void> allVisitPermit () async {
+    _isLoading = true;
+    notifyListeners();
+    ApiResponse responseModel = await _visitPermitRepo.allVisitPermitRepo(searchVisitPermitController.text);
+    if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+      _visitPermitsModel = VisitPermitsModel.fromJson(responseModel.response?.data);
+      _isLoading = false;
+      notifyListeners();
+      if (_visitPermitsModel != null && _visitPermitsModel?.code == 200) {
+        allVisitPermitList=_visitPermitsModel?.data;
+      } else{
+        CustomScaffoldMessanger.showToast(title: _visitPermitsModel?.message??'');
+      }
+      notifyListeners();
+    }
+    else {
+      CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+    }
+    notifyListeners();
+  }
 
   Future<void> oneVisitPermit (String id) async {
     _isLoading = true;

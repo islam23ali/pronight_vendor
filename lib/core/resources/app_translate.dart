@@ -205,10 +205,10 @@ class AppTranslate{
   static const String pleaseEnterVerificationCodeSentYourMobileNumber = 'PleaseEnterVerificationCodeSentYourMobileNumber' ;
   static const String search = 'search' ;
   static const String meter = 'meter' ;
-
+  static const String noResultFound = 'noResultFound' ;
 
   //not set yet
-  static const String noResultFound = 'noResultFound' ;
+
   static const String confirm = 'confirm' ;
   static const String cancel = 'cancel' ;
   static const String logout = 'logout' ;

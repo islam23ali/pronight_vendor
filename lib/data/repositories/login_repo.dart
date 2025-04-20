@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:crypto/crypto.dart';
 // import 'package:device_info_plus/device_info_plus.dart';
@@ -15,25 +16,42 @@ import '../models/api_response.dart';
 class LoginRepo {
   final DioClient _dioClient = getIt();
 
-  Future<ApiResponse> sendCodeRepo(String phone,phoneCode) async {
+  Future<ApiResponse> sendCodeRepo(String phone,phoneCode,type) async {
     try {
       Response response = await _dioClient.post(AppUrls.sendCodeUrl,
           formData: FormData.fromMap({
             'phone': phone,
             'phone_code': phoneCode,
+            'type': type,
           }));
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.handleError(e));
     }
   }
-  Future<ApiResponse> confirmCodeRepo(String phone,phoneCode,code) async {
+  Future<ApiResponse> confirmCodeRepo(String phone,phoneCode,code,type) async {
     try {
       Response response = await _dioClient.post(AppUrls.confirmCodeUrl,
           formData: FormData.fromMap({
             'phone': phone,
             'phone_code': phoneCode,
             'code': code,
+            'type': type,
+          }));
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
+  Future<ApiResponse> registerRepo(String phone,phoneCode,name,File image) async {
+    try {
+      Response response = await _dioClient.post(AppUrls.registerUrl,
+          formData: FormData.fromMap({
+            'phone': phone,
+            'phone_code': phoneCode,
+            'name': name,
+            if(image!=null)'image':image == null ? null: await MultipartFile.fromFile(image!.path),
           }));
       return ApiResponse.withSuccess(response);
     } catch (e) {

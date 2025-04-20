@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/resources/font_size.dart';
-import 'package:pronight_vendor/presentations/modules/auth/login/login_view_model.dart';
+import 'package:pronight_vendor/presentations/modules/auth/auth_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../../core/dimens/dimens.dart';
@@ -13,17 +13,18 @@ import '../../../../../../components/custom_text/custom_text.dart';
 
 
 class ResendConfirmCode extends StatefulWidget {
+  final String? type;
   @override
   _ResendConfirmCodeState createState() => _ResendConfirmCodeState();
 
-  const ResendConfirmCode({super.key, this.fontSize, required this.fromRegister});
+  const ResendConfirmCode({super.key, this.fontSize, required this.fromRegister, required this.type});
 
   final bool fromRegister;
   final double? fontSize;
 }
 
 class _ResendConfirmCodeState extends State<ResendConfirmCode> {
-  LoginViewModel provider =getIt();
+  AuthViewModel provider =getIt();
 
   @override
   void initState() {
@@ -39,7 +40,7 @@ class _ResendConfirmCodeState extends State<ResendConfirmCode> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LoginViewModel>(
+    return Consumer<AuthViewModel>(
       builder: (context,data,_) {
         print('data>===${data.start}');
         return Padding(
@@ -51,7 +52,7 @@ class _ResendConfirmCodeState extends State<ResendConfirmCode> {
                 SizedBox(
                   child:InkWell(
                     onTap: () {
-                      Provider.of<LoginViewModel>(context,listen: false).sendCode(false);
+                      Provider.of<AuthViewModel>(context,listen: false).sendCode(false,widget.type??'');
                       data.startTimer();
                     },
                     child: CustomText(
