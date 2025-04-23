@@ -31,15 +31,15 @@ class VisitPermitRepo {
       body["driver_name"] = addVisitPermitBody.driverName;
       body["visitors_switch"] = addVisitPermitBody.visitorsSwitch;
       body["materials_switch"] = addVisitPermitBody.materialsSwitch;
-
       if(addVisitPermitBody.note!=null||addVisitPermitBody.note!='')body['note']=addVisitPermitBody.note;
+      if(addVisitPermitBody.visitorsSwitch=='1')
       for (int e = 0; e < (addVisitPermitBody.visitor??[]).length; e++) {
         body["visitors[$e][name]"] = addVisitPermitBody.visitor?[e].visitorNameController.text;
         body["visitors[$e][id_no]"] = addVisitPermitBody.visitor?[e].visitorIDNumberController.text;
         body["visitors[$e][phone_code]"] = addVisitPermitBody.visitor?[e].visitorPhoneCodeController.text;
         body["visitors[$e][phone]"] = addVisitPermitBody.visitor?[e].visitorPhoneController.text;
       }
-
+      if(addVisitPermitBody.materialsSwitch=='1')
       for (int i = 0; i < (addVisitPermitBody.material??[]).length; i++) {
         body["materials[$i][name]"] = addVisitPermitBody.material?[i].materialNameController.text;
         body["materials[$i][qty]"] = addVisitPermitBody.material?[i].materialQtyController.text;

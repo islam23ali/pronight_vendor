@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/constants/constants.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/presentations/components/inputs/custom_text_form_area.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/widgets/custom_dropdown_visit_permit.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/widgets/custom_material_card.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/widgets/custom_visitor_data_card.dart';
@@ -99,7 +100,11 @@ class _AddVisitPermitState extends State<AddVisitPermit> {
                                       },
                                       height: 60.h,textInputType: TextInputType.number,
                                       suffix: CustomSvgIcon(assetName: AppAssets.date,color: Colors.black.withAlpha((0.50*244).round()),),
-                                      prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                                      prefix: InkWell(
+                                          onTap: (){
+                                            data.visitDateController.clear();
+                                          },
+                                          child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                                     )
                                   ],
                                 ),
@@ -189,7 +194,11 @@ class _AddVisitPermitState extends State<AddVisitPermit> {
                                             CustomText(title: AppTranslate.numberOfDays.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                                             CustomTextFormField(controller: data.numberOfDaysController,
                                               height: 60.h,textInputType: TextInputType.number,
-                                              prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                                              prefix: InkWell(
+                                                  onTap: (){
+                                                    data.numberOfDaysController.clear();
+                                                  },
+                                                  child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                                             )
                                           ],
                                         ),
@@ -200,7 +209,9 @@ class _AddVisitPermitState extends State<AddVisitPermit> {
                                             CustomText(title: AppTranslate.permitStatus.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                                             CustomTextFormField(controller: data.permitStatusController,
                                               height: 60.h,textInputType: TextInputType.text,
-                                              prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                                              prefix: InkWell(
+                                                  onTap: (){data.permitStatusController.clear();},
+                                                  child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                                             )
                                           ],
                                         ),
@@ -212,7 +223,26 @@ class _AddVisitPermitState extends State<AddVisitPermit> {
                                     CustomText(title: AppTranslate.driverName.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                                     CustomTextFormField(controller: data.driverNameController,
                                       height: 60.h,textInputType: TextInputType.name,
-                                      prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                                      prefix: InkWell(
+                                          onTap: (){
+                                            data.driverNameController.clear();
+                                          },
+                                          child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(height: 20.h),
+                                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CustomText(title: AppTranslate.comments.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                                    CustomTextFormFieldArea(controller: data.detailsController,
+                                      height: 120.h,
+                                      borderColor: Colors.transparent,
+                                      prefix: InkWell(
+                                        onTap: (){
+                                          data.detailsController.clear();
+                                        },
+                                          child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                                     )
                                   ],
                                 ),
@@ -249,9 +279,9 @@ class _AddVisitPermitState extends State<AddVisitPermit> {
                                       ),
                                     ]),
                                 SizedBox(height: 20.h),
-                                const CustomVisitorDataCard(),
+                                if(data.isSwitchVisitors==true) const CustomVisitorDataList(),
                                 SizedBox(height: 10.h),
-                                const CustomMaterialCard(),
+                                if(data.isSwitchMaterials==true) const CustomMaterialList(),
                                 SizedBox(height: 20.h),
                                 CustomButton(onTap: (){
                                   showSendVisitPermitSheet();

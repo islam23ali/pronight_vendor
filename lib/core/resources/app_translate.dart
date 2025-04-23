@@ -206,6 +206,12 @@ class AppTranslate{
   static const String search = 'search' ;
   static const String meter = 'meter' ;
   static const String noResultFound = 'noResultFound' ;
+  static const String enterVisitorDataFirst = 'enterVisitorDataFirst' ;
+  static const String enterMaterialDataFirst = 'enterMaterialDataFirst' ;
+  static const String enterDateOfVisit = 'enterDateOfVisit' ;
+  static const String enterNumberOfDays = 'enterNumberOfDays' ;
+  static const String enterPermitStatus = 'enterPermitStatus' ;
+  static const String enterDriverName = 'enterDriverName' ;
 
   //not set yet
 

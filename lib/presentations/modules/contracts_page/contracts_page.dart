@@ -29,8 +29,7 @@ class ContractsPage extends StatefulWidget {
 }
 
 class _ContractsPageState extends State<ContractsPage> {
-  int isContract = 0;
-  final pageController = PageController(initialPage: 0);
+
   ContractViewModel provider = getIt();
   @override
   void initState() {
@@ -50,14 +49,14 @@ class _ContractsPageState extends State<ContractsPage> {
                 bgColor: AppColors.white,
                 topColor: AppColors.white,
                 leadingWidth: 0,
-                title:(isContract==0)? AppTranslate.contracts.tr():AppTranslate.visitPermits.tr(),
+                title:(data.isContract==0)? AppTranslate.contracts.tr():AppTranslate.visitPermits.tr(),
                 // titleWidget:  Image.asset(AppAssets.splash,height: 32.h,width: 164.5.w,),
                 isBackButtonExist: false,
                 actions: [ Padding(
                   padding: EdgeInsets.symmetric(horizontal:Dimens.padding_16h),
                   child: InkWell(
                     onTap: (){
-                      (isContract==1)?
+                      (data.isContract==1)?
                       NavigatorHandler.push(const AddVisitPermit()):
                       NavigatorHandler.push(const AddContract());
                     },
@@ -76,42 +75,42 @@ class _ContractsPageState extends State<ContractsPage> {
                 children: [
                 InkWell(onTap: (){
                   setState(() {
-                    isContract=0;
+                    data.isContract=0;
                     data.initContracts();
                   });
-                  pageController.animateToPage(isContract,
+                  data.pageController.animateToPage(data.isContract,
                       duration: const Duration(seconds: 1),
                       curve: Curves.easeInOut);
                 },
                   child: Container(
                   height: 35.h,width: 165.w,
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(50.r),
-                      color:(isContract==0)? AppColors.primaryColor:Colors.transparent
-                  ),child:Center(child: CustomText(title: AppTranslate.contracts.tr(),fontSize: AppFonts.font_13,fontColor: (isContract==0)?AppColors.white:AppColors.primaryColor,)) ,),
+                      color:(data.isContract==0)? AppColors.primaryColor:Colors.transparent
+                  ),child:Center(child: CustomText(title: AppTranslate.contracts.tr(),fontSize: AppFonts.font_13,fontColor: (data.isContract==0)?AppColors.white:AppColors.primaryColor,)) ,),
                 ),
                   InkWell(onTap: (){
                     setState(() {
-                      isContract=1;
+                      data.isContract=1;
                       visitProvider.initVisitPermit();
                     });
-                    pageController.animateToPage(isContract,
+                    data.pageController.animateToPage(data.isContract,
                         duration: const Duration(seconds: 1),
                         curve: Curves.easeInOut);
                   },
                   child: Container(
                       height: 35.h,width: 165.w,
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(50.r),
-                      color:(isContract==1)? AppColors.primaryColor:Colors.transparent
-                  ),child:Center(child: CustomText(title: AppTranslate.visitPermits.tr(),fontSize: AppFonts.font_13,fontColor: (isContract==1)?AppColors.white:AppColors.primaryColor,)) ,),
+                      color:(data.isContract==1)? AppColors.primaryColor:Colors.transparent
+                  ),child:Center(child: CustomText(title: AppTranslate.visitPermits.tr(),fontSize: AppFonts.font_13,fontColor: (data.isContract==1)?AppColors.white:AppColors.primaryColor,)) ,),
                 ),
               ],),),
             ),
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(width: 284.w,height: 36.h,
-                      child: CustomTextFormField(controller:isContract==0? data.searchController:visitProvider.searchVisitPermitController,underLineColor: Colors.transparent,
+                      child: CustomTextFormField(controller:data.isContract==0? data.searchController:visitProvider.searchVisitPermitController,underLineColor: Colors.transparent,
                           onChange: (_){
-                            isContract==0? data.allContracts():visitProvider.allVisitPermit();
+                            data.isContract==0? data.allContracts():visitProvider.allVisitPermit();
                           },
                           borderRaduis: 7.r,
                           padding:EdgeInsets.symmetric(horizontal: Dimens.padding_12h) ,
@@ -122,10 +121,10 @@ class _ContractsPageState extends State<ContractsPage> {
               SizedBox(height: 10.h),
               Expanded(
                 child: PageView(
-                  controller: pageController,
+                  controller: data.pageController,
                   onPageChanged: (_){
                     setState(() {
-                      // isContract=pageController.initialPage;
+                      // data.isContract=pageController.initialPage;
 
                     });
                   },

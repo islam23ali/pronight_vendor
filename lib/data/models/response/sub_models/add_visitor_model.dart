@@ -4,7 +4,7 @@ class AddVisitor {
   int? id;
   String? name;
   String? idNo;
-  String? phoneCode;
+  String? phoneCode='+966';
   String? phone;
   TextEditingController visitorNameController;
   TextEditingController visitorIDNumberController;
@@ -14,13 +14,13 @@ class AddVisitor {
     this.id,
     this.name,
     this.idNo,
-    this.phoneCode,
+    this.phoneCode ='+966',
     this.phone,
   }) :
-        visitorNameController = TextEditingController(text: name),
-        visitorIDNumberController = TextEditingController(text: idNo),
-        visitorPhoneCodeController = TextEditingController(text: phoneCode),
-        visitorPhoneController = TextEditingController(text: phone);
+        visitorNameController = TextEditingController(text: name??''),
+        visitorIDNumberController = TextEditingController(text: idNo??''),
+        visitorPhoneCodeController = TextEditingController(text: '+966'),
+        visitorPhoneController = TextEditingController(text: phone??'');
   // Update all fields from controllers
   void updateFromControllers() {
     name = visitorNameController.text;

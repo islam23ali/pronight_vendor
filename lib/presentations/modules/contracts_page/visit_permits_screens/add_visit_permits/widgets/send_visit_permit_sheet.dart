@@ -7,8 +7,11 @@ import 'package:pronight_vendor/core/resources/font_size.dart';
 import 'package:pronight_vendor/presentations/components/custom_button/custom_button.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
 import 'package:pronight_vendor/presentations/components/custom_text/custom_text.dart';
+import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/add_visit_permit_view_model.dart';
+import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/visit_permit_view_model.dart';
 import '../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../core/dimens/dimens.dart';
+import '../../../../../../injection.dart';
 
 class SendVisitPermitSheet extends StatefulWidget {
   const SendVisitPermitSheet({super.key});
@@ -18,6 +21,7 @@ class SendVisitPermitSheet extends StatefulWidget {
 }
 
 class _SendVisitPermitSheetState extends State<SendVisitPermitSheet> {
+  AddVisitPermitViewModel provider = getIt();
   int? isSelected;
   @override
   Widget build(BuildContext context) {
@@ -66,7 +70,9 @@ class _SendVisitPermitSheetState extends State<SendVisitPermitSheet> {
                   ],) ,),
               ),
               SizedBox(height: 20.h),
-              (isSelected==null)?const SizedBox(): CustomButton(onTap: (){},title: AppTranslate.confirm.tr(),)
+              (isSelected==null)?const SizedBox(): CustomButton(onTap: (){
+                provider.addVisitPermitValidation();
+              },title: AppTranslate.confirm.tr(),)
             ],),
       ],),
     );

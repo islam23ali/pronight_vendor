@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 import 'package:pronight_vendor/data/models/body_or_quary/add_visit_permit_body.dart';
 import 'package:pronight_vendor/data/models/response/one_visit_permit_model.dart';
+import 'package:pronight_vendor/data/models/response/sub_models/add_material.dart';
+import 'package:pronight_vendor/data/models/response/sub_models/add_visitor_model.dart';
 import 'package:pronight_vendor/data/repositories/visit_permit_repo.dart';
-
 import '../../../../../core/navigator/navigator.dart';
 import '../../../../../core/resources/app_translate.dart';
 import '../../../../../data/datasource/local/LocalUserData.dart';
@@ -22,27 +22,27 @@ import '../../contract_screens/add_contract/add_contract_view_model.dart';
 class AddVisitPermitViewModel extends ChangeNotifier{
   final VisitPermitRepo _visitPermitRepo = getIt();
   final LocalUserData saveUserData = getIt();
-  bool isSwitchVisitors = false;
-  bool isSwitchMaterials = false;
-  bool openVisitor = true;
-  bool openMaterial = true;
 
   TextEditingController visitDateController =TextEditingController();
   TextEditingController numberOfDaysController =TextEditingController();
   TextEditingController permitStatusController =TextEditingController();
   TextEditingController driverNameController =TextEditingController();
-  TextEditingController nameOfTheFacilityController =TextEditingController();
-  TextEditingController companionIDNumberController =TextEditingController();
-  TextEditingController facilitiesPhoneNumberController =TextEditingController();
-  TextEditingController theNameController =TextEditingController();
-  TextEditingController quantityController =TextEditingController();
+  TextEditingController detailsController =TextEditingController();
 
   OneSector? selectedSector;
   OneVilla? selectedVilla;
   OneVilla? selectedBeach;
 
-  List<String>? cityList = ['القاهرة', 'المنوفية'];
-  String? value;
+  bool openVisitor = true;   // for open visitor card
+  bool openMaterial = true;    // for open material card
+
+  // for show or hide visitors and materials
+  bool isSwitchVisitors = false;
+  bool isSwitchMaterials = false;
+
+  List<AddVisitor> visitorsList = [AddVisitor(name: '', idNo: '',phoneCode:'',phone: '')];
+  List<AddMaterial> materialList = [AddMaterial(name: '',qty:'' )];
+
 
   OneVisitPermitModel? _oneVisitPermitModel;
   OneVisitPermitModel? get oneVisitPermitModel => _oneVisitPermitModel;
@@ -50,18 +50,40 @@ class AddVisitPermitViewModel extends ChangeNotifier{
 
   AddContractViewModel addContractProvider=getIt();
   void initAddVisitPermit(){
-    addContractProvider.getAllSectors();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      addContractProvider.getAllSectors();
+    });
+    visitDateController.clear();
+    selectedSector=null;
     selectedVilla=null;
     selectedSector=null;
-    addContractProvider.villasModel?.data=null;
-    addContractProvider.beachesModel?.data=null;
-
+    numberOfDaysController.clear();
+    permitStatusController.clear();
+    driverNameController.clear();
+    detailsController.clear();
+    isSwitchVisitors = false;
+    isSwitchMaterials = false;
+    visitorsList.clear();
+    materialList.clear();
+    visitorsList = [AddVisitor(name: '', idNo: '',phoneCode:'',phone: '')];
+    materialList = [AddMaterial(name: '',qty:'' )];
   }
+
   Future<void> addVisitPermit () async {
     notifyListeners();
     AddVisitPermitBody addContractBody = AddVisitPermitBody();
     addContractBody.visitDate=visitDateController.text;
+    addContractBody.sectorId=selectedSector?.id.toString();
+    addContractBody.villaId=selectedVilla?.id.toString();
+    addContractBody.beachId=selectedBeach?.id.toString();
     addContractBody.daysCount=numberOfDaysController.text;
+    addContractBody.status=permitStatusController.text;
+    addContractBody.driverName=driverNameController.text;
+    addContractBody.note=detailsController.text;
+    addContractBody.visitorsSwitch=(isSwitchVisitors==true)?1.toString():0.toString();
+    addContractBody.materialsSwitch=(isSwitchMaterials==true)?1.toString():0.toString();
+    addContractBody.visitor=visitorsList;
+    addContractBody.material=materialList;
 
 
     ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.addVisitPermit.tr()} ...");
@@ -72,7 +94,12 @@ class AddVisitPermitViewModel extends ChangeNotifier{
       _oneVisitPermitModel = OneVisitPermitModel.fromJson(responseModel.response?.data);
       notifyListeners();
       if (_oneVisitPermitModel != null && _oneVisitPermitModel?.code == 200) {
+        // ContractViewModel contractProvider =getIt();
         NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 1));
+        // contractProvider.isContract=1;
+        // await contractProvider.pageController.animateToPage(contractProvider.isContract,
+        //     duration: const Duration(seconds: 1),
+        //     curve: Curves.easeInOut);
         if(kDebugMode){
           CustomScaffoldMessanger.showToast(title: 'الله ينور ياعمناااا <<<<<<<<<<');
         }
@@ -88,7 +115,25 @@ class AddVisitPermitViewModel extends ChangeNotifier{
     notifyListeners();
   }
 
-
+addVisitPermitValidation(){
+    if(visitDateController.text.isEmpty){
+      CustomScaffoldMessanger.showToast(title: AppTranslate.enterDateOfVisit.tr());
+    }else if(selectedSector==null){
+      CustomScaffoldMessanger.showToast(title: AppTranslate.selectSector.tr());
+    }else if(selectedVilla==null){
+      CustomScaffoldMessanger.showToast(title: AppTranslate.villaIsRequired.tr());
+    }else if( selectedBeach==null){
+      CustomScaffoldMessanger.showToast(title: AppTranslate.beachIsRequired.tr());
+    }else if( numberOfDaysController.text.isEmpty){
+      CustomScaffoldMessanger.showToast(title: AppTranslate.enterNumberOfDays.tr());
+    }else if( permitStatusController.text.isEmpty){
+      CustomScaffoldMessanger.showToast(title: AppTranslate.enterPermitStatus.tr());
+    }else if( driverNameController.text.isEmpty){
+      CustomScaffoldMessanger.showToast(title: AppTranslate.enterDriverName.tr());
+    }else{
+      addVisitPermit();
+    }
+}
 
   void refreshData(){
   notifyListeners();

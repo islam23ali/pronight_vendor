@@ -23,6 +23,10 @@ class ContractViewModel extends ChangeNotifier{
   final ContractRepo _contractRepo = getIt();
   final LocalUserData saveUserData = getIt();
 
+
+  final pageController = PageController(initialPage: 0);
+  int isContract = 0;
+
   bool _isLoading = false;
   AllContractsModel? _allContractsModel;
   OneContractModel? _oneContractModel;
@@ -36,7 +40,9 @@ class ContractViewModel extends ChangeNotifier{
   initContracts(){
     allContractsList=[];
     searchController.clear();
-    allContracts();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      allContracts();
+    });
   }
   List<OneContract>? allContractsList =[];
   Future<void> allContracts () async {

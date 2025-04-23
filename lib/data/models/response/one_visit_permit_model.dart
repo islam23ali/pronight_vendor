@@ -30,7 +30,7 @@ class Data {
   Beach? villa;
   Beach? beach;
   String? visitDate;
-  int? daysCount;
+  String? daysCount;
   String? status;
   String? note;
   String? driverName;

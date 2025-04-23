@@ -42,8 +42,8 @@ class _CustomSwitchState extends State<CustomSwitch>
     _animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 60));
     _circleAnimation = AlignmentTween(
-        begin: widget.value ? Alignment.centerRight : Alignment.centerLeft,
-        end: widget.value ? Alignment.centerLeft : Alignment.centerRight)
+        begin: widget.value ?  Alignment.centerLeft:Alignment.centerRight,
+        end: widget.value ?  Alignment.centerRight:Alignment.centerLeft)
         .animate(CurvedAnimation(
         parent: _animationController!, curve: Curves.linear));
   }
@@ -70,8 +70,8 @@ class _CustomSwitchState extends State<CustomSwitch>
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(24.0),
               color: _circleAnimation!.value == Alignment.centerLeft
-                  ? widget.inactiveColor ?? AppColors.darkColor
-                  : widget.activeColor ?? AppColors.darkColor,
+                  ? widget.activeColor ?? AppColors.darkColor
+                  :widget.inactiveColor ?? AppColors.darkColor,
             ),
             child: Stack(
               children: [

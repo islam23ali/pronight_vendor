@@ -256,5 +256,11 @@
   "renterCarDataRequired": "بيانات سيارات المستأجر مطلوبة",
   "meter": "متر",
   "days": "أيام",
-  "noResultFound": "لم يتم العثور على نتيجة"
+  "noResultFound": "لم يتم العثور على نتيجة",
+  "enterVisitorDataFirst": "أدخل بيانات الزائر أولاً",
+  "enterMaterialDataFirst": "أدخل بيانات المواد أولاً",
+  "enterDateOfVisit": "أدخل تاريخ الزيارة",
+  "enterNumberOfDays": "أدخل عدد الأيام",
+  "enterPermitStatus": "أدخل حالة التصريح",
+  "enterDriverName": "أدخل اسم السائق"
 }

@@ -252,5 +252,11 @@
   "renterCarDataRequired":"Renter car data required",
   "meter":"Meter",
   "days":"Days",
-  "noResultFound":"No result found"
+  "noResultFound":"No result found",
+  "enterVisitorDataFirst":"Enter visitor data first",
+  "enterMaterialDataFirst":"Enter material data first",
+  "enterDateOfVisit":"Enter the date of the visit",
+  "enterNumberOfDays":"Enter the number of days",
+  "enterPermitStatus":"Enter the permit status",
+  "enterDriverName":"Enter driver's name"
 }
