@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +46,7 @@ class AuthViewModel extends ChangeNotifier{
       },
     );
   }
-  String phoneCode = '+20';
+  String phoneCode = '+966';
   // String phoneCode = '+962';
   EmptyModel? _emptyModel;
   SendCodeModel? _sendCodeModel;
@@ -164,7 +163,6 @@ class AuthViewModel extends ChangeNotifier{
         }
         NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 0));
         if(kDebugMode){
-          print('hhhfdhfhfhfhfhf');
           CustomScaffoldMessanger.showToast(title: _userModel?.data.toString()??'');
         }
       } else{
