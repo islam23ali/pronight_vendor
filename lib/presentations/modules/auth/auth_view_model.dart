@@ -53,7 +53,6 @@ class AuthViewModel extends ChangeNotifier{
   UserModel? _userModel;
   // EmptyModel? get emptyModel => _emptyModel;
 
-
     String? image;
 
   void pickImage() async {
@@ -71,22 +70,32 @@ class AuthViewModel extends ChangeNotifier{
       CropStyle.circle,
     );
   }
+  String removeLeadingZeroFromString(String input) {
+    if (input.isEmpty) {
+      return input;
+    }
+    if (input[0] == '0') {
+      input = input.substring(1);
+    }
+    return input;
+  }
 
   Future<void> sendCode (bool fromScreen,String type) async {
     notifyListeners();
     ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.send.tr()} ...");
     await dialog.show();
-    ApiResponse responseModel = await _loginRepo.sendCodeRepo(phoneNumberController.text, phoneCode,type);
+    String modifiedPhone = removeLeadingZeroFromString(phoneNumberController.text);
+    ApiResponse responseModel = await _loginRepo.sendCodeRepo(modifiedPhone, phoneCode,type);
     await dialog.hide();
     if (responseModel.response != null && responseModel.response?.statusCode == 200) {
       notifyListeners();
       _sendCodeModel = SendCodeModel.fromJson(responseModel.response?.data);
       notifyListeners();
       if (_sendCodeModel != null && _sendCodeModel?.code == 200) {
-        if(kDebugMode){
+        // if(kDebugMode){
           print('hhhfdhfhfhfhfhf');
           CustomScaffoldMessanger.showToast(title: _sendCodeModel?.data.toString()??'');
-        }
+        // }
         if(type=='login'){
           (fromScreen==true)? showConfirmCodeSheet('login'):null;
         }else{
@@ -107,7 +116,8 @@ class AuthViewModel extends ChangeNotifier{
     notifyListeners();
     ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.confirm.tr()} ...");
     await dialog.show();
-    ApiResponse responseModel = await _loginRepo.confirmCodeRepo(phoneNumberController.text, phoneCode,otpController.text,type);
+    String modifiedPhone = removeLeadingZeroFromString(phoneNumberController.text);
+    ApiResponse responseModel = await _loginRepo.confirmCodeRepo(modifiedPhone, phoneCode,otpController.text,type);
     await dialog.hide();
     if (responseModel.response != null && responseModel.response?.statusCode == 200) {
       notifyListeners();
@@ -139,14 +149,15 @@ class AuthViewModel extends ChangeNotifier{
 
   Future<void> register () async {
     print('kkkkkkkkkkk1');
-    // notifyListeners();
-    // ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.send.tr()} ...");
+    notifyListeners();
+    ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.send.tr()} ...");
     print('kkkkkkkkkkk3');
-    // await dialog.show();
+    await dialog.show();
     print('kkkkkkkkkkk4');
-    ApiResponse responseModel = await _loginRepo.registerRepo(phoneNumberController.text,phoneCode,nameController.text,image);
+    String modifiedPhone = removeLeadingZeroFromString(phoneNumberController.text);
+    ApiResponse responseModel = await _loginRepo.registerRepo(modifiedPhone,phoneCode,nameController.text,image);
     print('kkkkkkkkkkk5');
-    // await dialog.hide();
+    await dialog.hide();
     if (responseModel.response != null && responseModel.response?.statusCode == 200) {
       print('kkkkkkkkkkk6');
       notifyListeners();
