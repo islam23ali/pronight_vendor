@@ -5,6 +5,7 @@ import 'package:crypto/crypto.dart';
 // import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pronight_vendor/injection.dart';
 import 'package:pronight_vendor/main.dart';
 
@@ -44,14 +45,14 @@ class LoginRepo {
     }
   }
 
-  Future<ApiResponse> registerRepo(String phone,phoneCode,name,File image) async {
+  Future<ApiResponse> registerRepo(String phone,phoneCode,name,image) async {
     try {
       Response response = await _dioClient.post(AppUrls.registerUrl,
           formData: FormData.fromMap({
             'phone': phone,
             'phone_code': phoneCode,
             'name': name,
-            if(image!=null)'image':image == null ? null: await MultipartFile.fromFile(image!.path),
+            if(image!=null)'image':image == null ? null: await MultipartFile.fromFile(image),
           }));
       return ApiResponse.withSuccess(response);
     } catch (e) {

@@ -78,8 +78,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: [
                         CustomText(title: AppTranslate.phoneNumber.tr(),fontSize: AppFonts.font_14,fontColor: AppColors.primaryColor),
                         CustomTextFormField(controller: data.phoneNumberController,
-                          height: 60.h,textInputType: TextInputType.name,
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 20.w,width: 20.w,color: AppColors.textGrayColor,),
+                          height: 60.h,textInputType: TextInputType.phone,
+                          prefix: InkWell(
+                              onTap: (){
+                                data.phoneNumberController.clear();
+                              },
+                              child: CustomSvgIcon(assetName: AppAssets.clearField,height: 20.w,width: 20.w,color: AppColors.textGrayColor,)),
                         )
                       ],
                     ),

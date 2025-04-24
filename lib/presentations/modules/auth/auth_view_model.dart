@@ -123,9 +123,9 @@ class AuthViewModel extends ChangeNotifier{
           NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 0));
           // await authRepo.updateFCMToken();
         }}else{
-         print('kkkkkkkkkkk');
-         register();
-         print('kkkkkkkkkkk2');
+         print('kkkkkkkkkkk>>>>');
+         await register();
+         print('kkkkkkkkkkk>>>>2');
        }
       } else{
         CustomScaffoldMessanger.showToast(title: _userModel?.message??'');
@@ -141,13 +141,13 @@ class AuthViewModel extends ChangeNotifier{
   Future<void> register () async {
     print('kkkkkkkkkkk1');
     // notifyListeners();
-    ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.send.tr()} ...");
+    // ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.send.tr()} ...");
     print('kkkkkkkkkkk3');
-    await dialog.show();
+    // await dialog.show();
     print('kkkkkkkkkkk4');
-    ApiResponse responseModel = await _loginRepo.registerRepo(phoneNumberController.text,phoneCode,nameController.text,File(image??''));
+    ApiResponse responseModel = await _loginRepo.registerRepo(phoneNumberController.text,phoneCode,nameController.text,image);
     print('kkkkkkkkkkk5');
-    await dialog.hide();
+    // await dialog.hide();
     if (responseModel.response != null && responseModel.response?.statusCode == 200) {
       print('kkkkkkkkkkk6');
       notifyListeners();
