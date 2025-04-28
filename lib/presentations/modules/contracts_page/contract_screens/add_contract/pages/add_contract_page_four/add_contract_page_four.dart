@@ -79,7 +79,7 @@ class _AddContractPageFourState extends State<AddContractPageFour> {
                               children: [
                                 CustomText(title: AppTranslate.plateNumber.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                                 CustomTextFormField(controller: data.cars[index].plateNumberController,
-                                  height: 56.h,textInputType: TextInputType.number,
+                                  height: 56.h,textInputType: TextInputType.text,
                                   prefix: InkWell(onTap:(){
                                     data.cars[index].plateNumberController.clear();
                                   },

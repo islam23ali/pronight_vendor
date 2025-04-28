@@ -5,12 +5,15 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/presentations/modules/add_unit_page/add_unit_view_model.dart';
 import '../../../../../../core/app_theme/app_colors.dart';
+import '../../../../../../injection.dart';
 import '../../../../../shared_widget/permission_dialog.dart';
 
 
-// LoginViewModel authProvider =getIt();
-// UpdateProfileLawyerViewModel updateProfileProvider =getIt();
+
+
 class MapLocation extends StatefulWidget {
   const MapLocation({super.key,  this.latitude,  this.longitude, this.changeLocation=true});
   final String? latitude ;
@@ -22,6 +25,8 @@ class MapLocation extends StatefulWidget {
 }
 
 class _MapLocationState extends State<MapLocation> {
+  AddUnitViewModel provider =getIt();
+
   late GoogleMapController mapController;
   LatLng currentLocation = const LatLng(0, 0);
   bool isLoading = false;
@@ -54,12 +59,11 @@ class _MapLocationState extends State<MapLocation> {
         currentLocation = newLocation;
         lat = position.latitude.toString();
         long = position.longitude.toString();
-        // authProvider.latitude=position.latitude.toString();
-        // authProvider.longitude=position.longitude.toString();
-        // authProvider.address=newLocationName;
-        // updateProfileProvider.late=position.latitude.toString();
-        // updateProfileProvider.long=position.longitude.toString();
-        // updateProfileProvider.representativeAddressController.text=newLocationName;
+
+        provider.latitude=position.latitude.toString();
+        provider.longitude=position.longitude.toString();
+        provider.address=newLocationName;
+
         print('${position.latitude}mmm${position.longitude}mmm$newLocationName');
         isLoading = false;
       });
@@ -89,12 +93,11 @@ class _MapLocationState extends State<MapLocation> {
       currentLocation = newLocation;
       lat = newLocation.latitude.toString();
       long = newLocation.longitude.toString();
-      // authProvider.latitude=newLocation.latitude.toString();
-      // authProvider.longitude=newLocation.longitude.toString();
-      // authProvider.address=newLocationName;
-      // updateProfileProvider.late=newLocation.latitude.toString();
-      // updateProfileProvider.long=newLocation.longitude.toString();
-      // updateProfileProvider.representativeAddressController.text=newLocationName;
+
+      provider.latitude=newLocation.latitude.toString();
+      provider.longitude=newLocation.longitude.toString();
+      provider.address=newLocationName;
+
       print('${newLocation.latitude}mmm${newLocation.longitude}mmm$newLocationName');
     });
   }
@@ -107,7 +110,7 @@ class _MapLocationState extends State<MapLocation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: isLoading ? const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,),):
+      body: isLoading ? Center(child: CircularProgressIndicator(color: AppColors.primaryColor,strokeWidth: 3.w),):
       GoogleMap(
         myLocationButtonEnabled: true,
         myLocationEnabled: true,
@@ -138,7 +141,7 @@ class _MapLocationState extends State<MapLocation> {
     } else if (status.isPermanentlyDenied) {
       print('Location permission permanently denied');
       showPermissionDialog('LocaleKeys.enterSiteData.tr()');
-      // await openAppSettings();
+      await openAppSettings();
     } else if (status.isRestricted) {
       // Permission is restricted (iOS only)
       if (kDebugMode) {

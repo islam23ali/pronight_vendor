@@ -7,6 +7,7 @@ import 'package:pronight_vendor/data/models/response/one_visit_permit_model.dart
 import 'package:pronight_vendor/data/models/response/sub_models/add_material.dart';
 import 'package:pronight_vendor/data/models/response/sub_models/add_visitor_model.dart';
 import 'package:pronight_vendor/data/repositories/visit_permit_repo.dart';
+import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/visit_permit_view_model.dart';
 import '../../../../../core/navigator/navigator.dart';
 import '../../../../../core/resources/app_translate.dart';
 import '../../../../../data/datasource/local/LocalUserData.dart';
@@ -43,6 +44,8 @@ class AddVisitPermitViewModel extends ChangeNotifier{
   List<AddVisitor> visitorsList = [AddVisitor(name: '', idNo: '',phoneCode:'',phone: '')];
   List<AddMaterial> materialList = [AddMaterial(name: '',qty:'' )];
 
+  bool sendClient=false;
+  bool sendProvider=false;
 
   OneVisitPermitModel? _oneVisitPermitModel;
   OneVisitPermitModel? get oneVisitPermitModel => _oneVisitPermitModel;
@@ -67,34 +70,39 @@ class AddVisitPermitViewModel extends ChangeNotifier{
     materialList.clear();
     visitorsList = [AddVisitor(name: '', idNo: '',phoneCode:'',phone: '')];
     materialList = [AddMaterial(name: '',qty:'' )];
+    sendClient=false;
+    sendProvider=false;
   }
 
   Future<void> addVisitPermit () async {
     notifyListeners();
-    AddVisitPermitBody addContractBody = AddVisitPermitBody();
-    addContractBody.visitDate=visitDateController.text;
-    addContractBody.sectorId=selectedSector?.id.toString();
-    addContractBody.villaId=selectedVilla?.id.toString();
-    addContractBody.beachId=selectedBeach?.id.toString();
-    addContractBody.daysCount=numberOfDaysController.text;
-    addContractBody.status=permitStatusController.text;
-    addContractBody.driverName=driverNameController.text;
-    addContractBody.note=detailsController.text;
-    addContractBody.visitorsSwitch=(isSwitchVisitors==true)?1.toString():0.toString();
-    addContractBody.materialsSwitch=(isSwitchMaterials==true)?1.toString():0.toString();
-    addContractBody.visitor=visitorsList;
-    addContractBody.material=materialList;
+    AddVisitPermitBody addVisitPermitBody = AddVisitPermitBody();
+    addVisitPermitBody.visitDate=visitDateController.text;
+    addVisitPermitBody.sectorId=selectedSector?.id.toString();
+    addVisitPermitBody.villaId=selectedVilla?.id.toString();
+    addVisitPermitBody.beachId=selectedBeach?.id.toString();
+    addVisitPermitBody.daysCount=numberOfDaysController.text;
+    addVisitPermitBody.status=permitStatusController.text;
+    addVisitPermitBody.driverName=driverNameController.text;
+    addVisitPermitBody.note=detailsController.text;
+    addVisitPermitBody.visitorsSwitch=(isSwitchVisitors==true)?1.toString():0.toString();
+    addVisitPermitBody.materialsSwitch=(isSwitchMaterials==true)?1.toString():0.toString();
+    addVisitPermitBody.visitor=visitorsList;
+    addVisitPermitBody.material=materialList;
+    addVisitPermitBody.sendClient=sendClient;
+    addVisitPermitBody.sendProvider=sendProvider;
 
 
     ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.addVisitPermit.tr()} ...");
     await dialog.show();
-    ApiResponse responseModel = await _visitPermitRepo.addVisitPermitRepo(addContractBody);
+    ApiResponse responseModel = await _visitPermitRepo.addVisitPermitRepo(addVisitPermitBody);
     await dialog.hide();
     if (responseModel.response != null && responseModel.response?.statusCode == 200) {
       _oneVisitPermitModel = OneVisitPermitModel.fromJson(responseModel.response?.data);
       notifyListeners();
       if (_oneVisitPermitModel != null && _oneVisitPermitModel?.code == 200) {
-        // ContractViewModel contractProvider =getIt();
+        VisitPermitViewModel visitPermitProvider =getIt();
+        visitPermitProvider.initVisitPermit();
         NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 1));
         // contractProvider.isContract=1;
         // await contractProvider.pageController.animateToPage(contractProvider.isContract,

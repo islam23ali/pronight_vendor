@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/presentations/components/inputs/custom_text_form_area.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../../core/dimens/dimens.dart';
@@ -22,11 +23,7 @@ class AddUnitPageOne extends StatefulWidget {
 }
 
 class _AddUnitPageOneState extends State<AddUnitPageOne> {
-TextEditingController arabicUnitNameController =TextEditingController();
-TextEditingController englishUnitNameController =TextEditingController();
-TextEditingController unitPriceController =TextEditingController();
-TextEditingController arabicUnitDescriptionController =TextEditingController();
-TextEditingController englishUnitDescriptionController =TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -60,10 +57,14 @@ TextEditingController englishUnitDescriptionController =TextEditingController();
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: AppTranslate.unitNameArabic.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        CustomTextFormField(controller: arabicUnitNameController,
+                        CustomTextFormField(controller: data.arabicUnitNameController,
                           height: 60.h,textInputType: TextInputType.name,
                           inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[\u0600-\u06FF\s]'))],
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                          prefix: InkWell(
+                              onTap: (){
+                                data.arabicUnitNameController.clear();
+                              },
+                              child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                         )
                       ],
                     ),
@@ -71,10 +72,14 @@ TextEditingController englishUnitDescriptionController =TextEditingController();
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: AppTranslate.unitNameEnglish.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        CustomTextFormField(controller: englishUnitNameController,
+                        CustomTextFormField(controller: data.englishUnitNameController,
                           height: 60.h,textInputType: TextInputType.name,
                           inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                          prefix: InkWell(
+                              onTap: (){
+                                data.englishUnitNameController.clear();
+                              },
+                              child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                         )
                       ],
                     ),
@@ -82,10 +87,14 @@ TextEditingController englishUnitDescriptionController =TextEditingController();
                 Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: AppTranslate.thePrice.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        CustomTextFormField(controller: unitPriceController,
+                        CustomTextFormField(controller: data.unitPriceController,
                           height: 60.h,textInputType: TextInputType.number,
                           // inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                          prefix: InkWell(
+                              onTap: (){
+                                data.unitPriceController.clear();
+                              },
+                              child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                         )
                       ],
                     ),
@@ -93,10 +102,14 @@ TextEditingController englishUnitDescriptionController =TextEditingController();
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: AppTranslate.descriptionArabic.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        CustomTextFormField(controller: arabicUnitDescriptionController,
+                        CustomTextFormField(controller: data.arabicUnitDescriptionController,
                           height: 60.h,textInputType: TextInputType.name,
                           inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[\u0600-\u06FF\s]'))],
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                          prefix: InkWell(
+                              onTap: (){
+                                data.arabicUnitDescriptionController.clear();
+                              },
+                              child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                         )
                       ],
                     ),
@@ -104,10 +117,27 @@ TextEditingController englishUnitDescriptionController =TextEditingController();
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: AppTranslate.descriptionEnglish.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        CustomTextFormField(controller: englishUnitDescriptionController,
+                        CustomTextFormField(controller: data.englishUnitDescriptionController,
                           height: 60.h,textInputType: TextInputType.name,
                           inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                          prefix: InkWell(
+                              onTap: (){
+                                data.englishUnitDescriptionController.clear();
+                              },
+                              child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 20.h),
+                    Column(crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomText(title: AppTranslate.comments.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                        CustomTextFormFieldArea(controller: data.notesController,
+                          height: 100.h,
+                          borderColor: Colors.transparent,
+                          prefix: InkWell(
+                              onTap: (){data.notesController.clear();},
+                              child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                         )
                       ],
                     ),

@@ -21,4 +21,5 @@ class AppUrls {
 
   static String allUnitsUrl = "/provider/units?limit=";
   static String oneUnitsUrl = "/provider/unit/";
+  static String citiesUrl = "/provider/cities";
 }

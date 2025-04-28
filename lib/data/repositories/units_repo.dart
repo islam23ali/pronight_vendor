@@ -34,4 +34,13 @@ class UnitsRepo {
     }
   }
 
+  Future<ApiResponse> citiesRepo () async {
+    try {
+      Response response = await _dioClient.get(AppUrls.citiesUrl);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
 }

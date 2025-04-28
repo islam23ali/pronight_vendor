@@ -38,7 +38,7 @@ class _CustomMapPageTwoState extends State<CustomMapPageTwo> {
                   height: 220.h,
                   width: 319.w,
                   color: AppColors.secondColor,
-                  child:  MapLocation(changeLocation: true,latitude: '98643665', longitude: '27765437'),
+                  child:  MapLocation(),
                 )),
             Positioned(
                 bottom: 20,

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/data/models/response/cities_model.dart';
 import 'package:pronight_vendor/presentations/modules/add_unit_page/pages/add_unit_page_two/widgets/custom_map_pageTwo.dart';
 import 'package:pronight_vendor/presentations/modules/add_unit_page/pages/add_unit_page_two/widgets/custom_map_widget.dart';
 import 'package:pronight_vendor/presentations/modules/add_unit_page/pages/add_unit_page_two/widgets/up_load_main_image.dart';
@@ -91,14 +92,13 @@ class _AddUnitPageTwoState extends State<AddUnitPageTwo> {
                           children: [
                             CustomCityDropdownButton(
                               color: AppColors.darkColor,
-                              items: data.cityList ?? [],
-                              value: data.value,
-                              onChanged: (String? newValue) {
+                              items: data.citiesModel?.data ?? [],
+                              value: data.selectedCity,
+                              onChanged: (OneCity? newValue) {
                                 setState(() {
-                                  data.value = newValue;
+                                  data.selectedCity = newValue;
                                 });
-                              },
-                            ),
+                              }),
                             Container(
                               height: 2.h,
                               width: 300,

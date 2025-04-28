@@ -16,7 +16,7 @@
         android:label="PRONIGHT INVESTOR"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDSZbOQpidDNSgyZhudRZbcSjVw87w8v6A"/>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBJ4shhmSia3lS_qlIeueaCeYBg7-LUiF4"/>
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"

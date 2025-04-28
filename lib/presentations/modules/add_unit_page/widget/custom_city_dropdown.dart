@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/resources/app_assets.dart';
+import 'package:pronight_vendor/data/models/response/cities_model.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
 import '../../../../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../../../../core/dimens/dimens.dart';
@@ -12,8 +13,8 @@ import '../../../components/custom_text/custom_text.dart';
 
 /// CustomDropdownButton
 class CustomCityDropdownButton extends StatefulWidget {
-  final List<String> items;
-  final String? value;
+  final List<OneCity> items;
+  final OneCity? value;
   final Color? color;
   final Color? fontColor;
   final Color? iconEnabledColor;
@@ -24,9 +25,9 @@ class CustomCityDropdownButton extends StatefulWidget {
   final Widget? hint;
   final TextStyle? textStyle;
   final bool? isCenter;
-  final String? selectedCity;
+  final OneCity? selectedCity;
 
-  final  Function(String?) onChanged;
+  final  Function(OneCity?) onChanged;
 
 
   const CustomCityDropdownButton({super.key,
@@ -53,7 +54,7 @@ class _CustomCityDropdownButtonState extends State<CustomCityDropdownButton> {
       width: widget.width,
       height:60.h ,
       child: DropdownButtonHideUnderline(
-        child: DropdownButton2<String>(
+        child: DropdownButton2<OneCity>(
           isExpanded: true,
           underline:Container(height: 20.h,width: 300.w,color: Colors.black,),
           isDense: true,
@@ -63,10 +64,10 @@ class _CustomCityDropdownButtonState extends State<CustomCityDropdownButton> {
             children: [
               CustomSvgIcon(assetName: AppAssets.clearField,width: 18.23.w,height: 16.h,),
               SizedBox(width: 10.w),
-              CustomText(title:widget.value?? AppTranslate.choose.tr(),fontWeight: FontWeight.normal,fontColor: widget.color?? AppColors.darkColor,fontSize: AppFonts.font_14)
+              CustomText(title:widget.value?.title?? AppTranslate.choose.tr(),fontWeight: FontWeight.normal,fontColor: widget.color?? AppColors.darkColor,fontSize: AppFonts.font_14)
             ],
           ),
-          items: widget.items.map((String item) => DropdownMenuItem<String>(
+          items: widget.items.map((OneCity item) => DropdownMenuItem<OneCity>(
             value: item,
             child:Column(
               mainAxisSize: MainAxisSize.min,
@@ -77,7 +78,7 @@ class _CustomCityDropdownButtonState extends State<CustomCityDropdownButton> {
                     // CustomSvgIcon(assetName: AppAssets.reportIcon,width: 24.w,height: 24.w),
                     Padding(
                       padding:  EdgeInsets.symmetric(horizontal: Dimens.padding_12),
-                      child: CustomText(title:item ,fontWeight: FontWeight.normal,fontColor: AppColors.darkColor,fontSize: AppFonts.font_14,),
+                      child: CustomText(title:item.title??'' ,fontWeight: FontWeight.normal,fontColor: AppColors.darkColor,fontSize: AppFonts.font_14,),
                     ),
                   ],
                 ),

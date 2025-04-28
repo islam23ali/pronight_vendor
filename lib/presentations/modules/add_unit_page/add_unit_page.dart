@@ -10,6 +10,7 @@ import 'package:pronight_vendor/presentations/modules/add_unit_page/pages/add_un
 import 'package:pronight_vendor/presentations/modules/add_unit_page/widget/custom_add_unit_status.dart';
 import 'package:provider/provider.dart';
 import '../../../../../core/resources/font_size.dart';
+import '../../../injection.dart';
 import '../../components/custom_app_bar/custom_app_bar.dart';
 import '../../components/custom_scaffold/custom_scaffold.dart';
 import 'add_unit_view_model.dart';
@@ -22,6 +23,12 @@ class AddUnit extends StatefulWidget {
 }
 
 class _AddUnitState extends State<AddUnit> {
+  AddUnitViewModel provider = getIt();
+  @override
+  void initState() {
+    super.initState();
+    provider.initAddUnit();
+  }
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -39,6 +46,7 @@ class _AddUnitState extends State<AddUnit> {
                 SizedBox(height: 10.h),
                 Expanded(
                   child: PageView(
+                    physics:const NeverScrollableScrollPhysics(),
                       controller: data.pageController,
                       onPageChanged: (index) {
                         setState(() {

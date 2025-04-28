@@ -31,6 +31,9 @@ class VisitPermitRepo {
       body["driver_name"] = addVisitPermitBody.driverName;
       body["visitors_switch"] = addVisitPermitBody.visitorsSwitch;
       body["materials_switch"] = addVisitPermitBody.materialsSwitch;
+      body["send_client"] = addVisitPermitBody.sendClient;
+      body["send_provider"] = addVisitPermitBody.sendProvider;
+
       if(addVisitPermitBody.note!=null||addVisitPermitBody.note!='')body['note']=addVisitPermitBody.note;
       if(addVisitPermitBody.visitorsSwitch=='1')
       for (int e = 0; e < (addVisitPermitBody.visitor??[]).length; e++) {
