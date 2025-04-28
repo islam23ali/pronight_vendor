@@ -24,7 +24,6 @@ class AddUnitPageThree extends StatefulWidget {
 }
 
 class _AddUnitPageThreeState extends State<AddUnitPageThree> {
-  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -80,10 +79,15 @@ class _AddUnitPageThreeState extends State<AddUnitPageThree> {
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: AppTranslate.maximumNumberOfAdults.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        CustomTextFormField(controller: data.arrivalDateController,
+                        CustomTextFormField(controller: data.maxAdultsController,
                           height: 60.h,textInputType: TextInputType.number,
                           // inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                          prefix: InkWell(
+                              onTap: (){
+                                data.maxAdultsController.clear();
+                                data.refreshData();
+                              },
+                              child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                         )
                       ],
                     ),
@@ -91,10 +95,15 @@ class _AddUnitPageThreeState extends State<AddUnitPageThree> {
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: AppTranslate.pricePerAdult.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        CustomTextFormField(controller: data.arrivalDateController,
+                        CustomTextFormField(controller: data.pricePerAdultController,
                           height: 60.h,textInputType: TextInputType.number,
                           // inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                          prefix: InkWell(
+                              onTap: (){
+                                data.pricePerAdultController.clear();
+                                data.refreshData();
+                              },
+                              child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                         )
                       ],
                     ),
@@ -102,10 +111,15 @@ class _AddUnitPageThreeState extends State<AddUnitPageThree> {
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: AppTranslate.maximumNumberOfChildren.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        CustomTextFormField(controller: data.arrivalDateController,
+                        CustomTextFormField(controller: data.maxChildrenController,
                           height: 60.h,textInputType: TextInputType.number,
                           // inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                          prefix: InkWell(
+                              onTap: (){
+                                data.maxChildrenController.clear();
+                                data.refreshData();
+                              },
+                              child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                         )
                       ],
                     ),
@@ -113,10 +127,15 @@ class _AddUnitPageThreeState extends State<AddUnitPageThree> {
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: AppTranslate.pricePerChild.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        CustomTextFormField(controller: data.arrivalDateController,
+                        CustomTextFormField(controller: data.pricePerChildController,
                           height: 60.h,textInputType: TextInputType.number,
                           // inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
-                          prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                          prefix: InkWell(
+                              onTap: (){
+                                data.pricePerChildController.clear();
+                                data.refreshData();
+                              },
+                              child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                         )
                       ],
                     ),

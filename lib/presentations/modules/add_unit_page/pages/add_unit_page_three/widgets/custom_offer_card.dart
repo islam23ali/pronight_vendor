@@ -30,16 +30,21 @@ class _CustomOfferCardState extends State<CustomOfferCard> {
           Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(title: AppTranslate.showStartDate.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-              CustomTextFormField(controller: data.exitDateController,readOnly: true,
+              CustomTextFormField(controller: data.startDateOfferController,readOnly: true,
                 onTap: (){
                   showDialog<String>(
                       context: context,
                       builder: (BuildContext context) =>
-                          CustomSelectDate(onDateSelected: (String value) {data.exitDateController.text=value;},));
+                          CustomSelectDate(onDateSelected: (String value) {data.startDateOfferController.text=value;},));
                 },
                 height: 60.h,textInputType: TextInputType.number,
                 suffix: CustomSvgIcon(assetName: AppAssets.date,color: Colors.black.withAlpha((0.50*244).round()),),
-                prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                prefix: InkWell(
+                    onTap: (){
+                      data.startDateOfferController.clear();
+                      data.refreshData();
+                    },
+                    child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
               )
             ],
           ),
@@ -47,16 +52,21 @@ class _CustomOfferCardState extends State<CustomOfferCard> {
           Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(title: AppTranslate.offerExpirationDate.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-              CustomTextFormField(controller: data.exitDateController,readOnly: true,
+              CustomTextFormField(controller: data.endDateOfferController,readOnly: true,
                 onTap: (){
                   showDialog<String>(
                       context: context,
                       builder: (BuildContext context) =>
-                          CustomSelectDate(onDateSelected: (String value) {data.exitDateController.text=value;},));
+                          CustomSelectDate(onDateSelected: (String value) {data.endDateOfferController.text=value;},));
                 },
                 height: 60.h,textInputType: TextInputType.number,
                 suffix: CustomSvgIcon(assetName: AppAssets.date,color: Colors.black.withAlpha((0.50*244).round()),),
-                prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                prefix: InkWell(
+                    onTap: (){
+                      data.endDateOfferController.clear();
+                      data.refreshData();
+                    },
+                    child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
               )
             ],
           ),
@@ -72,8 +82,8 @@ class _CustomOfferCardState extends State<CustomOfferCard> {
                 children: [
                   CustomOfferTypeDropdownButton(
                     color: AppColors.darkColor,
-                    items: data.cityList ?? [],
-                    value: data.value,
+                    items: data.offerType ?? [],
+                    value: data.value?.tr(),
                     onChanged: (String? newValue) {
                       setState(() {
                         data.value = newValue;
@@ -93,10 +103,15 @@ class _CustomOfferCardState extends State<CustomOfferCard> {
           Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(title: AppTranslate.offerValue.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-              CustomTextFormField(controller: data.arrivalDateController,
+              CustomTextFormField(controller: data.offerValueController,
                 height: 60.h,textInputType: TextInputType.number,
                 // inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
-                prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
+                prefix: InkWell(
+                    onTap: (){
+                      data.offerValueController.clear();
+                      data.refreshData();
+                    },
+                    child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
               )
             ],
           ),

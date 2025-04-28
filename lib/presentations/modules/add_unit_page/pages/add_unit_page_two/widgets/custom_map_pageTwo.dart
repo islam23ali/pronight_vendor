@@ -19,7 +19,6 @@ class CustomMapPageTwo extends StatefulWidget {
 }
 
 class _CustomMapPageTwoState extends State<CustomMapPageTwo> {
-  TextEditingController mapController =TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,65 +29,14 @@ class _CustomMapPageTwoState extends State<CustomMapPageTwo> {
             fontSize: AppFonts.font_12,
             fontColor: AppColors.primaryColor),
         SizedBox(height: 20.h),
-        Stack(
-          children: [
-            ClipRRect(
-                borderRadius: BorderRadius.circular(12.r),
-                child: Container(
-                  height: 220.h,
-                  width: 319.w,
-                  color: AppColors.secondColor,
-                  child:  MapLocation(),
-                )),
-            Positioned(
-                bottom: 20,
-                left: 0,
-                right: 0,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: Dimens.padding_12h),
-                  child: Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
-                    children: [
-                      Material(
-                        elevation: 3,
-                        borderRadius:
-                        BorderRadius.circular(8.r),
-                        child: CustomTextFormField(
-                          controller: mapController,
-                          bgColor: AppColors.white,
-                          width: 248.w,
-                          height: 35.h,
-                          underLineColor: Colors.transparent,
-                          borderRaduis: 8.r,
-                          suffix: CustomSvgIcon(
-                            assetName: AppAssets.searchIcon,
-                            width: 16.w,
-                            height: 16.h,
-                          ),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: Dimens.padding_8h),
-                        ),
-                      ),
-                      Container(
-                        width: 35.w,
-                        height: 35.h,
-                        decoration: BoxDecoration(
-                            borderRadius:
-                            BorderRadius.circular(8.r),
-                            color: AppColors.primaryColor),
-                        child: Center(
-                            child: CustomSvgIcon(
-                                assetName: AppAssets.doneIcon,
-                                width: 20.5.w,
-                                height: 16.5.h)),
-                      )
-                    ],
-                  ),
-                ))
-          ],
-        )
+        ClipRRect(
+            borderRadius: BorderRadius.circular(12.r),
+            child: Container(
+              height: 220.h,
+              width: 319.w,
+              color: AppColors.secondColor,
+              child:  MapLocation(),
+            ))
       ],
     );
   }

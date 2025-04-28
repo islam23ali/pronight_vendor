@@ -1,0 +1,2 @@
+/Users/emad/StudioProjects/pronight_vendor/android/app/.cxx/Debug/4q376j2g/x86/CMakeFiles/edit_cache.dir
+/Users/emad/StudioProjects/pronight_vendor/android/app/.cxx/Debug/4q376j2g/x86/CMakeFiles/rebuild_cache.dir

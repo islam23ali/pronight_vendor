@@ -81,7 +81,7 @@ class _AddUnitPageFourState extends State<AddUnitPageFour> {
                               children: [
                                 CustomContentDropdownButton(
                                   color: AppColors.darkColor,
-                                  items: data.cityList ?? [],
+                                  items: data.offerType ?? [],
                                   value: data.value,
                                   onChanged: (String? newValue) {
                                     setState(() {
@@ -165,7 +165,7 @@ class _AddUnitPageFourState extends State<AddUnitPageFour> {
                               children: [
                                 CustomContentDropdownButton(
                                   color: AppColors.darkColor,
-                                  items: data.cityList ?? [],
+                                  items: data.offerType ?? [],
                                   value: data.value,
                                   onChanged: (String? newValue) {
                                     setState(() {
@@ -285,13 +285,13 @@ class _AddUnitPageFourState extends State<AddUnitPageFour> {
                         SizedBox(height: 10.h),
                         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              CustomText(title: AppTranslate.thereIsOffer.tr(),fontSize:AppFonts.font_15,fontColor: AppColors.primaryColor),
-                              CustomSwitch(value: data.isSwitchOffer,
+                              CustomText(title: AppTranslate.forEveryone.tr(),fontSize:AppFonts.font_15,fontColor: AppColors.primaryColor),
+                              CustomSwitch(value: data.forEveryone,
                                   activeColor: AppColors.primaryColor,
                                   inactiveColor: AppColors.gray,
                                   onChanged: (_){
                                     setState(() {
-                                      data.isSwitchOffer=!data.isSwitchOffer;
+                                      data.forEveryone=!data.forEveryone;
                                     });
                                   })
                             ]),

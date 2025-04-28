@@ -258,5 +258,8 @@
   "enterDateOfVisit":"Enter the date of the visit",
   "enterNumberOfDays":"Enter the number of days",
   "enterPermitStatus":"Enter the permit status",
-  "enterDriverName":"Enter driver's name"
+  "enterDriverName":"Enter driver's name",
+  "percentage":"percentage",
+  "fixed":"fixed",
+  "forEveryone":"For everyone"
 }

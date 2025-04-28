@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pronight_vendor/data/repositories/units_repo.dart';
 
+import '../../../core/utils/imageCroper.dart';
 import '../../../data/models/api_response.dart';
 import '../../../data/models/response/cities_model.dart';
 import '../../../injection.dart';
@@ -23,6 +26,43 @@ final UnitsRepo _unitsRepo = getIt();
 
 
 
+void pickImage() async {
+  PickImageHandler().showPickUpImageSheet(
+    true,
+        (String? path) {
+      if (path != null) {
+
+          image = path;
+    notifyListeners();
+
+      }
+    },
+    const CropAspectRatio(ratioX: 16, ratioY: 9),
+    CropAspectRatioPreset.ratio16x9,
+    true,
+  );
+}
+
+final ImagePicker imagePicker = ImagePicker();
+
+void getSupImages(ImageSource source) async {
+  final picker = ImagePicker();
+  if(source==ImageSource.camera){
+    XFile? pickedFile = await picker.pickImage(source: source);
+    if (pickedFile != null) {
+      images!.add(pickedFile);
+      notifyListeners();
+    }
+  }
+  else{
+    final List<XFile> selectedImages = await imagePicker.pickMultiImage();
+    if (selectedImages.isNotEmpty) {
+      images!.addAll(selectedImages);
+      notifyListeners();
+    }
+    print("Image List Length:${images!.length}");
+  }}
+
   //page one data ...
   TextEditingController arabicUnitNameController =TextEditingController();
   TextEditingController englishUnitNameController =TextEditingController();
@@ -35,6 +75,23 @@ final UnitsRepo _unitsRepo = getIt();
   String? latitude;
   String? longitude;
   String? address;
+  String? image;
+  List<XFile>? images = [];
+  // page three data ....
+  TextEditingController maxAdultsController =TextEditingController();
+  TextEditingController pricePerAdultController =TextEditingController();
+  TextEditingController maxChildrenController =TextEditingController();
+  TextEditingController pricePerChildController =TextEditingController();
+  bool isSwitchOffer = false;
+  TextEditingController startDateOfferController =TextEditingController();
+  TextEditingController endDateOfferController =TextEditingController();
+  List<String>? offerType = ['fixed', 'percentage'];
+  String? value;
+  TextEditingController offerValueController =TextEditingController();
+  // page four data ...
+
+  bool forEveryone = false;
+
 
 
 initAddUnit(){
@@ -46,10 +103,9 @@ initAddUnit(){
 
   TextEditingController arrivalDateController =TextEditingController();
   TextEditingController exitDateController =TextEditingController();
-  List<String>? cityList = ['القاهرة', 'المنوفية'];
-  String? value;
 
-  bool isSwitchOffer = false;
+
+
 
   bool openMaterial = true;
 

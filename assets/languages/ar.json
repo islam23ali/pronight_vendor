@@ -262,5 +262,8 @@
   "enterDateOfVisit": "أدخل تاريخ الزيارة",
   "enterNumberOfDays": "أدخل عدد الأيام",
   "enterPermitStatus": "أدخل حالة التصريح",
-  "enterDriverName": "أدخل اسم السائق"
+  "enterDriverName": "أدخل اسم السائق",
+  "percentage": "نسبة مئوية",
+  "fixed": "ثابتة",
+  "forEveryone": "لكل شخص"
 }
