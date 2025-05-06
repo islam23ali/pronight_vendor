@@ -261,5 +261,6 @@
   "enterDriverName":"Enter driver's name",
   "percentage":"percentage",
   "fixed":"fixed",
-  "forEveryone":"For everyone"
+  "forEveryone":"For everyone",
+  "completeDataFirst":"Complete the data first"
 }

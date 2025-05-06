@@ -9,12 +9,14 @@ import '../../../../../../core/dimens/dimens.dart';
 import '../../../../../../core/resources/app_assets.dart';
 import '../../../../../../core/resources/app_translate.dart';
 import '../../../../../../core/resources/font_size.dart';
+import '../../../../../../data/models/response/reports_model.dart';
 import '../../../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../../../components/custom_text/custom_text.dart';
 import '../../../../contracts_page/contract_screens/widget/payment_type_sheet.dart';
 
 class ReportDetailsScreen extends StatefulWidget {
-  const ReportDetailsScreen({super.key});
+  const ReportDetailsScreen({super.key, required this.model,});
+  final OneReport? model;
 
   @override
   State<ReportDetailsScreen> createState() => _ReportDetailsScreenState();

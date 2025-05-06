@@ -12,7 +12,7 @@ import '../../../../data/models/response/contens_model.dart';
 import '../../../components/custom_text/custom_text.dart';
 
 /// CustomDropdownButton
-class CustomContentDropdownButton extends StatefulWidget {
+class CustomFacilitiesDropdownButton extends StatefulWidget {
   final List<OneConten> items;
   final OneConten? value;
   final Color? color;
@@ -30,7 +30,7 @@ class CustomContentDropdownButton extends StatefulWidget {
   final  Function(OneConten?) onChanged;
 
 
-  const CustomContentDropdownButton({super.key,
+  const CustomFacilitiesDropdownButton({super.key,
     required this.items,
     required this.value,
     required this.onChanged,
@@ -43,10 +43,10 @@ class CustomContentDropdownButton extends StatefulWidget {
   });
 
   @override
-  State<CustomContentDropdownButton> createState() => _CustomContentDropdownButtonState();
+  State<CustomFacilitiesDropdownButton> createState() => _CustomFacilitiesDropdownButtonState();
 }
 
-class _CustomContentDropdownButtonState extends State<CustomContentDropdownButton> {
+class _CustomFacilitiesDropdownButtonState extends State<CustomFacilitiesDropdownButton> {
 
   @override
   Widget build(BuildContext context) {

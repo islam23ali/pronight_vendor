@@ -43,4 +43,24 @@ class UnitsRepo {
     }
   }
 
+
+  Future<ApiResponse> contentsRepo () async {
+    try {
+      Response response = await _dioClient.get(AppUrls.contentsUrl);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
+
+  Future<ApiResponse> facilitiesRepo () async {
+    try {
+      Response response = await _dioClient.get(AppUrls.facilitiesUrl);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
 }

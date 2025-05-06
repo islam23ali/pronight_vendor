@@ -255,6 +255,7 @@ class AppTranslate{
   static const String renterCarDataRequired = 'renterCarDataRequired' ;
   static const String days = 'days' ;
   static const String forEveryone = 'forEveryone' ;
+  static const String completeDataFirst = 'completeDataFirst' ;
 
 
 

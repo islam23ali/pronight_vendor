@@ -8,6 +8,8 @@ import 'package:pronight_vendor/data/repositories/units_repo.dart';
 import '../../../core/utils/imageCroper.dart';
 import '../../../data/models/api_response.dart';
 import '../../../data/models/response/cities_model.dart';
+import '../../../data/models/response/contens_model.dart';
+import '../../../data/models/response/sub_models/add_unit_content_model.dart';
 import '../../../injection.dart';
 import '../../components/loadings/custom_scaffold_messanger.dart';
 
@@ -19,9 +21,13 @@ final UnitsRepo _unitsRepo = getIt();
 
 
    CitiesModel? _citiesModel;
+   ContentsModel? _contentsModel;
+   ContentsModel? _facilitiesModel;
    bool? _isLoading = false;
 
    CitiesModel? get citiesModel => _citiesModel;
+   ContentsModel? get contentsModel => _contentsModel;
+   ContentsModel? get facilitiesModel => _facilitiesModel;
    bool? get isLoading => _isLoading;
 
 
@@ -91,13 +97,19 @@ void getSupImages(ImageSource source) async {
   // page four data ...
 
   bool forEveryone = false;
-
+  List<AddContent> contentList=[AddContent(unitMainContentId: -1, value: '')];
+  OneConten? selectedContent;
+  OneConten? selectedFacilities;
 
 
 initAddUnit(){
 
   selectedCity=null;
+  selectedContent=null;
+  selectedFacilities=null;
   getAllCities();
+  getAllContents();
+  getAllFacilities();
   notifyListeners();
 }
 
@@ -131,6 +143,54 @@ initAddUnit(){
         }
       } else{
         CustomScaffoldMessanger.showToast(title: _citiesModel?.message??'');
+      }
+      notifyListeners();
+    }
+    else {
+      CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+    }
+    notifyListeners();
+  }
+
+  Future<void> getAllContents () async {
+    _isLoading = true;
+    notifyListeners();
+    ApiResponse responseModel = await _unitsRepo.contentsRepo();
+
+    if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+      _contentsModel = ContentsModel.fromJson(responseModel.response?.data);
+      _isLoading = false;
+      notifyListeners();
+      if (_contentsModel != null && _contentsModel?.code == 200) {
+        if(kDebugMode){
+          CustomScaffoldMessanger.showToast(title: _contentsModel?.message??'');
+        }
+      } else{
+        CustomScaffoldMessanger.showToast(title: _contentsModel?.message??'');
+      }
+      notifyListeners();
+    }
+    else {
+      CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+    }
+    notifyListeners();
+  }
+
+  Future<void> getAllFacilities () async {
+    _isLoading = true;
+    notifyListeners();
+    ApiResponse responseModel = await _unitsRepo.facilitiesRepo();
+
+    if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+      _facilitiesModel = ContentsModel.fromJson(responseModel.response?.data);
+      _isLoading = false;
+      notifyListeners();
+      if (_facilitiesModel != null && _facilitiesModel?.code == 200) {
+        if(kDebugMode){
+          CustomScaffoldMessanger.showToast(title: _facilitiesModel?.message??'');
+        }
+      } else{
+        CustomScaffoldMessanger.showToast(title: _facilitiesModel?.message??'');
       }
       notifyListeners();
     }

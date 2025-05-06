@@ -5,6 +5,7 @@ import 'package:pronight_vendor/presentations/modules/contracts_page/contract_sc
 import 'package:pronight_vendor/presentations/modules/contracts_page/contracts_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/add_visit_permit_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/visit_permit_view_model.dart';
+import 'package:pronight_vendor/presentations/modules/home_page/home_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/change_language/language_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/unit_images_page/unit_image_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/units_page/unit_details/one_unit_view_model.dart';
@@ -34,6 +35,7 @@ class GenerateMultiProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => getIt<UnitsViewModel>()),
         ChangeNotifierProvider(create: (_) => getIt<OneUnitViewModel>()),
         ChangeNotifierProvider(create: (_) => getIt<VisitPermitViewModel>()),
+        ChangeNotifierProvider(create: (_) => getIt<HomeViewModel>()),
       ],
       child: child,
     );
