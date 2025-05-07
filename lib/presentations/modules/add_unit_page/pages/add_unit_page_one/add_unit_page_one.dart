@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/presentations/components/inputs/custom_text_form_area.dart';
+import 'package:pronight_vendor/presentations/components/loadings/custom_scaffold_messanger.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../../core/dimens/dimens.dart';
@@ -99,6 +100,21 @@ class _AddUnitPageOneState extends State<AddUnitPageOne> {
                       ],
                     ),
                     SizedBox(height: 20.h),
+                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomText(title: AppTranslate.area.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                        CustomTextFormField(controller: data.unitAreaController,
+                          height: 60.h,textInputType: TextInputType.number,
+                          // inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
+                          prefix: InkWell(
+                              onTap: (){
+                                data.unitAreaController.clear();
+                              },
+                              child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 20.h),
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: AppTranslate.descriptionArabic.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
@@ -143,9 +159,22 @@ class _AddUnitPageOneState extends State<AddUnitPageOne> {
                     ),
                     SizedBox(height: 20.h),
                     CustomButton(onTap: (){
-                      setState(() {
+                      if(data.arabicUnitNameController.text.isEmpty){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.nameAr.tr());
+                      }else if(data.englishUnitNameController.text.isEmpty){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.nameEn.tr());
+                      }else if(data.unitPriceController.text.isEmpty){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.enterUnitPrice.tr());
+                      }else if(data.unitAreaController.text.isEmpty){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.enterUnitArea.tr());
+                      }else if(data.arabicUnitDescriptionController.text.isEmpty){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.desAr.tr());
+                      }else if(data.englishUnitDescriptionController.text.isEmpty){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.desEn.tr());
+                      }else{
                         data.currentPage=1;
-                      });
+                        data.refreshData();
+
                       // _pageController.animateToPage(
                       //   1,
                       //   duration: const Duration(milliseconds: 300),
@@ -153,7 +182,7 @@ class _AddUnitPageOneState extends State<AddUnitPageOne> {
                       // );
                       data.pageController.animateToPage(data.currentPage,
                           duration: const Duration(seconds: 1),
-                          curve: Curves.easeInOut);
+                          curve: Curves.easeInOut);}
                     },title: AppTranslate.next.tr(),)
                   ],)
                 ],

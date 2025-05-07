@@ -25,7 +25,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
     return CustomScaffold(
       backgroundColor: const Color(0xffF6FFFA),
       systemNavigationBarColor: const Color(0xffF6FFFA),
-      appBar: CustomAppBar(title: 'Reservation Details',height: 64.h,bgColor: const Color(0xffF6FFFA),statusBarColor: const Color(0xffF6FFFA)),
+      appBar: CustomAppBar(title: AppTranslate.reservationDetails.tr(),height: 64.h,bgColor: const Color(0xffF6FFFA),statusBarColor: const Color(0xffF6FFFA)),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: Dimens.padding_24h,vertical: Dimens.padding_12),
         child:  Container(

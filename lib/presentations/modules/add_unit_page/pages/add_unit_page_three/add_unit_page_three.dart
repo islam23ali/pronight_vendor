@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/presentations/components/loadings/custom_scaffold_messanger.dart';
 import 'package:pronight_vendor/presentations/modules/add_unit_page/pages/add_unit_page_three/widgets/custom_offer_card.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../../core/app_theme/app_colors.dart';
@@ -154,21 +155,58 @@ class _AddUnitPageThreeState extends State<AddUnitPageThree> {
                         ]),
                     data.isSwitchOffer?const CustomOfferCard():const SizedBox(),
                     SizedBox(height: 40.h),
-                    CustomButton(
-                      onTap: () {
-                        setState(() {
-                          data.currentPage = 3;
-                        });
-                        // _pageController.animateToPage(
-                        //   1,
-                        //   duration: const Duration(milliseconds: 300),
-                        //   curve: Curves.easeInOut,
-                        // );
-                        data.pageController.animateToPage(data.currentPage,
-                            duration: const Duration(seconds: 1),
-                            curve: Curves.easeInOut);
-                      },
-                      title: AppTranslate.next.tr(),
+                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomButton(width: 150.w,
+                          bg: AppColors.white,fontColor: AppColors.primaryColor,
+                          borderColor: AppColors.primaryColor,
+                          onTap: () {
+                            setState(() {
+                              data.currentPage = 2;
+                            });
+                            data.pageController.previousPage(
+                                duration: const Duration(seconds: 1),
+                                curve: Curves.easeInOut);
+                          },
+                          title: AppTranslate.previous.tr(),
+                        ),
+                        CustomButton(width: 150.w,
+                          onTap: () {
+                          if(data.maxAdultsController.text.isEmpty){
+                            CustomScaffoldMessanger.showToast(title: AppTranslate.maxNumAdults.tr());
+                          }else if(data.pricePerAdultController.text.isEmpty){
+                            CustomScaffoldMessanger.showToast(title: AppTranslate.enterAdultsPrice.tr());
+                          }else if(data.maxChildrenController.text.isEmpty){
+                            CustomScaffoldMessanger.showToast(title: AppTranslate.maxNumChildren.tr());
+                          }else if(data.pricePerChildController.text.isEmpty){
+                            CustomScaffoldMessanger.showToast(title: AppTranslate.enterChildPrice.tr());
+                          }else if(data.isSwitchOffer==true){
+                            if(data.startDateOfferController.text.isEmpty){
+                            CustomScaffoldMessanger.showToast(title: AppTranslate.enterOfferStartDate.tr());
+                            }else if(data.endDateOfferController.text.isEmpty){
+                              CustomScaffoldMessanger.showToast(title: AppTranslate.enterOfferEndDate.tr());
+                            }else if(data.offerValue==''||data.offerValue==null){
+                              CustomScaffoldMessanger.showToast(title: AppTranslate.selectOfferType.tr());
+                            }else if(data.offerValueController.text.isEmpty){
+                              CustomScaffoldMessanger.showToast(title: AppTranslate.enterOfferValue.tr());
+                            }else{
+                              data.currentPage = 3;
+                              data.refreshData();
+                              data.pageController.animateToPage(data.currentPage,
+                                  duration: const Duration(seconds: 1),
+                                  curve: Curves.easeInOut);
+                            }
+
+                          }else{
+                              data.currentPage = 3;
+                              data.refreshData();
+                            data.pageController.animateToPage(data.currentPage,
+                                duration: const Duration(seconds: 1),
+                                curve: Curves.easeInOut);}
+                          },
+                          title: AppTranslate.next.tr(),
+                        ),
+                      ],
                     )
                   ],
                 )

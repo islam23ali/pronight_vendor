@@ -31,6 +31,10 @@ class Data {
   Provider? provider;
   String? title;
   String? desc;
+  String? note;
+  num? area;
+  num? maxAdultCount;
+  num? maxChildCount;
   bool? isConfirmed;
   bool? isAccepted;
   String? image;
@@ -61,6 +65,10 @@ class Data {
     this.provider,
     this.title,
     this.desc,
+    this.note,
+    this.area,
+    this.maxAdultCount,
+    this.maxChildCount,
     this.isConfirmed,
     this.isAccepted,
     this.image,
@@ -92,6 +100,10 @@ class Data {
     provider: json["provider"] == null ? null : Provider.fromJson(json["provider"]),
     title: json["title"],
     desc: json["desc"],
+    note: json["note"],
+    area: json["area"],
+    maxAdultCount: json["max_adult_count"],
+    maxChildCount: json["max_child_count"],
     isConfirmed: json["is_confirmed"],
     isAccepted: json["is_accepted"],
     image: json["image"],
@@ -123,6 +135,10 @@ class Data {
     "provider": provider?.toJson(),
     "title": title,
     "desc": desc,
+    "note": note,
+    "area": area,
+    "max_adult_count": maxAdultCount,
+    "max_child_count": maxChildCount,
     "is_confirmed": isConfirmed,
     "is_accepted": isAccepted,
     "image": image,
@@ -211,6 +227,26 @@ class City {
   };
 }
 
+class OneUnitImage {
+  int? id;
+  String? image;
+
+  OneUnitImage({
+    this.id,
+    this.image,
+  });
+
+  factory OneUnitImage.fromJson(Map<String, dynamic> json) => OneUnitImage(
+    id: json["id"],
+    image: json["image"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "image": image,
+  };
+}
+
 class Provider {
   int? id;
   String? name;
@@ -248,24 +284,5 @@ class Provider {
     "phone_code": phoneCode,
     "image": image,
     "token": token,
-  };
-}
-class OneUnitImage {
-  int? id;
-  String? image;
-
-  OneUnitImage({
-    this.id,
-    this.image,
-  });
-
-  factory OneUnitImage.fromJson(Map<String, dynamic> json) => OneUnitImage(
-    id: json["id"],
-    image: json["image"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "image": image,
   };
 }

@@ -6,6 +6,9 @@ import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/core/resources/app_translate.dart';
 import 'package:pronight_vendor/data/models/response/contens_model.dart';
 import 'package:pronight_vendor/data/models/response/sub_models/add_unit_content_model.dart';
+import 'package:pronight_vendor/presentations/modules/add_unit_page/pages/add_unit_page_four/widget/additional_service.dart';
+import 'package:pronight_vendor/presentations/modules/add_unit_page/pages/add_unit_page_four/widget/content_card.dart';
+import 'package:pronight_vendor/presentations/modules/add_unit_page/pages/add_unit_page_four/widget/facilities_card.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../../core/dimens/dimens.dart';
@@ -46,341 +49,48 @@ class _AddUnitPageFourState extends State<AddUnitPageFour> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  // height: 31.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Dimens.padding_8),
-                        color: const Color(0xffF0FAFF),
-                        border: Border.all(
-                            width: 1.w, color: const Color(0xffFFF9DC))),
-                    padding: EdgeInsets.symmetric(
-                        vertical: Dimens.padding_12v,
-                        horizontal: Dimens.padding_24h),
-                    child: Row(
-                      children: [
-                        CustomSvgIcon(
-                            assetName: AppAssets.reportDetails,
-                            width: 18.w,
-                            height: 18.h),
-                        SizedBox(width: 16.w),
-                        CustomText(
-                          title: AppTranslate.unitContents.tr(),
-                          fontSize: AppFonts.font_12,
-                        ),
-                      ],
-                    )),
-                ListView.builder(
-                  itemCount: data.contentList.length,
-                    physics:const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context,index){
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(12.r),
-                        child: Column(children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(
-                                  title: AppTranslate.selectContent.tr(),
-                                  fontSize: AppFonts.font_12,
-                                  fontColor: AppColors.primaryColor),
-                              Column(
-                                children: [
-                                  CustomContentDropdownButton(
-                                    color: AppColors.darkColor,
-                                    items: data.contentsModel?.data ?? [],
-                                    value: data.selectedContent,
-                                    onChanged: (OneConten? newValue) {
-                                      setState(() {
-                                        data.selectedContent = newValue;
-                                        data.refreshData();
-                                        data.contentList[index].oneContent=data.selectedContent!;
-                                        data.refreshData();
-                                      });
-                                    },
-                                  ),
-                                  Container(
-                                    height: 2.h,
-                                    width: 300,
-                                    color: Colors.grey.shade400,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 20.h),
-                          Column(crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(title: AppTranslate.value.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                              CustomTextFormField(controller: data.contentList[index].theValue,
-                                height: 60.h,textInputType: TextInputType.number,
-                                prefix: InkWell(
-                                    onTap:(){
-                                      data.contentList[index].theValue.clear();
-                                      data.refreshData();
-                                    },
-                                    child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
-                              )
-                            ],
-                          ),
-                          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const SizedBox(),
-                              if(data.contentList.last==data.contentList[index]) (data.contentList.first!=data.contentList[index])?const SizedBox():
-                              InkWell(
-                                  onTap: (){
-                                    if(data.contentList[index].oneContent.id==null||data.contentList[index].theValue.text.isEmpty){
-                                    CustomScaffoldMessanger.showToast(title: AppTranslate.completeDataFirst.tr());
-                                    }else{
-                                    data.contentList.add(AddContent(unitMainContentId: -1, value: ''));
-                                    data.refreshData();}
-                                    },
-                                  child: CustomSvgIcon(assetName: AppAssets.addVisitor,width: 30.w,height: 30.w,)),
-
-                            ],
-                          ),
-                          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const SizedBox(),
-                              (data.contentList.first==data.contentList[index])?const SizedBox():
-                              Row(
-                                children: [
-                                  if(data.contentList.last==data.contentList[index])
-                                    InkWell(
-                                        onTap: (){
-                                          if(data.contentList[index].oneContent.id==null||data.contentList[index].theValue.text.isEmpty){
-                                            CustomScaffoldMessanger.showToast(title: AppTranslate.completeDataFirst.tr());
-                                          }else{
-                                            data.contentList.add(AddContent(unitMainContentId: -1, value: ''));
-                                            data.refreshData();}
-                                        },
-                                        child: CustomSvgIcon(assetName: AppAssets.addVisitor,width: 30.w,height: 30.w,)),
-                                  SizedBox(width: 5.w),
-                                  (data.contentList.first==data.contentList[index])?const SizedBox():InkWell(
-                                      onTap: (){
-                                        data.contentList.removeAt(index);
-                                        data.refreshData();
-                                      },
-                                      child: CustomSvgIcon(assetName: AppAssets.deleteVisitor,width: 30.w,height: 30.w,)),
-                                ],
-                              ),
-
-                            ],
-                          ),
-
-
-                        ],),
-                      )
-                    ],
-                  );
-                }),
-                ListView.builder(
-                  itemCount: 1,
-                    physics:const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context,index){
-                  return Column(
-                    children: [
-                      Container(
-                        // height: 31.h,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(Dimens.padding_8),
-                              color: const Color(0xffF0FAFF),
-                              border: Border.all(
-                                  width: 1.w, color: const Color(0xffFFF9DC))),
-                          padding: EdgeInsets.symmetric(
-                              vertical: Dimens.padding_12v,
-                              horizontal: Dimens.padding_24h),
-                          child: Row(
-                            children: [
-                              CustomSvgIcon(
-                                  assetName: AppAssets.reportDetails,
-                                  width: 18.w,
-                                  height: 18.h),
-                              SizedBox(width: 16.w),
-                              CustomText(
-                                title: AppTranslate.unitFacilities.tr(),
-                                fontSize: AppFonts.font_12,
-                              ),
-                            ],
-                          )),
-                      Padding(
-                        padding: EdgeInsets.all(12.r),
-                        child: Column(children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(
-                                  title: AppTranslate.selectAttachment.tr(),
-                                  fontSize: AppFonts.font_12,
-                                  fontColor: AppColors.primaryColor),
-                              Column(
-                                children: [
-                                  CustomFacilitiesDropdownButton(
-                                    color: AppColors.darkColor,
-                                    items: data.facilitiesModel?.data ?? [],
-                                    value: data.selectedFacilities,
-                                    onChanged: (OneConten? newValue) {
-                                      setState(() {
-                                        data.selectedFacilities = newValue;
-                                        data.refreshData();
-                                      });
-                                    },
-                                  ),
-                                  Container(
-                                    height: 2.h,
-                                    width: 300,
-                                    color: Colors.grey.shade400,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 20.h),
-                          Column(crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(title: AppTranslate.additionalDescriptionAttachmentArabic.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                              CustomTextFormField(controller: data.arrivalDateController,
-                                height: 60.h,textInputType: TextInputType.name,
-                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[\u0600-\u06FF\s]'))],
-                                prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 20.h),
-                          Column(crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(title: AppTranslate.additionalDescriptionAttachmentEnglish.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                              CustomTextFormField(controller: data.arrivalDateController,
-                                height: 60.h,textInputType: TextInputType.name,
-                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
-                                prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
-                              )
-                            ],
-                          ),
-                          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const SizedBox(),
-                              Row(
-                                children: [
-                                  CustomSvgIcon(assetName: AppAssets.addVisitor,width: 30.w,height: 30.w,),
-                                  SizedBox(width: 5.w),
-                                  CustomSvgIcon(assetName: AppAssets.deleteVisitor,width: 30.w,height: 30.w,),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],),
-                      )
-                    ],
-                  );
-                }),
-                ListView.builder(
-                  itemCount: 2,
-                    physics:const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context,index){
-                  return Column(
-                    children: [
-                      Container(
-                        // height: 31.h,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(Dimens.padding_8),
-                              color: const Color(0xffF0FAFF),
-                              border: Border.all(
-                                  width: 1.w, color: const Color(0xffFFF9DC))),
-                          padding: EdgeInsets.symmetric(
-                              vertical: Dimens.padding_12v,
-                              horizontal: Dimens.padding_24h),
-                          child: Row(
-                            children: [
-                              CustomSvgIcon(
-                                  assetName: AppAssets.reportDetails,
-                                  width: 18.w,
-                                  height: 18.h),
-                              SizedBox(width: 16.w),
-                              CustomText(
-                                title: AppTranslate.additionalServices.tr(),
-                                fontSize: AppFonts.font_12,
-                              ),
-                            ],
-                          )),
-                      Padding(
-                        padding: EdgeInsets.all(12.r),
-                        child: Column(children: [
-                          Column(crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(title: AppTranslate.addressArabic.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                              CustomTextFormField(controller: data.arrivalDateController,
-                                height: 60.h,textInputType: TextInputType.name,
-                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[\u0600-\u06FF\s]'))],
-                                prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 20.h),
-                          Column(crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(title: AppTranslate.addressEnglish.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                              CustomTextFormField(controller: data.arrivalDateController,
-                                height: 60.h,textInputType: TextInputType.name,
-                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
-                                prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 20.h),
-                          Column(crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(title:AppTranslate.thePrice.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                              CustomTextFormField(controller: data.arrivalDateController,
-                                height: 60.h,textInputType: TextInputType.number,
-                                // inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]'))],
-                                prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 10.h),
-                          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CustomText(title: AppTranslate.forEveryone.tr(),fontSize:AppFonts.font_15,fontColor: AppColors.primaryColor),
-                                CustomSwitch(value: data.forEveryone,
-                                    activeColor: AppColors.primaryColor,
-                                    inactiveColor: AppColors.gray,
-                                    onChanged: (_){
-                                      setState(() {
-                                        data.forEveryone=!data.forEveryone;
-                                      });
-                                    })
-                              ]),
-                          SizedBox(height: 20.h),
-                          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const SizedBox(),
-                              Row(
-                                children: [
-                                  CustomSvgIcon(assetName: AppAssets.addVisitor,width: 30.w,height: 30.w,),
-                                  SizedBox(width: 5.w),
-                                  CustomSvgIcon(assetName: AppAssets.deleteVisitor,width: 30.w,height: 30.w,),
-                                ],
-                              ),
-                            ],
-                          ),
-
-
-                        ],),
-                      )
-                    ],
-                  );
-                }),
+                const ContentCard(),
+                const FacilitiesCard(),
+                const AddAdditionalService(),
                 SizedBox(height: 40.h),
-                CustomButton(
-                  onTap: () {
-                   NavigatorHandler.push(const ConfirmAdditionalScreen());
-                  },
-                  title:AppTranslate.addition.tr(),
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomButton(width: 150.w,
+                      bg: AppColors.white,fontColor: AppColors.primaryColor,
+                      borderColor: AppColors.primaryColor,
+                      onTap: () {
+                        setState(() {
+                          data.currentPage = 3;
+                        });
+                        data.pageController.previousPage(
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.easeInOut);
+                      },
+                      title:AppTranslate.previous.tr(),
+                    ),
+                    CustomButton(width: 150.w,
+                      onTap: () {
+                      if(data.contentList.first.oneContent.id==-1){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.pleaseSelectContent.tr());
+                      }else if(data.contentList.first.theValue.text.isEmpty){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.enterValue.tr());
+                      }else if(data.facilitiesList.first.selectedFacilities?.id==-1){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.pleaseSelectFacility.tr());
+                      }else if(data.facilitiesList.first.textArController.text.isEmpty){
+                        CustomScaffoldMessanger.showToast(title:AppTranslate.pleaseSelectFacilityDesAr.tr());
+                      }else if(data.facilitiesList.first.textEnController.text.isEmpty){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.pleaseSelectFacilityDesEn.tr());
+                      }else if(data.additionalServiceList.first.titleArController.text.isEmpty){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.pleaseEnterOfferTitleAr.tr());
+                      }else if(data.additionalServiceList.first.titleEnController.text.isEmpty){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.pleaseEnterOfferTitleEn.tr());
+                      }else if(data.additionalServiceList.first.priceController.text=='0.0'){
+                        CustomScaffoldMessanger.showToast(title: AppTranslate.pleaseEnterPrice.tr());
+                      }else{data.addUnit();}
+                      },
+                      title:AppTranslate.addition.tr(),
+                    ),
+                  ],
                 )
               ],
             ),

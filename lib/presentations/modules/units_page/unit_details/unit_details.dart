@@ -88,7 +88,7 @@ class _UnitDetailsState extends State<UnitDetails> {
                                           height: 12.h),
                                       SizedBox(width: 3.w),
                                       CustomText(
-                                        title: '120 ${AppTranslate.meter.tr()}',
+                                        title: '${data.oneUnitModel?.data?.area} ${AppTranslate.meter.tr()}',
                                         fontSize: AppFonts.font_11,
                                       ),
                                     ],
@@ -166,7 +166,7 @@ class _UnitDetailsState extends State<UnitDetails> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const UnitData(),
+                             UnitData(model: data.oneUnitModel,),
                             SizedBox(height: 20.h),
                             CustomText(
                               title: data.oneUnitModel?.data?.title??'',

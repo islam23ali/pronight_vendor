@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/data/models/response/cities_model.dart';
+import 'package:pronight_vendor/presentations/components/loadings/custom_scaffold_messanger.dart';
 import 'package:pronight_vendor/presentations/modules/add_unit_page/pages/add_unit_page_two/widgets/custom_map_pageTwo.dart';
 import 'package:pronight_vendor/presentations/modules/add_unit_page/pages/add_unit_page_two/widgets/custom_map_widget.dart';
 import 'package:pronight_vendor/presentations/modules/add_unit_page/pages/add_unit_page_two/widgets/up_load_main_image.dart';
@@ -115,21 +116,41 @@ class _AddUnitPageTwoState extends State<AddUnitPageTwo> {
                     SizedBox(height: 20.h),
                     const UpLoadSubImages(),
                     SizedBox(height: 40.h),
-                    CustomButton(
-                      onTap: () {
-                        setState(() {
-                          data.currentPage = 2;
-                        });
-                        // _pageController.animateToPage(
-                        //   1,
-                        //   duration: const Duration(milliseconds: 300),
-                        //   curve: Curves.easeInOut,
-                        // );
-                        data.pageController.animateToPage(data.currentPage,
-                            duration: const Duration(seconds: 1),
-                            curve: Curves.easeInOut);
-                      },
-                      title: AppTranslate.next.tr(),
+
+                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomButton(width: 150.w,
+                          borderColor: AppColors.primaryColor,
+                          bg: AppColors.white,fontColor: AppColors.primaryColor,
+                          onTap: () {
+                            setState(() {
+                              data.currentPage = 1;
+                            });
+                            data.pageController.previousPage(
+                                duration: const Duration(seconds: 1),
+                                curve: Curves.easeInOut);
+                          },
+                          title: AppTranslate.previous.tr(),
+                        ),
+                        CustomButton(width: 150.w,
+                          onTap: () {
+                          if(data.selectedCity==null){
+                            CustomScaffoldMessanger.showToast(title: AppTranslate.selectCity.tr());
+                          }else if(data.latitude==''){
+                            CustomScaffoldMessanger.showToast(title: AppTranslate.selectAddress.tr());
+                          }else if(data.image==''||data.image==null){
+                            CustomScaffoldMessanger.showToast(title: AppTranslate.selectImage.tr());
+                          }else{
+                              data.currentPage = 2;
+                              data.refreshData();
+                            data.pageController.animateToPage(data.currentPage,
+                                duration: const Duration(seconds: 1),
+                                curve: Curves.easeInOut);
+                          }
+                          },
+                          title: AppTranslate.next.tr(),
+                        ),
+                      ],
                     )
                   ],
                 )

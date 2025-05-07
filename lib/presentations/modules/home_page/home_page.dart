@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                               duration: const Duration(milliseconds: 1000),
                               curve: Curves.fastLinearToSlowEaseIn,
                               child: FadeInAnimation(child:
-                              InkWell(onTap: (){NavigatorHandler.push(const ReportDetailsScreen());},
+                              InkWell(onTap: (){NavigatorHandler.push( ReportDetailsScreen(model: null));},
                                 child: Stack(
                                   children: [
                                     Container(height: 74.h,

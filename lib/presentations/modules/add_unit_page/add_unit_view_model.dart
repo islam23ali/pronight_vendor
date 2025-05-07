@@ -1,17 +1,27 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
+import 'package:pronight_vendor/data/models/body_or_quary/add_unit_body.dart';
+import 'package:pronight_vendor/data/models/response/sub_models/add_facilitie_model.dart';
 import 'package:pronight_vendor/data/repositories/units_repo.dart';
+import 'package:pronight_vendor/presentations/modules/add_unit_page/confirm_additional_screen/confirm_additional_screen.dart';
 
+import '../../../core/navigator/navigator.dart';
+import '../../../core/resources/app_translate.dart';
 import '../../../core/utils/imageCroper.dart';
 import '../../../data/models/api_response.dart';
 import '../../../data/models/response/cities_model.dart';
 import '../../../data/models/response/contens_model.dart';
+import '../../../data/models/response/one_unit_model.dart';
+import '../../../data/models/response/sub_models/add_additional_service_model.dart';
 import '../../../data/models/response/sub_models/add_unit_content_model.dart';
 import '../../../injection.dart';
 import '../../components/loadings/custom_scaffold_messanger.dart';
+import '../../components/loadings/progress_dialog.dart';
 
 class AddUnitViewModel extends ChangeNotifier{
 final UnitsRepo _unitsRepo = getIt();
@@ -23,11 +33,14 @@ final UnitsRepo _unitsRepo = getIt();
    CitiesModel? _citiesModel;
    ContentsModel? _contentsModel;
    ContentsModel? _facilitiesModel;
+
+   OneUnitModel? _oneUnitModel;
    bool? _isLoading = false;
 
    CitiesModel? get citiesModel => _citiesModel;
    ContentsModel? get contentsModel => _contentsModel;
    ContentsModel? get facilitiesModel => _facilitiesModel;
+   OneUnitModel? get oneUnitModel => _oneUnitModel;
    bool? get isLoading => _isLoading;
 
 
@@ -73,6 +86,7 @@ void getSupImages(ImageSource source) async {
   TextEditingController arabicUnitNameController =TextEditingController();
   TextEditingController englishUnitNameController =TextEditingController();
   TextEditingController unitPriceController =TextEditingController();
+  TextEditingController unitAreaController =TextEditingController();
   TextEditingController arabicUnitDescriptionController =TextEditingController();
   TextEditingController englishUnitDescriptionController =TextEditingController();
   TextEditingController notesController =TextEditingController();
@@ -92,38 +106,49 @@ void getSupImages(ImageSource source) async {
   TextEditingController startDateOfferController =TextEditingController();
   TextEditingController endDateOfferController =TextEditingController();
   List<String>? offerType = ['fixed', 'percentage'];
-  String? value;
+  String? offerValue;
   TextEditingController offerValueController =TextEditingController();
   // page four data ...
 
-  bool forEveryone = false;
   List<AddContent> contentList=[AddContent(unitMainContentId: -1, value: '')];
-  OneConten? selectedContent;
-  OneConten? selectedFacilities;
+  List<AddFacilities> facilitiesList =[AddFacilities(unitMainFacilityId: -1, textAr: '', textEn: '')];
+  List<AddAdditionalServices> additionalServiceList =[AddAdditionalServices(price: 0.0, forPerson: false, titleAr: '', titleEn: '',)];
 
 
 initAddUnit(){
+  WidgetsBinding.instance.addPostFrameCallback((_){
+  // arabicUnitNameController.clear();
+  // englishUnitNameController.clear();
+  // unitPriceController.clear();
+  // unitAreaController.clear();
+  // arabicUnitDescriptionController.clear();
+  // englishUnitDescriptionController.clear();
+  // notesController.clear();
+  // selectedCity=null;
+  // latitude='';
+  // longitude='';
+  // address='';
+  // images=[];
+  // maxAdultsController.clear();
+  // pricePerAdultController.clear();
+  // maxChildrenController.clear();
+  // pricePerChildController.clear();
+  // isSwitchOffer=false;
+  // startDateOfferController.clear();
+  // endDateOfferController.clear();
+  // offerValue='';
+  // offerValueController.clear();
+  // offerValueController.clear();
+  // contentList=[AddContent(unitMainContentId: -1, value: '')];
+  // facilitiesList =[AddFacilities(unitMainFacilityId: -1, textAr: '', textEn: '')];
+  // additionalServiceList =[AddAdditionalServices(price: 0.0, forPerson: false, titleAr: '', titleEn: '',)];
 
-  selectedCity=null;
-  selectedContent=null;
-  selectedFacilities=null;
   getAllCities();
   getAllContents();
   getAllFacilities();
-  notifyListeners();
+  // notifyListeners();
+    });
 }
-
-  TextEditingController arrivalDateController =TextEditingController();
-  TextEditingController exitDateController =TextEditingController();
-
-
-
-
-  bool openMaterial = true;
-
-  TextEditingController nameOfTheFacilityController =TextEditingController();
-  TextEditingController companionIDNumberController =TextEditingController();
-  TextEditingController facilitiesPhoneNumberController =TextEditingController();
 
   void refreshData(){
   notifyListeners();
@@ -199,4 +224,58 @@ initAddUnit(){
     }
     notifyListeners();
   }
+
+  Future<void> addUnit () async {
+  notifyListeners();
+  AddUnitBody addUnitBody = AddUnitBody();
+  addUnitBody.titleAr=arabicUnitNameController.text;
+  addUnitBody.titleEn=englishUnitNameController.text;
+  addUnitBody.price=unitPriceController.text;
+  addUnitBody.area=unitAreaController.text;
+  addUnitBody.descAr=arabicUnitDescriptionController.text;
+  addUnitBody.descEn=englishUnitDescriptionController.text;
+  addUnitBody.note=notesController.text;
+  addUnitBody.cityId=selectedCity?.id.toString()??'';
+  addUnitBody.latitude=latitude;
+  addUnitBody.longitude=longitude;
+  addUnitBody.address=address;
+  addUnitBody.image=image;
+  addUnitBody.images=images;
+  addUnitBody.maxAdultCount=maxAdultsController.text;
+  addUnitBody.adultPrice=pricePerAdultController.text;
+  addUnitBody.maxChildCount=maxChildrenController.text;
+  addUnitBody.childPrice=pricePerChildController.text;
+  addUnitBody.hasOffer=(isSwitchOffer==true)?(1.toString()):(0.toString());
+  addUnitBody.offerStartDate=startDateOfferController.text;
+  addUnitBody.offerEndDate=endDateOfferController.text;
+  addUnitBody.offerType=offerValue;
+  addUnitBody.offerValue=offerValueController.text;
+  addUnitBody.contents=contentList;
+  addUnitBody.facilities=facilitiesList;
+  addUnitBody.additionalServices=additionalServiceList;
+
+  ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.addUnit.tr()} ...");
+  await dialog.show();
+  ApiResponse responseModel = await _unitsRepo.addUnitRepo(addUnitBody);
+  await dialog.hide();
+  if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+    _oneUnitModel = OneUnitModel.fromJson(responseModel.response?.data);
+    notifyListeners();
+    if (_oneUnitModel != null && _oneUnitModel?.code == 200) {
+      NavigatorHandler.pushReplacement(ConfirmAdditionalScreen(id: _oneUnitModel?.data?.id.toString()??'',));
+      if(kDebugMode){
+        CustomScaffoldMessanger.showToast(title: 'الله ينور ياعمناااا <<<<<<<<<<');
+      }
+      notifyListeners();
+    } else{
+      CustomScaffoldMessanger.showToast(title: _oneUnitModel?.message??'');
+    }
+    notifyListeners();
+  }
+  else {
+    CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+  }
+  notifyListeners();
+}
+
 }

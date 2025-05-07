@@ -23,7 +23,8 @@ import '../add_unit_view_model.dart';
 import 'widget/custom_id_image.dart';
 
 class ConfirmAdditionalScreen extends StatefulWidget {
-  const ConfirmAdditionalScreen({super.key});
+  const ConfirmAdditionalScreen({super.key, required this.id});
+  final String? id;
 
   @override
   State<ConfirmAdditionalScreen> createState() => _ConfirmAdditionalScreenState();

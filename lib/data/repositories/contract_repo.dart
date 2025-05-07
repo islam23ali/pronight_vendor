@@ -1,13 +1,8 @@
-import 'dart:convert';
 
-import 'package:crypto/crypto.dart';
 // import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:pronight_vendor/injection.dart';
-import 'package:pronight_vendor/main.dart';
-
 import '../../core/app_url/app_url.dart';
 import '../datasource/remote/dio/dio_client.dart';
 import '../datasource/remote/exception/api_error_handler.dart';

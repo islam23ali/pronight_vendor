@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/data/models/response/one_unit_model.dart';
 
 import '../../../../../core/app_theme/app_colors.dart';
 import '../../../../../core/dimens/dimens.dart';
@@ -9,7 +10,8 @@ import '../../../../../core/resources/font_size.dart';
 import '../../../../components/custom_text/custom_text.dart';
 
 class UnitData extends StatefulWidget {
-  const UnitData({super.key});
+  final OneUnitModel? model;
+  const UnitData({super.key, required this.model});
 
   @override
   State<UnitData> createState() => _UnitDataState();
@@ -18,36 +20,50 @@ class UnitData extends StatefulWidget {
 class _UnitDataState extends State<UnitData> {
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
       children: [
-        SizedBox(child: Column(children: [
-          CustomText(title: AppTranslate.theFamily.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
-          SizedBox(height: 5.h),
-          Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
-            child: CustomText(title: '2 ${AppTranslate.family.tr()}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
-        ])),
-        SizedBox(child: Column(children: [
-          CustomText(title: AppTranslate.bathrooms.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
-          SizedBox(height: 5.h),
-          Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
-            child: CustomText(title: '2 ${AppTranslate.bathroom.tr()}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
-        ])),
-        SizedBox(child: Column(children: [
-          CustomText(title: AppTranslate.theAdults.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
-          SizedBox(height: 5.h),
-          Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
-            child: CustomText(title: '2 ${AppTranslate.adults.tr()}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
-        ])),
-        SizedBox(child: Column(children: [
-          CustomText(title: AppTranslate.theChildren.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
-          SizedBox(height: 5.h),
-          Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
-            child: CustomText(title: '2 ${AppTranslate.kids.tr()}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
-        ])),
-      ],);
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            SizedBox(child: Column(children: [
+              CustomText(title: AppTranslate.theAdults.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
+              SizedBox(height: 5.h),
+              Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
+                child: CustomText(title: '2 ${AppTranslate.adults.tr()}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
+            ])),
+            SizedBox(child: Column(children: [
+              CustomText(title: AppTranslate.theChildren.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
+              SizedBox(height: 5.h),
+              Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
+                child: CustomText(title: '2 ${AppTranslate.kids.tr()}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
+            ])),
+
+            SizedBox(child: Column(children: [
+              CustomText(title: AppTranslate.bathrooms.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
+              SizedBox(height: 5.h),
+              Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
+                child: CustomText(title: '2 ${AppTranslate.bathroom.tr()}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
+            ])),
+
+          ],),
+        // ListView.builder(
+        //     shrinkWrap: true,
+        //     physics: NeverScrollableScrollPhysics(),
+        //     scrollDirection: Axis.horizontal,
+        //     itemCount: widget.model?.data?.contents?.length??0,
+        //     itemBuilder: (context,index){
+        //       return SizedBox(child: Column(children: [
+        //         CustomText(title: AppTranslate.unitContents.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
+        //         SizedBox(height: 5.h),
+        //         Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
+        //           decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
+        //           child: CustomText(title: '${widget.model?.data?.contents?[index].value} ${widget.model?.data?.contents?[index].title}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
+        //       ]));
+        //     }),
+      ],
+    );
   }
 }

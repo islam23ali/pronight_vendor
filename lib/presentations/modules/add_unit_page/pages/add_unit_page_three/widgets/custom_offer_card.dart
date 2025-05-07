@@ -83,10 +83,10 @@ class _CustomOfferCardState extends State<CustomOfferCard> {
                   CustomOfferTypeDropdownButton(
                     color: AppColors.darkColor,
                     items: data.offerType ?? [],
-                    value: data.value?.tr(),
+                    value: data.offerValue?.tr(),
                     onChanged: (String? newValue) {
                       setState(() {
-                        data.value = newValue;
+                        data.offerValue = newValue;
                       });
                     },
                   ),
