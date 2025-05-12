@@ -7,8 +7,11 @@ import 'package:pronight_vendor/core/resources/app_translate.dart';
 import 'package:pronight_vendor/core/resources/font_size.dart';
 import 'package:pronight_vendor/presentations/components/custom_scaffold/custom_scaffold.dart';
 import 'package:pronight_vendor/presentations/components/custom_text/custom_text.dart';
+import 'package:pronight_vendor/presentations/modules/home_page/home_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/reservation_screen/widgets/custom_reservation_list.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../../injection.dart';
 import '../../../../components/custom_app_bar/custom_app_bar.dart';
 
 
@@ -20,98 +23,104 @@ class ReservationScreen extends StatefulWidget {
 }
 
 class _ReservationScreenState extends State<ReservationScreen> {
+  HomeViewModel homeProvider = getIt();
+  @override
+  void initState() {
+    super.initState();
+    homeProvider.initReservation();
+  }
   TextEditingController controller =TextEditingController();
-  int isContract = 0;
   final pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal:Dimens.padding_16h),
-            child: CustomAppBar(height: 56.h,
-              bgColor: AppColors.white,
-              topColor: AppColors.white,
-              title:AppTranslate.reservations.tr(),
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal:Dimens.padding_16h),
-            child: Center(
-              child: Container(
-                margin: EdgeInsets.symmetric(vertical: 16.h),
-                height: 41.h,width: 340.w,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(50.r),
-                    color: AppColors.itemBgColor
-                ),child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(onTap: (){
+      body: Consumer<HomeViewModel>(
+        builder: (context,data,_) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal:Dimens.padding_16h),
+                child: CustomAppBar(height: 56.h,
+                  bgColor: AppColors.white,
+                  topColor: AppColors.white,
+                  title:AppTranslate.reservations.tr(),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal:Dimens.padding_16h),
+                child: Center(
+                  child: Container(
+                    margin: EdgeInsets.symmetric(vertical: 16.h),
+                    height: 41.h,width: 340.w,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(50.r),
+                        color: AppColors.itemBgColor
+                    ),child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(onTap: (){
+                        data.updateReservationType('new');
+                        pageController.animateTo(0,
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.easeInOut);
+                        data.allReservation();
+                      },
+                        child: Container(
+                          height: 35.h,width: 111.w,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(50.r),
+                              color:(data.reservationType=='new')? AppColors.primaryColor:Colors.transparent
+                          ),child:Center(child: CustomText(title: AppTranslate.New.tr(),fontSize: AppFonts.font_13,fontColor: (data.reservationType=='new')?AppColors.white:AppColors.primaryColor,)) ,),
+                      ),
+                      InkWell(onTap: (){
+                        data.updateReservationType('current');
+                        pageController.animateToPage(1,
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.easeInOut);
+                        data.allReservation();
+                      },
+                        child: Container(
+                          height: 35.h,width: 111.w,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(50.r),
+                              color:(data.reservationType=='current')? AppColors.primaryColor:Colors.transparent
+                          ),child:Center(child: CustomText(title: AppTranslate.current.tr(),fontSize: AppFonts.font_13,fontColor: (data.reservationType=='current')?AppColors.white:AppColors.primaryColor,)) ,),
+                      ),
+                      InkWell(onTap: (){
+                        data.updateReservationType('previous');
+                        pageController.animateToPage(2,
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.easeInOut);
+                        data.allReservation();
+                      },
+                        child: Container(
+                          height: 35.h,width: 111.w,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(50.r),
+                              color:(data.reservationType=='previous')? AppColors.primaryColor:Colors.transparent
+                          ),child:Center(child: CustomText(title: AppTranslate.previous.tr(),fontSize: AppFonts.font_13,fontColor:(data.reservationType=='previous')?AppColors.white:AppColors.primaryColor,)) ,),
+                      ),
+                    ],),),
+                ),
+              ),
+              SizedBox(height: 10.h),
+              Expanded(
+                child: PageView(
+                  controller: pageController,
+                  onPageChanged: (_){
                     setState(() {
-                      isContract=0;
-                    });
-                    pageController.animateToPage(isContract,
-                        duration: const Duration(seconds: 1),
-                        curve: Curves.easeInOut);
-                  },
-                    child: Container(
-                      height: 35.h,width: 111.w,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(50.r),
-                          color:(isContract==0)? AppColors.primaryColor:Colors.transparent
-                      ),child:Center(child: CustomText(title: AppTranslate.New.tr(),fontSize: AppFonts.font_13,fontColor: (isContract==0)?AppColors.white:AppColors.primaryColor,)) ,),
-                  ),
-                  InkWell(onTap: (){
-                    setState(() {
-                      isContract=1;
-                    });
-                    pageController.animateToPage(isContract,
-                        duration: const Duration(seconds: 1),
-                        curve: Curves.easeInOut);
-                  },
-                    child: Container(
-                      height: 35.h,width: 111.w,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(50.r),
-                          color:(isContract==1)? AppColors.primaryColor:Colors.transparent
-                      ),child:Center(child: CustomText(title: AppTranslate.current.tr(),fontSize: AppFonts.font_13,fontColor: (isContract==1)?AppColors.white:AppColors.primaryColor,)) ,),
-                  ),
-                  InkWell(onTap: (){
-                    setState(() {
-                      isContract=2;
-                    });
-                    pageController.animateToPage(isContract,
-                        duration: const Duration(seconds: 1),
-                        curve: Curves.easeInOut);
-                  },
-                    child: Container(
-                      height: 35.h,width: 111.w,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(50.r),
-                          color:(isContract==2)? AppColors.primaryColor:Colors.transparent
-                      ),child:Center(child: CustomText(title: AppTranslate.previous.tr(),fontSize: AppFonts.font_13,fontColor: (isContract==2)?AppColors.white:AppColors.primaryColor,)) ,),
-                  ),
-                ],),),
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Expanded(
-            child: PageView(
-              controller: pageController,
-              onPageChanged: (_){
-                setState(() {
-                  // isContract=pageController.initialPage;
+                      // isContract=pageController.initialPage;
 
-                });
-              },
-              physics: const NeverScrollableScrollPhysics(),
-              children:const [
-                CustomReservationList(isNew: true,),
-                CustomReservationList(isNew: false),
-                CustomReservationList(isNew: false),
-              ],),
-          )
-        ],),
+                    });
+                  },
+                  physics: const NeverScrollableScrollPhysics(),
+                  children:const [
+                    CustomReservationList(isNew: true,),
+                    CustomReservationList(isNew: false),
+                    CustomReservationList(isNew: false),
+                  ],),
+              )
+            ],);
+        }
+      ),
     );
   }
 }

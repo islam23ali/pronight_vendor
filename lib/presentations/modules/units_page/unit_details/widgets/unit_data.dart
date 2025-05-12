@@ -22,47 +22,48 @@ class _UnitDataState extends State<UnitData> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            SizedBox(child: Column(children: [
-              CustomText(title: AppTranslate.theAdults.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
-              SizedBox(height: 5.h),
-              Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
-                child: CustomText(title: '2 ${AppTranslate.adults.tr()}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
-            ])),
-            SizedBox(child: Column(children: [
-              CustomText(title: AppTranslate.theChildren.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
-              SizedBox(height: 5.h),
-              Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
-                child: CustomText(title: '2 ${AppTranslate.kids.tr()}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
-            ])),
+        SingleChildScrollView(scrollDirection: Axis.horizontal,
+          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Container(margin: EdgeInsets.symmetric(horizontal: Dimens.padding_4h),
+                  height: 60.w,child: Column(children: [
+                CustomText(title: AppTranslate.theAdults.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
+                SizedBox(height: 5.h),
+                Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
+                  child: CustomText(title: '${widget.model?.data?.maxAdultCount} ${AppTranslate.adults.tr()}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
+              ])),
 
-            SizedBox(child: Column(children: [
-              CustomText(title: AppTranslate.bathrooms.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
-              SizedBox(height: 5.h),
-              Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
-                child: CustomText(title: '2 ${AppTranslate.bathroom.tr()}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
-            ])),
+              Container( margin: EdgeInsets.symmetric(horizontal: Dimens.padding_4h),
+                  height: 60.w,child: Column(children: [
+                CustomText(title: AppTranslate.theChildren.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
+                SizedBox(height: 5.h),
+                Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
+                  child: CustomText(title: '${widget.model?.data?.maxChildCount} ${AppTranslate.kids.tr()}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
+              ])),
 
-          ],),
-        // ListView.builder(
-        //     shrinkWrap: true,
-        //     physics: NeverScrollableScrollPhysics(),
-        //     scrollDirection: Axis.horizontal,
-        //     itemCount: widget.model?.data?.contents?.length??0,
-        //     itemBuilder: (context,index){
-        //       return SizedBox(child: Column(children: [
-        //         CustomText(title: AppTranslate.unitContents.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
-        //         SizedBox(height: 5.h),
-        //         Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
-        //           decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
-        //           child: CustomText(title: '${widget.model?.data?.contents?[index].value} ${widget.model?.data?.contents?[index].title}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
-        //       ]));
-        //     }),
+              SizedBox(height: 60.w,
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    physics:const NeverScrollableScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: widget.model?.data?.contents?.length??0,
+                    itemBuilder: (context,index){
+                      return Container(margin: EdgeInsets.symmetric(horizontal: Dimens.padding_4h),
+                          child: Column(children: [
+                        CustomText(title: AppTranslate.unitContents.tr(),fontSize: AppFonts.font_10,fontWeight: FontWeight.w500,fontColor: AppColors.textColor,),
+                        SizedBox(height: 5.h),
+                        Container(height: 38.h,padding: EdgeInsets.all(Dimens.padding_8),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: AppColors.bgHomeColor),alignment: Alignment.center,
+                          child: CustomText(title: '${widget.model?.data?.contents?[index].value} ${widget.model?.data?.contents?[index].title}',fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),)
+                      ]));
+                    }),
+              ),
+            ],),
+        ),
+
       ],
     );
   }

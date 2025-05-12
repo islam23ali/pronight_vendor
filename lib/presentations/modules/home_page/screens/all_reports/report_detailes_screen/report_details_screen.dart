@@ -42,7 +42,7 @@ class _ReportDetailsScreenState extends State<ReportDetailsScreen> {
             padding: EdgeInsets.symmetric(vertical: Dimens.padding_12v,horizontal:Dimens.padding_24h ),
             child:Row(
               children: [
-                CustomSvgIcon(assetName: AppTranslate.reportDetails,width: 24.w,height: 24.h),
+                CustomSvgIcon(assetName: AppAssets.reportDetails,width: 24.w,height: 24.h),
                 SizedBox(width: 16.w),
                 Column(crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

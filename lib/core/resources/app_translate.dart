@@ -256,6 +256,10 @@ class AppTranslate{
   static const String days = 'days' ;
   static const String forEveryone = 'forEveryone' ;
   static const String completeDataFirst = 'completeDataFirst' ;
+  static const String availableRoomsBookingDays = 'availableRoomsBookingDays' ;
+  static const String priceControl = 'priceControl' ;
+  static const String accept = 'accept' ;
+  static const String refusal = 'refusal' ;
 
 
 

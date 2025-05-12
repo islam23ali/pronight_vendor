@@ -15,6 +15,7 @@ import 'package:pronight_vendor/presentations/modules/setting_page/widget/other_
 import 'package:pronight_vendor/presentations/modules/setting_page/widget/user_card.dart';
 
 import '../../../core/navigator/navigator.dart';
+import '../../../injection.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -24,6 +25,7 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+
   @override
   Widget build(BuildContext context) {
     return  Container(child: Column(children: [

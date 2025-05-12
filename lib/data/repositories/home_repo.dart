@@ -26,4 +26,34 @@ class HomeRepo {
     }
   }
 
+  Future<ApiResponse> allReservationRepo(String type) async {
+    try {
+      Response response = await _dioClient.get('${AppUrls.reservationUrl}$type');
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
+  Future<ApiResponse> updateReservationStatusRepo(String id,String status) async {
+    try {
+      Response response = await _dioClient.post('${AppUrls.updateReservationStatusUrl}$id',formData: FormData.fromMap(
+          {
+            'status':status,
+          }));
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
+  Future<ApiResponse> reservationDetailsRepo (String id) async {
+    try {
+      Response response = await _dioClient.get('${AppUrls.updateReservationStatusUrl}$id');
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
 }

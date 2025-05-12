@@ -30,4 +30,7 @@ class AppUrls {
   static String reportsUrl = "/provider/all-reservations";
 
   static String addUnitUrl = "/provider/create-unit";
+
+  static String reservationUrl = "/provider/reservations?status=";
+  static String updateReservationStatusUrl = "/provider/reservations/";
 }

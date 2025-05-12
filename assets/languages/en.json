@@ -289,5 +289,9 @@
   "pleaseEnterFacilityDesEn":"Please enter the facility description in English",
   "pleaseEnterOfferTitleAr":"Please enter the title in Arabic",
   "pleaseEnterOfferTitleEn":"Please enter the title in English",
-  "pleaseEnterPrice":"Please enter the price"
+  "pleaseEnterPrice":"Please enter the price",
+  "availableRoomsBookingDays":"Available rooms and booking days",
+  "priceControl":"price control",
+  "accept":"Accept",
+  "refusal":"Refusal"
 }

@@ -293,5 +293,9 @@
   "pleaseEnterFacilityDesEn": "يرجى إدخال وصف المرفق باللغة الإنجليزية",
   "pleaseEnterOfferTitleAr": "يرجى إدخال العنوان باللغة العربية",
   "pleaseEnterOfferTitleEn": "يرجى إدخال العنوان باللغة الإنجليزية",
-  "pleaseEnterPrice": "يرجى إدخال السعر"
+  "pleaseEnterPrice": "يرجى إدخال السعر",
+  "availableRoomsBookingDays": "الغرف المتاحة وأيام الحجز",
+  "priceControl": "ضبط الأسعار",
+  "accept": "قبول",
+  "refusal": "رفض"
 }

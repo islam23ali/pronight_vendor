@@ -208,7 +208,37 @@ class _UnitDetailsState extends State<UnitDetails> {
                                         width: 19.w),
                                     SizedBox(width: 5.w),
                                     CustomText(
-                                      title: 'الغرف المتاحة وأيام الحجز',
+                                      title: AppTranslate.availableRoomsBookingDays.tr(),
+                                      fontSize: AppFonts.font_12,
+                                      fontWeight: FontWeight.w600,
+                                      fontColor: AppColors.textColor3,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 20.h),
+                            InkWell(
+                              onTap: () {
+                                NavigatorHandler.push(const BookingDaysPage());
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(Dimens.padding_16),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.r),
+                                    color: AppColors.errorColor
+                                        .withAlpha((0.10 * 255).round())),
+                                alignment: Alignment.center,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    CustomSvgIcon(
+                                        assetName: AppAssets.contractNum,
+                                        height: 18.h,
+                                        width: 15.w),
+                                    SizedBox(width: 5.w),
+                                    CustomText(
+                                      title: AppTranslate.priceControl.tr(),
                                       fontSize: AppFonts.font_12,
                                       fontWeight: FontWeight.w600,
                                       fontColor: AppColors.textColor3,

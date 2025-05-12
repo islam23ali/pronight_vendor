@@ -88,6 +88,7 @@ class AppAssets {
   static const String cameraIcon = 'cameraIcon';
   static const String searchIcon = 'searchIcon';
   static const String doneIcon = 'doneIcon';
+  static const String setPrice = 'setPrice';
 
 
   static const String next1 = 'Next1';
