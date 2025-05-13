@@ -6,6 +6,7 @@ import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/core/resources/app_translate.dart';
 import 'package:pronight_vendor/data/models/response/all_reservation_model.dart';
 import 'package:pronight_vendor/presentations/modules/home_page/home_view_model.dart';
+import 'package:pronight_vendor/presentations/modules/setting_page/setting_view_model.dart';
 
 import '../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../core/dimens/dimens.dart';
@@ -27,7 +28,7 @@ class CustomReservationItem extends StatefulWidget {
 }
 
 class _CustomReservationItemState extends State<CustomReservationItem> {
-  HomeViewModel provider = getIt();
+  SettingsViewModel provider = getIt();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -58,7 +59,7 @@ class _CustomReservationItemState extends State<CustomReservationItem> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomText(title: widget.model?.user?.user?.name??'',fontSize:AppFonts.font_11,fontColor: AppColors.textColor3,),
-                      CustomText(title: 'منذ ساعة لسه back',fontSize:AppFonts.font_10,fontColor:AppColors.textGrayColor,)
+                      CustomText(title: widget.model?.createdAt??'',fontSize:AppFonts.font_10,fontColor:AppColors.textGrayColor,)
                     ],)
                 ],),
               ),
@@ -74,7 +75,7 @@ class _CustomReservationItemState extends State<CustomReservationItem> {
                   Row(children: [
                     CustomSvgIcon(assetName: AppAssets.sectorNumber,width: 15.w,height: 15.h),
                     SizedBox(width: 5.w),
-                    CustomText(title: '4 أيام  لسه back',fontSize: AppFonts.font_11,fontColor: AppColors.textColor3,)
+                    CustomText(title: '${widget.model?.daysCount.toString()} ${AppTranslate.days.tr()}',fontSize: AppFonts.font_11,fontColor: AppColors.textColor3,)
                   ]),
                 ],),
               (widget.isNew==false)?const SizedBox():  SizedBox(height: 10.h),

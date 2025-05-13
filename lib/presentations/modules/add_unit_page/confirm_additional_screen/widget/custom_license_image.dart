@@ -8,8 +8,10 @@ import '../../../../../core/dimens/dimens.dart';
 import '../../../../../core/resources/app_assets.dart';
 import '../../../../../core/resources/app_translate.dart';
 import '../../../../../core/resources/font_size.dart';
+import '../../../../../injection.dart';
 import '../../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../../components/custom_text/custom_text.dart';
+import '../../add_unit_view_model.dart';
 
 class CustomLicenseImage extends StatefulWidget {
   const CustomLicenseImage({super.key});
@@ -19,6 +21,8 @@ class CustomLicenseImage extends StatefulWidget {
 }
 
 class _CustomLicenseImageState extends State<CustomLicenseImage> {
+  AddUnitViewModel provider = getIt();
+
   File? image;
 
   Future<void> getImage(ImageSource source) async {
@@ -26,7 +30,8 @@ class _CustomLicenseImageState extends State<CustomLicenseImage> {
     final pickedFile = await picker.pickImage(source: source);
     image = pickedFile != null ? File(pickedFile.path) : null;
     setState(() {
-
+      provider.licenseImage=image;
+      provider.refreshData();
     });
     // notifyListeners();
   }
@@ -107,6 +112,8 @@ class _CustomLicenseImageState extends State<CustomLicenseImage> {
                     child: InkWell(onTap: (){
                       setState(() {
                         image=null;
+                        provider.licenseImage=null;
+                        provider.refreshData();
                       });
                     },
                       child:(image==null)?const SizedBox(): Container(width: 20.w,height: 20.h,

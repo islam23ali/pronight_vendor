@@ -293,5 +293,10 @@
   "availableRoomsBookingDays":"Available rooms and booking days",
   "priceControl":"price control",
   "accept":"Accept",
-  "refusal":"Refusal"
+  "refusal":"Refusal",
+  "numberOfUnitsAtPronight":"Number of units at Pronight",
+  "numberOfContractsAtPronight":"Number of contracts at Pronight",
+  "numberOfBookingsAtPronight":"Number of bookings at Pronight",
+  "Contract":"Contract",
+  "reservation":"Reservation"
 }

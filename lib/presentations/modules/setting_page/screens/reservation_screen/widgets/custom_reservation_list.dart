@@ -4,6 +4,7 @@ import 'package:pronight_vendor/core/app_theme/app_colors.dart';
 import 'package:pronight_vendor/core/screen_state/no_data.dart';
 import 'package:pronight_vendor/presentations/app_loader.dart';
 import 'package:pronight_vendor/presentations/modules/home_page/home_view_model.dart';
+import 'package:pronight_vendor/presentations/modules/setting_page/setting_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../core/dimens/dimens.dart';
 import 'custom_reservation_item.dart';
@@ -20,7 +21,7 @@ class _CustomReservationListState extends State<CustomReservationList> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HomeViewModel>(
+    return Consumer<SettingsViewModel>(
       builder: (context,data,_) {
         return RefreshIndicator(
           color: AppColors.primaryColor,
@@ -29,13 +30,13 @@ class _CustomReservationListState extends State<CustomReservationList> {
           },
           child: AnimationLimiter(
             child:data.isReservationLoading?const Center(child: AppLoader()):
-            data.reservationsModel?.data?.isEmpty==true?(widget.fromHome==true)?NoDataScreen():ListView(
+            data.reservationsModel?.data?.isEmpty==true?(widget.fromHome==true)?const NoDataScreen():ListView(
               physics:const AlwaysScrollableScrollPhysics(),
               children: const [
                  NoDataScreen(),
               ],
             ): ListView.builder(
-              physics: (widget.fromHome==true)?NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics(),
+              physics: (widget.fromHome==true)?const NeverScrollableScrollPhysics():const AlwaysScrollableScrollPhysics(),
                 padding: EdgeInsets.symmetric(vertical: Dimens.padding_12v,horizontal: Dimens.padding_16h),
                 shrinkWrap: true,
                 itemCount: data.reservationsModel?.data?.length,

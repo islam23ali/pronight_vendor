@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -5,11 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
+import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/data/models/body_or_quary/add_unit_body.dart';
 import 'package:pronight_vendor/data/models/response/sub_models/add_facilitie_model.dart';
 import 'package:pronight_vendor/data/repositories/units_repo.dart';
+import 'package:pronight_vendor/main.dart';
 import 'package:pronight_vendor/presentations/modules/add_unit_page/confirm_additional_screen/confirm_additional_screen.dart';
 
+import '../../../core/app_theme/app_colors.dart';
 import '../../../core/navigator/navigator.dart';
 import '../../../core/resources/app_translate.dart';
 import '../../../core/utils/imageCroper.dart';
@@ -22,6 +27,8 @@ import '../../../data/models/response/sub_models/add_unit_content_model.dart';
 import '../../../injection.dart';
 import '../../components/loadings/custom_scaffold_messanger.dart';
 import '../../components/loadings/progress_dialog.dart';
+import '../contracts_page/contract_screens/widget/success_payed_sheet.dart';
+import '../layout/bottom_nav_bar_app.dart';
 
 class AddUnitViewModel extends ChangeNotifier{
 final UnitsRepo _unitsRepo = getIt();
@@ -117,31 +124,31 @@ void getSupImages(ImageSource source) async {
 
 initAddUnit(){
   WidgetsBinding.instance.addPostFrameCallback((_){
-  // arabicUnitNameController.clear();
-  // englishUnitNameController.clear();
-  // unitPriceController.clear();
-  // unitAreaController.clear();
-  // arabicUnitDescriptionController.clear();
-  // englishUnitDescriptionController.clear();
-  // notesController.clear();
-  // selectedCity=null;
-  // latitude='';
-  // longitude='';
-  // address='';
-  // images=[];
-  // maxAdultsController.clear();
-  // pricePerAdultController.clear();
-  // maxChildrenController.clear();
-  // pricePerChildController.clear();
-  // isSwitchOffer=false;
-  // startDateOfferController.clear();
-  // endDateOfferController.clear();
-  // offerValue='';
-  // offerValueController.clear();
-  // offerValueController.clear();
-  // contentList=[AddContent(unitMainContentId: -1, value: '')];
-  // facilitiesList =[AddFacilities(unitMainFacilityId: -1, textAr: '', textEn: '')];
-  // additionalServiceList =[AddAdditionalServices(price: 0.0, forPerson: false, titleAr: '', titleEn: '',)];
+  arabicUnitNameController.clear();
+  englishUnitNameController.clear();
+  unitPriceController.clear();
+  unitAreaController.clear();
+  arabicUnitDescriptionController.clear();
+  englishUnitDescriptionController.clear();
+  notesController.clear();
+  selectedCity=null;
+  latitude='';
+  longitude='';
+  address='';
+  images=[];
+  maxAdultsController.clear();
+  pricePerAdultController.clear();
+  maxChildrenController.clear();
+  pricePerChildController.clear();
+  isSwitchOffer=false;
+  startDateOfferController.clear();
+  endDateOfferController.clear();
+  offerValue='';
+  offerValueController.clear();
+  offerValueController.clear();
+  contentList=[AddContent(unitMainContentId: -1, value: '')];
+  facilitiesList =[AddFacilities(unitMainFacilityId: -1, textAr: '', textEn: '')];
+  additionalServiceList =[AddAdditionalServices(price: 0.0, forPerson: false, titleAr: '', titleEn: '',)];
 
   getAllCities();
   getAllContents();
@@ -278,4 +285,55 @@ initAddUnit(){
   notifyListeners();
 }
 
+initConfirmAddition(){
+  identityImage=null;
+  licenseImage=null;
+  commercialImage=null;
+}
+  File? identityImage;
+  File? licenseImage;
+  File? commercialImage;
+
+  Future<void> confirmAddition (id) async {
+  notifyListeners();
+  ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.confirm.tr()} ...");
+  await dialog.show();
+  ApiResponse responseModel = await _unitsRepo.confirmAdditionRepo(id,identityImage,licenseImage,commercialImage);
+  await dialog.hide();
+  if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+    await showSuccessPayedSheet();
+    _oneUnitModel = OneUnitModel.fromJson(responseModel.response?.data);
+    notifyListeners();
+    if (_oneUnitModel != null && _oneUnitModel?.code == 200) {
+
+      if(kDebugMode){
+        CustomScaffoldMessanger.showToast(title: 'الله ينور ياعمناااا <<<<<<<<<<');
+      }
+     await NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 2,));
+
+      notifyListeners();
+    } else{
+      CustomScaffoldMessanger.showToast(title: _oneUnitModel?.message??'');
+    }
+    notifyListeners();
+  }
+  else {
+    CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+  }
+  notifyListeners();
+}
+Future<dynamic> showSuccessPayedSheet() async {
+  return  showModalBottomSheet(
+    // isDismissible: false,
+      isScrollControlled: true,
+      backgroundColor: AppColors.white,
+      context: navigatorKey.currentContext!,
+
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(36.r),
+          )),
+      builder: (BuildContext context) {
+        return const SuccessPayedSheet();
+      });}
 }

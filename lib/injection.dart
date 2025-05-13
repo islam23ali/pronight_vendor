@@ -12,6 +12,7 @@ import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permi
 import 'package:pronight_vendor/presentations/modules/home_page/home_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/change_language/language_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/unit_images_page/unit_image_view_model.dart';
+import 'package:pronight_vendor/presentations/modules/setting_page/setting_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/units_page/unit_details/one_unit_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/units_page/units_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,6 +45,7 @@ Future<void> init() async{
   getIt.registerLazySingleton(() => OneUnitViewModel());
   getIt.registerLazySingleton(() => VisitPermitViewModel());
   getIt.registerLazySingleton(() => HomeViewModel());
+  getIt.registerLazySingleton(() => SettingsViewModel());
   ///providers
   // getIt.registerLazySingleton(() => LanguageViewModel());
 

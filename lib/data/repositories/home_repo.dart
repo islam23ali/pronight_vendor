@@ -56,4 +56,13 @@ class HomeRepo {
     }
   }
 
+  Future<ApiResponse> homeDataRepo () async {
+    try {
+      Response response = await _dioClient.get(AppUrls.homeDataUrl);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
 }

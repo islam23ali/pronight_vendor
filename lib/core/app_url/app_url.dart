@@ -22,6 +22,7 @@ class AppUrls {
   static String allUnitsUrl = "/provider/units?limit=";
   static String oneUnitsUrl = "/provider/unit/";
   static String citiesUrl = "/provider/cities";
+  static String confirmAdditionUrl = "/provider/create-unit-addition/";
 
   static String contentsUrl = "/provider/main-contents";
   static String facilitiesUrl = "/provider/main-facilities";
@@ -33,4 +34,6 @@ class AppUrls {
 
   static String reservationUrl = "/provider/reservations?status=";
   static String updateReservationStatusUrl = "/provider/reservations/";
+
+  static String homeDataUrl = "/provider/home";
 }

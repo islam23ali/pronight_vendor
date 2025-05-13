@@ -11,8 +11,10 @@ import '../../../../../core/dimens/dimens.dart';
 import '../../../../../core/resources/app_assets.dart';
 import '../../../../../core/resources/app_translate.dart';
 import '../../../../../core/resources/font_size.dart';
+import '../../../../../injection.dart';
 import '../../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../../components/custom_text/custom_text.dart';
+import '../../add_unit_view_model.dart';
 
 class CustomCommercialRegisterImage extends StatefulWidget {
   const CustomCommercialRegisterImage({super.key});
@@ -22,6 +24,8 @@ class CustomCommercialRegisterImage extends StatefulWidget {
 }
 
 class _CustomCommercialRegisterImageState extends State<CustomCommercialRegisterImage> {
+  AddUnitViewModel provider = getIt();
+
   File? image;
 
   Future<void> getImage(ImageSource source) async {
@@ -29,7 +33,8 @@ class _CustomCommercialRegisterImageState extends State<CustomCommercialRegister
     final pickedFile = await picker.pickImage(source: source);
     image = pickedFile != null ? File(pickedFile.path) : null;
     setState(() {
-
+provider.commercialImage=image;
+provider.refreshData();
     });
     // notifyListeners();
   }
@@ -105,6 +110,8 @@ class _CustomCommercialRegisterImageState extends State<CustomCommercialRegister
                       child: InkWell(onTap: (){
                         setState(() {
                           image=null;
+                          provider.commercialImage=null;
+                          provider.refreshData();
                         });
                       },
                         child:(image==null)?const SizedBox(): Container(width: 20.w,height: 20.h,

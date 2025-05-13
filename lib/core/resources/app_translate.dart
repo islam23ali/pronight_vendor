@@ -260,6 +260,11 @@ class AppTranslate{
   static const String priceControl = 'priceControl' ;
   static const String accept = 'accept' ;
   static const String refusal = 'refusal' ;
+  static const String numberOfUnitsAtPronight = 'numberOfUnitsAtPronight' ;
+  static const String numberOfContractsAtPronight = 'numberOfContractsAtPronight' ;
+  static const String numberOfBookingsAtPronight = 'numberOfBookingsAtPronight' ;
+  static const String contract = 'Contract' ;
+  static const String reservation = 'reservation' ;
 
 
 

@@ -35,10 +35,14 @@ class OneReservation {
   String? status;
   String? entryDate;
   String? exitDate;
+  int? daysCount;
   int? adultsCount;
   int? childrenCount;
   bool? isPaid;
   List<Detail>? details;
+  String? createdAt;
+  String? date;
+  String? time;
 
   OneReservation({
     this.id,
@@ -52,10 +56,14 @@ class OneReservation {
     this.status,
     this.entryDate,
     this.exitDate,
+    this.daysCount,
     this.adultsCount,
     this.childrenCount,
     this.isPaid,
     this.details,
+    this.createdAt,
+    this.date,
+    this.time,
   });
 
   factory OneReservation.fromJson(Map<String, dynamic> json) => OneReservation(
@@ -70,10 +78,14 @@ class OneReservation {
     status: json["status"],
     entryDate: json["entry_date"],
     exitDate: json["exit_date"],
+    daysCount: json["days_count"],
     adultsCount: json["adults_count"],
     childrenCount: json["children_count"],
     isPaid: json["is_paid"],
     details: json["details"] == null ? [] : List<Detail>.from(json["details"]!.map((x) => Detail.fromJson(x))),
+    createdAt: json["created_at"],
+    date: json["date"],
+    time: json["time"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -88,10 +100,14 @@ class OneReservation {
     "status": status,
     "entry_date": entryDate,
     "exit_date": exitDate,
+    "days_count": daysCount,
     "adults_count": adultsCount,
     "children_count": childrenCount,
     "is_paid": isPaid,
     "details": details == null ? [] : List<dynamic>.from(details!.map((x) => x.toJson())),
+    "created_at": createdAt,
+    "date": date,
+    "time": time,
   };
 }
 

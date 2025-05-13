@@ -297,5 +297,10 @@
   "availableRoomsBookingDays": "الغرف المتاحة وأيام الحجز",
   "priceControl": "ضبط الأسعار",
   "accept": "قبول",
-  "refusal": "رفض"
+  "refusal": "رفض",
+  "numberOfUnitsAtPronight": "عدد الوحدات لدى برونايت",
+  "numberOfContractsAtPronight": "عدد العقود لدى برونايت",
+  "numberOfBookingsAtPronight": "عدد الحجوزات لدى برونايت",
+  "Contract": "عقد",
+  "reservation": "حجز"
 }

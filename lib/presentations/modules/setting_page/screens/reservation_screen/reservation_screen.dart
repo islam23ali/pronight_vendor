@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../../injection.dart';
 import '../../../../components/custom_app_bar/custom_app_bar.dart';
+import '../../setting_view_model.dart';
 
 
 class ReservationScreen extends StatefulWidget {
@@ -23,18 +24,18 @@ class ReservationScreen extends StatefulWidget {
 }
 
 class _ReservationScreenState extends State<ReservationScreen> {
-  HomeViewModel homeProvider = getIt();
+  SettingsViewModel provider = getIt();
   @override
   void initState() {
     super.initState();
-    homeProvider.initReservation();
+    provider.initReservation();
   }
   TextEditingController controller =TextEditingController();
   final pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      body: Consumer<HomeViewModel>(
+      body: Consumer<SettingsViewModel>(
         builder: (context,data,_) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.center,

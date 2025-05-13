@@ -16,6 +16,7 @@ import '../../../../core/dimens/dimens.dart';
 import '../../../../core/resources/app_assets.dart';
 import '../../../../core/resources/app_translate.dart';
 import '../../../../core/resources/font_size.dart';
+import '../../../../injection.dart';
 import '../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../components/custom_text/custom_text.dart';
 import '../../contracts_page/contract_screens/widget/success_payed_sheet.dart';
@@ -31,7 +32,12 @@ class ConfirmAdditionalScreen extends StatefulWidget {
 }
 
 class _ConfirmAdditionalScreenState extends State<ConfirmAdditionalScreen> {
-
+AddUnitViewModel provider = getIt();
+@override
+  void initState() {
+    super.initState();
+    provider.initConfirmAddition();
+  }
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(backgroundColor: const Color(0xffF6FFFA),
@@ -89,7 +95,8 @@ class _ConfirmAdditionalScreenState extends State<ConfirmAdditionalScreen> {
                   const CustomIDImage(),
                   const CustomLicenseImage(),
                   const CustomCommercialRegisterImage(),
-                  CustomButton(onTap: (){showSuccessPayedSheet();},title: AppTranslate.confirm.tr())
+                  CustomButton(onTap: (){
+                    provider.confirmAddition(widget.id);},title: AppTranslate.confirm.tr())
                 ],
               ),
             ),
@@ -98,18 +105,4 @@ class _ConfirmAdditionalScreenState extends State<ConfirmAdditionalScreen> {
       ),
     );
   }
-  Future<dynamic> showSuccessPayedSheet() async {
-    return  showModalBottomSheet(
-      // isDismissible: false,
-        isScrollControlled: true,
-        backgroundColor: AppColors.white,
-        context: context,
-
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(36.r),
-            )),
-        builder: (BuildContext context) {
-          return const SuccessPayedSheet();
-        });}
 }

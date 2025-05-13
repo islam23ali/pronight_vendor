@@ -4,7 +4,6 @@ import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/presentations/app_loader.dart';
 import 'package:pronight_vendor/presentations/components/custom_app_bar/custom_app_bar.dart';
 import 'package:pronight_vendor/presentations/components/custom_scaffold/custom_scaffold.dart';
-import 'package:pronight_vendor/presentations/modules/home_page/home_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../core/dimens/dimens.dart';
@@ -15,6 +14,7 @@ import '../../../../../../injection.dart';
 import '../../../../../components/custom_button/custom_button.dart';
 import '../../../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../../../components/custom_text/custom_text.dart';
+import '../../../setting_view_model.dart';
 
 class ReservationDetails extends StatefulWidget {
   const ReservationDetails({super.key, required this.id});
@@ -25,7 +25,7 @@ class ReservationDetails extends StatefulWidget {
 }
 
 class _ReservationDetailsState extends State<ReservationDetails> {
-  HomeViewModel provider = getIt();
+  SettingsViewModel provider = getIt();
   @override
   void initState() {
     super.initState();
@@ -37,7 +37,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
       backgroundColor: const Color(0xffF6FFFA),
       systemNavigationBarColor: const Color(0xffF6FFFA),
       appBar: CustomAppBar(title: AppTranslate.reservationDetails.tr(),height: 64.h,bgColor: const Color(0xffF6FFFA),statusBarColor: const Color(0xffF6FFFA)),
-      body: Consumer<HomeViewModel>(
+      body: Consumer<SettingsViewModel>(
         builder: (context,data,_) {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: Dimens.padding_24h,vertical: Dimens.padding_12),
@@ -77,7 +77,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                                     children: [
                                       SizedBox(width:130.w,
                                           child: CustomText(title: AppTranslate.order.tr(),fontSize: AppFonts.font_11,)),
-                                      Expanded(child: CustomText(title: 'حجز غرفة داخل فندق الرياض للسياحة',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,))
+                                      Expanded(child: CustomText(title: 'حجز غرفة داخل فندق الرياض للسياحة لسه جيمي',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,))
                                     ],
                                   ),
                                   SizedBox(height: 10.h),
@@ -85,7 +85,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                                     children: [
                                       SizedBox(width:130.w,
                                           child: CustomText(title: AppTranslate.orderDate.tr(),fontSize: AppFonts.font_11,)),
-                                      Expanded(child: CustomText(title: '2024-8-12',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,))
+                                      Expanded(child: CustomText(title: data.reservationDetailsModel?.data?.date??'',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,))
                                     ],
                                   ),
                               ],) ,),
@@ -99,7 +99,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                                   children: [
                                     SizedBox(width:130.w,
                                         child: CustomText(title: AppTranslate.numberOfRooms.tr(),fontSize: AppFonts.font_11,)),
-                                    CustomText(title: 'غرفتان',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,)
+                                    CustomText(title: 'غرفتان لسه جيمي',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,)
                                   ],
                                 ),
                                   SizedBox(height: 10.h),
@@ -107,7 +107,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                                     children: [
                                       SizedBox(width:130.w,
                                           child: CustomText(title: AppTranslate.numberOfDays.tr(),fontSize: AppFonts.font_11,)),
-                                      Expanded(child: CustomText(title: '4 أيام و 3 ليال',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,))
+                                      Expanded(child: CustomText(title: '${data.reservationDetailsModel?.data?.daysCount.toString()} ${AppTranslate.days.tr()}',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,))
                                     ],
                                   ),
                                   SizedBox(height: 10.h),
@@ -115,7 +115,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                                     children: [
                                       SizedBox(width:130.w,
                                           child: CustomText(title: AppTranslate.orderTime.tr(),fontSize: AppFonts.font_11,)),
-                                      Expanded(child: CustomText(title: '08:00 مساءاً',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,))
+                                      Expanded(child: CustomText(title: data.reservationDetailsModel?.data?.time??'',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,))
                                     ],
                                   ),
                               ],) ,),
@@ -129,7 +129,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                                   children: [
                                     SizedBox(width:130.w,
                                         child: CustomText(title: AppTranslate.roomPrice.tr(),fontSize: AppFonts.font_11,)),
-                                    CustomText(title: '500 ريال سعودي',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,)
+                                    CustomText(title: '500 ريال سعودي لسه جيمي ',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,)
                                   ],
                                 ),
                                   SizedBox(height: 10.h),
@@ -137,22 +137,26 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                                     children: [
                                       SizedBox(width:130.w,
                                           child: CustomText(title: AppTranslate.totalPrice.tr(),fontSize: AppFonts.font_11,)),
-                                      Expanded(child: CustomText(title: ' 4250 ريال سعودي',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,))
+                                      Expanded(child: CustomText(title: '${data.reservationDetailsModel?.data?.totalPrice} ${AppTranslate.saudiRiyal.tr()}',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,))
                                     ],
                                   ),
 
                               ],) ,),
                             SizedBox(height: 10.w),
-                            Divider(color: AppColors.textGrayColor.withAlpha((0.20*255).round()),),
+                            data.reservationDetailsModel?.data?.status=='new'? Divider(color: AppColors.textGrayColor.withAlpha((0.20*255).round()),):SizedBox(),
                             SizedBox(height: 20.w),
-                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            data.reservationDetailsModel?.data?.status=='new'? Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                CustomButton(onTap: (){},
+                                CustomButton(onTap: (){
+                                  provider.updateReservationStatus(data.reservationDetailsModel?.data?.id.toString()??'','accepted');
+                                },
                                   width: 135.w,
                                   fontWeight: FontWeight.w400,
                                   fontSize: AppFonts.font_11,
                                   title: AppTranslate.acceptRequest.tr(),),
-                                CustomButton(onTap: (){},
+                                CustomButton(onTap: (){
+                                  provider.updateReservationStatus(data.reservationDetailsModel?.data?.id.toString()??'','refused');
+                                },
                                   bg: AppColors.white,
                                   borderColor: AppColors.primaryColor,
                                   fontColor: AppColors.primaryColor,
@@ -161,7 +165,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                                   fontSize: AppFonts.font_11,
                                   title: AppTranslate.requestDenied.tr(),),
                               ],
-                            )
+                            ):SizedBox()
                           ],)
                         ],
                       ),

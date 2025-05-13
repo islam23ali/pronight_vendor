@@ -29,13 +29,13 @@ class Unit {
   OneCity? city;
   String? title;
   String? image;
-  int? rate;
+  num? rate;
   int? ratesCount;
-  int? oldPrice;
-  int? price;
+  num? oldPrice;
+  num? price;
   bool? hasOffer;
   String? offerType;
-  int? offerValue;
+  num? offerValue;
   bool? isFavorite;
   List<OneCity>? contents;
 

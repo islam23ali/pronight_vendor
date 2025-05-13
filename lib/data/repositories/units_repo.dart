@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:crypto/crypto.dart';
 // import 'package:device_info_plus/device_info_plus.dart';
@@ -120,6 +121,19 @@ class UnitsRepo {
         print('addContractRepo image2${body["images[]"]}');
       }
       Response response = await _dioClient.post(AppUrls.addUnitUrl,formData: FormData.fromMap(body));
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
+  Future<ApiResponse> confirmAdditionRepo (id,File? identityImage,File? licenseImage,File? commercialRegisterImage) async {
+    try {
+      Response response = await _dioClient.post(AppUrls.confirmAdditionUrl+id,formData: FormData.fromMap({
+        'identity_image':identityImage == null ? null: await MultipartFile.fromFile(identityImage.path),
+        'license_image':licenseImage == null ? null: await MultipartFile.fromFile(licenseImage.path),
+        if(commercialRegisterImage!=null)'commercial_register_image':commercialRegisterImage == null ? null: await MultipartFile.fromFile(commercialRegisterImage.path),
+      }));
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.handleError(e));

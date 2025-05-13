@@ -4,12 +4,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/presentations/modules/add_unit_page/add_unit_view_model.dart';
 
 import '../../../../../core/app_theme/app_colors.dart';
 import '../../../../../core/dimens/dimens.dart';
 import '../../../../../core/resources/app_assets.dart';
 import '../../../../../core/resources/app_translate.dart';
 import '../../../../../core/resources/font_size.dart';
+import '../../../../../injection.dart';
 import '../../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../../components/custom_text/custom_text.dart';
 
@@ -21,6 +23,8 @@ class CustomIDImage extends StatefulWidget {
 }
 
 class _CustomIDImageState extends State<CustomIDImage> {
+  AddUnitViewModel provider = getIt();
+
   File? image;
 
   Future<void> getImage(ImageSource source) async {
@@ -28,7 +32,8 @@ class _CustomIDImageState extends State<CustomIDImage> {
     final pickedFile = await picker.pickImage(source: source);
     image = pickedFile != null ? File(pickedFile.path) : null;
     setState(() {
-
+      provider.identityImage=image;
+      provider.refreshData();
     });
     // notifyListeners();
   }
@@ -109,6 +114,8 @@ class _CustomIDImageState extends State<CustomIDImage> {
                       child: InkWell(onTap: (){
                         setState(() {
                           image=null;
+                          provider.identityImage=null;
+                          provider.refreshData();
                         });
                       },
                         child:(image==null)?const SizedBox(): Container(width: 20.w,height: 20.h,
