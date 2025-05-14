@@ -36,4 +36,7 @@ class AppUrls {
   static String updateReservationStatusUrl = "/provider/reservations/";
 
   static String homeDataUrl = "/provider/home";
+  static String notificationsUrl = "/provider/notifications?limit=10&page=";
+  static String updateFCMTokenUrl = "/provider/create-token";
+
 }

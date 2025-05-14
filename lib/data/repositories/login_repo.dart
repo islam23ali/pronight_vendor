@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:crypto/crypto.dart';
 // import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pronight_vendor/injection.dart';
@@ -59,16 +60,22 @@ class LoginRepo {
       return ApiResponse.withError(ApiErrorHandler.handleError(e));
     }
   }
-  // Future<ApiResponse> updateFCMToken(String userId) async {
-  //   try {
-  //     Response response = await _dioClient.post(AppUrls.insertPhoneTokenUrl,
-  //         formData: FormData.fromMap({
-  //           'device_token':hashDeviceId(await _getDeviceToken()??''),
-  //           'user_id': userId
-  //         }));
-  //     return ApiResponse.withSuccess(response);
-  //   } catch (e) {
-  //     return ApiResponse.withError(ApiErrorHandler.handleError(e));
-  //   }
-  // }
+
+  Future<ApiResponse> updateFCMToken({required String fcmToken}) async {
+    try {
+      TargetPlatform deviceType = getDeviceType();/// for software_type
+      Response response = await _dioClient.post(AppUrls.updateFCMTokenUrl,
+          formData: FormData.fromMap({
+            'token':fcmToken,
+            'type':deviceType.name.toLowerCase()
+          }));
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+  TargetPlatform getDeviceType() {
+    /// for software_type
+    return defaultTargetPlatform;
+  }
 }

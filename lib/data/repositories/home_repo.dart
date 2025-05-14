@@ -65,4 +65,13 @@ class HomeRepo {
     }
   }
 
+  Future<ApiResponse> notificationsRepo (page) async {
+    try {
+      Response response = await _dioClient.get(AppUrls.notificationsUrl+page);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
 }

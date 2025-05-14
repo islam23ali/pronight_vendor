@@ -1,15 +1,13 @@
 
-import 'package:pronight_vendor/core/resources/app_translate.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:pronight_vendor/presentations/modules/splash/splash.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart' as l;
 import 'package:flutter/material.dart' ;
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:provider/provider.dart';
-
-import 'core/app_theme/theme.dart';
 import 'core/constants/constants.dart';
+import 'core/firebase_notification/notification_services.dart';
 import 'injection.dart';
 import 'multiproviders.dart';
 

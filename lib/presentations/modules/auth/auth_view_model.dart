@@ -11,6 +11,7 @@ import 'package:pronight_vendor/main.dart';
 import 'package:pronight_vendor/presentations/modules/auth/login/widget/confirm_code/verification_code/confirm_code_sheet.dart';
 import 'package:pronight_vendor/presentations/modules/layout/bottom_nav_bar_app.dart';
 import '../../../core/app_theme/app_colors.dart';
+import '../../../core/firebase_notification/notification_services.dart';
 import '../../../core/navigator/navigator.dart';
 import '../../../core/resources/app_translate.dart';
 import '../../../core/utils/imageCroper.dart';
@@ -130,7 +131,7 @@ class AuthViewModel extends ChangeNotifier{
           print('kkkkkkkkkkk${saveUserData.getUserData()?.data?.id}');
           print('kkkkkkkkkkk__token${saveUserData.getUserData()?.data?.token}');
           NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 0));
-          // await authRepo.updateFCMToken();
+          await updateFCMToken();
         }}else{
          print('kkkkkkkkkkk>>>>');
          await register();
@@ -170,7 +171,7 @@ class AuthViewModel extends ChangeNotifier{
           print('kkkkkkkkkkk${saveUserData.getUserData()?.data?.id}');
           print('kkkkkkkkkkk__token${saveUserData.getUserData()?.data?.token}');
           // showConfirmCodeSheet();
-          // await authRepo.updateFCMToken();
+          await updateFCMToken();
         }
         NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 0));
         if(kDebugMode){
@@ -195,4 +196,10 @@ class AuthViewModel extends ChangeNotifier{
         builder: (context) {
           return ConfirmCodeSheet(type: type,);
         });}
+
+  Future<void> updateFCMToken() async {
+    // String? fcmToken = await NotificationServices().getDeviceToken();
+    // await _loginRepo.updateFCMToken(fcmToken: fcmToken.toString());
+    notifyListeners();
+  }
 }
