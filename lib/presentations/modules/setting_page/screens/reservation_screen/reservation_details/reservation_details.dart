@@ -29,7 +29,9 @@ class _ReservationDetailsState extends State<ReservationDetails> {
   @override
   void initState() {
     super.initState();
-    provider.reservationDetails(widget.id);
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      provider.reservationDetails(widget.id);
+    });
   }
   @override
   Widget build(BuildContext context) {
