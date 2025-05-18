@@ -49,12 +49,14 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
   late List<int> years;
   late DateTime now;
   late DateTime minDate;
+  late DateTime toDate;
 
   @override
   void initState() {
     super.initState();
     now = DateTime.now();
     minDate = widget.disablePastDates ? now : DateTime(now.year - 150);
+    toDate = widget.disablePastDates ? now : DateTime(now.year + 150);
 
     // Parse initial date if provided
     if (widget.initialDate != null) {

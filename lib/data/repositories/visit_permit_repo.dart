@@ -59,7 +59,66 @@ class VisitPermitRepo {
       return ApiResponse.withError(ApiErrorHandler.handleError(e));
     }
   }
-  
+
+  Future<ApiResponse> updateVisitPermitRepo (id,AddVisitPermitBody addVisitPermitBody) async {
+    try {
+      Map<String, dynamic> body = {};
+      body["visit_date"] = addVisitPermitBody.visitDate;
+      body["sector_id"] = addVisitPermitBody.sectorId;
+      body["villa_id"] = addVisitPermitBody.villaId;
+      body["beach_id"] = addVisitPermitBody.beachId;
+      body["days_count"] = addVisitPermitBody.daysCount;
+      body["status"] = addVisitPermitBody.status;
+      body["driver_name"] = addVisitPermitBody.driverName;
+      body["visitors_switch"] = addVisitPermitBody.visitorsSwitch;
+      body["materials_switch"] = addVisitPermitBody.materialsSwitch;
+      body["send_client"] = addVisitPermitBody.sendClient;
+      body["send_provider"] = addVisitPermitBody.sendProvider;
+
+      if(addVisitPermitBody.note!=null||addVisitPermitBody.note!='')body['note']=addVisitPermitBody.note;
+      if(addVisitPermitBody.visitorsSwitch=='1')
+      for (int e = 0; e < (addVisitPermitBody.visitor??[]).length; e++) {
+        body["visitors[$e][name]"] = addVisitPermitBody.visitor?[e].visitorNameController.text;
+        body["visitors[$e][id_no]"] = addVisitPermitBody.visitor?[e].visitorIDNumberController.text;
+        body["visitors[$e][phone_code]"] = addVisitPermitBody.visitor?[e].visitorPhoneCodeController.text;
+        body["visitors[$e][phone]"] = addVisitPermitBody.visitor?[e].visitorPhoneController.text;
+      }
+      if(addVisitPermitBody.materialsSwitch=='1')
+      for (int i = 0; i < (addVisitPermitBody.material??[]).length; i++) {
+        body["materials[$i][name]"] = addVisitPermitBody.material?[i].materialNameController.text;
+        body["materials[$i][qty]"] = addVisitPermitBody.material?[i].materialQtyController.text;
+      }
+
+      if(kDebugMode){
+        print('addVisitPermitRepo BODY${addVisitPermitBody.toJson()}');
+        print('addVisitPermitRepo CAR${addVisitPermitBody.visitor?[0].toJson()}');
+        print('addVisitPermitRepo Escorts${addVisitPermitBody.material?[0].toJson()}');
+      }
+      Response response = await _dioClient.post(AppUrls.updateVisitPermitUrl+id,formData: FormData.fromMap(body));
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
+  Future<ApiResponse> deleteVisitorRepo(String visitorId) async {
+    try {
+      Response response = await _dioClient.delete(AppUrls.deleteVisitorPermitUrl+visitorId);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
+  Future<ApiResponse> deleteMaterialRepo(String materialId) async {
+    try {
+      Response response = await _dioClient.delete(AppUrls.deleteMaterialsPermitUrl+materialId);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
   Future<ApiResponse> allVisitPermitRepo(String search) async {
     try {
       Response response = await _dioClient.get(AppUrls.visitPermitsUrl+search);

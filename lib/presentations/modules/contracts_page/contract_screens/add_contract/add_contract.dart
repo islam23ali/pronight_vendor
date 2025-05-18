@@ -16,7 +16,8 @@ import '../../../../components/custom_scaffold/custom_scaffold.dart';
 import 'add_contract_view_model.dart';
 
 class AddContract extends StatefulWidget {
-  const AddContract({super.key});
+  final String? id;
+  const AddContract({super.key, this.id});
 
   @override
   State<AddContract> createState() => _AddContractState();
@@ -28,7 +29,12 @@ AddContractViewModel provider = getIt();
   void initState() {
     super.initState();
 WidgetsBinding.instance.addPostFrameCallback((timeStamp){
-  provider.initAddContract();
+  if(widget.id==null||widget.id==''){
+    provider.initAddContract();
+  }else{
+    print('nnnnnnnqq');
+    provider.initUpdateContract(widget.id??'');
+  }
 });
   }
 
@@ -56,11 +62,11 @@ WidgetsBinding.instance.addPostFrameCallback((timeStamp){
                       data.currentPage = index;
                       data.refreshData();
                     });
-                  },children:const [
-                   AddContractPageOne(),
-                   AddContractPageTwo(),
-                   AddContractPageThree(),
-                   AddContractPageFour(),
+                  },children: [
+                  const AddContractPageOne(),
+                  const AddContractPageTwo(),
+                  const AddContractPageThree(),
+                   AddContractPageFour(id: widget.id,),
                 ]
                 ),
               ),

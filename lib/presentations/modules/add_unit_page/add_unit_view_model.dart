@@ -27,6 +27,7 @@ import '../../../data/models/response/sub_models/add_unit_content_model.dart';
 import '../../../injection.dart';
 import '../../components/loadings/custom_scaffold_messanger.dart';
 import '../../components/loadings/progress_dialog.dart';
+import '../booking_days_page/booking_days_page.dart';
 import '../contracts_page/contract_screens/widget/success_payed_sheet.dart';
 import '../layout/bottom_nav_bar_app.dart';
 
@@ -322,6 +323,49 @@ initConfirmAddition(){
   }
   notifyListeners();
 }
+
+TextEditingController fromDateSetPriceController = TextEditingController();
+TextEditingController toDateSetPriceController = TextEditingController();
+TextEditingController newPriceController = TextEditingController();
+initSetPrice(){
+  fromDateSetPriceController.clear();
+  toDateSetPriceController.clear();
+  newPriceController.clear();
+  notifyListeners();
+}
+  Future<void> setPrice (unitId) async {
+  notifyListeners();
+  ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.confirm.tr()} ...");
+  await dialog.show();
+  ApiResponse responseModel = await _unitsRepo.setPriceRepo(unitId, fromDateSetPriceController.text, toDateSetPriceController.text, newPriceController.text);
+  await dialog.hide();
+  if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+
+    _oneUnitModel = OneUnitModel.fromJson(responseModel.response?.data);
+    notifyListeners();
+    if (_oneUnitModel != null && _oneUnitModel?.code == 200) {
+
+      if(kDebugMode){
+        CustomScaffoldMessanger.showToast(title: 'الله ينور ياعمناااا <<<<<<<<<<');
+      }
+      // await showSuccessPayedSheet();
+      NavigatorHandler.push(const BookingDaysPage());
+
+      // await NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 2,));
+
+      notifyListeners();
+    } else{
+      CustomScaffoldMessanger.showToast(title: _oneUnitModel?.message??'');
+    }
+    notifyListeners();
+  }
+  else {
+    CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+  }
+  notifyListeners();
+}
+
+
 Future<dynamic> showSuccessPayedSheet() async {
   return  showModalBottomSheet(
     // isDismissible: false,

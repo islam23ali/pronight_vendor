@@ -20,6 +20,7 @@ import '../../../../injection.dart';
 import '../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../components/custom_text/custom_text.dart';
 import '../widgets/custom_coupon_card.dart';
+import 'add_visit_permits/add_visit_permit.dart';
 
 class VisitPermitsDetails extends StatefulWidget {
   final String? id;
@@ -57,7 +58,9 @@ class _VisitPermitsDetailsState extends State<VisitPermitsDetails> {
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     CustomButton(onTap: (){data.printContract(widget.id??'');},width: 70.w,height: 54.h,icon: AppAssets.showContract,iconWidth: 25.w,iconHeight: 25.h,),
-                    CustomButton(onTap: (){},width: 70.w,height: 54.h,icon: AppAssets.editContract,iconWidth: 23.w,iconHeight: 23.h,),
+                    CustomButton(onTap: (){
+                      NavigatorHandler.push( AddVisitPermit(id: widget.id??'',));
+                    },width: 70.w,height: 54.h,icon: AppAssets.editContract,iconWidth: 23.w,iconHeight: 23.h,),
                     CustomButton(onTap: (){showDeleteItemSheet();},width: 70.w,height: 54.h,icon: AppAssets.deleteContract,iconWidth: 25.w,iconHeight: 25.h,),
                   ],
                 )),

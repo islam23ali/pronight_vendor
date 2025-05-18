@@ -9,6 +9,7 @@ import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_s
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/rate_app_sheet/rate_app_sheet.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/support_and_assistance_screen/support_and_assistance_screen.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/termis_and_condition_screen/termis_and_condition_screen.dart';
+import 'package:pronight_vendor/presentations/modules/setting_page/setting_view_model.dart';
 
 import '../../../../../core/app_theme/app_colors.dart';
 import '../../../../../core/dimens/dimens.dart';
@@ -16,6 +17,7 @@ import '../../../../../core/navigator/navigator.dart';
 import '../../../../../core/resources/app_assets.dart';
 import '../../../../../core/resources/app_translate.dart';
 import '../../../../../core/resources/font_size.dart';
+import '../../../../../injection.dart';
 import '../../../../components/custom_app_bar/custom_app_bar.dart';
 import '../../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../../components/custom_text/custom_text.dart';
@@ -29,6 +31,14 @@ class SubSettingsScreen extends StatefulWidget {
 }
 
 class _SubSettingsScreenState extends State<SubSettingsScreen> {
+  SettingsViewModel provider = getIt();
+  @override
+  void initState() {
+    super.initState();
+   WidgetsBinding.instance.addPostFrameCallback((_){
+     provider.getAllSetting();
+   });
+  }
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(

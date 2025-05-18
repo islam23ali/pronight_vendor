@@ -4,18 +4,21 @@ import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/data/models/response/sub_models/add_visitor_model.dart';
 import 'package:pronight_vendor/presentations/components/loadings/custom_scaffold_messanger.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/add_visit_permit_view_model.dart';
+import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/visit_permit_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../../core/dimens/dimens.dart';
 import '../../../../../../core/resources/app_assets.dart';
 import '../../../../../../core/resources/app_translate.dart';
 import '../../../../../../core/resources/font_size.dart';
+import '../../../../../../injection.dart';
 import '../../../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../../../components/custom_text/custom_text.dart';
 import '../../../../../components/inputs/custom_text_form.dart';
 
 class CustomVisitorDataList extends StatefulWidget {
-  const CustomVisitorDataList({super.key});
+  final String id;
+  const CustomVisitorDataList({super.key, required this.id});
 
   @override
   State<CustomVisitorDataList> createState() => _CustomVisitorDataListState();
@@ -126,6 +129,10 @@ class _CustomVisitorDataListState extends State<CustomVisitorDataList> {
                                     (data.visitorsList.first==data.visitorsList[index])?const SizedBox():
                                     InkWell(
                                         onTap: (){
+                                          VisitPermitViewModel visitPermitProvider = getIt();
+                                          if(widget.id!=''){
+                                            visitPermitProvider.deleteVisitorApi(data.visitorsList[index].id.toString());
+                                          }
                                           data.visitorsList.removeAt(index);
                                           data.refreshData();
                                         },

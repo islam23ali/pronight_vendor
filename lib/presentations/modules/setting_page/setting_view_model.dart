@@ -7,23 +7,27 @@ import 'package:pronight_vendor/data/datasource/local/LocalUserData.dart';
 import 'package:pronight_vendor/data/models/response/empty_model.dart';
 import 'package:pronight_vendor/data/models/response/home_model.dart';
 import 'package:pronight_vendor/data/repositories/home_repo.dart';
+import 'package:pronight_vendor/data/repositories/setting_repo.dart';
 import '../../../../data/models/api_response.dart';
 import '../../../../injection.dart';
 import '../../../core/resources/app_translate.dart';
 import '../../../data/models/response/all_reservation_model.dart';
 import '../../../data/models/response/reservation_details_model.dart';
+import '../../../data/models/response/setting_model.dart';
 import '../../components/loadings/custom_scaffold_messanger.dart';
 import '../../components/loadings/progress_dialog.dart';
 
 class SettingsViewModel extends ChangeNotifier{
   TextEditingController searchController =TextEditingController();
   final HomeRepo _homeRepo = getIt();
+  final SettingRepo _settingRepo = getIt();
   final LocalUserData saveUserData = getIt();
 
 
   bool _isLoading = false;
   bool _isReservationLoading = false;
   EmptyModel? _emptyModel;
+  SettingsModel? _settingsModel;
   ReservationsModel? _reservationsModel;
   ReservationDetailsModel? _reservationDetailsModel;
 
@@ -32,6 +36,7 @@ class SettingsViewModel extends ChangeNotifier{
   bool get isReservationLoading => _isReservationLoading;
   ReservationsModel? get reservationsModel => _reservationsModel;
   ReservationDetailsModel? get reservationDetailsModel => _reservationDetailsModel;
+  SettingsModel? get settingsModel => _settingsModel;
 
 
 
@@ -113,6 +118,33 @@ class SettingsViewModel extends ChangeNotifier{
         // allContractsList=_reportsModel?.data;
       } else{
         CustomScaffoldMessanger.showToast(title: _emptyModel?.message??'');
+      }
+      notifyListeners();
+    }
+    else {
+      CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+    }
+    notifyListeners();
+  }
+
+
+  Future<void> getAllSetting () async {
+    _isLoading=true;
+    notifyListeners();
+    ApiResponse responseModel = await _settingRepo.settingRepo();
+    if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+      _isLoading=false;
+      notifyListeners();
+      _settingsModel = SettingsModel.fromJson(responseModel.response?.data);
+      notifyListeners();
+      if (_settingsModel != null && _settingsModel?.code == 200) {
+        allReservation();
+        if(kDebugMode){
+          CustomScaffoldMessanger.showToast(title: _settingsModel?.message??'');
+        }
+        // allContractsList=_reportsModel?.data;
+      } else{
+        CustomScaffoldMessanger.showToast(title: _settingsModel?.message??'');
       }
       notifyListeners();
     }

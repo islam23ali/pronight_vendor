@@ -101,7 +101,7 @@ class _CustomUnitCardState extends State<CustomUnitCard> {
         Positioned(top: 4,left: 4,
             child:InkWell(
               onTap: (){
-                NavigatorHandler.push(const SetPriceScreen());
+                NavigatorHandler.push( SetPriceScreen(id: widget.model?.id??0));
               },
               child: Container(decoration: BoxDecoration(color: const Color(0xff1C472E),borderRadius: BorderRadius.only(topLeft: Radius.circular(16.r),bottomRight: Radius.circular(16.r),) ),
                 padding: EdgeInsets.symmetric(horizontal:Dimens.padding_8,vertical:Dimens.padding_4),

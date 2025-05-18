@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 import 'package:pronight_vendor/core/navigator/navigator.dart';
+import 'package:pronight_vendor/presentations/modules/contracts_page/contracts_view_model.dart';
 
 import '../../../../../core/resources/app_translate.dart';
 import '../../../../../data/datasource/local/LocalUserData.dart';
@@ -73,8 +74,22 @@ void initAddContract(){
     selectedSector=null;
     villasModel?.data=null;
     beachesModel?.data=null;
-
+  arrivalDateController.clear();
+  exitDateController.clear();
+  tenantNameController.clear();
+  iDNumberController.clear();
+  nationalityController.clear();
+  mobileNumberController.clear();
+  rentalValueController.clear();
+  insuranceValueController.clear();
+  contractFeesController.clear();
+  detailsController.clear();
+  // sendClient=contractProvider.oneContractModel?.data?.;
+  // sendProvider=contractProvider.oneContractModel?.data?.;
+  escorts =[];
+  cars =[];
 }
+
   Future<void> addContract () async {
     notifyListeners();
     AddContractBody addContractBody = AddContractBody();
@@ -100,6 +115,75 @@ void initAddContract(){
     ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.addContract.tr()} ...");
     await dialog.show();
     ApiResponse responseModel = await _contractRepo.addContractRepo(addContractBody);
+    await dialog.hide();
+    if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+      _emptyModel = EmptyModel.fromJson(responseModel.response?.data);
+      notifyListeners();
+      if (_emptyModel != null && _emptyModel?.code == 200) {
+        NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 1));
+        if(kDebugMode){
+          CustomScaffoldMessanger.showToast(title: 'الله ينور ياعمناااا <<<<<<<<<<');
+        }
+        notifyListeners();
+      } else{
+        CustomScaffoldMessanger.showToast(title: _emptyModel?.message??'');
+      }
+      notifyListeners();
+    }
+    else {
+      CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+    }
+    notifyListeners();
+  }
+  ContractViewModel contractProvider = getIt();
+
+  void initUpdateContract(String id){
+    contractProvider.oneContractDetails(id);
+    getAllSectors();
+    arrivalDateController.text=contractProvider.oneContractModel?.data?.startDate??'';
+    exitDateController.text=contractProvider.oneContractModel?.data?.endDate??'';
+    selectedSector=contractProvider.oneContractModel?.data?.sector;
+    selectedVilla=contractProvider.oneContractModel?.data?.villa;
+    selectedBeach=contractProvider.oneContractModel?.data?.beach;
+    tenantNameController.text=contractProvider.oneContractModel?.data?.tenant?.name??'';
+    iDNumberController.text=contractProvider.oneContractModel?.data?.tenant?.idNo??'';
+    nationalityController.text=contractProvider.oneContractModel?.data?.tenant?.nationality??'';
+    mobileNumberController.text=contractProvider.oneContractModel?.data?.tenant?.phone??'';
+    rentalValueController.text=contractProvider.oneContractModel?.data?.rentValue.toString()??'';
+    insuranceValueController.text=contractProvider.oneContractModel?.data?.insuranceValue.toString()??'';
+    contractFeesController.text=contractProvider.oneContractModel?.data?.price.toString()??'';
+    detailsController.text=contractProvider.oneContractModel?.data?.note.toString()??'';
+    // sendClient=contractProvider.oneContractModel?.data?.;
+    // sendProvider=contractProvider.oneContractModel?.data?.;
+    escorts =contractProvider.oneContractModel!.data!.escorts!;
+    cars =contractProvider.oneContractModel!.data!.cars!;
+
+  }
+  Future<void> updateContract (String id) async {
+    notifyListeners();
+    AddContractBody addContractBody = AddContractBody();
+    addContractBody.startDate=arrivalDateController.text;
+    addContractBody.endDate=exitDateController.text;
+    addContractBody.sectorId=selectedSector?.id.toString();
+    addContractBody.villaId=selectedVilla?.id.toString();
+    addContractBody.beachId=selectedBeach?.id.toString();
+    addContractBody.tenantName=tenantNameController.text;
+    addContractBody.tenantIdNo=iDNumberController.text;
+    addContractBody.tenantNationality=nationalityController.text;
+    addContractBody.tenantPhoneCode='+966';
+    addContractBody.tenantPhone=mobileNumberController.text;
+    addContractBody.rentValue=rentalValueController.text;
+    addContractBody.insuranceValue=insuranceValueController.text;
+    addContractBody.price=contractFeesController.text;
+    addContractBody.note=detailsController.text;
+    addContractBody.sendClient=sendClient;
+    addContractBody.sendProvider=sendProvider;
+    addContractBody.escorts=escorts;
+    addContractBody.cars=cars;
+
+    ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.addContract.tr()} ...");
+    await dialog.show();
+    ApiResponse responseModel = await _contractRepo.updateContractRepo(id,addContractBody);
     await dialog.hide();
     if (responseModel.response != null && responseModel.response?.statusCode == 200) {
       _emptyModel = EmptyModel.fromJson(responseModel.response?.data);

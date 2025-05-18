@@ -1,4 +1,9 @@
 
+import 'package:pronight_vendor/data/models/response/sectors_model.dart';
+import 'package:pronight_vendor/data/models/response/sub_models/add_material.dart';
+import 'package:pronight_vendor/data/models/response/sub_models/add_visitor_model.dart';
+import 'package:pronight_vendor/data/models/response/villas_model.dart';
+
 class OneVisitPermitModel {
   Data? data;
   String? message;
@@ -26,17 +31,17 @@ class OneVisitPermitModel {
 class Data {
   int? id;
   String? slug;
-  Sector? sector;
-  Beach? villa;
-  Beach? beach;
+  OneSector? sector;
+  OneVilla? villa;
+  OneVilla? beach;
   String? visitDate;
   int? daysCount;
   String? status;
   String? note;
   String? driverName;
   Provider? provider;
-  List<Visitor>? visitors;
-  List<Material>? materials;
+  List<AddVisitor>? visitors;
+  List<AddMaterial>? materials;
   String? createdAt;
 
   Data({
@@ -59,17 +64,17 @@ class Data {
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     id: json["id"],
     slug: json["slug"],
-    sector: json["sector"] == null ? null : Sector.fromJson(json["sector"]),
-    villa: json["villa"] == null ? null : Beach.fromJson(json["villa"]),
-    beach: json["beach"] == null ? null : Beach.fromJson(json["beach"]),
+    sector: json["sector"] == null ? null : OneSector.fromJson(json["sector"]),
+    villa: json["villa"] == null ? null : OneVilla.fromJson(json["villa"]),
+    beach: json["beach"] == null ? null : OneVilla.fromJson(json["beach"]),
     visitDate: json["visit_date"],
     daysCount: json["days_count"],
     status: json["status"],
     note: json["note"],
     driverName: json["driver_name"],
     provider: json["provider"] == null ? null : Provider.fromJson(json["provider"]),
-    visitors: json["visitors"] == null ? [] : List<Visitor>.from(json["visitors"]!.map((x) => Visitor.fromJson(x))),
-    materials: json["materials"] == null ? [] : List<Material>.from(json["materials"]!.map((x) => Material.fromJson(x))),
+    visitors: json["visitors"] == null ? [] : List<AddVisitor>.from(json["visitors"]!.map((x) => AddVisitor.fromJson(x))),
+    materials: json["materials"] == null ? [] : List<AddMaterial>.from(json["materials"]!.map((x) => AddMaterial.fromJson(x))),
     createdAt: json["created_at"],
   );
 
@@ -91,72 +96,72 @@ class Data {
   };
 }
 
-class Beach {
-  int? id;
-  String? name;
-  Sector? sector;
+// class Beach {
+//   int? id;
+//   String? name;
+//   Sector? sector;
+//
+//   Beach({
+//     this.id,
+//     this.name,
+//     this.sector,
+//   });
+//
+//   factory Beach.fromJson(Map<String, dynamic> json) => Beach(
+//     id: json["id"],
+//     name: json["name"],
+//     sector: json["sector"] == null ? null : Sector.fromJson(json["sector"]),
+//   );
+//
+//   Map<String, dynamic> toJson() => {
+//     "id": id,
+//     "name": name,
+//     "sector": sector?.toJson(),
+//   };
+// }
 
-  Beach({
-    this.id,
-    this.name,
-    this.sector,
-  });
-
-  factory Beach.fromJson(Map<String, dynamic> json) => Beach(
-    id: json["id"],
-    name: json["name"],
-    sector: json["sector"] == null ? null : Sector.fromJson(json["sector"]),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "sector": sector?.toJson(),
-  };
-}
-
-class Material {
-  int? id;
-  String? name;
-  int? qty;
-
-  Material({
-    this.id,
-    this.name,
-    this.qty,
-  });
-
-  factory Material.fromJson(Map<String, dynamic> json) => Material(
-    id: json["id"],
-    name: json["name"],
-    qty: json["qty"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "qty": qty,
-  };
-}
-class Sector {
-  int? id;
-  String? name;
-
-  Sector({
-    this.id,
-    this.name,
-  });
-
-  factory Sector.fromJson(Map<String, dynamic> json) => Sector(
-    id: json["id"],
-    name: json["name"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-  };
-}
+// class Material {
+//   int? id;
+//   String? name;
+//   int? qty;
+//
+//   Material({
+//     this.id,
+//     this.name,
+//     this.qty,
+//   });
+//
+//   factory Material.fromJson(Map<String, dynamic> json) => Material(
+//     id: json["id"],
+//     name: json["name"],
+//     qty: json["qty"],
+//   );
+//
+//   Map<String, dynamic> toJson() => {
+//     "id": id,
+//     "name": name,
+//     "qty": qty,
+//   };
+// }
+// class Sector {
+//   int? id;
+//   String? name;
+//
+//   Sector({
+//     this.id,
+//     this.name,
+//   });
+//
+//   factory Sector.fromJson(Map<String, dynamic> json) => Sector(
+//     id: json["id"],
+//     name: json["name"],
+//   );
+//
+//   Map<String, dynamic> toJson() => {
+//     "id": id,
+//     "name": name,
+//   };
+// }
 
 class Provider {
   int? id;
@@ -198,34 +203,34 @@ class Provider {
   };
 }
 
-class Visitor {
-  int? id;
-  String? name;
-  String? idNo;
-  String? phoneCode;
-  String? phone;
-
-  Visitor({
-    this.id,
-    this.name,
-    this.idNo,
-    this.phoneCode,
-    this.phone,
-  });
-
-  factory Visitor.fromJson(Map<String, dynamic> json) => Visitor(
-    id: json["id"],
-    name: json["name"],
-    idNo: json["id_no"],
-    phoneCode: json["phone_code"],
-    phone: json["phone"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "id_no": idNo,
-    "phone_code": phoneCode,
-    "phone": phone,
-  };
-}
+// class Visitor {
+//   int? id;
+//   String? name;
+//   String? idNo;
+//   String? phoneCode;
+//   String? phone;
+//
+//   Visitor({
+//     this.id,
+//     this.name,
+//     this.idNo,
+//     this.phoneCode,
+//     this.phone,
+//   });
+//
+//   factory Visitor.fromJson(Map<String, dynamic> json) => Visitor(
+//     id: json["id"],
+//     name: json["name"],
+//     idNo: json["id_no"],
+//     phoneCode: json["phone_code"],
+//     phone: json["phone"],
+//   );
+//
+//   Map<String, dynamic> toJson() => {
+//     "id": id,
+//     "name": name,
+//     "id_no": idNo,
+//     "phone_code": phoneCode,
+//     "phone": phone,
+//   };
+// }

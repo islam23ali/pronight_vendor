@@ -7,6 +7,7 @@ import 'package:pronight_vendor/presentations/app_loader.dart';
 import 'package:pronight_vendor/presentations/components/custom_app_bar/custom_app_bar.dart';
 import 'package:pronight_vendor/presentations/components/custom_button/custom_button.dart';
 import 'package:pronight_vendor/presentations/components/custom_scaffold/custom_scaffold.dart';
+import 'package:pronight_vendor/presentations/modules/contracts_page/contract_screens/add_contract/add_contract.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/contract_screens/widget/delete_item_sheet.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/contract_screens/widget/payment_type_sheet.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/contracts_view_model.dart';
@@ -35,7 +36,9 @@ class _ContractDetailsState extends State<ContractDetails> {
   @override
   void initState() {
     super.initState();
-    provider.oneContractDetails(widget.id??'-1');
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      provider.oneContractDetails(widget.id??'-1');
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,9 @@ class _ContractDetailsState extends State<ContractDetails> {
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     CustomButton(onTap: (){socialMediaHelper.openFacebookApp('https://pro-night.com/contract/79MK1v3Dn90wNtM8RNg0');},width: 70.w,height: 54.h,icon: AppAssets.showContract,iconWidth: 25.w,iconHeight: 25.h,),
-                    CustomButton(onTap: (){},width: 70.w,height: 54.h,icon: AppAssets.editContract,iconWidth: 23.w,iconHeight: 23.h,),
+                    CustomButton(onTap: (){
+                      NavigatorHandler.push(AddContract(id:widget.id.toString()));
+                    },width: 70.w,height: 54.h,icon: AppAssets.editContract,iconWidth: 23.w,iconHeight: 23.h,),
                     CustomButton(onTap: (){showDeleteItemSheet();},width: 70.w,height: 54.h,icon: AppAssets.deleteContract,iconWidth: 25.w,iconHeight: 25.h,),
                   ],
                 )),

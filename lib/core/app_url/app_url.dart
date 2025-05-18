@@ -1,5 +1,6 @@
 class AppUrls {
-  static String baseUrl = "https://pro-night.com/api";
+  // static String baseUrl = "https://pro-night.com/api";
+  static String baseUrl = "https://business.pro-night.com/api";
   static String sendCodeUrl = "/provider/send-code";
   static String confirmCodeUrl = "/provider/confirm-code";
 
@@ -9,6 +10,7 @@ class AppUrls {
   static String oneContractUrl = "/provider/contracts/";      //for details and delete contract
   static String printContractUrl = "/provider/print-contracts/";
   static String addContractUrl = "/provider/contracts";
+  static String updateContentsUrl = "/provider/contracts/";
   static String sectorsUrl = "/provider/sectors";
   static String villasUrl = "/provider/villas?sector_id=";
   static String beachesUrl = "/provider/beaches?sector_id=";
@@ -18,6 +20,9 @@ class AppUrls {
   static String printVisitPermitUrl = "/provider/print-visit-permits/";
   static String deleteVisitPermitUrl = "/provider/visit-permits/";
   static String addVisitPermitUrl = "/provider/visit-permits";
+  static String updateVisitPermitUrl = "/provider/visit-permits/";
+  static String deleteVisitorPermitUrl = "/provider/delete-visitors/";
+  static String deleteMaterialsPermitUrl = "/provider/delete-materials/";
 
   static String allUnitsUrl = "/provider/units?limit=";
   static String oneUnitsUrl = "/provider/unit/";
@@ -37,6 +42,12 @@ class AppUrls {
 
   static String homeDataUrl = "/provider/home";
   static String notificationsUrl = "/provider/notifications?limit=10&page=";
+  static String unReadNotificationsUrl = "/provider/unread-notifications";
   static String updateFCMTokenUrl = "/provider/create-token";
+
+  static String settingUrl = "/provider/settings";
+
+  // set price
+  static String setPriceUrl = "/provider/units-special-prices";
 
 }

@@ -27,14 +27,18 @@ class HomeModel {
 
 class Data {
   int? unitsCount;
+  String? lastUnitsAdded;
   int? reservationsCount;
+  String? lastReservationsAdded;
   int? visitPermitCount;
   int? contractsCount;
   List<OneReservation>? reservations;
 
   Data({
     this.unitsCount,
+    this.lastUnitsAdded,
     this.reservationsCount,
+    this.lastReservationsAdded,
     this.visitPermitCount,
     this.contractsCount,
     this.reservations,
@@ -42,7 +46,9 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     unitsCount: json["units_count"],
+    lastUnitsAdded:json["last_units_added"],
     reservationsCount: json["reservations_count"],
+    lastReservationsAdded:json["last_reservations_added"],
     visitPermitCount: json["visit_permit_count"],
     contractsCount: json["contracts_count"],
     reservations: json["reservations"] == null ? [] : List<OneReservation>.from(json["reservations"]!.map((x) => OneReservation.fromJson(x))),
@@ -50,7 +56,9 @@ class Data {
 
   Map<String, dynamic> toJson() => {
     "units_count": unitsCount,
+    "last_units_added": lastUnitsAdded,
     "reservations_count": reservationsCount,
+    "last_reservations_added": lastReservationsAdded,
     "visit_permit_count": visitPermitCount,
     "contracts_count": contractsCount,
     "reservations": reservations == null ? [] : List<dynamic>.from(reservations!.map((x) => x.toJson())),

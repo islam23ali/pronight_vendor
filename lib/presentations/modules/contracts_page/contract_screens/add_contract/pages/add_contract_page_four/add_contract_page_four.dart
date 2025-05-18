@@ -18,7 +18,8 @@ import '../../add_contract_view_model.dart';
 import '../../widget/send_contract_sheet.dart';
 
 class AddContractPageFour extends StatefulWidget {
-  const AddContractPageFour({super.key});
+  final String? id ;
+  const AddContractPageFour({super.key, required this.id});
 
   @override
   State<AddContractPageFour> createState() => _AddContractPageFourState();
@@ -164,7 +165,12 @@ class _AddContractPageFourState extends State<AddContractPageFour> {
                             setState(() {
                               data.currentPage=4;
                             });
-                            showSendContractSheet();
+                            if(widget.id==null||widget.id==''){
+                              showSendContractSheet();
+                            }else{
+                              data.updateContract(widget.id.toString());
+                            }
+
                           }},width: 150.w,
                             title: AppTranslate.send.tr(),),
                         ],

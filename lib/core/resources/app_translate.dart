@@ -317,4 +317,14 @@ class AppTranslate{
   static const String pleaseEnterOfferTitleAr = 'pleaseEnterOfferTitleAr' ;
   static const String pleaseEnterOfferTitleEn = 'pleaseEnterOfferTitleEn' ;
   static const String pleaseEnterPrice = 'pleaseEnterPrice' ;
+  static const String riyal = 'riyal' ;
+  static const String setPrice = 'setPrice' ;
+  static const String to = 'to' ;
+  static const String from = 'from' ;
+  static const String selectDate = 'selectDate' ;
+  static const String selectPrice = 'Select the desired date and then specify the desired price.' ;
+  static const String priceControl1 = 'Price control' ;
+  static const String pleaseAddDateFrom = 'Please add a date from' ;
+  static const String pleaseAddDateTo = 'Please add a date to' ;
+  static const String pleaseAddNewPrice = 'Please add a new price' ;
 }

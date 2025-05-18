@@ -302,5 +302,15 @@
   "numberOfContractsAtPronight": "عدد العقود لدى برونايت",
   "numberOfBookingsAtPronight": "عدد الحجوزات لدى برونايت",
   "Contract": "عقد",
-  "reservation": "حجز"
+  "reservation": "حجز",
+  "riyal": "ريال",
+  "setPrice": "حدد السعر",
+  "to": "إلى",
+  "from": "من",
+  "selectDate": "اختر التاريخ",
+  "Select the desired date and then specify the desired price.": "قم باختيار التاريخ المراد ثم تحديد السعر المطلوب",
+  "Price control": "ضبط السعر",
+  "Please add a date from": "يرجى إضافة تاريخ من",
+  "Please add a date to": "يرجى إضافة تاريخ إلى",
+  "Please add a new price": "يرجى إضافة سعر جديد"
 }

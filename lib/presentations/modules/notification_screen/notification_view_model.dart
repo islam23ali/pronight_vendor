@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/data/datasource/local/LocalUserData.dart';
+import 'package:pronight_vendor/data/models/response/empty_model.dart';
 import 'package:pronight_vendor/data/models/response/home_model.dart';
 import 'package:pronight_vendor/data/repositories/home_repo.dart';
 import '../../../../data/models/api_response.dart';
@@ -20,6 +21,7 @@ class NotificationsViewModel extends ChangeNotifier{
   bool _isLoading = false;
   bool _isLoadMore = false;
   NotificationModel? _notificationModel;
+  EmptyModel? _emptyModel;
 
   bool get isLoading => _isLoading;
   bool get isLoadMore => _isLoadMore;
@@ -56,6 +58,27 @@ class NotificationsViewModel extends ChangeNotifier{
         notifyListeners();
       } else {
         CustomScaffoldMessanger.showToast(title: _notificationModel?.message ?? '');
+      }
+    }else {
+      CustomScaffoldMessanger.showToast(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+    }
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> unReadNotification() async {
+    // _isLoading = true;
+    notifyListeners();
+    ApiResponse responseModel = await _homeRepo.unReadNotificationsRepo();
+    cancelToken = null;
+    notifyListeners();
+    if (responseModel.response != null) {
+      _emptyModel = EmptyModel.fromJson(responseModel.response?.data);
+      if (_emptyModel != null && _emptyModel?.code == 200) {
+
+        notifyListeners();
+      } else {
+        CustomScaffoldMessanger.showToast(title: _emptyModel?.message ?? '');
       }
     }else {
       CustomScaffoldMessanger.showToast(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
@@ -107,7 +130,7 @@ class NotificationsViewModel extends ChangeNotifier{
     return;
   }
   void listener() {
-    if (scrollController.position.pixels == scrollController.position.maxScrollExtent && !_isLoadMore &&( _notificationModel?.lastPage??0) > page) {
+    if (scrollController.position.pixels == scrollController.position.maxScrollExtent && _isLoadMore== false &&( (notificationsList?.length)!>9)) {
       int p = page + 1;
       loadMoreNotification(p);
     }

@@ -31,8 +31,7 @@ class _PersonalDataCardState extends State<PersonalDataCard> {
       borderRadius: BorderRadius.circular(16.r),
       child: Container(
           decoration: BoxDecoration(color: AppColors.white,
-              borderRadius: BorderRadius.circular(16.r),
-              ),
+              borderRadius: BorderRadius.circular(16.r)),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: Dimens.padding_12h,vertical: Dimens.padding_16v ),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,22 +60,22 @@ class _PersonalDataCardState extends State<PersonalDataCard> {
                 NavigatorHandler.push(const NotificationScreen());
               },
             ),
-            _buildItem(context,
-              isRow:true,
-              image: AppAssets.reportes,
-              title: tr(AppTranslate.reports),
-              onTap: () {
-                NavigatorHandler.push(const AllReportsScreen());
-              },
-            ),
-            _buildItem(context,
-              isRow:true,
-              image: AppAssets.moneyWay,
-              title: AppTranslate.financialMatters.tr(),
-              onTap: () {
-                // push(const PackagesScreen(fromSetting: true,));
-              },
-            ),
+            // _buildItem(context,
+            //   isRow:true,
+            //   image: AppAssets.reportes,
+            //   title: tr(AppTranslate.reports),
+            //   onTap: () {
+            //     NavigatorHandler.push(const AllReportsScreen());
+            //   },
+            // ),
+            // _buildItem(context,
+            //   isRow:true,
+            //   image: AppAssets.moneyWay,
+            //   title: AppTranslate.financialMatters.tr(),
+            //   onTap: () {
+            //     // push(const PackagesScreen(fromSetting: true,));
+            //   },
+            // ),
             _buildItem(context,
               isRow:true,
               image: AppAssets.statuss,

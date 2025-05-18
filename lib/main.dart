@@ -15,7 +15,7 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();
   await init();
   await FlutterDownloader.initialize(
@@ -46,7 +46,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
-  // NotificationServices notificationServices = NotificationServices();
+  NotificationServices notificationServices = NotificationServices();
 
   @override
   void initState() {
@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitDown,
     ]);
 
-    // notificationServices.init(context);
+    notificationServices.init(context);
   }
   @override
   void didChangeDependencies() {

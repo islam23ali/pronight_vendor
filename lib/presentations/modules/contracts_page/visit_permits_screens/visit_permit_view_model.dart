@@ -27,6 +27,8 @@ class VisitPermitViewModel extends ChangeNotifier{
   OneVisitPermitModel? _oneVisitPermitModel;
   SendCodeModel? _printVisitPermit;
   EmptyModel? _deleteVisitPermit;
+  EmptyModel? _deleteVisitor;
+  EmptyModel? _deleteMaterial;
 
   bool get isLoading => _isLoading;
   OneVisitPermitModel? get oneVisitPermitModel => _oneVisitPermitModel;
@@ -122,6 +124,54 @@ class VisitPermitViewModel extends ChangeNotifier{
         notifyListeners();
       } else{
         CustomScaffoldMessanger.showToast(title: _deleteVisitPermit?.message??'');
+      }
+      notifyListeners();
+    }
+    else {
+      CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+    }
+    notifyListeners();
+  }
+
+  Future<void> deleteVisitorApi (String visitorId) async {
+    notifyListeners();
+    ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.delete.tr()} ...");
+    await dialog.show();
+    ApiResponse responseModel = await _visitPermitRepo.deleteVisitorRepo(visitorId);
+    await dialog.hide();
+    if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+      _deleteVisitor = EmptyModel.fromJson(responseModel.response?.data);
+      notifyListeners();
+      if (_deleteVisitor != null && _deleteVisitor?.code == 200) {
+        NavigatorHandler.pop();
+        // allVisitPermit();
+        notifyListeners();
+      } else{
+        CustomScaffoldMessanger.showToast(title: _deleteVisitor?.message??'');
+      }
+      notifyListeners();
+    }
+    else {
+      CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+    }
+    notifyListeners();
+  }
+
+  Future<void> deleteMaterialApi (String visitorId) async {
+    notifyListeners();
+    ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.delete.tr()} ...");
+    await dialog.show();
+    ApiResponse responseModel = await _visitPermitRepo.deleteMaterialRepo(visitorId);
+    await dialog.hide();
+    if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+      _deleteMaterial = EmptyModel.fromJson(responseModel.response?.data);
+      notifyListeners();
+      if (_deleteMaterial != null && _deleteMaterial?.code == 200) {
+        NavigatorHandler.pop();
+        // allVisitPermit();
+        notifyListeners();
+      } else{
+        CustomScaffoldMessanger.showToast(title: _deleteMaterial?.message??'');
       }
       notifyListeners();
     }

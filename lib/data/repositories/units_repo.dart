@@ -140,5 +140,19 @@ class UnitsRepo {
     }
   }
 
+  Future<ApiResponse> setPriceRepo (unitId,fromDate,toDate,price) async {
+    try {
+      Response response = await _dioClient.post(AppUrls.setPriceUrl,formData: FormData.fromMap({
+        'unit_id':unitId,
+        'from_date':fromDate,
+        'to_date':toDate,
+        'price':price,
+      }));
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
 
 }

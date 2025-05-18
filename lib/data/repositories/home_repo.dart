@@ -74,4 +74,14 @@ class HomeRepo {
     }
   }
 
+
+  Future<ApiResponse> unReadNotificationsRepo () async {
+    try {
+      Response response = await _dioClient.get(AppUrls.unReadNotificationsUrl);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
 }

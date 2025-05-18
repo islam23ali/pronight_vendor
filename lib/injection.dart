@@ -23,6 +23,7 @@ import 'data/datasource/remote/dio/dio_client.dart';
 import 'data/datasource/remote/dio/logging_interceptor.dart';
 import 'data/repositories/home_repo.dart';
 import 'data/repositories/login_repo.dart';
+import 'data/repositories/setting_repo.dart';
 final getIt = GetIt.instance;
 
 Future<void> init() async{
@@ -59,5 +60,6 @@ Future<void> init() async{
   getIt.registerLazySingleton(() => UnitsRepo());
   getIt.registerLazySingleton(() => VisitPermitRepo());
   getIt.registerLazySingleton(() => HomeRepo());
+  getIt.registerLazySingleton(() => SettingRepo());
 
 }

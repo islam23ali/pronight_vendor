@@ -1,4 +1,9 @@
 
+import 'package:pronight_vendor/data/models/response/sectors_model.dart';
+import 'package:pronight_vendor/data/models/response/sub_models/add_car_model.dart';
+import 'package:pronight_vendor/data/models/response/sub_models/add_escort_model.dart';
+import 'package:pronight_vendor/data/models/response/villas_model.dart';
+
 class OneContractModel {
   Data? data;
   String? message;
@@ -26,9 +31,9 @@ class OneContractModel {
 class Data {
   int? id;
   String? slug;
-  Sector? sector;
-  Beach? villa;
-  Beach? beach;
+  OneSector? sector;
+  OneVilla? villa;
+  OneVilla? beach;
   Provider? provider;
   int? rentValue;
   String? note;
@@ -44,7 +49,8 @@ class Data {
   String? confirmCode;
   String? createdAt;
   String? updatedAt;
-  List<Escort>? escorts;
+  // List<Escort>? escorts;
+  List<AddEscort>? escorts;
   List<Car>? cars;
 
   Data({
@@ -75,9 +81,9 @@ class Data {
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     id: json["id"],
     slug: json["slug"],
-    sector: json["sector"] == null ? null : Sector.fromJson(json["sector"]),
-    villa: json["villa"] == null ? null : Beach.fromJson(json["villa"]),
-    beach: json["beach"] == null ? null : Beach.fromJson(json["beach"]),
+    sector: json["sector"] == null ? null : OneSector.fromJson(json["sector"]),
+    villa: json["villa"] == null ? null : OneVilla.fromJson(json["villa"]),
+    beach: json["beach"] == null ? null : OneVilla.fromJson(json["beach"]),
     provider: json["provider"] == null ? null : Provider.fromJson(json["provider"]),
     rentValue: json["rent_value"],
     note: json["note"],
@@ -93,7 +99,8 @@ class Data {
     confirmCode: json["confirm_code"],
     createdAt: json["created_at"] ,
     updatedAt: json["updated_at"],
-    escorts: json["escorts"] == null ? [] : List<Escort>.from(json["escorts"]!.map((x) => Escort.fromJson(x))),
+    // escorts: json["escorts"] == null ? [] : List<Escort>.from(json["escorts"]!.map((x) => Escort.fromJson(x))),
+    escorts: json["escorts"] == null ? [] : List<AddEscort>.from(json["escorts"]!.map((x) => AddEscort.fromJson(x))),
     cars: json["cars"] == null ? [] : List<Car>.from(json["cars"]!.map((x) => Car.fromJson(x))),
   );
 
@@ -123,137 +130,118 @@ class Data {
   };
 }
 
-class Beach {
-  int? id;
-  String? name;
-  Sector? sector;
+// class Beach {
+//   int? id;
+//   String? name;
+//   OneSector? sector;
+//
+//   Beach({
+//     this.id,
+//     this.name,
+//     this.sector,
+//   });
+//
+//   factory Beach.fromJson(Map<String, dynamic> json) => Beach(
+//     id: json["id"],
+//     name: json["name"],
+//     sector: json["sector"] == null ? null : OneSector.fromJson(json["sector"]),
+//   );
+//
+//   Map<String, dynamic> toJson() => {
+//     "id": id,
+//     "name": name,
+//     "sector": sector?.toJson(),
+//   };
+// }
 
-  Beach({
-    this.id,
-    this.name,
-    this.sector,
-  });
 
-  factory Beach.fromJson(Map<String, dynamic> json) => Beach(
-    id: json["id"],
-    name: json["name"],
-    sector: json["sector"] == null ? null : Sector.fromJson(json["sector"]),
-  );
+// class Car {
+//   int? id;
+//   int? contractId;
+//   String? type;
+//   String? plateNo;
+//   dynamic driverName;
+//   dynamic driverIdNo;
+//   String? createdAt;
+//   String? updatedAt;
+//
+//   Car({
+//     this.id,
+//     this.contractId,
+//     this.type,
+//     this.plateNo,
+//     this.driverName,
+//     this.driverIdNo,
+//     this.createdAt,
+//     this.updatedAt,
+//   });
+//
+//   factory Car.fromJson(Map<String, dynamic> json) => Car(
+//     id: json["id"],
+//     contractId: json["contract_id"],
+//     type: json["type"],
+//     plateNo: json["plate_no"],
+//     driverName: json["driver_name"],
+//     driverIdNo: json["driver_id_no"],
+//     createdAt: json["created_at"],
+//     updatedAt: json["updated_at"],
+//   );
+//
+//   Map<String, dynamic> toJson() => {
+//     "id": id,
+//     "contract_id": contractId,
+//     "type": type,
+//     "plate_no": plateNo,
+//     "driver_name": driverName,
+//     "driver_id_no": driverIdNo,
+//     "created_at": createdAt,
+//     "updated_at": updatedAt,
+//   };
+// }
 
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "sector": sector?.toJson(),
-  };
-}
-
-class Sector {
-  int? id;
-  String? name;
-
-  Sector({
-    this.id,
-    this.name,
-  });
-
-  factory Sector.fromJson(Map<String, dynamic> json) => Sector(
-    id: json["id"],
-    name: json["name"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-  };
-}
-
-class Car {
-  int? id;
-  int? contractId;
-  String? type;
-  String? plateNo;
-  dynamic driverName;
-  dynamic driverIdNo;
-  String? createdAt;
-  String? updatedAt;
-
-  Car({
-    this.id,
-    this.contractId,
-    this.type,
-    this.plateNo,
-    this.driverName,
-    this.driverIdNo,
-    this.createdAt,
-    this.updatedAt,
-  });
-
-  factory Car.fromJson(Map<String, dynamic> json) => Car(
-    id: json["id"],
-    contractId: json["contract_id"],
-    type: json["type"],
-    plateNo: json["plate_no"],
-    driverName: json["driver_name"],
-    driverIdNo: json["driver_id_no"],
-    createdAt: json["created_at"],
-    updatedAt: json["updated_at"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "contract_id": contractId,
-    "type": type,
-    "plate_no": plateNo,
-    "driver_name": driverName,
-    "driver_id_no": driverIdNo,
-    "created_at": createdAt,
-    "updated_at": updatedAt,
-  };
-}
-
-class Escort {
-  int? id;
-  int? contractId;
-  String? name;
-  String? idNo;
-  String? nationality;
-  String? kinship;
-  String? createdAt;
-  String? updatedAt;
-
-  Escort({
-    this.id,
-    this.contractId,
-    this.name,
-    this.idNo,
-    this.nationality,
-    this.kinship,
-    this.createdAt,
-    this.updatedAt,
-  });
-
-  factory Escort.fromJson(Map<String, dynamic> json) => Escort(
-    id: json["id"],
-    contractId: json["contract_id"],
-    name: json["name"],
-    idNo: json["id_no"],
-    nationality: json["nationality"],
-    kinship: json["kinship"],
-    createdAt: json["created_at"],
-    updatedAt: json["updated_at"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "contract_id": contractId,
-    "name": name,
-    "id_no": idNo,
-    "nationality": nationality,
-    "kinship": kinship,
-    "created_at": createdAt,
-    "updated_at": updatedAt,
-  };
-}
+// class Escort {
+//   int? id;
+//   int? contractId;
+//   String? name;
+//   String? idNo;
+//   String? nationality;
+//   String? kinship;
+//   String? createdAt;
+//   String? updatedAt;
+//
+//   Escort({
+//     this.id,
+//     this.contractId,
+//     this.name,
+//     this.idNo,
+//     this.nationality,
+//     this.kinship,
+//     this.createdAt,
+//     this.updatedAt,
+//   });
+//
+//   factory Escort.fromJson(Map<String, dynamic> json) => Escort(
+//     id: json["id"],
+//     contractId: json["contract_id"],
+//     name: json["name"],
+//     idNo: json["id_no"],
+//     nationality: json["nationality"],
+//     kinship: json["kinship"],
+//     createdAt: json["created_at"],
+//     updatedAt: json["updated_at"],
+//   );
+//
+//   Map<String, dynamic> toJson() => {
+//     "id": id,
+//     "contract_id": contractId,
+//     "name": name,
+//     "id_no": idNo,
+//     "nationality": nationality,
+//     "kinship": kinship,
+//     "created_at": createdAt,
+//     "updated_at": updatedAt,
+//   };
+// }
 
 class Provider {
   int? id;

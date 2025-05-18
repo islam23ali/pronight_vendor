@@ -122,6 +122,71 @@ class AddVisitPermitViewModel extends ChangeNotifier{
     }
     notifyListeners();
   }
+ VisitPermitViewModel visitPermitProvider = getIt();
+
+  initUpdateVisitPermit(String id){
+    visitPermitProvider.oneVisitPermit(id);
+    visitDateController.text=visitPermitProvider.oneVisitPermitModel?.data?.visitDate??'';
+    selectedSector=visitPermitProvider.oneVisitPermitModel?.data?.sector;
+    selectedVilla=visitPermitProvider.oneVisitPermitModel?.data?.villa;
+    selectedBeach=visitPermitProvider.oneVisitPermitModel?.data?.beach;
+    numberOfDaysController.text=visitPermitProvider.oneVisitPermitModel?.data?.daysCount.toString()??'';
+    permitStatusController.text=visitPermitProvider.oneVisitPermitModel?.data?.status??'';
+    driverNameController.text=visitPermitProvider.oneVisitPermitModel?.data?.driverName??'';
+    isSwitchVisitors=visitPermitProvider.oneVisitPermitModel?.data?.visitors==[]?false:true;
+    isSwitchMaterials=visitPermitProvider.oneVisitPermitModel?.data?.materials==[]?false:true;
+    visitorsList=visitPermitProvider.oneVisitPermitModel!.data!.visitors!;
+    // materialList=visitPermitProvider.oneVisitPermitModel!.data!.materials!;
+
+  }
+  Future<void> updateVisitPermit (id) async {
+    notifyListeners();
+    AddVisitPermitBody addVisitPermitBody = AddVisitPermitBody();
+    addVisitPermitBody.visitDate=visitDateController.text;
+    addVisitPermitBody.sectorId=selectedSector?.id.toString();
+    addVisitPermitBody.villaId=selectedVilla?.id.toString();
+    addVisitPermitBody.beachId=selectedBeach?.id.toString();
+    addVisitPermitBody.daysCount=numberOfDaysController.text;
+    addVisitPermitBody.status=permitStatusController.text;
+    addVisitPermitBody.driverName=driverNameController.text;
+    addVisitPermitBody.note=detailsController.text;
+    addVisitPermitBody.visitorsSwitch=(isSwitchVisitors==true)?1.toString():0.toString();
+    addVisitPermitBody.materialsSwitch=(isSwitchMaterials==true)?1.toString():0.toString();
+    addVisitPermitBody.visitor=visitorsList;
+    addVisitPermitBody.material=materialList;
+    addVisitPermitBody.sendClient=sendClient;
+    addVisitPermitBody.sendProvider=sendProvider;
+
+
+    ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.confirm.tr()} ...");
+    await dialog.show();
+    ApiResponse responseModel = await _visitPermitRepo.updateVisitPermitRepo(id,addVisitPermitBody);
+    await dialog.hide();
+    if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+      _oneVisitPermitModel = OneVisitPermitModel.fromJson(responseModel.response?.data);
+      notifyListeners();
+      if (_oneVisitPermitModel != null && _oneVisitPermitModel?.code == 200) {
+        VisitPermitViewModel visitPermitProvider =getIt();
+        visitPermitProvider.initVisitPermit();
+        NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 1));
+        // contractProvider.isContract=1;
+        // await contractProvider.pageController.animateToPage(contractProvider.isContract,
+        //     duration: const Duration(seconds: 1),
+        //     curve: Curves.easeInOut);
+        if(kDebugMode){
+          CustomScaffoldMessanger.showToast(title: 'الله ينور ياعمناااا <<<<<<<<<<');
+        }
+        notifyListeners();
+      } else{
+        CustomScaffoldMessanger.showToast(title: _oneVisitPermitModel?.message??'');
+      }
+      notifyListeners();
+    }
+    else {
+      CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+    }
+    notifyListeners();
+  }
 
 addVisitPermitValidation(){
     if(visitDateController.text.isEmpty){

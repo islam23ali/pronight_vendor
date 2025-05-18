@@ -31,7 +31,8 @@ import '../../contract_screens/add_contract/pages/add_contract_page_one/widget/c
 import 'add_visit_permit_view_model.dart';
 
 class AddVisitPermit extends StatefulWidget {
-  const AddVisitPermit({super.key});
+  final String? id;
+  const AddVisitPermit({super.key, this.id});
 
   @override
   State<AddVisitPermit> createState() => _AddVisitPermitState();
@@ -43,7 +44,12 @@ class _AddVisitPermitState extends State<AddVisitPermit> {
   void initState() {
     super.initState();
   WidgetsBinding.instance.addPostFrameCallback((timeStamp){
-    provider.initAddVisitPermit();
+    if(widget.id==null||widget.id==''){
+      provider.initAddVisitPermit();
+    }else{
+      print('nnnnnnnfffqq');
+      provider.initUpdateVisitPermit(widget.id??'');
+    }
   });
   }
   @override
@@ -279,12 +285,16 @@ class _AddVisitPermitState extends State<AddVisitPermit> {
                                       ),
                                     ]),
                                 SizedBox(height: 20.h),
-                                if(data.isSwitchVisitors==true) const CustomVisitorDataList(),
+                                if(data.isSwitchVisitors==true) CustomVisitorDataList(id: widget.id??'',),
                                 SizedBox(height: 10.h),
-                                if(data.isSwitchMaterials==true) const CustomMaterialList(),
+                                if(data.isSwitchMaterials==true) CustomMaterialList(id: widget.id??'',),
                                 SizedBox(height: 20.h),
                                 CustomButton(onTap: (){
-                                  showSendVisitPermitSheet();
+                                  if(widget.id==''||widget.id==null){
+                                    showSendVisitPermitSheet();
+                                  }else{
+                                    data.updateVisitPermit(widget.id??'');
+                                  }
                                 },title: AppTranslate.send.tr(),)
                               ],),
                             )

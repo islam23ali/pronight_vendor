@@ -11,6 +11,7 @@ import '../../../../core/resources/app_translate.dart';
 import '../../../../core/resources/font_size.dart';
 import '../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../components/custom_text/custom_text.dart';
+import '../../layout/bottom_nav_bar_app.dart';
 import '../../setting_page/screens/reservation_screen/reservation_screen.dart';
 
 class HomeReservationAndBilling extends StatefulWidget {
@@ -47,31 +48,35 @@ class _HomeReservationAndBillingState extends State<HomeReservationAndBilling> {
                           SizedBox(height: 8.h),
                           CustomText(title:'${data.homeModel?.data?.reservationsCount.toString()} ${AppTranslate.reservation.tr()}',fontSize: AppFonts.font_16,fontWeight: FontWeight.bold,fontColor: AppColors.primaryColor),
                           SizedBox(height: 8.h),
-                          CustomText(title: 'تم التحديث منذ 50 دقيقة   لسه جيمي ',fontSize: AppFonts.font_8,fontColor: AppColors.textColor,)
+                          CustomText(title: data.homeModel?.data?.lastReservationsAdded??'',fontSize: AppFonts.font_8,fontColor: AppColors.textColor,)
                         ],),
                     ) ,),
                 )),
             SizedBox(width: 165.w,
-                child: Card(
-                  elevation: 5,
-                  surfaceTintColor: AppColors.white,
-                  color: AppColors.white,
-                  child:Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(children: [
-                          CustomSvgIcon(assetName: AppAssets.billing,width: 15.w,height: 15.h),
-                          SizedBox(width: 5.w),
-                          CustomText(title: AppTranslate.contract.tr(),fontColor: AppColors.textColor2)
-                          // CustomText(title: AppTranslate.billing.tr(),fontColor: AppColors.textColor2)
+                child: InkWell(onTap: (){
+                   NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 1,));
+                },
+                  child: Card(
+                    elevation: 5,
+                    surfaceTintColor: AppColors.white,
+                    color: AppColors.white,
+                    child:Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(children: [
+                            CustomSvgIcon(assetName: AppAssets.billing,width: 15.w,height: 15.h),
+                            SizedBox(width: 5.w),
+                            CustomText(title: AppTranslate.contract.tr(),fontColor: AppColors.textColor2)
+                            // CustomText(title: AppTranslate.billing.tr(),fontColor: AppColors.textColor2)
+                          ],),
+                          SizedBox(height: 8.h),
+                          CustomText(title: '${data.homeModel?.data?.contractsCount.toString()} ${AppTranslate.contract.tr()}',fontSize: AppFonts.font_16,fontWeight: FontWeight.bold,fontColor: AppColors.primaryColor),
+                          SizedBox(height: 8.h),
+                          CustomText(title: 'تم التحديث منذ 50 دقيقة   لسه جيمي',fontSize: AppFonts.font_8,fontColor: AppColors.textColor,)
                         ],),
-                        SizedBox(height: 8.h),
-                        CustomText(title: '${data.homeModel?.data?.contractsCount.toString()} ${AppTranslate.contract.tr()}',fontSize: AppFonts.font_16,fontWeight: FontWeight.bold,fontColor: AppColors.primaryColor),
-                        SizedBox(height: 8.h),
-                        CustomText(title: 'تم التحديث منذ 50 دقيقة   لسه جيمي',fontSize: AppFonts.font_8,fontColor: AppColors.textColor,)
-                      ],),
-                  ) ,)),
+                    ) ,),
+                )),
           ],);
       }
     );

@@ -298,5 +298,15 @@
   "numberOfContractsAtPronight":"Number of contracts at Pronight",
   "numberOfBookingsAtPronight":"Number of bookings at Pronight",
   "Contract":"Contract",
-  "reservation":"Reservation"
+  "reservation":"Reservation",
+  "riyal":"riyal",
+  "setPrice":"Set price",
+  "to":"to",
+  "from":"from",
+  "selectDate":"Select Date",
+  "Select the desired date and then specify the desired price.":"Select the desired date and then specify the desired price.",
+  "Price control":"Price control",
+  "Please add a date from":"Please add a date from",
+  "Please add a date to":"Please add a date to",
+  "Please add a new price":"Please add a new price"
 }

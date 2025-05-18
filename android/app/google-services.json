@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "399263087732",
+    "project_id": "pronight-732df",
+    "storage_bucket": "pronight-732df.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399263087732:android:d43922e77ddcac727e6521",
+        "android_client_info": {
+          "package_name": "com.app.pronight"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgYYbpcylgVezfoZgfJFrfg2qrhY2XeHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399263087732:android:78c8105c276f43dd7e6521",
+        "android_client_info": {
+          "package_name": "com.apps.pronight_vendor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgYYbpcylgVezfoZgfJFrfg2qrhY2XeHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
