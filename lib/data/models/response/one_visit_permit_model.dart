@@ -41,7 +41,7 @@ class Data {
   String? driverName;
   Provider? provider;
   List<AddVisitor>? visitors;
-  List<AddMaterial>? materials;
+  List<Material>? materials;
   String? createdAt;
 
   Data({
@@ -74,7 +74,7 @@ class Data {
     driverName: json["driver_name"],
     provider: json["provider"] == null ? null : Provider.fromJson(json["provider"]),
     visitors: json["visitors"] == null ? [] : List<AddVisitor>.from(json["visitors"]!.map((x) => AddVisitor.fromJson(x))),
-    materials: json["materials"] == null ? [] : List<AddMaterial>.from(json["materials"]!.map((x) => AddMaterial.fromJson(x))),
+    materials: json["materials"] == null ? [] : List<Material>.from(json["materials"]!.map((x) => Material.fromJson(x))),
     createdAt: json["created_at"],
   );
 
@@ -120,29 +120,29 @@ class Data {
 //   };
 // }
 
-// class Material {
-//   int? id;
-//   String? name;
-//   int? qty;
-//
-//   Material({
-//     this.id,
-//     this.name,
-//     this.qty,
-//   });
-//
-//   factory Material.fromJson(Map<String, dynamic> json) => Material(
-//     id: json["id"],
-//     name: json["name"],
-//     qty: json["qty"],
-//   );
-//
-//   Map<String, dynamic> toJson() => {
-//     "id": id,
-//     "name": name,
-//     "qty": qty,
-//   };
-// }
+class Material {
+  int? id;
+  String? name;
+  int? qty;
+
+  Material({
+    this.id,
+    this.name,
+    this.qty,
+  });
+
+  factory Material.fromJson(Map<String, dynamic> json) => Material(
+    id: json["id"],
+    name: json["name"],
+    qty: json["qty"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "qty": qty,
+  };
+}
 // class Sector {
 //   int? id;
 //   String? name;

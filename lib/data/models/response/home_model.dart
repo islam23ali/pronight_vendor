@@ -32,6 +32,8 @@ class Data {
   String? lastReservationsAdded;
   int? visitPermitCount;
   int? contractsCount;
+  String? lastContractAdded;
+  String? lastVisitPermitAdded;
   List<OneReservation>? reservations;
 
   Data({
@@ -41,6 +43,8 @@ class Data {
     this.lastReservationsAdded,
     this.visitPermitCount,
     this.contractsCount,
+    this.lastContractAdded,
+    this.lastVisitPermitAdded,
     this.reservations,
   });
 
@@ -51,6 +55,8 @@ class Data {
     lastReservationsAdded:json["last_reservations_added"],
     visitPermitCount: json["visit_permit_count"],
     contractsCount: json["contracts_count"],
+    lastContractAdded: json["last_contract_added"],
+    lastVisitPermitAdded: json["last_visit_permit_added"],
     reservations: json["reservations"] == null ? [] : List<OneReservation>.from(json["reservations"]!.map((x) => OneReservation.fromJson(x))),
   );
 
@@ -61,6 +67,8 @@ class Data {
     "last_reservations_added": lastReservationsAdded,
     "visit_permit_count": visitPermitCount,
     "contracts_count": contractsCount,
+    "last_contract_added": lastContractAdded,
+    "last_visit_permit_added": lastVisitPermitAdded,
     "reservations": reservations == null ? [] : List<dynamic>.from(reservations!.map((x) => x.toJson())),
   };
 }

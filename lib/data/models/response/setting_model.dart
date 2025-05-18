@@ -33,6 +33,7 @@ class Data {
   String? googlePlayUrl;
   String? appleUrl;
   String? privacy;
+  String? termsConditions;
   String? aboutApp;
   String? privacyLink;
   String? aboutLink;
@@ -48,6 +49,7 @@ class Data {
     this.googlePlayUrl,
     this.appleUrl,
     this.privacy,
+    this.termsConditions,
     this.aboutApp,
     this.privacyLink,
     this.aboutLink,
@@ -64,6 +66,7 @@ class Data {
     googlePlayUrl: json["google_play_url"],
     appleUrl: json["apple_url"],
     privacy: json["privacy"],
+    termsConditions: json["terms_conditions"],
     aboutApp: json["about_app"],
     privacyLink: json["privacy_link"],
     aboutLink: json["about_link"],
@@ -80,6 +83,7 @@ class Data {
     "google_play_url": googlePlayUrl,
     "apple_url": appleUrl,
     "privacy": privacy,
+    "terms_conditions": termsConditions,
     "about_app": aboutApp,
     "privacy_link": privacyLink,
     "about_link": aboutLink,

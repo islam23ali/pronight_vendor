@@ -56,6 +56,7 @@ class AppTranslate{
   static const String numberOfRooms = 'Number of rooms' ;
   static const String room = 'room' ;
   static const String addContract = 'Add a contract' ;
+  static const String contractModification = 'Contract modification' ;
   static const String numberRoomsBooked = 'Number of rooms booked' ;
   static const String bookedRooms = 'Booked rooms' ;
   static const String notifications = 'Notifications' ;
@@ -67,6 +68,7 @@ class AppTranslate{
   static const String choose = 'choose' ;
   static const String next = 'next' ;
   static const String addVisitPermit = 'addVisitPermit' ;
+  static const String modifyVisitPermit = 'Modify visit permit' ;
   static const String declarationData = 'declarationData' ;
   static const String basicDataForThePermit = 'basicDataForThePermit' ;
   static const String dateOfVisit = 'dateOfVisit' ;
@@ -212,12 +214,11 @@ class AppTranslate{
   static const String enterNumberOfDays = 'enterNumberOfDays' ;
   static const String enterPermitStatus = 'enterPermitStatus' ;
   static const String enterDriverName = 'enterDriverName' ;
-
+  static const String logout = 'logout' ;
   //not set yet
 
   static const String confirm = 'confirm' ;
   static const String cancel = 'cancel' ;
-  static const String logout = 'logout' ;
   static const String camera = 'Camera' ;
   static const String gallery = 'Gallery' ;
   static const String sureLogout = 'are you sure you want to logout ?' ;

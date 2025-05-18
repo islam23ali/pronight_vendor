@@ -79,7 +79,7 @@ class _SettingPageState extends State<SettingPage> {
                     SizedBox(height: 20.h),
                     const OtherCard(),
                     SizedBox(height: 60.h),
-                    CustomButton(onTap:(){NavigatorHandler.pushAndRemoveUntil(LoginScreen());})
+                    // CustomButton(onTap:(){NavigatorHandler.pushAndRemoveUntil(LoginScreen());})
                   ],
                 ),
               ),

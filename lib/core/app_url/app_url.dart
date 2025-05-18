@@ -6,6 +6,9 @@ class AppUrls {
 
   static String registerUrl = "/provider/register";
 
+  static String updateProfileUrl = "/provider/update-profile";
+  static String logoutUrl = "/provider/logout";
+
   static String allContractUrl = "/provider/contracts?name=";
   static String oneContractUrl = "/provider/contracts/";      //for details and delete contract
   static String printContractUrl = "/provider/print-contracts/";

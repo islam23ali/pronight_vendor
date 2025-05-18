@@ -6,7 +6,6 @@ import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/core/resources/app_translate.dart';
 import 'package:pronight_vendor/core/utils/social_media_helper.dart';
 import 'package:pronight_vendor/data/datasource/local/LocalUserData.dart';
-import 'package:pronight_vendor/data/models/body_or_quary/add_contract_body.dart';
 import 'package:pronight_vendor/data/models/response/empty_model.dart';
 import 'package:pronight_vendor/data/repositories/contract_repo.dart';
 import '../../../../data/models/api_response.dart';

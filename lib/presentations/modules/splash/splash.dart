@@ -30,7 +30,7 @@ AuthViewModel _authViewModel =getIt();
     super.initState();
 
     Timer(const Duration(seconds: 2), () async{
-      if (_localUserData.getUserData()?.data?.token?.isNotEmpty ?? false) {
+      if (_localUserData.getUserToken().isNotEmpty ?? false) {
         await _authViewModel.updateFCMToken();
         NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 0));
       } else {

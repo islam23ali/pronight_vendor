@@ -59,7 +59,7 @@ class AddVisitPermitViewModel extends ChangeNotifier{
     visitDateController.clear();
     selectedSector=null;
     selectedVilla=null;
-    selectedSector=null;
+    selectedBeach=null;
     numberOfDaysController.clear();
     permitStatusController.clear();
     driverNameController.clear();
@@ -125,7 +125,7 @@ class AddVisitPermitViewModel extends ChangeNotifier{
  VisitPermitViewModel visitPermitProvider = getIt();
 
   initUpdateVisitPermit(String id){
-    visitPermitProvider.oneVisitPermit(id);
+    // visitPermitProvider.oneVisitPermit(id);
     visitDateController.text=visitPermitProvider.oneVisitPermitModel?.data?.visitDate??'';
     selectedSector=visitPermitProvider.oneVisitPermitModel?.data?.sector;
     selectedVilla=visitPermitProvider.oneVisitPermitModel?.data?.villa;

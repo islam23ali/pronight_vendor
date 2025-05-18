@@ -61,6 +61,48 @@ class LoginRepo {
     }
   }
 
+  Future<ApiResponse> updateProfileRepo(String phone,phoneCode,name,email,password,passwordConfirmation,image) async {
+    try {
+      Response response = await _dioClient.post(AppUrls.updateProfileUrl,
+          formData: FormData.fromMap({
+            'phone': phone,
+            'phone_code': phoneCode,
+            'name': name,
+            'email': email,
+            'password': password,
+            'password_confirmation': passwordConfirmation,
+            if(image!=null)'image':image == null ? null: await MultipartFile.fromFile(image),
+          }));
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+  Future<ApiResponse> updateProfileNoImageRepo(String phone,phoneCode,name,email,password,passwordConfirmation,image) async {
+    try {
+      Response response = await _dioClient.post(AppUrls.updateProfileUrl,
+          formData: FormData.fromMap({
+            'phone': phone,
+            'phone_code': phoneCode,
+            'name': name,
+            'email': email,
+            'password': password,
+            'password_confirmation': passwordConfirmation,
+          }));
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+  Future<ApiResponse> logoutRepo() async {
+    try {
+      Response response = await _dioClient.post(AppUrls.logoutUrl);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
   Future<ApiResponse> updateFCMToken({required String fcmToken}) async {
     try {
       TargetPlatform deviceType = getDeviceType();/// for software_type

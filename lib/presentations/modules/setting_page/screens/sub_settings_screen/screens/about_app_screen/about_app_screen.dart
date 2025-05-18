@@ -5,6 +5,8 @@ import 'package:pronight_vendor/core/dimens/dimens.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/presentations/components/custom_scaffold/custom_scaffold.dart';
 import 'package:pronight_vendor/presentations/components/custom_text/custom_text.dart';
+import 'package:pronight_vendor/presentations/modules/setting_page/setting_view_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../../../core/resources/app_assets.dart';
 import '../../../../../../../core/resources/app_translate.dart';
@@ -27,31 +29,34 @@ class _AboutAppScreenState extends State<AboutAppScreen> {
       height: 64.h,
       fontSize: AppFonts.font_14,
       fontWeight: FontWeight.bold,
-    ),body: Column(crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Center(child: CustomPngIcon(assetName: AppAssets.aboutUsLogo,width: 268.w,height: 185.h,)),
-        SizedBox(height: 20.h),
-        Expanded(
-          child: SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: Dimens.padding_16h,vertical: Dimens.padding_24v),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(45.r),border: Border.all(width: 1.w,color: Color(0xffE8E6E6)),color: Color(0xffE8E6E6).withAlpha((0.20*255).round())),
-              child:Column(crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    ),body: Consumer<SettingsViewModel>(
+      builder: (context,data,_) {
+        return Column(crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Center(child: CustomPngIcon(assetName: AppAssets.aboutUsLogo,width: 268.w,height: 185.h,)),
+            SizedBox(height: 20.h),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: Dimens.padding_16h,vertical: Dimens.padding_24v),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(45.r),border: Border.all(width: 1.w,color: Color(0xffE8E6E6)),color: Color(0xffE8E6E6).withAlpha((0.20*255).round())),
+                  child:Column(crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomText(title: AppTranslate.aboutApp.tr(),fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),
-                      Icon(Icons.expand_more_rounded,size: 35.r)
-                    ],
-                  ),
-                  SizedBox(height: 10.h),
-                  CustomText(title:
-                      'يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخداميتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخداميتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخداميتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخداميتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخداميتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخداميتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخداميتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام يتميز تطبيقنا بالسهولة والمرونة وسهولة الاستخدام مع مراعاة جميع الشروط والأحكام التى تتضمن سلامة المستخدم وتتضمن سهولة الاستخدام',
-                    fontColor: AppColors.textGrayColor,fontSize: AppFonts.font_10,)
-                ],) ,),
-          ),
-        )
+                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomText(title: AppTranslate.aboutApp.tr(),fontSize: AppFonts.font_12,fontWeight: FontWeight.w500,),
+                          Icon(Icons.expand_more_rounded,size: 35.r)
+                        ],
+                      ),
+                      SizedBox(height: 10.h),
+                      CustomText(title:  data.settingsModel?.data?.aboutApp??'',
+                        fontColor: AppColors.textGrayColor,fontSize: AppFonts.font_10,)
+                    ],) ,),
+              ),
+            )
 
-      ],),);
+          ],);
+      }
+    ),);
   }
 }

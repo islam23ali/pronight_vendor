@@ -58,7 +58,7 @@ class _AddVisitPermitState extends State<AddVisitPermit> {
       backgroundColor: const Color(0xffF6FFFA),
       systemNavigationBarColor: const Color(0xffF6FFFA),
       appBar: CustomAppBar(fontWeight: FontWeight.bold,fontSize: AppFonts.font_14,
-        title: AppTranslate.addVisitPermit.tr(),bgColor: const Color(0xffF6FFFA),statusBarColor: const Color(0xffF6FFFA),height: 64.h,),
+        title:(widget.id==null||widget.id=='')? AppTranslate.addVisitPermit.tr():AppTranslate.modifyVisitPermit.tr(),bgColor: const Color(0xffF6FFFA),statusBarColor: const Color(0xffF6FFFA),height: 64.h,),
       body: Column(crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,

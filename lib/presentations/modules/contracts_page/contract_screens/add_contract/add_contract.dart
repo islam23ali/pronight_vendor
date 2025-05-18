@@ -44,7 +44,7 @@ WidgetsBinding.instance.addPostFrameCallback((timeStamp){
       backgroundColor: const Color(0xffF6FFFA),
       systemNavigationBarColor: const Color(0xffF6FFFA),
       appBar: CustomAppBar(fontWeight: FontWeight.bold,fontSize: AppFonts.font_14,
-        title: AppTranslate.addContract.tr(),bgColor: const Color(0xffF6FFFA),statusBarColor: const Color(0xffF6FFFA),height: 64.h,),
+        title:(widget.id==null||widget.id=='')? AppTranslate.addContract.tr():AppTranslate.contractModification.tr(),bgColor: const Color(0xffF6FFFA),statusBarColor: const Color(0xffF6FFFA),height: 64.h,),
       body: Consumer<AddContractViewModel>(
         builder: (context,data,_) {
           return Column(crossAxisAlignment: CrossAxisAlignment.center,

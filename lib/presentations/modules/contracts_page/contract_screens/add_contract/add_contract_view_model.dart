@@ -68,27 +68,26 @@ class AddContractViewModel extends ChangeNotifier{
   void refreshData(){
   notifyListeners();
 }
-void initAddContract(){
-  getAllSectors();
+  void initAddContract(){
+    getAllSectors();
     selectedVilla=null;
     selectedSector=null;
     villasModel?.data=null;
     beachesModel?.data=null;
-  arrivalDateController.clear();
-  exitDateController.clear();
-  tenantNameController.clear();
-  iDNumberController.clear();
-  nationalityController.clear();
-  mobileNumberController.clear();
-  rentalValueController.clear();
-  insuranceValueController.clear();
-  contractFeesController.clear();
-  detailsController.clear();
-  // sendClient=contractProvider.oneContractModel?.data?.;
-  // sendProvider=contractProvider.oneContractModel?.data?.;
-  escorts =[];
-  cars =[];
-}
+    arrivalDateController.clear();
+    exitDateController.clear();
+    tenantNameController.clear();
+    iDNumberController.clear();
+    nationalityController.clear();
+    mobileNumberController.clear();
+    rentalValueController.clear();
+    insuranceValueController.clear();
+    contractFeesController.clear();
+    detailsController.clear();
+     escorts = [AddEscort(name: '', idNo: '', nationality: '', kinship: '')];
+     cars = [Car(type: '',plateNo: '',driverName: '',driverIdNo: '',)];
+    notifyListeners();
+  }
 
   Future<void> addContract () async {
     notifyListeners();

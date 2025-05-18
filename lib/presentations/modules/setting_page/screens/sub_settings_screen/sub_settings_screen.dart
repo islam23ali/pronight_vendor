@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
+import 'package:pronight_vendor/presentations/components/custom_button/custom_button.dart';
 import 'package:pronight_vendor/presentations/components/custom_scaffold/custom_scaffold.dart';
+import 'package:pronight_vendor/presentations/modules/auth/auth_view_model.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/about_app_screen/about_app_screen.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/change_language/change_language_sheet.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/contact_us_screen/contact_us_screen.dart';
@@ -32,6 +34,7 @@ class SubSettingsScreen extends StatefulWidget {
 
 class _SubSettingsScreenState extends State<SubSettingsScreen> {
   SettingsViewModel provider = getIt();
+  AuthViewModel authProvider = getIt();
   @override
   void initState() {
     super.initState();
@@ -116,6 +119,10 @@ class _SubSettingsScreenState extends State<SubSettingsScreen> {
 
                           ],),
                       )),
+                  SizedBox(height: 100.w),
+                  CustomButton(onTap: (){
+                    authProvider.logout();
+                  },title: AppTranslate.logout.tr(),)
                 ],
               ),
             ),

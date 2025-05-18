@@ -73,7 +73,7 @@ class _HomeReservationAndBillingState extends State<HomeReservationAndBilling> {
                           SizedBox(height: 8.h),
                           CustomText(title: '${data.homeModel?.data?.contractsCount.toString()} ${AppTranslate.contract.tr()}',fontSize: AppFonts.font_16,fontWeight: FontWeight.bold,fontColor: AppColors.primaryColor),
                           SizedBox(height: 8.h),
-                          CustomText(title: 'تم التحديث منذ 50 دقيقة   لسه جيمي',fontSize: AppFonts.font_8,fontColor: AppColors.textColor,)
+                          CustomText(title: data.homeModel?.data?.lastContractAdded.toString()??'',fontSize: AppFonts.font_8,fontColor: AppColors.textColor,)
                         ],),
                     ) ,),
                 )),

@@ -136,6 +136,7 @@ initAddUnit(){
   latitude='';
   longitude='';
   address='';
+  image=null;
   images=[];
   maxAdultsController.clear();
   pricePerAdultController.clear();
@@ -302,7 +303,6 @@ initConfirmAddition(){
   ApiResponse responseModel = await _unitsRepo.confirmAdditionRepo(id,identityImage,licenseImage,commercialImage);
   await dialog.hide();
   if (responseModel.response != null && responseModel.response?.statusCode == 200) {
-    await showSuccessPayedSheet();
     _oneUnitModel = OneUnitModel.fromJson(responseModel.response?.data);
     notifyListeners();
     if (_oneUnitModel != null && _oneUnitModel?.code == 200) {
@@ -313,6 +313,7 @@ initConfirmAddition(){
      await NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 2,));
 
       notifyListeners();
+     await showSuccessPayedSheet();
     } else{
       CustomScaffoldMessanger.showToast(title: _oneUnitModel?.message??'');
     }

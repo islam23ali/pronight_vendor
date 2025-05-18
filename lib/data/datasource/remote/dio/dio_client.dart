@@ -43,9 +43,9 @@ class DioClient {
       {Map<String, dynamic>? queryParameters, CancelToken? cancelToken}) async {
     try {
       LocalUserData localUserData = LocalUserData();
-      var model = localUserData.getUserData();
+      var model = localUserData.getUserToken();
       if(model!=null){
-        dio.options.headers['Authorization'] ='Bearer ${model.data?.token??' '}';
+        dio.options.headers['Authorization'] ='Bearer ${localUserData.getUserToken()}';
         dio.options.headers['lang'] =localUserData.getLang();
       }
       var response = await dio.get(
@@ -84,7 +84,7 @@ class DioClient {
       LocalUserData localUserData = LocalUserData();
       var model = localUserData.getUserData();
       if(model!=null){
-        dio.options.headers['Authorization'] ='Bearer ${model.data?.token??' '}';
+        dio.options.headers['Authorization'] ='Bearer ${localUserData.getUserToken()}';
       }
       var data = queryParameters ?? {};
       var response =
@@ -126,7 +126,7 @@ class DioClient {
       LocalUserData localUserData = LocalUserData();
       var model = localUserData.getUserData();
       if(model!=null){
-        dio.options.headers['Authorization'] ='Bearer ${model.data?.token??' '}';
+        dio.options.headers['Authorization'] ='Bearer ${localUserData.getUserToken()}';
       }
 
       var response = await dio.put(uri, queryParameters: queryParameters);
@@ -147,7 +147,7 @@ class DioClient {
       LocalUserData localUserData = LocalUserData();
       var model = localUserData.getUserData();
       if(model!=null){
-        dio.options.headers['Authorization'] ='Bearer ${model.data?.token??' '}';
+        dio.options.headers['Authorization'] ='Bearer ${localUserData.getUserToken()}';
       }
       var response = await dio.delete(uri, queryParameters:queryParameters);
       return response;
