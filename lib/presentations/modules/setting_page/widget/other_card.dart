@@ -33,13 +33,13 @@ class _OtherCardState extends State<OtherCard> {
             child: Column(crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText(title: AppTranslate.other.tr(),fontSize: AppFonts.font_12,),
-                _buildItem(context,
-                    image: AppAssets.messages,
-                    isRow:true,
-                    title: AppTranslate.messages.tr(),
-                    onTap: () {
-                  NavigatorHandler.push(const MessagesScreen());
-                    }),
+                // _buildItem(context,
+                //     image: AppAssets.messages,
+                //     isRow:true,
+                //     title: AppTranslate.messages.tr(),
+                //     onTap: () {
+                //   NavigatorHandler.push(const MessagesScreen());
+                //     }),
                 _buildItem(context,
                   isRow:true,
                   image: AppAssets.setting,

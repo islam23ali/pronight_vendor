@@ -79,7 +79,9 @@ class _UnitsPageState extends State<UnitsPage> {
                         borderRaduis: 7.r,
                         padding:EdgeInsets.symmetric(horizontal: Dimens.padding_12h) ,
                         bgColor: Color(0xffEFF8F2),hint: AppTranslate.search.tr(),hintFontColor: AppColors.primaryColor,)),
-                  CustomSvgIcon(assetName: AppAssets.buttonSearch,width: 52.5.w,height: 36.h)
+                  Transform.scale(
+                      scaleX:data.saveUserData.getLang()=='en'? -1:1,
+                      child: CustomSvgIcon(assetName: AppAssets.buttonSearch,width: 52.5.w,height: 36.h))
                 ],
               ),SizedBox(height: 10.h),
                   Expanded(

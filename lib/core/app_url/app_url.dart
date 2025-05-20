@@ -46,9 +46,11 @@ class AppUrls {
   static String homeDataUrl = "/provider/home";
   static String notificationsUrl = "/provider/notifications?limit=10&page=";
   static String unReadNotificationsUrl = "/provider/unread-notifications";
+  static String readNotificationsUrl = "/provider/read-notifications/";
   static String updateFCMTokenUrl = "/provider/create-token";
 
   static String settingUrl = "/provider/settings";
+  static String statisticsUrl = "/provider/statistics";
 
   // set price
   static String setPriceUrl = "/provider/units-special-prices";

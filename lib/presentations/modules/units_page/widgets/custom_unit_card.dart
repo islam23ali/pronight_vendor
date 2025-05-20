@@ -4,16 +4,16 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:pronight_vendor/core/dimens/dimens.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/navigator/navigator.dart';
+import 'package:pronight_vendor/data/datasource/local/LocalUserData.dart';
 import 'package:pronight_vendor/data/models/response/all_units_model.dart';
-
 import '../../../../core/app_theme/app_colors.dart';
 import '../../../../core/resources/app_assets.dart';
 import '../../../../core/resources/app_translate.dart';
 import '../../../../core/resources/font_size.dart';
+import '../../../../injection.dart';
 import '../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../components/custom_text/custom_text.dart';
 import '../../../components/images/network_image.dart';
-import '../../../components/rate_bar/raitingBar.dart';
 import '../screen/set_price_screen.dart';
 
 class CustomUnitCard extends StatefulWidget {
@@ -25,6 +25,7 @@ class CustomUnitCard extends StatefulWidget {
 }
 
 class _CustomUnitCardState extends State<CustomUnitCard> {
+  LocalUserData saveData = getIt<LocalUserData>();
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -98,12 +99,22 @@ class _CustomUnitCardState extends State<CustomUnitCard> {
                 )
               ],),
           ) ,),
-        Positioned(top: 4,left: 4,
+        saveData.getLang()=='ar'?  Positioned(top: 4,left: 4,
             child:InkWell(
               onTap: (){
                 NavigatorHandler.push( SetPriceScreen(id: widget.model?.id??0));
               },
               child: Container(decoration: BoxDecoration(color: const Color(0xff1C472E),borderRadius: BorderRadius.only(topLeft: Radius.circular(16.r),bottomRight: Radius.circular(16.r),) ),
+                padding: EdgeInsets.symmetric(horizontal:Dimens.padding_8,vertical:Dimens.padding_4),
+                child: CustomSvgIcon(assetName: AppAssets.setPrice,width: 16.w,height: 16.h,),),
+            )
+        ):
+        Positioned(top: 4,right: 4,
+            child:InkWell(
+              onTap: (){
+                NavigatorHandler.push( SetPriceScreen(id: widget.model?.id??0));
+              },
+              child: Container(decoration: BoxDecoration(color: const Color(0xff1C472E),borderRadius: saveData.getLang()=='ar'? BorderRadius.only(topLeft: Radius.circular(16.r),bottomRight: Radius.circular(16.r),):BorderRadius.only(topRight: Radius.circular(16.r),bottomLeft: Radius.circular(16.r),) ),
                 padding: EdgeInsets.symmetric(horizontal:Dimens.padding_8,vertical:Dimens.padding_4),
                 child: CustomSvgIcon(assetName: AppAssets.setPrice,width: 16.w,height: 16.h,),),
             )

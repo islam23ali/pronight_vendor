@@ -15,9 +15,8 @@ import 'package:pronight_vendor/presentations/modules/units_page/unit_details/wi
 import 'package:pronight_vendor/presentations/modules/units_page/unit_details/widgets/custom_slider_unit_images.dart';
 import 'package:pronight_vendor/presentations/modules/units_page/unit_details/widgets/unit_data.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter/widgets.dart' as ui;
 import '../../../../injection.dart';
-import '../../../components/images/network_image.dart';
 import '../../booking_days_page/booking_days_page.dart';
 import 'one_unit_view_model.dart';
 
@@ -142,10 +141,13 @@ class _UnitDetailsState extends State<UnitDetails> {
                                   onTap: () {
                                     NavigatorHandler.pop();
                                   },
-                                  child: CustomSvgIcon(
-                                      assetName: AppAssets.back,
-                                      width: 25.w,
-                                      height: 25.h),
+                                  child: Transform.scale(
+                                    scaleX:data.saveUserData.getLang()=='en'? -1:1,
+                                    child: CustomSvgIcon(
+                                        assetName: AppAssets.back,
+                                        width: 25.w,
+                                        height: 25.h),
+                                  ),
                                 ),
                                 SizedBox(width: 15.w),
                                 CustomText(

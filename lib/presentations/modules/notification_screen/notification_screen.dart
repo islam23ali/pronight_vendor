@@ -33,15 +33,20 @@ class _NotificationScreenState extends State< NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      appBar:CustomAppBar(height: 64.h,title: AppTranslate.notifications.tr(),fontSize: AppFonts.font_14,fontWeight: FontWeight.bold,),
+      appBar:CustomAppBar(height: 64.h,title: AppTranslate.notifications.tr(),fontSize: AppFonts.font_14,
+        actions: [InkWell(onTap: (){provider.unReadNotification();},
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: Dimens.padding_16h),
+            child: CustomText(title: AppTranslate.readAll.tr(),decoration: TextDecoration.underline,),
+          ),
+        )],
+        fontWeight: FontWeight.bold,),
     body: Consumer<NotificationsViewModel>(
       builder: (context,data,_) {
         return RefreshIndicator(
           backgroundColor: AppColors.white,
           color: AppColors.primaryColor,
-          onRefresh: ()async{
-            provider.initNotifications();
-          },
+          onRefresh: ()async{provider.initNotifications();},
           child: Padding(
             padding: EdgeInsets.all(Dimens.padding_16),
             child:
@@ -79,12 +84,12 @@ class _NotificationScreenState extends State< NotificationScreen> {
                                   curve: Curves.fastLinearToSlowEaseIn,
                                   child: FadeInAnimation(child:
                                   InkWell(onTap: (){
-                                    data.unReadNotification();
+                                    data.readNotification(data.notificationsList?[index]?.id.toString()??'');
                                   },
                                     child: Container(
                                       padding: EdgeInsets.symmetric(horizontal:Dimens.padding_4,vertical:Dimens.padding_12 ),
                                       margin: EdgeInsets.only(top: Dimens.padding_4,bottom:Dimens.padding_4),
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r),color: AppColors.primaryColor.withAlpha((0.08*255).round())),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r),color:data.notificationsList?[index]?.isRead==true?AppColors.darkColor.withAlpha((0.08*255).round()): AppColors.primaryColor.withAlpha((0.08*255).round())),
                                       child:Row(crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
                                           SizedBox(width: 35.w,height: 35.h,child:const CustomSvgIcon(assetName: AppAssets.notifcationIcon)),

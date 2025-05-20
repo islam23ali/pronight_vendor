@@ -9,6 +9,7 @@ import 'package:pronight_vendor/data/repositories/home_repo.dart';
 import '../../../../data/models/api_response.dart';
 import '../../../../injection.dart';
 import '../../../data/models/response/notification_model.dart.dart';
+import '../../../data/models/response/one_notification_model.dart';
 import '../../../data/models/response/reports_model.dart';
 import '../../components/loadings/custom_scaffold_messanger.dart';
 
@@ -22,10 +23,12 @@ class NotificationsViewModel extends ChangeNotifier{
   bool _isLoadMore = false;
   NotificationModel? _notificationModel;
   EmptyModel? _emptyModel;
+  OneNotificationModel? _oneNotificationModel;
 
   bool get isLoading => _isLoading;
   bool get isLoadMore => _isLoadMore;
   NotificationModel? get notificationModel => _notificationModel;
+  OneNotificationModel? get oneNotificationModel => _oneNotificationModel;
 
   final ScrollController scrollController = ScrollController();
   List<OneNotification?>? notificationsList;
@@ -72,13 +75,41 @@ class NotificationsViewModel extends ChangeNotifier{
     ApiResponse responseModel = await _homeRepo.unReadNotificationsRepo();
     cancelToken = null;
     notifyListeners();
-    if (responseModel.response != null) {
+    if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+      await initNotifications();
       _emptyModel = EmptyModel.fromJson(responseModel.response?.data);
       if (_emptyModel != null && _emptyModel?.code == 200) {
-
         notifyListeners();
       } else {
         CustomScaffoldMessanger.showToast(title: _emptyModel?.message ?? '');
+      }
+    }else {
+      CustomScaffoldMessanger.showToast(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+    }
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> readNotification(String id) async {
+    // _isLoading = true;
+    notifyListeners();
+    ApiResponse responseModel = await _homeRepo.readNotificationsRepo(id);
+    cancelToken = null;
+    notifyListeners();
+    if (responseModel.response != null) {
+      _oneNotificationModel = OneNotificationModel.fromJson(responseModel.response?.data);
+      if (_oneNotificationModel != null && _oneNotificationModel?.code == 200) {
+        final notification = notificationsList?.firstWhere(
+              (e) => e?.id == _oneNotificationModel?.data?.id,
+          orElse: () => null,
+        );
+        if (notification != null) {
+          notification.isRead = true;
+          notifyListeners();
+        }
+        notifyListeners();
+      } else {
+        CustomScaffoldMessanger.showToast(title: _oneNotificationModel?.message ?? '');
       }
     }else {
       CustomScaffoldMessanger.showToast(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);

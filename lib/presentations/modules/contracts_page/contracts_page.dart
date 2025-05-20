@@ -17,6 +17,7 @@ import 'package:pronight_vendor/presentations/modules/contracts_page/widgets/cus
 import 'package:pronight_vendor/presentations/modules/contracts_page/widgets/custom_visit_permits_list.dart';
 import 'package:provider/provider.dart';
 import '../../../injection.dart';
+import 'package:flutter/widgets.dart' as ui;
 import '../../components/custom_app_bar/custom_app_bar.dart';
 import 'contract_screens/add_contract/add_contract.dart';
 
@@ -115,7 +116,9 @@ class _ContractsPageState extends State<ContractsPage> {
                           borderRaduis: 7.r,
                           padding:EdgeInsets.symmetric(horizontal: Dimens.padding_12h) ,
                           bgColor: const Color(0xffEFF8F2),hint: AppTranslate.search.tr(),hintFontColor: AppColors.primaryColor,)),
-                  CustomSvgIcon(assetName: AppAssets.buttonSearch,width: 52.5.w,height: 36.h)
+                  Transform.scale(
+                      scaleX:data.saveUserData.getLang()=='en'? -1:1,
+                      child: CustomSvgIcon(assetName: AppAssets.buttonSearch,width: 52.5.w,height: 36.h))
                 ],
               ),
               SizedBox(height: 10.h),

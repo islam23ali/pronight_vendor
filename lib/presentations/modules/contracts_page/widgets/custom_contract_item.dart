@@ -8,7 +8,9 @@ import '../../../../core/app_theme/app_colors.dart';
 import '../../../../core/dimens/dimens.dart';
 import '../../../../core/resources/app_assets.dart';
 import '../../../../core/resources/font_size.dart';
+import '../../../../data/datasource/local/LocalUserData.dart';
 import '../../../../data/models/response/one_contract_model.dart';
+import '../../../../injection.dart';
 import '../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../components/custom_text/custom_text.dart';
 import '../contract_screens/contract_details.dart';
@@ -23,6 +25,7 @@ class CustomContractItem extends StatefulWidget {
 }
 
 class _CustomContractItemState extends State<CustomContractItem> {
+  LocalUserData saveData = getIt<LocalUserData>();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -71,7 +74,7 @@ class _CustomContractItemState extends State<CustomContractItem> {
                       ],
                     ),)
                   ],),
-                Align(alignment: Alignment.bottomLeft,
+                Align(alignment:saveData.getLang()=='en'? Alignment.bottomRight:Alignment.bottomLeft,
                   child: InkWell(onTap: (){
                     NavigatorHandler.push(ContractDetails(id: widget.model?.id.toString(),));
                   },

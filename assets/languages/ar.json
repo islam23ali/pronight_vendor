@@ -315,5 +315,7 @@
   "Please add a new price": "يرجى إضافة سعر جديد",
   "Modify visit permit": "تعديل تصريح الزيارة",
   "Contract modification": "تعديل العقد",
-  "logout": "تسجيل الخروج"
+  "logout": "تسجيل الخروج",
+  "readAll": "تحديد الكل كمقروء",
+  "copiedToClipboard": "تم نسخها إلى الحافظة"
 }

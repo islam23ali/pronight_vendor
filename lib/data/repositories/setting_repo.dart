@@ -28,4 +28,13 @@ class SettingRepo {
     }
   }
 
+  Future<ApiResponse> statisticsRepo() async {
+    try {
+      Response response = await _dioClient.get(AppUrls.statisticsUrl);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
 }

@@ -8,9 +8,12 @@ import '../../../../../../core/app_theme/app_colors.dart';
 import '../../../../../components/custom_text/custom_text.dart';
 
 class CustomChartLineData extends StatelessWidget {
-  final List<double> weights = [15,50, 40, 13, 20,40, 13, 20, 10, 0];
+    CustomChartLineData({super.key, required this.weights, });
+  final List<num> weights;
   // final List<String> ages = ['30 وحدة ','20 وحدة', '50 وحدة', '30 وحدة', '40 وحدة', '55 وحدة'];
-  final List<int> ages = [1,2,3,4,5,6,7,8,9,10];
+  final List<int> ages = [1,2,3,4,5,6,7,8,9,10,11,12];
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,7 @@ class CustomChartLineData extends StatelessWidget {
         lineBarsData: [
           LineChartBarData(
             spots: weights.asMap().entries.map((entry) {
-              return FlSpot(entry.key.toDouble(), entry.value);
+              return FlSpot(entry.key.toDouble(), entry.value.toDouble());
             }).toList(),
             isCurved: true,
             color: AppColors.secondColor,

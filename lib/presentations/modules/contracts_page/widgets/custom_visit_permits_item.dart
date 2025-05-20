@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/core/resources/app_translate.dart';
+import 'package:pronight_vendor/data/datasource/local/LocalUserData.dart';
 import 'package:pronight_vendor/data/models/response/all_visit_permits_model.dart';
 import '../../../../core/app_theme/app_colors.dart';
 import '../../../../core/dimens/dimens.dart';
+import 'package:flutter/widgets.dart' as ui;
 import '../../../../core/resources/app_assets.dart';
 import '../../../../core/resources/font_size.dart';
+import '../../../../injection.dart';
 import '../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../components/custom_text/custom_text.dart';
 import '../contract_screens/contract_details.dart';
@@ -23,6 +26,7 @@ class CustomVisitPermitsItem extends StatefulWidget {
 }
 
 class _CustomVisitPermitsItemState extends State<CustomVisitPermitsItem> {
+  LocalUserData saveData = getIt<LocalUserData>();
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -69,7 +73,7 @@ class _CustomVisitPermitsItemState extends State<CustomVisitPermitsItem> {
                         ],
                       ),)
                     ],),
-                  Align(alignment: Alignment.bottomLeft,
+                  Align(alignment:saveData.getLang()=='ar'? Alignment.bottomLeft: Alignment.bottomRight,
                     child: InkWell(onTap: (){
                       NavigatorHandler.push( VisitPermitsDetails(id: widget.model?.id.toString()??'',));
                     },
@@ -81,9 +85,13 @@ class _CustomVisitPermitsItemState extends State<CustomVisitPermitsItem> {
               ),),
           ],
         ),
-        Positioned(right: 0,bottom: 0,top: 0,
+        saveData.getLang()=='ar'? Positioned(right: 0,bottom: 0,top: 0,
           child:Container(padding: EdgeInsets.all(Dimens.padding_8),
-            decoration: BoxDecoration(shape: BoxShape.circle,color: AppColors.primaryColor,),
+            decoration:const BoxDecoration(shape: BoxShape.circle,color: AppColors.primaryColor,),
+            child: Center(child: CustomText(title: widget.model?.sector?.name??'',fontSize: AppFonts.font_15,fontWeight: FontWeight.bold,fontColor: AppColors.white,)),) ,):
+        Positioned(left: 0,bottom: 0,top: 0,
+          child:Container(padding: EdgeInsets.all(Dimens.padding_8),
+            decoration:const BoxDecoration(shape: BoxShape.circle,color: AppColors.primaryColor,),
             child: Center(child: CustomText(title: widget.model?.sector?.name??'',fontSize: AppFonts.font_15,fontWeight: FontWeight.bold,fontColor: AppColors.white,)),) ,)
       ],
     );

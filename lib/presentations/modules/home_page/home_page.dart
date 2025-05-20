@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                       data.homeModel?.data?.reservations?.isEmpty==true?const NoDataScreen():
                       ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
-                          padding: EdgeInsets.symmetric(vertical: Dimens.padding_12v,horizontal: Dimens.padding_16h),
+                          // padding: EdgeInsets.symmetric(vertical: Dimens.padding_12v,horizontal: Dimens.padding_16h),
                           shrinkWrap: true,
                           itemCount: data.homeModel?.data?.reservations?.length??0,
                           itemBuilder: (context, index) {

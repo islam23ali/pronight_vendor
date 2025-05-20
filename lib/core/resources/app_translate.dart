@@ -215,6 +215,8 @@ class AppTranslate{
   static const String enterPermitStatus = 'enterPermitStatus' ;
   static const String enterDriverName = 'enterDriverName' ;
   static const String logout = 'logout' ;
+  static const String readAll = 'readAll' ;
+  static const String copiedToClipboard = 'copiedToClipboard' ;
   //not set yet
 
   static const String confirm = 'confirm' ;
