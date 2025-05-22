@@ -64,9 +64,9 @@ class _CustomSelectDateStatisticsState extends State<CustomSelectDateStatistics>
                     return GestureDetector(
                       onTap: () {
                         setState(() {
-                          selectedMonth = index + 1;
-                          controller.text=selectedMonth.toString();
-                          widget.onDateSelected(controller.text);
+                          // selectedMonth = index + 1;
+                          // controller.text=selectedMonth.toString();
+                          // widget.onDateSelected(controller.text);
                         });
                       },
                       child: Container(width: 69.w,height: 71.h,

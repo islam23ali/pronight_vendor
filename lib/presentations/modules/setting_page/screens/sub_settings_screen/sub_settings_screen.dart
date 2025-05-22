@@ -84,7 +84,7 @@ class _SubSettingsScreenState extends State<SubSettingsScreen> {
                                 isRow:true,
                                 title: AppTranslate.termsAndConditions.tr(),
                                 onTap: () {
-                                  NavigatorHandler.push(const TermsAndConditionScreen());
+                                  NavigatorHandler.push(const TermsAndConditionScreen(isTermsAndConditions: true,));
                                 }),
                             _buildItem(context,
                                 image: AppAssets.contactUs,

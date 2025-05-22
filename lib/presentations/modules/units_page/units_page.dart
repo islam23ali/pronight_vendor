@@ -78,7 +78,7 @@ class _UnitsPageState extends State<UnitsPage> {
                         },
                         borderRaduis: 7.r,
                         padding:EdgeInsets.symmetric(horizontal: Dimens.padding_12h) ,
-                        bgColor: Color(0xffEFF8F2),hint: AppTranslate.search.tr(),hintFontColor: AppColors.primaryColor,)),
+                        bgColor:const Color(0xffEFF8F2),hint: AppTranslate.search.tr(),hintFontColor: AppColors.primaryColor,)),
                   Transform.scale(
                       scaleX:data.saveUserData.getLang()=='en'? -1:1,
                       child: CustomSvgIcon(assetName: AppAssets.buttonSearch,width: 52.5.w,height: 36.h))

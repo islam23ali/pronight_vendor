@@ -56,7 +56,7 @@ class _SupportAndAssistanceScreenState extends State<SupportAndAssistanceScreen>
             ],) ,),
         ),
         InkWell(onTap: (){
-          NavigatorHandler.push(const TermsAndConditionScreen());
+          NavigatorHandler.push(const TermsAndConditionScreen(isTermsAndConditions: false,));
         },
           child: Container(
             padding: EdgeInsets.all(Dimens.padding_16),
