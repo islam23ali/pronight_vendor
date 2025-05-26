@@ -154,5 +154,14 @@ class UnitsRepo {
     }
   }
 
+  Future<ApiResponse> reservationDaysRepo (id,month) async {
+    try {
+      Response response = await _dioClient.get('${AppUrls.reservationDaysUrl}$id?month=$month');
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
 
 }

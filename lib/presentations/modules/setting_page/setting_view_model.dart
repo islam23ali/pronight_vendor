@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
+import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/data/datasource/local/LocalUserData.dart';
 import 'package:pronight_vendor/data/models/response/empty_model.dart';
 import 'package:pronight_vendor/data/models/response/home_model.dart';
@@ -29,6 +30,7 @@ class SettingsViewModel extends ChangeNotifier{
   bool _isLoading = false;
   bool _isReservationLoading = false;
   EmptyModel? _emptyModel;
+  EmptyModel? _sendComplains;
   SettingsModel? _settingsModel;
   ReservationsModel? _reservationsModel;
   ReservationDetailsModel? _reservationDetailsModel;
@@ -42,7 +44,11 @@ class SettingsViewModel extends ChangeNotifier{
   SettingsModel? get settingsModel => _settingsModel;
   StatisticsModel? get statisticsModel => _statisticsModel;
 
-
+  // for send complains
+  TextEditingController nameController=TextEditingController();   // for send complains and contact us
+  TextEditingController emailController=TextEditingController();  // for send complains and contact us
+  TextEditingController messageController=TextEditingController();  // for send complains and contact us
+  TextEditingController titleController=TextEditingController();
 
 
   String reservationType ='new';
@@ -180,6 +186,71 @@ class SettingsViewModel extends ChangeNotifier{
 
       } else{
         CustomScaffoldMessanger.showToast(title: _statisticsModel?.message??'');
+      }
+      notifyListeners();
+    }
+    else {
+      CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+    }
+    notifyListeners();
+  }
+
+  initSendComplain(){
+    nameController.clear();
+    emailController.clear();
+    messageController.clear();
+    notifyListeners();
+  }
+  Future<void> sendComplaints () async {
+    notifyListeners();
+    ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.send.tr()} ...");
+    await dialog.show();
+    ApiResponse responseModel = await _settingRepo.sendComplaintsRepo(nameController.text,emailController.text,messageController.text);
+    await dialog.hide();
+    if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+      notifyListeners();
+      _sendComplains = EmptyModel.fromJson(responseModel.response?.data);
+      if (_sendComplains != null && _sendComplains?.code == 200) {
+        NavigatorHandler.pop();
+        if(kDebugMode){
+          CustomScaffoldMessanger.showToast(title: _sendComplains?.message??'');
+        }
+
+      } else{
+        CustomScaffoldMessanger.showToast(title: _sendComplains?.message??'');
+      }
+      notifyListeners();
+    }
+    else {
+      CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+    }
+    notifyListeners();
+  }
+
+  initContactUs(){
+    nameController.clear();
+    emailController.clear();
+    messageController.clear();
+    titleController.clear();
+    notifyListeners();
+  }
+  Future<void> contactUs () async {
+    notifyListeners();
+    ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.send.tr()} ...");
+    await dialog.show();
+    ApiResponse responseModel = await _settingRepo.contactUsRepo(nameController.text,emailController.text,titleController.text,messageController.text);
+    await dialog.hide();
+    if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+      notifyListeners();
+      _sendComplains = EmptyModel.fromJson(responseModel.response?.data);
+      if (_sendComplains != null && _sendComplains?.code == 200) {
+        NavigatorHandler.pop();
+        if(kDebugMode){
+          CustomScaffoldMessanger.showToast(title: _sendComplains?.message??'');
+        }
+
+      } else{
+        CustomScaffoldMessanger.showToast(title: _sendComplains?.message??'');
       }
       notifyListeners();
     }

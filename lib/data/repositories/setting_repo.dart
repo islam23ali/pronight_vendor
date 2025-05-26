@@ -37,4 +37,33 @@ class SettingRepo {
     }
   }
 
+  Future<ApiResponse> sendComplaintsRepo(name,email,message) async {
+    try {
+      Response response = await _dioClient.post(AppUrls.sendComplaintsUrl,formData: FormData.fromMap(
+          {
+            'name':name,
+            'email':email,
+            'message':message,
+          }));
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
+  Future<ApiResponse> contactUsRepo(name,email,title,message) async {
+    try {
+      Response response = await _dioClient.post(AppUrls.contactUsUrl,formData: FormData.fromMap(
+          {
+            'name':name,
+            'email':email,
+            'subject':title,
+            'message':message,
+          }));
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
 }

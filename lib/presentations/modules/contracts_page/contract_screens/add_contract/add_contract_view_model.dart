@@ -11,6 +11,7 @@ import '../../../../../data/datasource/local/LocalUserData.dart';
 import '../../../../../data/models/api_response.dart';
 import '../../../../../data/models/body_or_quary/add_contract_body.dart';
 import '../../../../../data/models/response/empty_model.dart';
+import '../../../../../data/models/response/pay_contract_model.dart';
 import '../../../../../data/models/response/sectors_model.dart';
 import '../../../../../data/models/response/sub_models/add_car_model.dart';
 import '../../../../../data/models/response/sub_models/add_escort_model.dart';
@@ -20,6 +21,7 @@ import '../../../../../injection.dart';
 import '../../../../components/loadings/custom_scaffold_messanger.dart';
 import '../../../../components/loadings/progress_dialog.dart';
 import '../../../layout/bottom_nav_bar_app.dart';
+import '../pay_contract/paymentScreen.dart';
 
 class AddContractViewModel extends ChangeNotifier{
   final ContractRepo _contractRepo = getIt();
@@ -54,6 +56,7 @@ class AddContractViewModel extends ChangeNotifier{
   VillasModel ? _beachesModel;
   OneVilla? selectedVilla;
   OneVilla? selectedBeach;
+  PayContractModel? _payContractModel;
   bool sendClient=false;
   bool sendProvider=false;
 
@@ -268,4 +271,29 @@ class AddContractViewModel extends ChangeNotifier{
     }
     notifyListeners();
   }
+
+  Future<void> payContract (contractId) async {
+
+    notifyListeners();
+    ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.payment.tr()} ...");
+    await dialog.show();
+    ApiResponse responseModel = await _contractRepo.payContractRepo(contractId.toString());
+    await dialog.hide();
+    if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+      _payContractModel = PayContractModel.fromJson(responseModel.response?.data);
+      notifyListeners();
+      if (_payContractModel != null && _payContractModel?.code == 200) {
+      await  NavigatorHandler.push(PaymentWebView(paymentLink: _payContractModel?.data?.paymentUrl??'', successLink: _payContractModel?.data?.callBackUrl??'', failedLink: _payContractModel?.data?.errorUrl??'', contractId: contractId));
+        notifyListeners();
+      } else{
+        CustomScaffoldMessanger.showToast(title: _payContractModel?.message??'');
+      }
+      notifyListeners();
+    }
+    else {
+      CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+    }
+    notifyListeners();
+  }
+
 }

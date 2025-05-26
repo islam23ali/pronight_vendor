@@ -313,5 +313,11 @@
   "Contract modification":"Contract modification",
   "logout":"Logout",
   "readAll":"Mark all as read",
-  "copiedToClipboard":"Copied to clipboard"
+  "copiedToClipboard":"Copied to clipboard",
+  "pleaseEnterName":"please Enter the name",
+  "pleaseEnterEmail":"please Enter the email",
+  "pleaseEnterMessage":"please Enter the message",
+  "pleaseEnterValidEmailAddress":"Please enter a valid email address",
+  "pleaseEnterMessageSubject":"Please enter a message subject",
+  "bookingDays":"Booking days"
 }

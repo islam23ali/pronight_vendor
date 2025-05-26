@@ -330,4 +330,10 @@ class AppTranslate{
   static const String pleaseAddDateFrom = 'Please add a date from' ;
   static const String pleaseAddDateTo = 'Please add a date to' ;
   static const String pleaseAddNewPrice = 'Please add a new price' ;
+  static const String pleaseEnterName = 'pleaseEnterName' ;
+  static const String pleaseEnterEmail = 'pleaseEnterEmail' ;
+  static const String pleaseEnterMessage = 'pleaseEnterMessage' ;
+  static const String pleaseEnterValidEmailAddress = 'pleaseEnterValidEmailAddress' ;
+  static const String pleaseEnterMessageSubject = 'pleaseEnterMessageSubject' ;
+  static const String bookingDays = 'bookingDays' ;
 }

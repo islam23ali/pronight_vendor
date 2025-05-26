@@ -44,12 +44,14 @@ final UnitsRepo _unitsRepo = getIt();
 
    OneUnitModel? _oneUnitModel;
    bool? _isLoading = false;
+   bool? _isDaysLoading = false;
 
    CitiesModel? get citiesModel => _citiesModel;
    ContentsModel? get contentsModel => _contentsModel;
    ContentsModel? get facilitiesModel => _facilitiesModel;
    OneUnitModel? get oneUnitModel => _oneUnitModel;
    bool? get isLoading => _isLoading;
+   bool? get isDaysLoading => _isDaysLoading;
 
 
 
@@ -350,7 +352,39 @@ initSetPrice(){
         CustomScaffoldMessanger.showToast(title: 'الله ينور ياعمناااا <<<<<<<<<<');
       }
       // await showSuccessPayedSheet();
-      NavigatorHandler.push(const BookingDaysPage());
+      NavigatorHandler.push( BookingDaysPage(unitId: _oneUnitModel?.data?.id.toString()??''));
+
+      // await NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 2,));
+
+      notifyListeners();
+    } else{
+      CustomScaffoldMessanger.showToast(title: _oneUnitModel?.message??'');
+    }
+    notifyListeners();
+  }
+  else {
+    CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+  }
+  notifyListeners();
+}
+
+  Future<void> reservationDays (unitId,month) async {
+    _isDaysLoading= true;
+  notifyListeners();
+  ApiResponse responseModel = await _unitsRepo.reservationDaysRepo(unitId, month);
+
+  if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+
+    _oneUnitModel = OneUnitModel.fromJson(responseModel.response?.data);
+    _isDaysLoading=false;
+    notifyListeners();
+    if (_oneUnitModel != null && _oneUnitModel?.code == 200) {
+
+      if(kDebugMode){
+        CustomScaffoldMessanger.showToast(title: 'الله ينور ياعمناااا <<<<<<<<<<');
+      }
+      // await showSuccessPayedSheet();
+      // NavigatorHandler.push(const BookingDaysPage());
 
       // await NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 2,));
 

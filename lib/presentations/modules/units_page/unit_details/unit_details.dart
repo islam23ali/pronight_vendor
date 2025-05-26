@@ -11,6 +11,7 @@ import 'package:pronight_vendor/presentations/app_loader.dart';
 import 'package:pronight_vendor/presentations/components/custom_scaffold/custom_scaffold.dart';
 import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIcon.dart';
 import 'package:pronight_vendor/presentations/components/custom_text/custom_text.dart';
+import 'package:pronight_vendor/presentations/modules/units_page/screen/set_price_screen.dart';
 import 'package:pronight_vendor/presentations/modules/units_page/unit_details/widgets/additional_services.dart';
 import 'package:pronight_vendor/presentations/modules/units_page/unit_details/widgets/custom_slider_unit_images.dart';
 import 'package:pronight_vendor/presentations/modules/units_page/unit_details/widgets/unit_data.dart';
@@ -192,7 +193,7 @@ class _UnitDetailsState extends State<UnitDetails> {
                             SizedBox(height: 20.h),
                             InkWell(
                               onTap: () {
-                                NavigatorHandler.push(const BookingDaysPage());
+                                NavigatorHandler.push(BookingDaysPage(unitId: widget.id));
                               },
                               child: Container(
                                 padding: EdgeInsets.all(Dimens.padding_16),
@@ -210,7 +211,7 @@ class _UnitDetailsState extends State<UnitDetails> {
                                         width: 19.w),
                                     SizedBox(width: 5.w),
                                     CustomText(
-                                      title: AppTranslate.availableRoomsBookingDays.tr(),
+                                      title: AppTranslate.bookingDays.tr(),
                                       fontSize: AppFonts.font_12,
                                       fontWeight: FontWeight.w600,
                                       fontColor: AppColors.textColor3,
@@ -222,7 +223,7 @@ class _UnitDetailsState extends State<UnitDetails> {
                             SizedBox(height: 20.h),
                             InkWell(
                               onTap: () {
-                                NavigatorHandler.push(const BookingDaysPage());
+                                NavigatorHandler.push( SetPriceScreen(id: widget.id));
                               },
                               child: Container(
                                 padding: EdgeInsets.all(Dimens.padding_16),

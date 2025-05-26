@@ -102,7 +102,7 @@ class _CustomUnitCardState extends State<CustomUnitCard> {
         saveData.getLang()=='ar'?  Positioned(top: 4,left: 4,
             child:InkWell(
               onTap: (){
-                NavigatorHandler.push( SetPriceScreen(id: widget.model?.id??0));
+                NavigatorHandler.push( SetPriceScreen(id: widget.model?.id.toString()??''));
               },
               child: Container(decoration: BoxDecoration(color: const Color(0xff1C472E),borderRadius: BorderRadius.only(topLeft: Radius.circular(16.r),bottomRight: Radius.circular(16.r),) ),
                 padding: EdgeInsets.symmetric(horizontal:Dimens.padding_8,vertical:Dimens.padding_4),
@@ -112,7 +112,7 @@ class _CustomUnitCardState extends State<CustomUnitCard> {
         Positioned(top: 4,right: 4,
             child:InkWell(
               onTap: (){
-                NavigatorHandler.push( SetPriceScreen(id: widget.model?.id??0));
+                NavigatorHandler.push( SetPriceScreen(id: widget.model?.id.toString()??''));
               },
               child: Container(decoration: BoxDecoration(color: const Color(0xff1C472E),borderRadius: saveData.getLang()=='ar'? BorderRadius.only(topLeft: Radius.circular(16.r),bottomRight: Radius.circular(16.r),):BorderRadius.only(topRight: Radius.circular(16.r),bottomLeft: Radius.circular(16.r),) ),
                 padding: EdgeInsets.symmetric(horizontal:Dimens.padding_8,vertical:Dimens.padding_4),

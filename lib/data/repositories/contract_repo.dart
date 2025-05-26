@@ -159,4 +159,13 @@ class ContractRepo {
       return ApiResponse.withError(ApiErrorHandler.handleError(e));
     }
   }
+
+  Future<ApiResponse> payContractRepo (contractId) async {
+    try {
+      Response response = await _dioClient.get(AppUrls.payContractUrl+contractId);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
 }

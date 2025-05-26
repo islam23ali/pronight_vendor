@@ -1,6 +1,6 @@
 class AppUrls {
   // static String baseUrl = "https://pro-night.com/api";
-  static String baseUrl = "https://business.pro-night.com/api";
+  static String baseUrl = "https://business.pro-night.net/api";
   static String sendCodeUrl = "/provider/send-code";
   static String confirmCodeUrl = "/provider/confirm-code";
 
@@ -17,6 +17,7 @@ class AppUrls {
   static String sectorsUrl = "/provider/sectors";
   static String villasUrl = "/provider/villas?sector_id=";
   static String beachesUrl = "/provider/beaches?sector_id=";
+  static String payContractUrl = "/provider/pay-contract/";
 
   static String visitPermitsUrl = "/provider/visit-permits?search=";
   static String oneVisitPermitUrl = "/provider/visit-permits/";
@@ -51,8 +52,11 @@ class AppUrls {
 
   static String settingUrl = "/provider/settings";
   static String statisticsUrl = "/provider/statistics";
+  static String sendComplaintsUrl = "/provider/complaints";
+  static String contactUsUrl = "/provider/contact-us";
 
   // set price
   static String setPriceUrl = "/provider/units-special-prices";
+  static String reservationDaysUrl = "/provider/reservations-days/";
 
 }

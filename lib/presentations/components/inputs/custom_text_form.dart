@@ -9,6 +9,18 @@ import '../../../core/app_theme/text_styles.dart';
 import '../../../core/dimens/dimens.dart';
 import '../../../core/resources/font_size.dart';
 
+
+extension EmailValidator on String {
+  bool isValidEmail() {
+    return RegExp(
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+        .hasMatch(this);
+  }
+  bool isStrongPassword() {
+    return RegExp (r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$')
+        .hasMatch(this);
+  }
+}
 class CustomTextFormField extends StatefulWidget {
   final String? hint;
   final TextInputType? textInputType;

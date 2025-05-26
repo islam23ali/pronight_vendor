@@ -14,8 +14,10 @@ import 'package:pronight_vendor/presentations/modules/setting_page/setting_view_
 import 'package:provider/provider.dart';
 import '../../../../../../../core/resources/app_assets.dart';
 import '../../../../../../../core/resources/font_size.dart';
+import '../../../../../../../injection.dart';
 import '../../../../../../components/custom_svg/CustomSvgIcon.dart';
 import '../../../../../../components/inputs/custom_text_form.dart';
+import '../../../../../../components/loadings/custom_scaffold_messanger.dart';
 
 class ContactUsScreen extends StatefulWidget {
   const ContactUsScreen({super.key});
@@ -25,10 +27,13 @@ class ContactUsScreen extends StatefulWidget {
 }
 
 class _ContactUsScreenState extends State<ContactUsScreen> {
-  TextEditingController nameController=TextEditingController();
-  TextEditingController emailController=TextEditingController();
-  TextEditingController subMessageController=TextEditingController();
-  TextEditingController messageController=TextEditingController();
+
+  SettingsViewModel provider = getIt();
+@override
+  void initState() {
+  provider.initContactUs();
+    super.initState();
+  }
   SocialMediaHelper socialMediaHelper =SocialMediaHelper();
   @override
   Widget build(BuildContext context) {
@@ -88,7 +93,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                         Column(crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomText(title: AppTranslate.theName.tr(),fontSize: AppFonts.font_14,fontColor: AppColors.primaryColor),
-                            CustomTextFormField(controller: nameController,
+                            CustomTextFormField(controller: data.nameController,
                               height: 60.h,textInputType: TextInputType.name,
                               prefix: CustomSvgIcon(assetName: AppAssets.profileIcon,height: 20.w,width: 20.w,color: AppColors.textGrayColor,),
                             )
@@ -98,7 +103,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                         Column(crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomText(title: AppTranslate.email.tr(),fontSize: AppFonts.font_14,fontColor: AppColors.primaryColor),
-                            CustomTextFormField(controller: emailController,
+                            CustomTextFormField(controller: data.emailController,
                               height: 60.h,textInputType: TextInputType.emailAddress,
                               prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 16.w,width: 20.w,color: AppColors.textGrayColor,),
                             )
@@ -108,7 +113,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                         Column(crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomText(title: AppTranslate.messageTitle.tr(),fontSize: AppFonts.font_14,fontColor: AppColors.primaryColor),
-                            CustomTextFormField(controller: subMessageController,
+                            CustomTextFormField(controller: data.titleController,
                               height: 60.h,textInputType: TextInputType.text,
                               prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 16.w,width: 20.w,color: AppColors.textGrayColor,),
                             )
@@ -118,7 +123,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                         Column(crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomText(title: AppTranslate.theMessage.tr(),fontSize: AppFonts.font_14,fontColor: AppColors.primaryColor),
-                            CustomTextFormField(controller: messageController,
+                            CustomTextFormField(controller: data.messageController,
                               height: 60.h,textInputType: TextInputType.text,
                               prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 16.w,width: 20.w,color: AppColors.textGrayColor,),
                             )
@@ -127,7 +132,21 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                       ],),
                   ),
                 ),
-                CustomButton(onTap: (){},title: AppTranslate.send.tr(),fontSize: AppFonts.font_14,fontWeight: FontWeight.w400,)
+                CustomButton(onTap: (){
+                  if(data.nameController.text.isEmpty==true){
+                    CustomScaffoldMessanger.showToast(title: AppTranslate.pleaseEnterName.tr());
+                  }else if(data.emailController.text.isEmpty==true){
+                    CustomScaffoldMessanger.showToast(title: AppTranslate.pleaseEnterEmail.tr());
+                  }else if(!data.emailController.text.isValidEmail()){
+                    CustomScaffoldMessanger.showToast(title: AppTranslate.pleaseEnterValidEmailAddress.tr());
+                  }else if(data.titleController.text.isEmpty==true){
+                    CustomScaffoldMessanger.showToast(title: AppTranslate.pleaseEnterMessageSubject.tr());
+                  }else if(data.messageController.text.isEmpty==true){
+                    CustomScaffoldMessanger.showToast(title: AppTranslate.pleaseEnterMessage.tr());
+                  }else{
+                    data.contactUs();
+                  }
+                },title: AppTranslate.send.tr(),fontSize: AppFonts.font_14,fontWeight: FontWeight.w400,)
               ],
             ),
           );

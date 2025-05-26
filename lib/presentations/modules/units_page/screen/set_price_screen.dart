@@ -19,7 +19,7 @@ import '../../../components/custom_text/custom_text.dart';
 import '../../../components/inputs/custom_text_form.dart';
 class SetPriceScreen extends StatefulWidget {
   const SetPriceScreen({super.key, required this.id});
-  final int? id;
+  final String? id;
 
 
   @override
@@ -149,7 +149,7 @@ class _SetPriceScreenState extends State<SetPriceScreen> {
                                 }else if(data.newPriceController.text.isEmpty==true){
                                 CustomScaffoldMessanger.showToast(title: AppTranslate.pleaseAddNewPrice.tr());
                               }else{
-                                data.setPrice(widget.id.toString());
+                                data.setPrice(widget.id??'');
                               }
                             })
                       ],

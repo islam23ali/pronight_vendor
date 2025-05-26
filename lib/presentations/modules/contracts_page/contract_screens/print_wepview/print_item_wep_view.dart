@@ -1,5 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/presentations/components/custom_app_bar/custom_app_bar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -22,7 +25,17 @@ class WebViewScreen extends StatefulWidget {
 
 class _WebViewScreenState extends State<WebViewScreen> {
   late WebViewController webView;
-
+  // Printing.layoutPdf(
+  // onLayout: (PdfPageFormat format) async {
+  // final pdf = pw.Document();
+  // pdf.addPage(
+  // pw.Page(
+  // build: (pw.Context context) => pw.Text("محتوى للطباعة"),
+  // ),
+  // );
+  // return pdf.save();
+  // },
+  // );
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -36,10 +49,23 @@ class _WebViewScreenState extends State<WebViewScreen> {
             // Update loading bar.
           },
           onPageStarted: (String url) {},
-          onPageFinished: (String url) {},
+          onPageFinished: (String url) {
+            webView.runJavaScript("window.print();");
+          },
           onHttpError: (HttpResponseError error) {},
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
+            Printing.layoutPdf(
+              onLayout: (PdfPageFormat format) async {
+                final pdf = pw.Document();
+                pdf.addPage(
+                  pw.Page(
+                    build: (pw.Context context) => pw.Text("محتوى للطباعة"),
+                  ),
+                );
+                return pdf.save();
+              },
+            );
             if (request.url.startsWith('https://asheer.romozgroup.com')) {
               return NavigationDecision.prevent;
             }

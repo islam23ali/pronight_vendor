@@ -317,5 +317,11 @@
   "Contract modification": "تعديل العقد",
   "logout": "تسجيل الخروج",
   "readAll": "تحديد الكل كمقروء",
-  "copiedToClipboard": "تم نسخها إلى الحافظة"
+  "pleaseEnterName": "الرجاء إدخال الاسم",
+  "pleaseEnterEmail": "الرجاء إدخال البريد الإلكتروني",
+  "pleaseEnterMessage": "الرجاء إدخال الرسالة",
+  "pleaseEnterValidEmailAddress": "الرجاء إدخال بريد إلكتروني صحيح",
+  "copiedToClipboard": "تم نسخها إلى الحافظة",
+  "pleaseEnterMessageSubject": "الرجاء إدخال  عنوان الرسالة",
+  "bookingDays": "أيام الحجز"
 }

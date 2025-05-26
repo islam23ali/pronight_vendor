@@ -153,8 +153,8 @@ class _ContractDetailsState extends State<ContractDetails> {
                                   decoration: BoxDecoration( borderRadius: BorderRadius.circular(3.r),border: Border.all(width: 1.5.w,color: AppColors.primaryColor)),
                                   child:CustomSvgIcon(assetName: AppAssets.showContract,width: 20.w,height: 20.w,color: AppColors.primaryColor,) ,),
                               ),
-                              InkWell(onTap:(){
-                                showPaymentTypesSheet();
+                             data.oneContractModel?.data?.isPaid==true? const SizedBox(): InkWell(onTap:(){
+                                showPaymentTypesSheet(data.oneContractModel?.data?.price.toString()??'',data.oneContractModel?.data?.id.toString()??'');
                               },
                                 child: Container(
                                   padding: EdgeInsets.all(Dimens.padding_4),
@@ -174,10 +174,10 @@ class _ContractDetailsState extends State<ContractDetails> {
                             ],
                           ),
                           ],),
-                        (data.oneContractModel?.data?.note==null||data.oneContractModel?.data?.note=='')?SizedBox():  SizedBox(height: 20.h),
-                        (data.oneContractModel?.data?.note==null||data.oneContractModel?.data?.note=='')?SizedBox(): CustomText(title: AppTranslate.comments.tr(),fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
-                        (data.oneContractModel?.data?.note==null||data.oneContractModel?.data?.note=='')?SizedBox(): (data.oneContractModel?.data?.note==null||data.oneContractModel?.data?.note=='')?SizedBox():SizedBox(height: 10.h),
-                        (data.oneContractModel?.data?.note==null||data.oneContractModel?.data?.note=='')?SizedBox(): CustomText(title: data.oneContractModel?.data?.note??'',fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
+                        (data.oneContractModel?.data?.note==null||data.oneContractModel?.data?.note=='')?const SizedBox():  SizedBox(height: 20.h),
+                        (data.oneContractModel?.data?.note==null||data.oneContractModel?.data?.note=='')?const SizedBox(): CustomText(title: AppTranslate.comments.tr(),fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
+                        (data.oneContractModel?.data?.note==null||data.oneContractModel?.data?.note=='')?const SizedBox(): (data.oneContractModel?.data?.note==null||data.oneContractModel?.data?.note=='')?const SizedBox():SizedBox(height: 10.h),
+                        (data.oneContractModel?.data?.note==null||data.oneContractModel?.data?.note=='')?const SizedBox(): CustomText(title: data.oneContractModel?.data?.note??'',fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
                       ],
                     ),),
                   ],
@@ -186,7 +186,7 @@ class _ContractDetailsState extends State<ContractDetails> {
         }
       ),);
   }
-  Future<dynamic> showPaymentTypesSheet() async {
+  Future<dynamic> showPaymentTypesSheet(String price,contractId) async {
     return  showModalBottomSheet(
       // isDismissible: false,
         isScrollControlled: true,
@@ -198,7 +198,7 @@ class _ContractDetailsState extends State<ContractDetails> {
               top: Radius.circular(24.r),
             )),
         builder: (BuildContext context) {
-          return const PaymentTypeSheet();
+          return  PaymentTypeSheet( price: price, contractId: contractId,);
         });}
   Future<dynamic> showDeleteItemSheet() async {
     return  showModalBottomSheet(
