@@ -22,6 +22,7 @@ import '../../../data/models/api_response.dart';
 import '../../../data/models/response/cities_model.dart';
 import '../../../data/models/response/contens_model.dart';
 import '../../../data/models/response/one_unit_model.dart';
+import '../../../data/models/response/reservation_days_model.dart';
 import '../../../data/models/response/sub_models/add_additional_service_model.dart';
 import '../../../data/models/response/sub_models/add_unit_content_model.dart';
 import '../../../injection.dart';
@@ -41,6 +42,7 @@ final UnitsRepo _unitsRepo = getIt();
    CitiesModel? _citiesModel;
    ContentsModel? _contentsModel;
    ContentsModel? _facilitiesModel;
+   ReservationDaysModel? _reservationDaysModel;
 
    OneUnitModel? _oneUnitModel;
    bool? _isLoading = false;
@@ -50,6 +52,7 @@ final UnitsRepo _unitsRepo = getIt();
    ContentsModel? get contentsModel => _contentsModel;
    ContentsModel? get facilitiesModel => _facilitiesModel;
    OneUnitModel? get oneUnitModel => _oneUnitModel;
+   ReservationDaysModel? get reservationDaysModel => _reservationDaysModel;
    bool? get isLoading => _isLoading;
    bool? get isDaysLoading => _isDaysLoading;
 
@@ -347,7 +350,7 @@ initSetPrice(){
     _oneUnitModel = OneUnitModel.fromJson(responseModel.response?.data);
     notifyListeners();
     if (_oneUnitModel != null && _oneUnitModel?.code == 200) {
-
+      initSetPrice();
       if(kDebugMode){
         CustomScaffoldMessanger.showToast(title: 'الله ينور ياعمناااا <<<<<<<<<<');
       }
@@ -375,22 +378,18 @@ initSetPrice(){
 
   if (responseModel.response != null && responseModel.response?.statusCode == 200) {
 
-    _oneUnitModel = OneUnitModel.fromJson(responseModel.response?.data);
+    _reservationDaysModel = ReservationDaysModel.fromJson(responseModel.response?.data);
     _isDaysLoading=false;
     notifyListeners();
-    if (_oneUnitModel != null && _oneUnitModel?.code == 200) {
+    if (_reservationDaysModel != null && _reservationDaysModel?.code == 200) {
 
       if(kDebugMode){
         CustomScaffoldMessanger.showToast(title: 'الله ينور ياعمناااا <<<<<<<<<<');
       }
-      // await showSuccessPayedSheet();
-      // NavigatorHandler.push(const BookingDaysPage());
-
-      // await NavigatorHandler.pushAndRemoveUntil(BottomNavBar(bottomNavIndex: 2,));
 
       notifyListeners();
     } else{
-      CustomScaffoldMessanger.showToast(title: _oneUnitModel?.message??'');
+      CustomScaffoldMessanger.showToast(title: _reservationDaysModel?.message??'');
     }
     notifyListeners();
   }

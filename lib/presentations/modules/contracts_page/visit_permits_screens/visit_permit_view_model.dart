@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
@@ -29,16 +30,25 @@ class VisitPermitViewModel extends ChangeNotifier{
   EmptyModel? _deleteVisitPermit;
   EmptyModel? _deleteVisitor;
   EmptyModel? _deleteMaterial;
+  bool _isLoadMore = false;
 
+  bool get isLoadMore => _isLoadMore;
   bool get isLoading => _isLoading;
   OneVisitPermitModel? get oneVisitPermitModel => _oneVisitPermitModel;
   VisitPermitsModel? get visitPermitsModel => _visitPermitsModel;
   SendCodeModel? get printVisitPermit => _printVisitPermit;
   EmptyModel? get deleteVisitPermit => _deleteVisitPermit;
 
-  List<OneVisitPermit>? allVisitPermitList =[];
+  final ScrollController controller = ScrollController();
+  int page = 1;
+  CancelToken? cancelToken, cancelTokenLoadMore;
+  List<OneVisitPermit?>? allVisitPermitList =[];
 
   initVisitPermit(){
+    page = 1;
+    controller.addListener(listener);
+    cancelToken = null;
+    cancelTokenLoadMore = null;
     allVisitPermitList=[];
     searchVisitPermitController.clear();
     allVisitPermit();
@@ -46,14 +56,16 @@ class VisitPermitViewModel extends ChangeNotifier{
 
   Future<void> allVisitPermit () async {
     _isLoading = true;
+    allVisitPermitList = [];
+    cancelToken ??= CancelToken();
     notifyListeners();
-    ApiResponse responseModel = await _visitPermitRepo.allVisitPermitRepo(searchVisitPermitController.text);
+    ApiResponse responseModel = await _visitPermitRepo.allVisitPermitRepo(searchVisitPermitController.text,page.toString());
     if (responseModel.response != null && responseModel.response?.statusCode == 200) {
       _visitPermitsModel = VisitPermitsModel.fromJson(responseModel.response?.data);
       _isLoading = false;
       notifyListeners();
       if (_visitPermitsModel != null && _visitPermitsModel?.code == 200) {
-        allVisitPermitList=_visitPermitsModel?.data;
+        allVisitPermitList?.addAll(_visitPermitsModel?.data??[]);
       } else{
         CustomScaffoldMessanger.showToast(title: _visitPermitsModel?.message??'');
       }
@@ -179,6 +191,56 @@ class VisitPermitViewModel extends ChangeNotifier{
       CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
     }
     notifyListeners();
+  }
+
+  Future<void> loadMoreUnits(int page) async {
+    try {
+      _isLoadMore = true;
+
+      allVisitPermitList?.add(null);
+      cancelTokenLoadMore ??= CancelToken();
+      notifyListeners();
+
+      ApiResponse responseModel = await _visitPermitRepo.allVisitPermitRepo(searchVisitPermitController.text,page.toString());
+      if (allVisitPermitList?.last == null) {
+        allVisitPermitList?.removeLast();
+      }
+      cancelTokenLoadMore = null;
+      if (responseModel.response != null &&
+          responseModel.response?.statusCode == 200) {
+        VisitPermitsModel notificationModel =
+        VisitPermitsModel.fromJson(responseModel.response?.data);
+        if (notificationModel.code == 200) {
+          List<OneVisitPermit> list = [];
+          list.addAll(notificationModel.data ?? []);
+          if (list.isNotEmpty) {
+            allVisitPermitList?.addAll(list);
+            this.page = page;
+          }
+        } else {
+          CustomScaffoldMessanger.showToast(title: notificationModel.message ?? '');
+        }
+      } else {
+        CustomScaffoldMessanger.showToast(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+      }
+      _isLoadMore = false;
+      notifyListeners();
+    } catch (e) {
+      if (allVisitPermitList?.last == null) {
+        allVisitPermitList?.removeLast();
+      }
+      _isLoadMore = false;
+      cancelTokenLoadMore = null;
+      notifyListeners();
+      print('getnotificationLoadMoreError=>>>$e');
+    }
+    return;
+  }
+  void listener() {
+    if (controller.position.pixels == controller.position.maxScrollExtent && isLoadMore == false && (allVisitPermitList?.length??0) > 9) {
+      int p = page + 1;
+      loadMoreUnits(p);
+    }
   }
 
 }

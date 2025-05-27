@@ -17,6 +17,7 @@ import '../../../injection.dart';
 import '../../components/custom_app_bar/custom_app_bar.dart';
 import '../../components/custom_svg/CustomSvgIcon.dart';
 import '../../components/inputs/custom_text_form.dart';
+import '../add_unit_page/add_unit_page.dart';
 
 class UnitsPage extends StatefulWidget {
   const UnitsPage({super.key});
@@ -58,7 +59,7 @@ class _UnitsPageState extends State<UnitsPage> {
                     padding: EdgeInsets.symmetric(horizontal: Dimens.padding_16h),
                     child: InkWell(
                       onTap: () {
-
+                        NavigatorHandler.push(const AddUnit());
                       },
                       child: CustomSvgIcon(
                           assetName: AppAssets.addContracts,

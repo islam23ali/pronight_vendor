@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
@@ -31,29 +32,42 @@ class ContractViewModel extends ChangeNotifier{
   OneContractModel? _oneContractModel;
   SendCodeModel? _printContractModel;
   EmptyModel? _deleteContract;
+  bool _isLoadMore = false;
 
+  bool get isLoadMore => _isLoadMore;
   bool get isLoading => _isLoading;
   AllContractsModel? get allContractsModel => _allContractsModel;
   OneContractModel? get oneContractModel => _oneContractModel;
   SocialMediaHelper socialMediaHelper =SocialMediaHelper();
   initContracts(){
+    page = 1;
+    controller.addListener(listener);
+    cancelToken = null;
+    cancelTokenLoadMore = null;
     allContractsList=[];
     searchController.clear();
     WidgetsBinding.instance.addPostFrameCallback((_){
       allContracts();
     });
   }
-  List<OneContract>? allContractsList =[];
+  final ScrollController controller = ScrollController();
+  int page = 1;
+  CancelToken? cancelToken, cancelTokenLoadMore;
+
+
+  List<OneContract?>? allContractsList =[];
   Future<void> allContracts () async {
     _isLoading = true;
+    allContractsList = [];
+    cancelToken ??= CancelToken();
     notifyListeners();
-    ApiResponse responseModel = await _contractRepo.allContractRepo(searchController.text);
+    ApiResponse responseModel = await _contractRepo.allContractRepo(searchController.text,page.toString());
     if (responseModel.response != null && responseModel.response?.statusCode == 200) {
       _allContractsModel = AllContractsModel.fromJson(responseModel.response?.data);
       _isLoading = false;
       notifyListeners();
       if (_allContractsModel != null && _allContractsModel?.code == 200) {
-        allContractsList=_allContractsModel?.data;
+        allContractsList?.addAll(_allContractsModel?.data??[]);
       } else{
         CustomScaffoldMessanger.showToast(title: _allContractsModel?.message??'');
       }
@@ -132,4 +146,53 @@ class ContractViewModel extends ChangeNotifier{
     notifyListeners();
   }
 
+  Future<void> loadMoreUnits(int page) async {
+    try {
+      _isLoadMore = true;
+
+      allContractsList?.add(null);
+      cancelTokenLoadMore ??= CancelToken();
+      notifyListeners();
+
+      ApiResponse responseModel = await _contractRepo.allContractRepo(searchController.text,page.toString());
+      if (allContractsList?.last == null) {
+        allContractsList?.removeLast();
+      }
+      cancelTokenLoadMore = null;
+      if (responseModel.response != null &&
+          responseModel.response?.statusCode == 200) {
+        AllContractsModel notificationModel =
+        AllContractsModel.fromJson(responseModel.response?.data);
+        if (notificationModel.code == 200) {
+          List<OneContract> list = [];
+          list.addAll(notificationModel.data ?? []);
+          if (list.isNotEmpty) {
+            allContractsList?.addAll(list);
+            this.page = page;
+          }
+        } else {
+          CustomScaffoldMessanger.showToast(title: notificationModel.message ?? '');
+        }
+      } else {
+        CustomScaffoldMessanger.showToast(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+      }
+      _isLoadMore = false;
+      notifyListeners();
+    } catch (e) {
+      if (allContractsList?.last == null) {
+        allContractsList?.removeLast();
+      }
+      _isLoadMore = false;
+      cancelTokenLoadMore = null;
+      notifyListeners();
+      print('getnotificationLoadMoreError=>>>$e');
+    }
+    return;
+  }
+  void listener() {
+    if (controller.position.pixels == controller.position.maxScrollExtent && isLoadMore == false && (allContractsList?.length??0) > 9) {
+      int p = page + 1;
+      loadMoreUnits(p);
+    }
+  }
 }

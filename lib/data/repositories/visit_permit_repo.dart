@@ -119,9 +119,9 @@ class VisitPermitRepo {
     }
   }
 
-  Future<ApiResponse> allVisitPermitRepo(String search) async {
+  Future<ApiResponse> allVisitPermitRepo(String search,page) async {
     try {
-      Response response = await _dioClient.get(AppUrls.visitPermitsUrl+search);
+      Response response = await _dioClient.get('${AppUrls.visitPermitsUrl}$search&limit=10&page=$page');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.handleError(e));

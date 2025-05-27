@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:pronight_vendor/core/app_theme/app_colors.dart';
 import 'package:pronight_vendor/core/screen_state/no_data.dart';
 import 'package:pronight_vendor/presentations/app_loader.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/visit_permit_view_model.dart';
@@ -34,6 +35,7 @@ WidgetsBinding.instance.addPostFrameCallback((timeStamp){
           child: ListView.builder(
               padding: EdgeInsets.symmetric(vertical: Dimens.padding_12v),
               shrinkWrap: true,
+              controller: data.controller,
               itemCount: data.allVisitPermitList?.length,
               itemBuilder: (context, index) {
                 return AnimationConfiguration.staggeredGrid(
@@ -44,7 +46,7 @@ WidgetsBinding.instance.addPostFrameCallback((timeStamp){
                         duration:const Duration(milliseconds: 1000),
                         curve: Curves.fastLinearToSlowEaseIn,
                         child: FadeInAnimation(child:
-                        CustomVisitPermitsItem(model: data.allVisitPermitList?[index],)
+                        data.allVisitPermitList?[index]==null?const SizedBox(child: Center(child: CircularProgressIndicator(color: AppColors.primaryColor),),) :CustomVisitPermitsItem(model: data.allVisitPermitList?[index],)
                         )));
               }),
         );

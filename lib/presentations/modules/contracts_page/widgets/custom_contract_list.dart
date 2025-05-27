@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:pronight_vendor/core/app_theme/app_colors.dart';
+import 'package:pronight_vendor/core/extensions/num_extensions.dart';
 import 'package:pronight_vendor/core/screen_state/no_data.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/contracts_view_model.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +27,7 @@ class _CustomContractListState extends State<CustomContractList> {
           child: ListView.builder(
               padding: EdgeInsets.symmetric(vertical: Dimens.padding_12v),
               shrinkWrap: true,
+              controller: data.controller,
               itemCount: data.allContractsList?.length,
               itemBuilder: (context, index) {
                 return AnimationConfiguration.staggeredGrid(
@@ -35,7 +38,7 @@ class _CustomContractListState extends State<CustomContractList> {
                         duration:const Duration(milliseconds: 1000),
                         curve: Curves.fastLinearToSlowEaseIn,
                         child: FadeInAnimation(child:
-                        CustomContractItem(model: data.allContractsList?[index])
+                        data.allContractsList?[index]==null?SizedBox(child: Center(child: CircularProgressIndicator(color: AppColors.primaryColor,strokeWidth: 3.w))): CustomContractItem(model: data.allContractsList?[index])
                         )));
               }),
         );
