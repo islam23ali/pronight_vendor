@@ -7,7 +7,7 @@ class AddContractBody {
   String? endDate;
   String? sectorId;
   String? villaId;
-  String? beachId;
+  // String? beachId;
   String? tenantName;
   String? tenantIdNo;
   String? tenantNationality;
@@ -15,7 +15,7 @@ class AddContractBody {
   String? tenantPhoneCode;
   String? rentValue;
   String? insuranceValue;
-  String? price;
+  // String? price;
   String? note;
   bool? sendClient;
   bool? sendProvider;
@@ -28,7 +28,7 @@ class AddContractBody {
     this.endDate,
     this.sectorId,
     this.villaId,
-    this.beachId,
+    // this.beachId,
     this.tenantName,
     this.tenantIdNo,
     this.tenantNationality,
@@ -36,7 +36,7 @@ class AddContractBody {
     this.tenantPhoneCode,
     this.rentValue,
     this.insuranceValue,
-    this.price,
+    // this.price,
     this.note,
     this.sendClient,
     this.sendProvider,
@@ -51,7 +51,7 @@ class AddContractBody {
     "end_date": endDate,
     "sector_id": sectorId,
     "villa_id": villaId,
-    "beach_id": beachId,
+    // "beach_id": beachId,
     "tenant_name": tenantName,
     "tenant_id_no": tenantIdNo,
     "tenant_nationality": tenantNationality,
@@ -59,7 +59,7 @@ class AddContractBody {
     "tenant_phone_code": tenantPhoneCode,
     "rent_value": rentValue,
     "insurance_value": insuranceValue,
-    "price": price,
+    // "price": price,
     "note": note,
     "send_client": sendClient,
     "send_provider": sendProvider,

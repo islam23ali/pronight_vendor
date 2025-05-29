@@ -39,10 +39,10 @@ class AddContractViewModel extends ChangeNotifier{
   TextEditingController mobileNumberController =TextEditingController();
   TextEditingController rentalValueController =TextEditingController();
   TextEditingController insuranceValueController =TextEditingController();
-  TextEditingController contractFeesController =TextEditingController();
+  // TextEditingController contractFeesController =TextEditingController();
   TextEditingController detailsController =TextEditingController();
   // page three data ...
-  List<AddEscort> escorts = [AddEscort(name: '', idNo: '', nationality: '', kinship: '')];
+  List<AddEscort> escorts = [AddEscort(name: '', idNo: '', nationality: '',)];
   // page four data ...
   List<Car> cars = [Car(type: '',plateNo: '',driverName: '',driverIdNo: '',)];
 
@@ -85,9 +85,9 @@ class AddContractViewModel extends ChangeNotifier{
     mobileNumberController.clear();
     rentalValueController.clear();
     insuranceValueController.clear();
-    contractFeesController.clear();
+    // contractFeesController.clear();
     detailsController.clear();
-     escorts = [AddEscort(name: '', idNo: '', nationality: '', kinship: '')];
+     escorts = [AddEscort(name: '', idNo: '', nationality: '',)];
      cars = [Car(type: '',plateNo: '',driverName: '',driverIdNo: '',)];
     notifyListeners();
   }
@@ -99,7 +99,7 @@ class AddContractViewModel extends ChangeNotifier{
     addContractBody.endDate=exitDateController.text;
     addContractBody.sectorId=selectedSector?.id.toString();
     addContractBody.villaId=selectedVilla?.id.toString();
-    addContractBody.beachId=selectedBeach?.id.toString();
+    // addContractBody.beachId=selectedBeach?.id.toString();
     addContractBody.tenantName=tenantNameController.text;
     addContractBody.tenantIdNo=iDNumberController.text;
     addContractBody.tenantNationality=nationalityController.text;
@@ -107,7 +107,7 @@ class AddContractViewModel extends ChangeNotifier{
     addContractBody.tenantPhone=mobileNumberController.text;
     addContractBody.rentValue=rentalValueController.text;
     addContractBody.insuranceValue=insuranceValueController.text;
-    addContractBody.price=contractFeesController.text;
+    // addContractBody.price=contractFeesController.text;
     addContractBody.note=detailsController.text;
     addContractBody.sendClient=sendClient;
     addContractBody.sendProvider=sendProvider;
@@ -153,7 +153,7 @@ class AddContractViewModel extends ChangeNotifier{
     mobileNumberController.text=contractProvider.oneContractModel?.data?.tenant?.phone??'';
     rentalValueController.text=contractProvider.oneContractModel?.data?.rentValue.toString()??'';
     insuranceValueController.text=contractProvider.oneContractModel?.data?.insuranceValue.toString()??'';
-    contractFeesController.text=contractProvider.oneContractModel?.data?.price.toString()??'';
+    // contractFeesController.text=contractProvider.oneContractModel?.data?.price.toString()??'';
     detailsController.text=contractProvider.oneContractModel?.data?.note.toString()??'';
     // sendClient=contractProvider.oneContractModel?.data?.;
     // sendProvider=contractProvider.oneContractModel?.data?.;
@@ -168,7 +168,7 @@ class AddContractViewModel extends ChangeNotifier{
     addContractBody.endDate=exitDateController.text;
     addContractBody.sectorId=selectedSector?.id.toString();
     addContractBody.villaId=selectedVilla?.id.toString();
-    addContractBody.beachId=selectedBeach?.id.toString();
+    // addContractBody.beachId=selectedBeach?.id.toString();
     addContractBody.tenantName=tenantNameController.text;
     addContractBody.tenantIdNo=iDNumberController.text;
     addContractBody.tenantNationality=nationalityController.text;
@@ -176,7 +176,7 @@ class AddContractViewModel extends ChangeNotifier{
     addContractBody.tenantPhone=mobileNumberController.text;
     addContractBody.rentValue=rentalValueController.text;
     addContractBody.insuranceValue=insuranceValueController.text;
-    addContractBody.price=contractFeesController.text;
+    // addContractBody.price=contractFeesController.text;
     addContractBody.note=detailsController.text;
     addContractBody.sendClient=sendClient;
     addContractBody.sendProvider=sendProvider;

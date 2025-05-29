@@ -44,14 +44,14 @@ class _PersonalDataCardState extends State<PersonalDataCard> {
                 onTap: () {
                   NavigatorHandler.push(const UpdateProfile());
                 }),
-            _buildItem(context,
-              isRow:true,
-              image: AppAssets.image,
-              title: tr(AppTranslate.pictures),
-              onTap: () {
-               NavigatorHandler.push(const UnitImagePages());
-              },
-            ),
+            // _buildItem(context,     waiting for adding hotels
+            //   isRow:true,
+            //   image: AppAssets.image,
+            //   title: tr(AppTranslate.pictures),
+            //   onTap: () {
+            //    NavigatorHandler.push(const UnitImagePages());
+            //   },
+            // ),
             _buildItem(context,
               isRow:true,
               image: AppAssets.billNoti,

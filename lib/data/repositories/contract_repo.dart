@@ -53,7 +53,7 @@ class ContractRepo {
       body['end_date']=addContractBody.endDate;
       body['sector_id']=addContractBody.sectorId;
       body['villa_id']=addContractBody.villaId;
-      body['beach_id']=addContractBody.beachId;
+      // body['beach_id']=addContractBody.beachId;
       body['tenant_name']=addContractBody.tenantName;
       body['tenant_id_no']=addContractBody.tenantIdNo;
       body['tenant_nationality']=addContractBody.tenantNationality;
@@ -61,7 +61,7 @@ class ContractRepo {
       body['tenant_phone_code']=addContractBody.tenantPhoneCode;
       body['rent_value']=addContractBody.rentValue;
       body['insurance_value']=addContractBody.insuranceValue;
-      body['price']=addContractBody.price;
+      // body['price']=addContractBody.price;
       body['send_provider']=addContractBody.sendProvider;
       body['send_client']=addContractBody.sendClient;
       if(addContractBody.note!=null||addContractBody.note!='')body['note']=addContractBody.note;
@@ -69,7 +69,7 @@ class ContractRepo {
         body["escorts[$e][name]"] = addContractBody.escorts?[e].companionNameController.text;
         body["escorts[$e][id_no]"] = addContractBody.escorts?[e].iDNumberCompanionsController.text;
         body["escorts[$e][nationality]"] = addContractBody.escorts?[e].nationalityCompanionsController.text;
-        body["escorts[$e][kinship]"] = addContractBody.escorts?[e].facilitiesProximityController.text;
+        // body["escorts[$e][kinship]"] = addContractBody.escorts?[e].facilitiesProximityController.text;
       }
       for (int i = 0; i < (addContractBody.cars??[]).length; i++) {
         body["cars[$i][type]"] = addContractBody.cars?[i].carTypeController.text;
@@ -98,7 +98,7 @@ class ContractRepo {
       body['end_date']=addContractBody.endDate;
       body['sector_id']=addContractBody.sectorId;
       body['villa_id']=addContractBody.villaId;
-      body['beach_id']=addContractBody.beachId;
+      // body['beach_id']=addContractBody.beachId;
       body['tenant_name']=addContractBody.tenantName;
       body['tenant_id_no']=addContractBody.tenantIdNo;
       body['tenant_nationality']=addContractBody.tenantNationality;
@@ -106,7 +106,7 @@ class ContractRepo {
       body['tenant_phone_code']=addContractBody.tenantPhoneCode;
       body['rent_value']=addContractBody.rentValue;
       body['insurance_value']=addContractBody.insuranceValue;
-      body['price']=addContractBody.price;
+      // body['price']=addContractBody.price;
       body['send_provider']=addContractBody.sendProvider;
       body['send_client']=addContractBody.sendClient;
       if(addContractBody.note!=null||addContractBody.note!='')body['note']=addContractBody.note;
@@ -114,7 +114,7 @@ class ContractRepo {
         body["escorts[$e][name]"] = addContractBody.escorts?[e].companionNameController.text;
         body["escorts[$e][id_no]"] = addContractBody.escorts?[e].iDNumberCompanionsController.text;
         body["escorts[$e][nationality]"] = addContractBody.escorts?[e].nationalityCompanionsController.text;
-        body["escorts[$e][kinship]"] = addContractBody.escorts?[e].facilitiesProximityController.text;
+        // body["escorts[$e][kinship]"] = addContractBody.escorts?[e].facilitiesProximityController.text;
       }
       for (int i = 0; i < (addContractBody.cars??[]).length; i++) {
         body["cars[$i][type]"] = addContractBody.cars?[i].carTypeController.text;

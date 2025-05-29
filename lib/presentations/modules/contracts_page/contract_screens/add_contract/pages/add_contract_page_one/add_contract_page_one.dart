@@ -119,7 +119,7 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                                   data.selectedVilla = null;
                                   data.selectedBeach = null;
                                   data.getAllVillas(data.selectedSector?.id.toString());
-                                  data.getAllBeaches(data.selectedSector?.id.toString());
+                                  // data.getAllBeaches(data.selectedSector?.id.toString());
                                 });
                               },
                             ),
@@ -154,31 +154,31 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                       ],
                     ),
                     SizedBox(height: 20.h),
-                    Column(crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomText(title: AppTranslate.beach.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                        Column(
-                          children: [
-                            (data.isBeaLoading==true)?SizedBox(width: 30.w,height: 30.h,
-                                child: CircularProgressIndicator(color: AppColors.primaryColor,strokeWidth: 2.w,)):
-                            CustomBeachesDropdownButton(
-                              color: AppColors.darkColor,
-                              items: data.beachesModel?.data ?? [],
-                              value: data.selectedBeach,
-                              inputColor:data.selectedSector==null? Colors.black12:Colors.transparent,
-                              disabledTitle: AppTranslate.selectSectorFirst.tr(),
-                              onChanged: (OneVilla? newValue) {
-                                setState(() {
-                                  data.selectedBeach = newValue;
-                                });
-                              },
-                            ),
-                            Container(height: 2.h,width: 300,color: Colors.grey.shade400,),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20.h),
+                    // Column(crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     CustomText(title: AppTranslate.beach.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                    //     Column(
+                    //       children: [
+                    //         (data.isBeaLoading==true)?SizedBox(width: 30.w,height: 30.h,
+                    //             child: CircularProgressIndicator(color: AppColors.primaryColor,strokeWidth: 2.w,)):
+                    //         CustomBeachesDropdownButton(
+                    //           color: AppColors.darkColor,
+                    //           items: data.beachesModel?.data ?? [],
+                    //           value: data.selectedBeach,
+                    //           inputColor:data.selectedSector==null? Colors.black12:Colors.transparent,
+                    //           disabledTitle: AppTranslate.selectSectorFirst.tr(),
+                    //           onChanged: (OneVilla? newValue) {
+                    //             setState(() {
+                    //               data.selectedBeach = newValue;
+                    //             });
+                    //           },
+                    //         ),
+                    //         Container(height: 2.h,width: 300,color: Colors.grey.shade400,),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
+                    // SizedBox(height: 20.h),
                     CustomButton(onTap: (){
                       if(data.arrivalDateController.text.isEmpty){
                         CustomScaffoldMessanger.showToast(title: AppTranslate.arrivalDateIsRequired.tr());
@@ -188,8 +188,8 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                         CustomScaffoldMessanger.showToast(title: AppTranslate.selectSectorFirst.tr());
                       }else if(data.selectedVilla==null){
                         CustomScaffoldMessanger.showToast(title: AppTranslate.villaIsRequired.tr());
-                      }else if(data.selectedBeach==null){
-                        CustomScaffoldMessanger.showToast(title: AppTranslate.beachIsRequired.tr());
+                      // }else if(data.selectedBeach==null){
+                      //   CustomScaffoldMessanger.showToast(title: AppTranslate.beachIsRequired.tr());
                       }else{
                       setState(() {
                         data.currentPage=1;

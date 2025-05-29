@@ -4,30 +4,30 @@ class AddEscort {
   String name;
   String idNo;
   String nationality;
-  String kinship;
+  // String kinship;
 
   TextEditingController companionNameController;
   TextEditingController iDNumberCompanionsController;
   TextEditingController nationalityCompanionsController;
-  TextEditingController facilitiesProximityController;
+  // TextEditingController facilitiesProximityController;
 
   AddEscort({
     required this.name,
     required this.idNo,
     required this.nationality,
-    required this.kinship,
+    // required this.kinship,
   }) :
         companionNameController = TextEditingController(text: name),
         iDNumberCompanionsController = TextEditingController(text: idNo),
-        nationalityCompanionsController = TextEditingController(text: nationality),
-        facilitiesProximityController = TextEditingController(text: kinship);
+        nationalityCompanionsController = TextEditingController(text: nationality);
+        // facilitiesProximityController = TextEditingController(text: kinship);
 
   // Update all fields from controllers
   void updateFromControllers() {
     name = companionNameController.text;
     idNo = iDNumberCompanionsController.text;
     nationality = nationalityCompanionsController.text;
-    kinship = facilitiesProximityController.text;
+    // kinship = facilitiesProximityController.text;
   }
 
   // Dispose all controllers
@@ -35,7 +35,7 @@ class AddEscort {
     companionNameController.dispose();
     iDNumberCompanionsController.dispose();
     nationalityCompanionsController.dispose();
-    facilitiesProximityController.dispose();
+    // facilitiesProximityController.dispose();
   }
 
   // Convert to Map
@@ -44,7 +44,7 @@ class AddEscort {
       'name': name,
       'id_no': idNo,
       'nationality': nationality,
-      'kinship': kinship,
+      // 'kinship': kinship,
     };
 
 
@@ -54,7 +54,7 @@ class AddEscort {
       name: json['name'] ?? '',
       idNo: json['id_no'] ?? '',
       nationality: json['nationality'] ?? '',
-      kinship: json['kinship'] ?? '',
+      // kinship: json['kinship'] ?? '',
     );
 
 }

@@ -29,6 +29,7 @@ class AddVisitPermitViewModel extends ChangeNotifier{
   TextEditingController permitStatusController =TextEditingController();
   TextEditingController driverNameController =TextEditingController();
   TextEditingController detailsController =TextEditingController();
+  TextEditingController mobileNumberController =TextEditingController();
 
   OneSector? selectedSector;
   OneVilla? selectedVilla;
@@ -64,6 +65,7 @@ class AddVisitPermitViewModel extends ChangeNotifier{
     permitStatusController.clear();
     driverNameController.clear();
     detailsController.clear();
+    mobileNumberController.clear();
     isSwitchVisitors = false;
     isSwitchMaterials = false;
     visitorsList.clear();
@@ -85,6 +87,7 @@ class AddVisitPermitViewModel extends ChangeNotifier{
     addVisitPermitBody.status=permitStatusController.text;
     addVisitPermitBody.driverName=driverNameController.text;
     addVisitPermitBody.note=detailsController.text;
+    addVisitPermitBody.phone=mobileNumberController.text;
     addVisitPermitBody.visitorsSwitch=(isSwitchVisitors==true)?1.toString():0.toString();
     addVisitPermitBody.materialsSwitch=(isSwitchMaterials==true)?1.toString():0.toString();
     addVisitPermitBody.visitor=visitorsList;
@@ -150,6 +153,7 @@ class AddVisitPermitViewModel extends ChangeNotifier{
     addVisitPermitBody.status=permitStatusController.text;
     addVisitPermitBody.driverName=driverNameController.text;
     addVisitPermitBody.note=detailsController.text;
+    addVisitPermitBody.phone=mobileNumberController.text;
     addVisitPermitBody.visitorsSwitch=(isSwitchVisitors==true)?1.toString():0.toString();
     addVisitPermitBody.materialsSwitch=(isSwitchMaterials==true)?1.toString():0.toString();
     addVisitPermitBody.visitor=visitorsList;
@@ -203,6 +207,8 @@ addVisitPermitValidation(){
       CustomScaffoldMessanger.showToast(title: AppTranslate.enterPermitStatus.tr());
     }else if( driverNameController.text.isEmpty){
       CustomScaffoldMessanger.showToast(title: AppTranslate.enterDriverName.tr());
+    }else if(mobileNumberController.text.isEmpty){
+      CustomScaffoldMessanger.showToast(title: AppTranslate.phoneNumberRequired.tr());
     }else{
       addVisitPermit();
     }

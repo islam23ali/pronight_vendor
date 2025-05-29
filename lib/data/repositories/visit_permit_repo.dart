@@ -29,6 +29,7 @@ class VisitPermitRepo {
       body["days_count"] = addVisitPermitBody.daysCount;
       body["status"] = addVisitPermitBody.status;
       body["driver_name"] = addVisitPermitBody.driverName;
+      body["phone"] = addVisitPermitBody.phone;
       body["visitors_switch"] = addVisitPermitBody.visitorsSwitch;
       body["materials_switch"] = addVisitPermitBody.materialsSwitch;
       body["send_client"] = addVisitPermitBody.sendClient;

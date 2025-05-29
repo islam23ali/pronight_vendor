@@ -101,19 +101,19 @@ class _AddContractPageThreeState extends State<AddContractPageThree> {
                                   )
                                 ],
                               ),
-                              SizedBox(height: 20.h),
-                              Column(crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CustomText(title: AppTranslate.facilitiesProximity.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                                  CustomTextFormField(controller: data.escorts[index].facilitiesProximityController,
-                                    height: 56.h,textInputType: TextInputType.text,
-                                    prefix: InkWell(onTap:(){
-                                      data.escorts[index].facilitiesProximityController.clear();
-                                    },
-                                        child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
-                                  )
-                                ],
-                              ),
+                              // SizedBox(height: 20.h),
+                              // Column(crossAxisAlignment: CrossAxisAlignment.start,
+                              //   children: [
+                              //     CustomText(title: AppTranslate.facilitiesProximity.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                              //     CustomTextFormField(controller: data.escorts[index].facilitiesProximityController,
+                              //       height: 56.h,textInputType: TextInputType.text,
+                              //       prefix: InkWell(onTap:(){
+                              //         data.escorts[index].facilitiesProximityController.clear();
+                              //       },
+                              //           child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
+                              //     )
+                              //   ],
+                              // ),
                               SizedBox(height: 20.h),
                               const MySeparator(color: AppColors.blackColor,),
                               SizedBox(height: 20.h),
@@ -122,7 +122,7 @@ class _AddContractPageThreeState extends State<AddContractPageThree> {
                                   if(data.escorts[index].companionNameController.text.isEmpty||data.escorts[index].iDNumberCompanionsController.text.isEmpty){
                                     CustomScaffoldMessanger.showToast(title: AppTranslate.accompanyingTenantDataRequired.tr());
                                   }else{
-                                  data.escorts.add(AddEscort(name: '', idNo: '', nationality: '', kinship: ''));
+                                  data.escorts.add(AddEscort(name: '', idNo: '', nationality: '', ));
                                   data.refreshData();}
                                 },bg: const Color(0xff045B9A),title: AppTranslate.addFacilities.tr(),fontWeight: FontWeight.w400,),
 
@@ -133,7 +133,7 @@ class _AddContractPageThreeState extends State<AddContractPageThree> {
                                    if(data.escorts[index].companionNameController.text.isEmpty||data.escorts[index].iDNumberCompanionsController.text.isEmpty){
                                      CustomScaffoldMessanger.showToast(title: AppTranslate.accompanyingTenantDataRequired.tr());
                                    }else{
-                                    data.escorts.add(AddEscort(name: '', idNo: '', nationality: '', kinship: ''));
+                                    data.escorts.add(AddEscort(name: '', idNo: '', nationality: '', ));
                                     data.refreshData();}
                                     },width: 135.w,bg: const Color(0xff045B9A),title: AppTranslate.addFacilities.tr(),fontWeight: FontWeight.w400,),
                                   (data.escorts.first==data.escorts[index])?const SizedBox(): CustomButton(onTap: (){

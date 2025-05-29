@@ -55,7 +55,10 @@ class _ContractDetailsState extends State<ContractDetails> {
                 padding: EdgeInsets.symmetric(vertical:Dimens.padding_12),
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    CustomButton(onTap: (){socialMediaHelper.openFacebookApp('https://pro-night.com/contract/79MK1v3Dn90wNtM8RNg0');},width: 70.w,height: 54.h,icon: AppAssets.showContract,iconWidth: 25.w,iconHeight: 25.h,),
+                    CustomButton(onTap: (){
+                      data.printContract(widget.id.toString());
+                      // socialMediaHelper.openFacebookApp('https://pro-night.com/contract/79MK1v3Dn90wNtM8RNg0');
+                      },width: 70.w,height: 54.h,icon: AppAssets.showContract,iconWidth: 25.w,iconHeight: 25.h,),
                     CustomButton(onTap: (){
                       NavigatorHandler.push(AddContract(id:widget.id.toString()));
                     },width: 70.w,height: 54.h,icon: AppAssets.editContract,iconWidth: 23.w,iconHeight: 23.h,),
@@ -146,7 +149,10 @@ class _ContractDetailsState extends State<ContractDetails> {
                           CustomText(title: AppTranslate.operationsOTheContract.tr(),fontSize: AppFonts.font_11,fontColor: AppColors.textColor2,),
                           Row(
                             children: [
-                              InkWell(onTap: (){socialMediaHelper.openFacebookApp('https://business.pro-night.net/contract/79MK1v3Dn90wNtM8RNg0');},
+                              InkWell(onTap: (){
+                                data.printContract(widget.id.toString());
+                                // socialMediaHelper.openFacebookApp('https://business.pro-night.net/contract/79MK1v3Dn90wNtM8RNg0');
+                                },
                                 child: Container(
                                   padding: EdgeInsets.all(Dimens.padding_4),
                                   margin: EdgeInsets.symmetric(horizontal:Dimens.padding_4h),

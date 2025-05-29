@@ -13,6 +13,7 @@ class AddVisitPermitBody {
   String? visitorsSwitch;
   String? materialsSwitch;
   String? note;
+  String? phone;
   List<AddVisitor>? visitor;
   List<AddMaterial>? material;
   bool? sendClient;
@@ -30,6 +31,7 @@ class AddVisitPermitBody {
     this.visitorsSwitch,
     this.materialsSwitch,
     this.note,
+    this.phone,
     this.visitor,
     this.material,
     this.sendClient,
@@ -49,6 +51,7 @@ class AddVisitPermitBody {
     "visitors_switch": visitorsSwitch,
     "materials_switch": materialsSwitch,
     "note": note,
+    "phone": phone,
     "send_client": sendClient,
     "send_provider": sendProvider,
     "visitors": visitor == null ? [] : List<dynamic>.from(visitor!.map((x) => x.toJson())),

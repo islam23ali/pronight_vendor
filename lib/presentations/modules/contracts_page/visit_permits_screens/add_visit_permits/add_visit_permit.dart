@@ -240,6 +240,20 @@ class _AddVisitPermitState extends State<AddVisitPermit> {
                                 SizedBox(height: 20.h),
                                 Column(crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    CustomText(title: AppTranslate.mobileNumber.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                                    CustomTextFormField(controller: data.mobileNumberController,
+                                      height: 56.h,textInputType: TextInputType.number,
+                                      prefix: InkWell(onTap: (){
+                                        data.mobileNumberController.clear();
+                                        data.refreshData();
+                                      },
+                                          child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(height: 20.h),
+                                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
                                     CustomText(title: AppTranslate.comments.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                                     CustomTextFormFieldArea(controller: data.detailsController,
                                       height: 120.h,

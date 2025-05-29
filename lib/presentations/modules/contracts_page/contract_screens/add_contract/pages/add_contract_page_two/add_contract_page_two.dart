@@ -144,20 +144,20 @@ class _AddContractPageTwoState extends State<AddContractPageTwo> {
                             ),),
                       ],),
                       SizedBox(height: 20.h),
-                      Column(crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomText(title: AppTranslate.contractFees.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
-                          CustomTextFormField(controller: data.contractFeesController,
-                            height: 56.h,textInputType: TextInputType.number,
-                            prefix: InkWell(onTap: (){
-                              data.contractFeesController.clear();
-                              data.refreshData();
-                            },
-                                child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
-                          )
-                        ],
-                      ),
-                      SizedBox(height: 20.h),
+                      // Column(crossAxisAlignment: CrossAxisAlignment.start,
+                      //   children: [
+                      //     CustomText(title: AppTranslate.contractFees.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
+                      //     CustomTextFormField(controller: data.contractFeesController,
+                      //       height: 56.h,textInputType: TextInputType.number,
+                      //       prefix: InkWell(onTap: (){
+                      //         data.contractFeesController.clear();
+                      //         data.refreshData();
+                      //       },
+                      //           child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
+                      //     )
+                      //   ],
+                      // ),
+                      // SizedBox(height: 20.h),
                       Column(crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(title: AppTranslate.details.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
@@ -201,8 +201,8 @@ class _AddContractPageTwoState extends State<AddContractPageTwo> {
                             CustomScaffoldMessanger.showToast(title: AppTranslate.rentalValueRequired.tr());
                           }else if(data.insuranceValueController.text.isEmpty){
                             CustomScaffoldMessanger.showToast(title: AppTranslate.insuranceValueRequired.tr());
-                          }else if(data.contractFeesController.text.isEmpty){
-                            CustomScaffoldMessanger.showToast(title: AppTranslate.contractFeesRequired.tr());
+                          // }else if(data.contractFeesController.text.isEmpty){
+                          //   CustomScaffoldMessanger.showToast(title: AppTranslate.contractFeesRequired.tr());
                           }else{
                           setState(() {
                             data.currentPage=2;
