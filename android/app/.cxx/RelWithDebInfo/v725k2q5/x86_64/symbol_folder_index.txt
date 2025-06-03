@@ -1,0 +1,1 @@
+/Users/emad/StudioProjects/pronight_vendor/build/app/intermediates/cxx/RelWithDebInfo/v725k2q5/obj/x86_64
