@@ -93,10 +93,10 @@ class AuthViewModel extends ChangeNotifier{
       _sendCodeModel = SendCodeModel.fromJson(responseModel.response?.data);
       notifyListeners();
       if (_sendCodeModel != null && _sendCodeModel?.code == 200) {
-        // if(kDebugMode){
+        if(kDebugMode){
           print('hhhfdhfhfhfhfhf');
           CustomScaffoldMessanger.showToast(title: _sendCodeModel?.data.toString()??'');
-        // }
+        }
         if(type=='login'){
           (fromScreen==true)? showConfirmCodeSheet('login'):null;
         }else{

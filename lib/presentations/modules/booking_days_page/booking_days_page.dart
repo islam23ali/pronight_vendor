@@ -35,7 +35,9 @@ class _BookingDaysPageState extends State<BookingDaysPage> {
 
   @override
   void initState() {
-    provider.reservationDays(widget.unitId, '$month-$year');
+ WidgetsBinding.instance.addPostFrameCallback((_){
+   provider.reservationDays(widget.unitId, '$month-$year');
+ });
     super.initState();
   }
 

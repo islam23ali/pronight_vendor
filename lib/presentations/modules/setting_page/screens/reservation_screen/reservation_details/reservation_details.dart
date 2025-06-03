@@ -79,7 +79,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                                     children: [
                                       SizedBox(width:130.w,
                                           child: CustomText(title: AppTranslate.order.tr(),fontSize: AppFonts.font_11,)),
-                                      Expanded(child: CustomText(title: 'حجز غرفة داخل فندق الرياض للسياحة لسه جيمي',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,))
+                                      Expanded(child: CustomText(title: data.reservationDetailsModel?.data?.unit?.title??'',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,))
                                     ],
                                   ),
                                   SizedBox(height: 10.h),
@@ -97,13 +97,20 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r),border: Border.all(width: 1.w,color: Color(0xffBDBDBD))),
                               child:Column(crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                Row(crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(width:130.w,
-                                        child: CustomText(title: AppTranslate.numberOfRooms.tr(),fontSize: AppFonts.font_11,)),
-                                    CustomText(title: 'غرفتان لسه جيمي',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,)
-                                  ],
-                                ),
+                                  Row(crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(width:130.w,
+                                          child: CustomText(title: AppTranslate.detailedAddress.tr(),fontSize: AppFonts.font_11,)),
+                                      CustomText(title: data.reservationDetailsModel?.data?.unit?.address??'',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,)
+                                    ],
+                                  ),
+                                // Row(crossAxisAlignment: CrossAxisAlignment.start,
+                                //   children: [
+                                //     SizedBox(width:130.w,
+                                //         child: CustomText(title: AppTranslate.numberOfRooms.tr(),fontSize: AppFonts.font_11,)),
+                                //     CustomText(title: 'غرفتان لسه جيمي',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,)
+                                //   ],
+                                // ),
                                   SizedBox(height: 10.h),
                                   Row(crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -127,13 +134,13 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r),border: Border.all(width: 1.w,color: Color(0xffBDBDBD))),
                               child:Column(crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                Row(crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(width:130.w,
-                                        child: CustomText(title: AppTranslate.roomPrice.tr(),fontSize: AppFonts.font_11,)),
-                                    CustomText(title: '500 ريال سعودي لسه جيمي ',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,)
-                                  ],
-                                ),
+                                // Row(crossAxisAlignment: CrossAxisAlignment.start,
+                                //   children: [
+                                //     SizedBox(width:130.w,
+                                //         child: CustomText(title: AppTranslate.detailedAddress.tr(),fontSize: AppFonts.font_11,)),
+                                //     CustomText(title: data.reservationDetailsModel?.data?.unit?.??'',fontSize: AppFonts.font_10,fontColor: AppColors.textGrayColor,)
+                                //   ],
+                                // ),
                                   SizedBox(height: 10.h),
                                   Row(crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [

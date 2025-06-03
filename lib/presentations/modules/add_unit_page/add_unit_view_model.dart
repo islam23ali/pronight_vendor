@@ -334,10 +334,12 @@ TextEditingController fromDateSetPriceController = TextEditingController();
 TextEditingController toDateSetPriceController = TextEditingController();
 TextEditingController newPriceController = TextEditingController();
 initSetPrice(){
+WidgetsBinding.instance.addPostFrameCallback((_){
   fromDateSetPriceController.clear();
   toDateSetPriceController.clear();
   newPriceController.clear();
   notifyListeners();
+});
 }
   Future<void> setPrice (unitId) async {
   notifyListeners();
