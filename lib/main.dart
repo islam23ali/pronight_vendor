@@ -5,7 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart' as l;
 import 'package:flutter/material.dart' ;
 import 'package:flutter/services.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
+// import 'package:flutter_downloader/flutter_downloader.dart';
 import 'core/constants/constants.dart';
 import 'core/firebase_notification/notification_services.dart';
 import 'injection.dart';
@@ -18,10 +18,10 @@ void main() async{
   await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();
   await init();
-  await FlutterDownloader.initialize(
-      debug: true, // optional: set to false to disable printing logs to console (default: true)
-      ignoreSsl: true // option: set to false to disable working with http links (default: false)
-  );
+  // await FlutterDownloader.initialize(
+  //     debug: true, // optional: set to false to disable printing logs to console (default: true)
+  //     ignoreSsl: true // option: set to false to disable working with http links (default: false)
+  // );
   // await initializeDateFormatting(); // 👈 مهم جداً
 
   runApp(GenerateMultiProviders(
