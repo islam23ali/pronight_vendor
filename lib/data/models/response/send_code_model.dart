@@ -1,6 +1,6 @@
 
 class SendCodeModel {
-  String? data;
+  dynamic? data;
   String? message;
   int? code;
 
