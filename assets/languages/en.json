@@ -319,5 +319,10 @@
   "pleaseEnterMessage":"please Enter the message",
   "pleaseEnterValidEmailAddress":"Please enter a valid email address",
   "pleaseEnterMessageSubject":"Please enter a message subject",
-  "bookingDays":"Booking days"
+  "bookingDays":"Booking days",
+  "deleteAccount":"Delete account",
+  "yes":"yes",
+  "are you sure you want to delete the account?":"are you sure you want to delete the account?",
+  "after deleting your account, you will not be able to recover your wallet balance.":"after deleting your account, you will not be able to recover your wallet balance.",
+  "cancel":"Cancel"
 }

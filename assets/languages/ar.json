@@ -323,5 +323,9 @@
   "pleaseEnterValidEmailAddress": "الرجاء إدخال بريد إلكتروني صحيح",
   "copiedToClipboard": "تم نسخها إلى الحافظة",
   "pleaseEnterMessageSubject": "الرجاء إدخال  عنوان الرسالة",
-  "bookingDays": "أيام الحجز"
+  "bookingDays": "أيام الحجز",
+  "deleteAccount": "حذف الحساب",
+  "yes":"نعم",
+  "are you sure you want to delete the account?":"هل أنت متأكد أنك تريد حذف الحساب؟",
+  "cancel":"إلغاء"
 }

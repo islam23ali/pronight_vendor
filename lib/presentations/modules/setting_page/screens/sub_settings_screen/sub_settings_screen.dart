@@ -7,6 +7,7 @@ import 'package:pronight_vendor/presentations/modules/auth/auth_view_model.dart'
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/about_app_screen/about_app_screen.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/change_language/change_language_sheet.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/contact_us_screen/contact_us_screen.dart';
+import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/delete_account_sheet/delete_account_sheet.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/invite_friend/invite_friend_sheet.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/rate_app_sheet/rate_app_sheet.dart';
 import 'package:pronight_vendor/presentations/modules/setting_page/screens/sub_settings_screen/screens/support_and_assistance_screen/support_and_assistance_screen.dart';
@@ -116,6 +117,14 @@ class _SubSettingsScreenState extends State<SubSettingsScreen> {
                                 showRateAppSheet(context);
                               },
                             ),
+                            _buildItem(context,
+                              isRow:true,
+                              image: AppAssets.deleteAccount,
+                              title: AppTranslate.deleteAccount.tr(),
+                              onTap: () {showDeleteAccountSheet(context);
+
+                              },
+                            ),
 
                           ],),
                       )),
@@ -153,6 +162,16 @@ class _SubSettingsScreenState extends State<SubSettingsScreen> {
       context: context,
       backgroundColor: Colors.white,
       builder: (context) => const SafeArea(child: RateAppSheet()),
+    );
+  }
+  Future<dynamic> showDeleteAccountSheet(BuildContext context) async {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (context) =>const DeleteAccountSheet(),
     );
   }
 

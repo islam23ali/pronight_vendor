@@ -217,10 +217,10 @@ class AppTranslate{
   static const String logout = 'logout' ;
   static const String readAll = 'readAll' ;
   static const String copiedToClipboard = 'copiedToClipboard' ;
-  //not set yet
-
-  static const String confirm = 'confirm' ;
   static const String cancel = 'cancel' ;
+
+  //not set yet
+  static const String confirm = 'confirm' ;
   static const String camera = 'Camera' ;
   static const String gallery = 'Gallery' ;
   static const String sureLogout = 'are you sure you want to logout ?' ;
@@ -336,4 +336,9 @@ class AppTranslate{
   static const String pleaseEnterValidEmailAddress = 'pleaseEnterValidEmailAddress' ;
   static const String pleaseEnterMessageSubject = 'pleaseEnterMessageSubject' ;
   static const String bookingDays = 'bookingDays' ;
+  static const String deleteAccount = 'deleteAccount' ;
+  static const String yes = 'yes';
+  static const String sureDeleteAccount = 'are you sure you want to delete the account?';
+  static const String afterDeleteAccount = 'after deleting your account, you will not be able to recover your wallet balance.';
+
 }

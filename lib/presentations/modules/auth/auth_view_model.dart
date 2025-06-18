@@ -170,6 +170,29 @@ class AuthViewModel extends ChangeNotifier{
     notifyListeners();
   }
 
+  Future<void> deleteAccount () async {
+    notifyListeners();
+    ProgressDialog dialog = createProgressDialog(msg: "${AppTranslate.deleteAccount.tr()} ...");
+    await dialog.show();
+    ApiResponse responseModel = await _loginRepo.deleteAccountRepo();
+    await dialog.hide();
+    if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+      notifyListeners();
+      _emptyModel = EmptyModel.fromJson(responseModel.response?.data);
+      notifyListeners();
+      if (_emptyModel != null && _emptyModel?.code == 200) {
+        await saveUserData.clearUserData();
+      } else{
+        CustomScaffoldMessanger.showToast(title: _userModel?.message??'');
+      }
+      notifyListeners();
+    }
+    else {
+      CustomScaffoldMessanger.showScaffoledMessanger(title: responseModel.error,bg: Colors.red,fontColor: Colors.white);
+    }
+    notifyListeners();
+  }
+
   Future<void> register () async {
     print('kkkkkkkkkkk1');
     notifyListeners();

@@ -103,6 +103,15 @@ class LoginRepo {
     }
   }
 
+  Future<ApiResponse> deleteAccountRepo() async {
+    try {
+      Response response = await _dioClient.post(AppUrls.deleteAccountUrl);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.handleError(e));
+    }
+  }
+
   Future<ApiResponse> updateFCMToken({required String fcmToken}) async {
     try {
       TargetPlatform deviceType = getDeviceType();/// for software_type

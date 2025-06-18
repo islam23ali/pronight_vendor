@@ -4,6 +4,8 @@ class AppUrls {
   static String sendCodeUrl = "/provider/send-code";
   static String confirmCodeUrl = "/provider/confirm-code";
 
+  static String deleteAccountUrl = "/provider/delete-account";
+
   static String registerUrl = "/provider/register";
 
   static String updateProfileUrl = "/provider/update-profile";
