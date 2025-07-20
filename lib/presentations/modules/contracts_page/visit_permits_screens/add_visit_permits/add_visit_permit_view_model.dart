@@ -9,6 +9,7 @@ import 'package:pronight_vendor/data/models/response/sub_models/add_visitor_mode
 import 'package:pronight_vendor/data/repositories/visit_permit_repo.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/visit_permit_view_model.dart';
 import '../../../../../core/navigator/navigator.dart';
+import '../../../../../core/resources/app_assets.dart';
 import '../../../../../core/resources/app_translate.dart';
 import '../../../../../data/datasource/local/LocalUserData.dart';
 import '../../../../../data/models/api_response.dart';
@@ -75,7 +76,13 @@ class AddVisitPermitViewModel extends ChangeNotifier{
     sendClient=false;
     sendProvider=false;
   }
-
+  String phoneCode = '+966';
+  String flag = AppAssets.flagIcon ;
+  void selectedCountryCodeAndFlag (String newPhoneCode,newFlag) {
+    phoneCode = newPhoneCode;
+    flag = newFlag;
+    notifyListeners();
+  }
   Future<void> addVisitPermit () async {
     notifyListeners();
     AddVisitPermitBody addVisitPermitBody = AddVisitPermitBody();
@@ -88,6 +95,7 @@ class AddVisitPermitViewModel extends ChangeNotifier{
     addVisitPermitBody.driverName=driverNameController.text;
     addVisitPermitBody.note=detailsController.text;
     addVisitPermitBody.phone=mobileNumberController.text;
+    addVisitPermitBody.phoneCode=phoneCode;
     addVisitPermitBody.visitorsSwitch=(isSwitchVisitors==true)?1.toString():0.toString();
     addVisitPermitBody.materialsSwitch=(isSwitchMaterials==true)?1.toString():0.toString();
     addVisitPermitBody.visitor=visitorsList;
@@ -154,6 +162,7 @@ class AddVisitPermitViewModel extends ChangeNotifier{
     addVisitPermitBody.driverName=driverNameController.text;
     addVisitPermitBody.note=detailsController.text;
     addVisitPermitBody.phone=mobileNumberController.text;
+    addVisitPermitBody.phoneCode=phoneCode;
     addVisitPermitBody.visitorsSwitch=(isSwitchVisitors==true)?1.toString():0.toString();
     addVisitPermitBody.materialsSwitch=(isSwitchMaterials==true)?1.toString():0.toString();
     addVisitPermitBody.visitor=visitorsList;

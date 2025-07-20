@@ -113,7 +113,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             hintText: widget.hint,
             hintStyle: AppTextStyles().normalText(fontSize: widget.hintFontSize??AppFonts.font_12).textColorNormal(widget.hintFontColor??AppColors.darkColor.withAlpha((0.35 * 255).round())),
             prefixIcon: widget.prefix,
-            suffixIconConstraints: BoxConstraints(maxHeight:widget.maxHeight?? 24.h,maxWidth:widget.maxWidth??26.w,minWidth: 24.w,),
+            suffixIconConstraints: BoxConstraints(maxHeight:widget.maxHeight?? 24.h,maxWidth:widget.maxWidth??105.w,minWidth: 24.w,),
             prefixIconConstraints: BoxConstraints(maxHeight:widget.maxHeight?? 24.h,maxWidth:widget.maxWidth??96.w,minWidth: 45.w),
             counterText: '',
             suffixIcon: widget.textInputType == TextInputType.visiblePassword

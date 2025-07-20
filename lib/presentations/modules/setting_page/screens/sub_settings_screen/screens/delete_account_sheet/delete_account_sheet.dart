@@ -40,9 +40,7 @@ class DeleteAccountSheet extends StatelessWidget {
             SizedBox(height: Dimens.padding_24h),
             CustomText(
               fontWeight: FontWeight.w600,
-              title: AppTranslate.sureDeleteAccount.tr(),
-
-            ),
+              title: AppTranslate.sureDeleteAccount.tr()),
             // SizedBox(height: Dimens.padding_8v),
             // CustomText(
             //   title: AppTranslate.afterDeleteAccount.tr(),

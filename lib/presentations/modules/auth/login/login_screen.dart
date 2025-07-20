@@ -1,4 +1,6 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/widgets.dart' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pronight_vendor/core/app_theme/app_colors.dart';
@@ -15,9 +17,9 @@ import 'package:pronight_vendor/presentations/components/custom_svg/CustomSvgIco
 import 'package:pronight_vendor/presentations/components/custom_text/custom_text.dart';
 import 'package:pronight_vendor/presentations/components/inputs/custom_text_form.dart';
 import 'package:pronight_vendor/presentations/modules/auth/auth_view_model.dart';
-import 'package:pronight_vendor/presentations/modules/auth/login/widget/confirm_code/verification_code/confirm_code_sheet.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/app_theme/text_styles.dart';
 import '../../../components/loadings/custom_scaffold_messanger.dart';
 import '../register/register_screen.dart';
 
@@ -55,6 +57,53 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomTextFormField(controller: data.phoneNumberController,
                         height: 60,textInputType: TextInputType.number,
                         inputFormatters: [LengthLimitingTextInputFormatter(10),FilteringTextInputFormatter.digitsOnly],
+                        suffix: Directionality(
+                            textDirection: ui.TextDirection.ltr,
+                            child: CountryCodePicker(
+                              padding: EdgeInsets.zero,
+                              backgroundColor: Colors.white,
+                              dialogTextStyle: AppTextStyles()
+                                  .normalText(fontSize: AppFonts.font_14)
+                                  .copyWith(color: Colors.black),
+                              onChanged: (countryCode){
+                                context
+                                    .read<AuthViewModel>().selectedCountryCodeAndFlag(countryCode.dialCode??'',countryCode.flagUri??'');
+                                print('bbbbbbbbbbb${data.phoneCode}');
+                              },
+                              builder: (countryCode) {
+                                return Row(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(4.r),
+                                      child: Image.asset(
+                                        countryCode?.flagUri ?? '',
+                                        package: 'country_code_picker',
+                                        width: 36.w,
+                                        height: 24.h
+                                      ),
+                                    ),
+                                    SizedBox(width: Dimens.padding_8h),
+                                    CustomText(
+                                        title: countryCode?.dialCode ?? ''),
+                                    SizedBox(width: Dimens.padding_8h),
+                                    Icon(
+                                      Icons.expand_more_rounded,
+                                      color: AppColors.darkColor,
+                                      size: 14.r,
+                                    ),
+                                  ],
+                                );
+                              },
+                              initialSelection: 'sa',
+                              favorite: const ['+966', 'sa'],
+                              showCountryOnly: false,
+                              showOnlyCountryWhenClosed: false,
+                              showFlagMain: true,
+                              alignLeft: false,
+                              textOverflow: TextOverflow.ellipsis,
+                              flagWidth: 36.w,
+                            )
+                        ),
                         prefix: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w),
                       )
                     ],

@@ -30,6 +30,7 @@ class VisitPermitRepo {
       body["status"] = addVisitPermitBody.status;
       body["driver_name"] = addVisitPermitBody.driverName;
       body["phone"] = addVisitPermitBody.phone;
+      body["phone_code"] = addVisitPermitBody.phoneCode;
       body["visitors_switch"] = addVisitPermitBody.visitorsSwitch;
       body["materials_switch"] = addVisitPermitBody.materialsSwitch;
       body["send_client"] = addVisitPermitBody.sendClient;
@@ -71,10 +72,12 @@ class VisitPermitRepo {
       body["days_count"] = addVisitPermitBody.daysCount;
       body["status"] = addVisitPermitBody.status;
       body["driver_name"] = addVisitPermitBody.driverName;
+      body["phone"] = addVisitPermitBody.phone;
+      body["phone_code"] = addVisitPermitBody.phoneCode;
       body["visitors_switch"] = addVisitPermitBody.visitorsSwitch;
       body["materials_switch"] = addVisitPermitBody.materialsSwitch;
-      body["send_client"] = addVisitPermitBody.sendClient;
-      body["send_provider"] = addVisitPermitBody.sendProvider;
+      body["send_client"] = (addVisitPermitBody.sendClient==true)?'1':'0';
+      body["send_provider"] = (addVisitPermitBody.sendProvider==true)?'1':'0';
 
       if(addVisitPermitBody.note!=null||addVisitPermitBody.note!='')body['note']=addVisitPermitBody.note;
       if(addVisitPermitBody.visitorsSwitch=='1')

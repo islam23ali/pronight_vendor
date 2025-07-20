@@ -62,8 +62,8 @@ class ContractRepo {
       body['rent_value']=addContractBody.rentValue;
       body['insurance_value']=addContractBody.insuranceValue;
       // body['price']=addContractBody.price;
-      body['send_provider']=addContractBody.sendProvider;
-      body['send_client']=addContractBody.sendClient;
+      body['send_provider']=(addContractBody.sendProvider==true)?'1':'0';
+      body['send_client']=(addContractBody.sendClient==true)?'1':'0';
       if(addContractBody.note!=null||addContractBody.note!='')body['note']=addContractBody.note;
       for (int e = 0; e < (addContractBody.escorts??[]).length; e++) {
         body["escorts[$e][name]"] = addContractBody.escorts?[e].companionNameController.text;
@@ -107,8 +107,8 @@ class ContractRepo {
       body['rent_value']=addContractBody.rentValue;
       body['insurance_value']=addContractBody.insuranceValue;
       // body['price']=addContractBody.price;
-      body['send_provider']=addContractBody.sendProvider;
-      body['send_client']=addContractBody.sendClient;
+      body['send_provider']=(addContractBody.sendProvider==true)?'1':'0';
+      body['send_client']=(addContractBody.sendClient==true)?'1':'0';
       if(addContractBody.note!=null||addContractBody.note!='')body['note']=addContractBody.note;
       for (int e = 0; e < (addContractBody.escorts??[]).length; e++) {
         body["escorts[$e][name]"] = addContractBody.escorts?[e].companionNameController.text;

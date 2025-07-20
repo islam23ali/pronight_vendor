@@ -13,6 +13,7 @@ import 'package:pronight_vendor/presentations/modules/layout/bottom_nav_bar_app.
 import '../../../core/app_theme/app_colors.dart';
 import '../../../core/firebase_notification/notification_services.dart';
 import '../../../core/navigator/navigator.dart';
+import '../../../core/resources/app_assets.dart';
 import '../../../core/resources/app_translate.dart';
 import '../../../core/utils/imageCroper.dart';
 import '../../../data/models/api_response.dart';
@@ -49,6 +50,12 @@ class AuthViewModel extends ChangeNotifier{
   }
   String phoneCode = '+966';
   // String phoneCode = '+962';
+  String flag = AppAssets.flagIcon ;
+  void selectedCountryCodeAndFlag (String newPhoneCode,newFlag) {
+    phoneCode = newPhoneCode;
+    flag = newFlag;
+    notifyListeners();
+  }
   EmptyModel? _emptyModel;
   SendCodeModel? _sendCodeModel;
   UserModel? _userModel;

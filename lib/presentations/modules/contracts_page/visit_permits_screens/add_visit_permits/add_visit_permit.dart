@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pronight_vendor/core/constants/constants.dart';
@@ -8,7 +9,9 @@ import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permi
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/widgets/custom_visitor_data_card.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/visit_permits_screens/add_visit_permits/widgets/send_visit_permit_sheet.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/widgets.dart' as ui;
 import '../../../../../core/app_theme/app_colors.dart';
+import '../../../../../core/app_theme/text_styles.dart';
 import '../../../../../core/dimens/dimens.dart';
 import '../../../../../core/resources/app_assets.dart';
 import '../../../../../core/resources/app_translate.dart';
@@ -243,6 +246,53 @@ class _AddVisitPermitState extends State<AddVisitPermit> {
                                     CustomText(title: AppTranslate.mobileNumber.tr(),fontSize: AppFonts.font_12,fontColor: AppColors.primaryColor),
                                     CustomTextFormField(controller: data.mobileNumberController,
                                       height: 56.h,textInputType: TextInputType.number,
+                                      suffix: Directionality(
+                                          textDirection: ui.TextDirection.ltr,
+                                          child: CountryCodePicker(
+                                            padding: EdgeInsets.zero,
+                                            backgroundColor: Colors.white,
+                                            dialogTextStyle: AppTextStyles()
+                                                .normalText(fontSize: AppFonts.font_14)
+                                                .copyWith(color: Colors.black),
+                                            onChanged: (countryCode){
+                                              context
+                                                  .read<AddVisitPermitViewModel>().selectedCountryCodeAndFlag(countryCode.dialCode??'',countryCode.flagUri??'');
+                                              print('bbbbbbbbbbb${data.phoneCode}');
+                                            },
+                                            builder: (countryCode) {
+                                              return Row(
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius: BorderRadius.circular(4.r),
+                                                    child: Image.asset(
+                                                        countryCode?.flagUri ?? '',
+                                                        package: 'country_code_picker',
+                                                        width: 36.w,
+                                                        height: 24.h
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: Dimens.padding_8h),
+                                                  CustomText(
+                                                      title: countryCode?.dialCode ?? ''),
+                                                  SizedBox(width: Dimens.padding_8h),
+                                                  Icon(
+                                                    Icons.expand_more_rounded,
+                                                    color: AppColors.darkColor,
+                                                    size: 14.r,
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                            initialSelection: 'sa',
+                                            favorite: const ['+966', 'sa'],
+                                            showCountryOnly: false,
+                                            showOnlyCountryWhenClosed: false,
+                                            showFlagMain: true,
+                                            alignLeft: false,
+                                            textOverflow: TextOverflow.ellipsis,
+                                            flagWidth: 36.w,
+                                          )
+                                      ),
                                       prefix: InkWell(onTap: (){
                                         data.mobileNumberController.clear();
                                         data.refreshData();

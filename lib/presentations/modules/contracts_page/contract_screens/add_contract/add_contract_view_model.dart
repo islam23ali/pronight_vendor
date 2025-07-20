@@ -6,6 +6,7 @@ import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 import 'package:pronight_vendor/core/navigator/navigator.dart';
 import 'package:pronight_vendor/presentations/modules/contracts_page/contracts_view_model.dart';
 
+import '../../../../../core/resources/app_assets.dart';
 import '../../../../../core/resources/app_translate.dart';
 import '../../../../../data/datasource/local/LocalUserData.dart';
 import '../../../../../data/models/api_response.dart';
@@ -67,6 +68,13 @@ class AddContractViewModel extends ChangeNotifier{
   VillasModel? get villasModel => _villasModel;
   VillasModel? get beachesModel => _beachesModel;
 
+  String phoneCode = '+966';
+  String flag = AppAssets.flagIcon ;
+  void selectedCountryCodeAndFlag (String newPhoneCode,newFlag) {
+    phoneCode = newPhoneCode;
+    flag = newFlag;
+    notifyListeners();
+  }
 
   void refreshData(){
   notifyListeners();
@@ -103,7 +111,7 @@ class AddContractViewModel extends ChangeNotifier{
     addContractBody.tenantName=tenantNameController.text;
     addContractBody.tenantIdNo=iDNumberController.text;
     addContractBody.tenantNationality=nationalityController.text;
-    addContractBody.tenantPhoneCode='+966';
+    addContractBody.tenantPhoneCode=phoneCode;
     addContractBody.tenantPhone=mobileNumberController.text;
     addContractBody.rentValue=rentalValueController.text;
     addContractBody.insuranceValue=insuranceValueController.text;
@@ -172,7 +180,7 @@ class AddContractViewModel extends ChangeNotifier{
     addContractBody.tenantName=tenantNameController.text;
     addContractBody.tenantIdNo=iDNumberController.text;
     addContractBody.tenantNationality=nationalityController.text;
-    addContractBody.tenantPhoneCode='+966';
+    addContractBody.tenantPhoneCode=phoneCode;
     addContractBody.tenantPhone=mobileNumberController.text;
     addContractBody.rentValue=rentalValueController.text;
     addContractBody.insuranceValue=insuranceValueController.text;

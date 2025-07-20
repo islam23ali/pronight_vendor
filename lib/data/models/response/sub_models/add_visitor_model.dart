@@ -14,12 +14,12 @@ class AddVisitor {
     this.id,
     this.name,
     this.idNo,
-    this.phoneCode ='+966',
+    this.phoneCode,
     this.phone,
   }) :
         visitorNameController = TextEditingController(text: name??''),
         visitorIDNumberController = TextEditingController(text: idNo??''),
-        visitorPhoneCodeController = TextEditingController(text: '+966'),
+        visitorPhoneCodeController = TextEditingController(text: phoneCode??''),
         visitorPhoneController = TextEditingController(text: phone??'');
   // Update all fields from controllers
   void updateFromControllers() {
