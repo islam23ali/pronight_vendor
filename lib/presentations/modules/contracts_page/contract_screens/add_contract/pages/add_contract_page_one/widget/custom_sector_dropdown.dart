@@ -28,6 +28,8 @@ class CustomSectorDropdownButton extends StatefulWidget {
   final TextStyle? textStyle;
   final bool? isCenter;
   final OneSector? selectedItem;
+  final String? disabledTitle;
+
 
   final  Function(OneSector?) onChanged;
 
@@ -41,7 +43,7 @@ class CustomSectorDropdownButton extends StatefulWidget {
     this.iconEnabledColor,
     this.width,
     this.inputColor,
-    this.iconDisabledColor, this.isCenter, this.textStyle, this.hint, this.height, this.selectedItem,
+    this.iconDisabledColor, this.isCenter, this.textStyle, this.hint, this.height, this.selectedItem, this.disabledTitle,
   });
 
   @override
@@ -60,7 +62,7 @@ AddContractViewModel provider = getIt();
           isExpanded: true,
           underline:Container(height: 20.h,width: 300.w,color: Colors.black,),
           isDense: true,
-          disabledHint: Container(height: 2.h,width: Dimens.width.w,color: Colors.grey,),
+          disabledHint: CustomText(title:widget.disabledTitle?? AppTranslate.choose.tr(),fontWeight: FontWeight.normal,fontColor: widget.color?? AppColors.darkColor,fontSize: AppFonts.font_14),
           hint:widget.hint?? Row(
             mainAxisAlignment: widget.isCenter==true?MainAxisAlignment.center:MainAxisAlignment.start,
             children: [
@@ -110,7 +112,7 @@ AddContractViewModel provider = getIt();
             // icon:CustomSvgIcon(assetName: AppAssets.block,width: 24.w,height: 24.w),
             iconSize: 16.r,
             iconEnabledColor:widget.iconEnabledColor?? AppColors.darkColor,
-            iconDisabledColor:widget.iconDisabledColor?? AppColors.errorColor,
+            iconDisabledColor:widget.iconDisabledColor?? Colors.transparent,
           ),
           dropdownStyleData: DropdownStyleData(
             maxHeight: 200,

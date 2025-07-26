@@ -218,6 +218,7 @@ class AppTranslate{
   static const String readAll = 'readAll' ;
   static const String copiedToClipboard = 'copiedToClipboard' ;
   static const String cancel = 'cancel' ;
+  static const String and = 'and' ;
 
   //not set yet
   static const String confirm = 'confirm' ;

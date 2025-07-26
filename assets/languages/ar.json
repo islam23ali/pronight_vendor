@@ -327,5 +327,6 @@
   "deleteAccount": "حذف الحساب",
   "yes":"نعم",
   "are you sure you want to delete the account?":"هل أنت متأكد أنك تريد حذف الحساب؟",
-  "cancel":"إلغاء"
+  "cancel":"إلغاء",
+  "and":"و"
 }

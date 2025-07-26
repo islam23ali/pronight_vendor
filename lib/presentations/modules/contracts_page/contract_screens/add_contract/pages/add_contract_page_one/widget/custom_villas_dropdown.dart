@@ -12,7 +12,6 @@ import '../../../../../../../../core/resources/app_translate.dart';
 import '../../../../../../../../data/models/response/sectors_model.dart';
 import '../../../../../../../components/custom_text/custom_text.dart';
 
-/// CustomDropdownButton
 class CustomVillasDropdownButton extends StatefulWidget {
   final List<OneVilla> items;
   final OneVilla? value;
@@ -131,5 +130,4 @@ class _CustomVillasDropdownButtonState extends State<CustomVillasDropdownButton>
     );
   }
 }
-/// example for hot to use
 

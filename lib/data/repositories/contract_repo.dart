@@ -135,17 +135,23 @@ class ContractRepo {
     }
   }
 
-  Future<ApiResponse> sectorsRepo () async {
+  Future<ApiResponse> sectorsRepo (String startDate,endDate) async {
     try {
-      Response response = await _dioClient.get(AppUrls.sectorsUrl);
+      Response response = await _dioClient.get(AppUrls.sectorsUrl,queryParameters: {
+        'start_date':startDate,
+        'end_date':endDate,
+      });
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.handleError(e));
     }
   }
-  Future<ApiResponse> villasRepo (sectorId) async {
+  Future<ApiResponse> villasRepo (sectorId,startDate,endDate) async {
     try {
-      Response response = await _dioClient.get(AppUrls.villasUrl+sectorId);
+      Response response = await _dioClient.get(AppUrls.villasUrl+sectorId,queryParameters: {
+        'start_date':startDate,
+        'end_date':endDate,
+      });
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.handleError(e));

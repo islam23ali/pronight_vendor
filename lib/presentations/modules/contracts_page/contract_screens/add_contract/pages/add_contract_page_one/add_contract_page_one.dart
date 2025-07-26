@@ -73,6 +73,11 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                           suffix: CustomSvgIcon(assetName: AppAssets.date,color: Colors.black.withAlpha((0.50*244).round()),),
                           prefix: InkWell(onTap: (){
                             data.arrivalDateController.clear();
+                            data.exitDateController.clear();
+                            data.sectorsModel?.data=null;
+                            data.selectedSector=null;
+                            data.selectedVilla=null;
+                            data.selectedBeach=null;
                             data.refreshData();
                           },
                               child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
@@ -89,14 +94,24 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                                 context: context,
                                 builder: (BuildContext context) =>
                                     CustomSelectDate(initialDate:data.arrivalDateController.text,
-                                      onDateSelected: (String value) {data.exitDateController.text=value;},));
+                                      onDateSelected: (String value) {
+                                      if(data.arrivalDateController.text.isEmpty==true){
+                                      CustomScaffoldMessanger.showToast(title: AppTranslate.arrivalDateIsRequired.tr());
+                                      }else {
+                                        data.exitDateController.text = value;
+                                        data.getAllSectors();
+                                      }},));
                           },
                           height: 60.h,textInputType: TextInputType.number,
                           suffix: CustomSvgIcon(assetName: AppAssets.date,color: Colors.black.withAlpha((0.50*244).round()),),
                           prefix: InkWell(onTap: (){
                             data.exitDateController.clear();
+                            data.sectorsModel?.data=null;
+                            data.selectedSector=null;
+                            data.selectedVilla=null;
+                            data.selectedBeach=null;
                             data.refreshData();
-                          },
+                            },
                               child: CustomSvgIcon(assetName: AppAssets.clearField,height: 14.w,width: 20.w)),
                         )
                       ],
@@ -112,7 +127,9 @@ class _AddContractPageOneState extends State<AddContractPageOne> {
                             CustomSectorDropdownButton(
                               color: AppColors.darkColor,
                               items: data.sectorsModel?.data ?? [],
+                              inputColor: data.exitDateController.text.isEmpty==true? Colors.black12:Colors.transparent,
                               value: data.selectedSector,
+                              disabledTitle: '${AppTranslate.choose.tr()} ${AppTranslate.arrivalDate.tr()} ${AppTranslate.and.tr()} ${AppTranslate.exitDate.tr()}',
                               onChanged: (OneSector? newValue) {
                                 setState(() {
                                   data.selectedSector = newValue;

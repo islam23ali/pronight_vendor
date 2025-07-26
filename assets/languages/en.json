@@ -324,5 +324,6 @@
   "yes":"yes",
   "are you sure you want to delete the account?":"are you sure you want to delete the account?",
   "after deleting your account, you will not be able to recover your wallet balance.":"after deleting your account, you will not be able to recover your wallet balance.",
-  "cancel":"Cancel"
+  "cancel":"Cancel",
+  "and":"and"
 }

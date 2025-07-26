@@ -80,7 +80,8 @@ class AddContractViewModel extends ChangeNotifier{
   notifyListeners();
 }
   void initAddContract(){
-    getAllSectors();
+    // getAllSectors();
+    sectorsModel?.data=null;
     selectedVilla=null;
     selectedSector=null;
     villasModel?.data=null;
@@ -219,7 +220,7 @@ class AddContractViewModel extends ChangeNotifier{
   Future<void> getAllSectors () async {
     _isLoading = true ;
     notifyListeners();
-    ApiResponse responseModel = await _contractRepo.sectorsRepo();
+    ApiResponse responseModel = await _contractRepo.sectorsRepo(arrivalDateController.text,exitDateController.text);
     if (responseModel.response != null && responseModel.response?.statusCode == 200) {
       _sectorsModel = SectorsModel.fromJson(responseModel.response?.data);
       _isLoading = false;
@@ -240,7 +241,7 @@ class AddContractViewModel extends ChangeNotifier{
   Future<void> getAllVillas (sectorId) async {
     _isVilLoading = true ;
     notifyListeners();
-    ApiResponse responseModel = await _contractRepo.villasRepo(sectorId);
+    ApiResponse responseModel = await _contractRepo.villasRepo(sectorId,arrivalDateController.text,exitDateController.text);
     if (responseModel.response != null && responseModel.response?.statusCode == 200) {
       _villasModel = VillasModel.fromJson(responseModel.response?.data);
       _isVilLoading = false;
