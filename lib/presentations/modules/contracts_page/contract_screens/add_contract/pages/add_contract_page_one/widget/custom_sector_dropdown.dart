@@ -110,7 +110,7 @@ AddContractViewModel provider = getIt();
           iconStyleData:  IconStyleData(
             icon:Icon(Icons.expand_more_rounded,size: 20.r,),
             // icon:CustomSvgIcon(assetName: AppAssets.block,width: 24.w,height: 24.w),
-            iconSize: 16.r,
+            iconSize: 16.r ,
             iconEnabledColor:widget.iconEnabledColor?? AppColors.darkColor,
             iconDisabledColor:widget.iconDisabledColor?? Colors.transparent,
           ),
